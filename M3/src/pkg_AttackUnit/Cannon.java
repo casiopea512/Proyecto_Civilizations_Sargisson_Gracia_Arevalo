@@ -3,18 +3,19 @@ package pkg_AttackUnit;
 import interfaces.MilitaryUnit;
 import interfaces.Variables;
 
-public class Swordsman extends AttackUnit implements MilitaryUnit, Variables {
+public class Cannon extends AttackUnit implements MilitaryUnit, Variables {
 	
 	//CONSTRUCTORES EN PRUEBAS
     // Constructor1
 	//PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY ==nivel de tecnologia
-	public Swordsman(int armor, int baseDamage) {
+	public Cannon(int armor, int baseDamage) {
 	    super(); // Llamada al constructor de la clase padre
 	     // Obtener nivel de tecnología de defensa
-	    
-	    this.setArmor(armor + (armor * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY / 100)); // Establecer la armadura con tecnología
-	    this.setInitialArmor(armor + (armor * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY / 100)); // Establecer la armadura inicial
-	    this.setBaseDamage(baseDamage + (baseDamage * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY / 100)); // Establecer el daño base con tecnología
+	    int armorWithTech = armor + (armor * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY / 100);
+	    this.setArmor(armorWithTech); // Establecer la armadura con tecnología
+	    this.setInitialArmor(armorWithTech); // Establecer la armadura inicial
+	    int damageWithTech = baseDamage + (baseDamage * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY / 100);
+	    this.setBaseDamage(damageWithTech); // Establecer el daño base con tecnología
 	    this.setExperience(0); // Establecer la experiencia inicial
 	    this.setSanctified(false); // Establecer si está santificado o no
 	}
@@ -22,7 +23,7 @@ public class Swordsman extends AttackUnit implements MilitaryUnit, Variables {
     //constructor2
 	
 	// Constructor adicional para Constructor 2
-	public Swordsman() {
+	public Cannon() {
 	    super(); // Llamada al constructor de la clase padre
 	    int armor = ARMOR_SWORDSMAN; // Obtener armadura base
 	    int baseDamage = BASE_DAMAGE_SWORDSMAN; // Obtener daño base
