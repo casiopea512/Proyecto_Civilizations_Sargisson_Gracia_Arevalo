@@ -2,19 +2,19 @@ package pkg_AttackUnit;
 
 import interfaces.MilitaryUnit;
 import interfaces.Variables;
+import pkg_Principal.Civilization;
 
 public class Swordsman extends AttackUnit implements MilitaryUnit, Variables {
 	
-	//CONSTRUCTORES EN PRUEBAS
+	
     // Constructor1
-	//PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY ==nivel de tecnologia
+	
 	public Swordsman(int armor, int baseDamage) {
 	    super(); // Llamada al constructor de la clase padre
-	     // Obtener nivel de tecnología de defensa
-	    
-	    this.setArmor(armor + (armor * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY / 100)); // Establecer la armadura con tecnología
-	    this.setInitialArmor(armor + (armor * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY / 100)); // Establecer la armadura inicial
-	    this.setBaseDamage(baseDamage + (baseDamage * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY / 100)); // Establecer el daño base con tecnología
+	     
+	    this.setArmor(armor); // Establecer la armadura
+	    this.setInitialArmor(armor); // Establecer la armadura inicial
+	    this.setBaseDamage(baseDamage); // Establecer el daño base 
 	    this.setExperience(0); // Establecer la experiencia inicial
 	    this.setSanctified(false); // Establecer si está santificado o no
 	}
@@ -23,14 +23,13 @@ public class Swordsman extends AttackUnit implements MilitaryUnit, Variables {
 	
 	// Constructor adicional para Constructor 2
 	public Swordsman() {
-	    super(); // Llamada al constructor de la clase padre
-	    int armor = ARMOR_SWORDSMAN; // Obtener armadura base
-	    int baseDamage = BASE_DAMAGE_SWORDSMAN; // Obtener daño base
-	    this.setArmor(armor); // Establecer la armadura
-	    this.setInitialArmor(armor); // Establecer la armadura inicial
-	    this.setBaseDamage(baseDamage); // Establecer el daño base
-	    this.setExperience(0); // Establecer la experiencia inicial
-	    this.setSanctified(false); // Establecer si está santificado o no
+		super();
+		 this.setArmor(ARMOR_SWORDSMAN); // Establecer la armadura de clase
+		    this.setInitialArmor(ARMOR_SWORDSMAN); // Establecer la armadura inicial
+		    this.setBaseDamage(BASE_DAMAGE_SWORDSMAN); // Establecer el daño base
+		    this.setExperience(0); // Establecer la experiencia inicial
+		    this.setSanctified(false); // Establecer si está santificado o no
+		
 	}
 
     
