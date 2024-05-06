@@ -3,6 +3,7 @@ package pkg_Principal;
 import java.util.ArrayList;
 
 import interfaces.MilitaryUnit;
+import pkg_AttackUnit.Spearman;
 
 
 
@@ -159,7 +160,7 @@ public class Civilization {
 		
 		if (getFood() > 10000 ||getWood() > 20000 ||
 				getIron()> 24000 || getMana()>10000 ) {
-			this.church= church+1;
+			this.church+= 1;
 			
 		}else {
 			//llama clase exception BuildingException
@@ -190,7 +191,7 @@ public class Civilization {
 		
 	}
 	
-	void newSwordsman(int n) {
+	void newSwordsman(int n, Spearman sp) {
 		
 	}
 	void newSpearman(int n) {
