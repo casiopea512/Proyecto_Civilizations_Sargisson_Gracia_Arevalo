@@ -4,12 +4,10 @@ import interfaces.MilitaryUnit;
 
 public class Magician extends SpecialUnit implements MilitaryUnit {
 
+	//constructores
+	// Armor siempre tiene que 0
 	public Magician(int armor, int baseDamage) {
-		super(armor,baseDamage);
-		this.setInitialArmor(armor);//armadura inicial al crear uni
-		this.setExperience(0);//batalla ganada +1
-		
-		
+	    super(armor, armor, baseDamage); // Llamada al constructor de la clase padre
 	}
 	
 	

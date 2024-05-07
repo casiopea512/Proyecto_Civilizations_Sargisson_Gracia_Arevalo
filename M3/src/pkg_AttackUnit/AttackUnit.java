@@ -14,19 +14,16 @@ public abstract class AttackUnit implements MilitaryUnit, Variables {
 	//constructores
 	
 	
-	public AttackUnit(int armor, int initialArmor, int baseDamage, int experience, boolean sanctified) {
+	public AttackUnit(int armor, int initialArmor, int baseDamage, boolean sanctified) {
 		super();
 		this.armor = armor;
-		this.initialArmor = initialArmor;
+		this.initialArmor = armor;
 		this.baseDamage = baseDamage;
-		this.experience = experience;
+		this.experience = 0;
 		this.sanctified = sanctified;
 	}
-	
-	public AttackUnit() {
-		super();
-	}
 
+	
 	//set and get
 
 	public int getArmor() {

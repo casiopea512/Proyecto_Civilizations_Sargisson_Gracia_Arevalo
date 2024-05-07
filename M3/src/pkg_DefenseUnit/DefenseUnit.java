@@ -14,10 +14,13 @@ public class DefenseUnit implements MilitaryUnit, Variables {
 
 
 	//constructores
-	public DefenseUnit(int armor, int baseDamage) {
+	public DefenseUnit(int armor, int initialArmor, int baseDamage, boolean sanctified) {
 		super();
 		this.armor = armor;
+		this.initialArmor = armor;
 		this.baseDamage = baseDamage;
+		this.experience = 0;
+		this.sanctified = sanctified;
 	}
 
 
@@ -131,7 +134,8 @@ public class DefenseUnit implements MilitaryUnit, Variables {
 	}
 
 
-	public void getExperience() {
+	public int getExperience() {
+		return this.experience;
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,7 +1,8 @@
 
 
-import java.util.ArrayList;	
+import java.util.ArrayList;
 
+import interfaces.MilitaryUnit;	
 
 
 public class Civilization {

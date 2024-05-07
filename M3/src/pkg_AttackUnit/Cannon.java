@@ -5,28 +5,15 @@ import interfaces.Variables;
 
 public class Cannon extends AttackUnit implements MilitaryUnit, Variables {
 	
-  // Constructor1
-
+		// valores del constructor: int armor, int initialArmor, int baseDamage, boolean sanctified
+	  	// Constructor1
 		public Cannon(int armor, int baseDamage) {
-		    super(); // Llamada al constructor de la clase padre
-		     
-		    this.setArmor(armor); // Establecer la armadura
-		    this.setInitialArmor(armor); // Establecer la armadura inicial
-		    this.setBaseDamage(baseDamage); // Establecer el daño base 
-		    this.setExperience(0); // Establecer la experiencia inicial
-		    this.setSanctified(false); // Establecer si está santificado o no
+		    super(armor, armor, baseDamage, false); // Llamada al constructor de la clase padre
 		}
-
+	
 	    //constructor2
-		
-		// Constructor adicional para Constructor 2
 		public Cannon() {
-			super();
-			 this.setArmor(ARMOR_CANNON); // Establecer la armadura de clase
-			    this.setInitialArmor(ARMOR_CANNON); // Establecer la armadura inicial
-			    this.setBaseDamage(BASE_DAMAGE_CANNON); // Establecer el daño base
-			    this.setExperience(0); // Establecer la experiencia inicial
-			    this.setSanctified(false); // Establecer si está santificado o no
+			super(ARMOR_CANNON, ARMOR_CANNON, BASE_DAMAGE_CANNON, false);
 			
 		}
 		

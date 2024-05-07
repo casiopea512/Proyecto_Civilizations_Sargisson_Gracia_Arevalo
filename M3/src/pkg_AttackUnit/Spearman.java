@@ -4,40 +4,25 @@ import interfaces.MilitaryUnit;
 import interfaces.Variables;
 
 public class Spearman extends AttackUnit implements MilitaryUnit, Variables {
-	
-	  // Constructor1
-	
-		public Spearman(int armor, int baseDamage) {
-		    super(); // Llamada al constructor de la clase padre
-		     
-		    this.setArmor(armor); // Establecer la armadura
-		    this.setInitialArmor(armor); // Establecer la armadura inicial
-		    this.setBaseDamage(baseDamage); // Establecer el daño base 
-		    this.setExperience(0); // Establecer la experiencia inicial
-		    this.setSanctified(false); // Establecer si está santificado o no
-		}
-
-	    //constructor2
 		
-		// Constructor adicional para Constructor 2
+		// valores del constructor: int armor, int initialArmor, int baseDamage, boolean sanctified
+	  	// Constructor1
+		public Spearman(int armor, int baseDamage) {
+		    super(armor, armor, baseDamage, false); // Llamada al constructor de la clase padre
+		}
+	
+	    //constructor2
 		public Spearman() {
-			super();
-			 this.setArmor(ARMOR_SPEARMAN); // Establecer la armadura de clase
-			    this.setInitialArmor(ARMOR_SPEARMAN); // Establecer la armadura inicial
-			    this.setBaseDamage(BASE_DAMAGE_SPEARMAN); // Establecer el daño base
-			    this.setExperience(0); // Establecer la experiencia inicial
-			    this.setSanctified(false); // Establecer si está santificado o no
+			super(ARMOR_SPEARMAN, ARMOR_SPEARMAN, BASE_DAMAGE_SPEARMAN, false);
 			
 		}
 		
 
 	    // Implementación de métodos de la interfaz MilitaryUnit
-	    @Override
 	    public int attack() {
 	        return this.getBaseDamage(); // Obtener el daño base
 	    }
 
-	    @Override
 	    public void takeDamage(int receivedDamage) {
 	        int currentArmor = this.getArmor(); // Obtener la armadura actual
 	        currentArmor -= receivedDamage; // Reducir la armadura según el daño recibido
@@ -47,7 +32,6 @@ public class Spearman extends AttackUnit implements MilitaryUnit, Variables {
 	        this.setArmor(currentArmor); // Establecer la nueva armadura
 	    }
 
-	    @Override
 	    public int getActualArmor() {
 	        return this.getArmor(); // Obtener la armadura actual
 	    }
