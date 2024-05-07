@@ -1,0 +1,39 @@
+cx_Oracle: -------------------------------------------------------------------------------------------------------------
+pip install cx_Oracle
+
+import cx_Oracle
+
+# Connect string format: [username]/[password]@//[hostname]:[port]/[DB service name]
+conn = cx_Oracle.connect("[Username]/[Password]@//localhost:1521/XEPDB1")
+cur = conn.cursor()
+cur.execute("SELECT 'Hello World!' FROM dual")
+res = cur.fetchall()
+print(res)
+
+
+
+
+pypyodbc: --------------------------------------------------------------------------------------------------------------
+
+cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER=localhost;DATABASE=Civilization;UID=admin;PWD=admin')
+cursor = cnxn.cursor()
+cursor.execute('select * from civilization_stats')
+
+for row in cursor.fetchall():
+    print(row)
+
+
+db_host = 'localhost'
+db_name = 'Civilization'
+db_user = 'admin'
+db_pswd = 'admin'
+
+connection_string = 'Driver={SQL Server};Server='+ db_host + ';Database='+db_name +';UID='+db_user +';PWD='+db_pswd +';'
+db = pyodbc.connect(connection_string)
+
+
+
+
+oracledb: --------------------------------------------------------------------------------------------------------------
+
+cnxn = driverOracle.connect(user="admin",password="admin",dsn='localhost/xepdb1')

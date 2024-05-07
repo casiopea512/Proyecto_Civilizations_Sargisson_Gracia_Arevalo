@@ -1,5 +1,6 @@
 import pypyodbc as pyodbc
 #import oracledb as driverOracle
+#import cx_Oracle as cxo
 
 print("Empieza conexción")
 
