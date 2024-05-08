@@ -10,6 +10,7 @@ import pkg_AttackUnit.Spearman;
 import pkg_AttackUnit.Swordsman;
 import pkg_DefenseUnit.ArrowTower;
 import pkg_DefenseUnit.Catapult;
+import pkg_DefenseUnit.RocketLauncherTower;
 import pkg_SpecialUnit.Magician;
 
 
@@ -394,6 +395,7 @@ public class Civilization {
 					this.setFood(food-8000);
 					this.setWood(wood-3000);
 					this.setIron(iron-50);
+					int newArmor=
 					Swordsman newSwordsman = new Swordsman();
 					army[0].add(newSwordsman);
 
@@ -492,14 +494,14 @@ public class Civilization {
 			}
 			
 		
-	void newRocketLauncher(int n) {
+	void newRocketLauncherTower(int n) {
 	
 		for (int i = 0; i < n; i++) { 
 			if (getWood() > 50000 && getIron()> 5000){
 				this.setWood(wood-50000);
 				this.setIron(iron-5000);
 
-				RocketLauncher newRocketLauncher = new RocketLauncher();
+				RocketLauncherTower newRocketLauncher = new RocketLauncherTower();
 				army[6].add(newRocketLauncher);
 
 			}else {
