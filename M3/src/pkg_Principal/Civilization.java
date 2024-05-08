@@ -2,36 +2,47 @@ package pkg_Principal;
 
 import java.util.ArrayList;
 
+import exceptions.ResourceException;
 import interfaces.MilitaryUnit;
+import pkg_AttackUnit.Cannon;
+import pkg_AttackUnit.Crossbow;
 import pkg_AttackUnit.Spearman;
+import pkg_AttackUnit.Swordsman;
+import pkg_DefenseUnit.ArrowTower;
+import pkg_DefenseUnit.Catapult;
+import pkg_SpecialUnit.Magician;
 
 
 
 public class Civilization {
 	private int technologyDefense;
-	private int technologyAtack;
-	
-	private int wood;
-	private int iron;
-	private int food;
-	private int mana;
-	
+	private int technologyAttack;
+
+	private float wood;
+	private float iron;
+	private float food;
+	private float mana;
+
 	private int magicTower;
 	private int church;
 	private int farm;
 	private int smithy;
 	private int carpentry;
-	
+
 	private int battles;
-	private ArrayList<MilitaryUnit> army = new ArrayList<MilitaryUnit>(9);//puede ser un array
-	
+	//private ArrayList<MilitaryUnit> army = new ArrayList<MilitaryUnit>(9);//puede ser un array
+	private ArrayList<MilitaryUnit>[] army = new ArrayList[9];
+
+
+
 	//constructor
-	public Civilization(int technologyDefense, int technologyAtack, int wood, int iron, int food, int mana,
+
+	public Civilization(int technologyDefense, int technologyAttack, float wood, float iron, float food, float mana,
 			int magicTower, int church, int farm, int smithy, int carpentry, int battles,
-			ArrayList<MilitaryUnit> army) {
+			ArrayList<MilitaryUnit>[] army) {
 		super();
 		this.technologyDefense = technologyDefense;
-		this.technologyAtack = technologyAtack;
+		this.technologyAttack = technologyAttack;
 		this.wood = wood;
 		this.iron = iron;
 		this.food = food;
@@ -43,199 +54,509 @@ public class Civilization {
 		this.carpentry = carpentry;
 		this.battles = battles;
 		this.army = army;
-		
-		
-		
 	}
+
+	//metodos
 
 	public int getTechnologyDefense() {
 		return technologyDefense;
 	}
 
+
+
 	public void setTechnologyDefense(int technologyDefense) {
 		this.technologyDefense = technologyDefense;
 	}
 
-	public int getTechnologyAtack() {
-		return technologyAtack;
-	}
 
-	public void setTechnologyAtack(int technologyAtack) {
-		this.technologyAtack = technologyAtack;
-	}
 
-	public int getWood() {
+	public float getWood() {
 		return wood;
 	}
 
-	public void setWood(int wood) {
+
+
+
+	public void setWood(float wood) {
 		this.wood = wood;
 	}
 
-	public int getIron() {
+
+
+
+	public float getIron() {
 		return iron;
 	}
 
-	public void setIron(int iron) {
+
+
+
+	public void setIron(float iron) {
 		this.iron = iron;
 	}
 
-	public int getFood() {
+
+
+
+	public float getFood() {
 		return food;
 	}
 
-	public void setFood(int food) {
+
+
+
+	public void setFood(float food) {
 		this.food = food;
 	}
 
-	public int getMana() {
+
+
+
+	public float getMana() {
 		return mana;
 	}
 
-	public void setMana(int mana) {
+
+
+
+	public void setMana(float mana) {
 		this.mana = mana;
 	}
+
+
+
 
 	public int getMagicTower() {
 		return magicTower;
 	}
 
+
+
+
 	public void setMagicTower(int magicTower) {
 		this.magicTower = magicTower;
 	}
+
+
+
 
 	public int getChurch() {
 		return church;
 	}
 
+
+
+
 	public void setChurch(int church) {
 		this.church = church;
 	}
+
+
+
 
 	public int getFarm() {
 		return farm;
 	}
 
+
+
+
 	public void setFarm(int farm) {
 		this.farm = farm;
 	}
+
+
+
 
 	public int getSmithy() {
 		return smithy;
 	}
 
+
+
+
 	public void setSmithy(int smithy) {
 		this.smithy = smithy;
 	}
+
+
+
 
 	public int getCarpentry() {
 		return carpentry;
 	}
 
+
+
+
 	public void setCarpentry(int carpentry) {
 		this.carpentry = carpentry;
 	}
+
+
+
 
 	public int getBattles() {
 		return battles;
 	}
 
+
+
+
 	public void setBattles(int battles) {
 		this.battles = battles;
 	}
 
-	public ArrayList<MilitaryUnit> getArmy() {
+
+	public int getTechnologyAttack() {
+		return technologyAttack;
+	}
+
+
+
+	public void setTechnologyAttack(int technologyAttack) {
+		this.technologyAttack = technologyAttack;
+	}
+
+
+
+	public ArrayList<MilitaryUnit>[] getArmy() {
 		return army;
 	}
 
-	public void setArmy(ArrayList<MilitaryUnit> army) {
+
+
+	public void setArmy(ArrayList<MilitaryUnit>[] army) {
 		this.army = army;
 	}
-	
-	
-	
-	//metodos
-	
-	void newChurch() {
-		
-		if (getFood() > 10000 ||getWood() > 20000 ||
-				getIron()> 24000 || getMana()>10000 ) {
-			this.church+= 1;
-			
+
+
+
+	//metodo para construir iglesia
+	void newChurch() throws ResourceException {
+		//aseguramos que se tengan los recursos 
+		if (getFood() > 10000 && getWood() > 20000 &&
+				getIron()> 24000 && getMana()>10000 ) {
+			//resto recursos
+			this.setFood(food-10000);
+			this.setWood(wood-20000);
+			this.setIron(iron-24000);
+			this.setMana(mana-10000);
+			this.church+= 1;//suma una 
+
 		}else {
-			//llama clase exception BuildingException
+			throw new ResourceException("You do not have enough resources to build a church");//se controla la falta de recursos
 		}
 	}
+	//metodo para construir torre magica
+	void newMagicTower() throws ResourceException {
+		//aseguramos que se tengan los recursos 
+		if (getFood() > 10000 && getWood() > 20000 &&
+				getIron()> 24000 ){
+			//resto recursos
+			this.setFood(food-10000);
+			this.setWood(wood-20000);
+			this.setIron(iron-24000);
+			this.magicTower+= 1;//suma una 
+			this.setMana(mana+3000);//incremento en mana
+		}else {
+			//se controla la falta de recursos
+			throw new ResourceException("You do not have enough resources to build a Magic Tower");
+		}
+
+	}
+
+	void newFarm() throws ResourceException {
+		//aseguramos que se tengan los recursos 
+		if (getFood() > 5000 && getWood() > 10000 &&
+				getIron()> 12000){
+			//resto recursos
+			this.setFood(food-5000);
+			this.setWood(wood-10000);
+			this.setIron(iron-12000);
+			this.farm+= 1;//suma una farm
+			this.setFood(food+(float)(food*0.05));//incremento en food
+		}else {
+			//se controla la falta de recursos
+			throw new ResourceException("You do not have enough resources to build a Farm");
+		}
+
+	}
+
+	void newCarpentry() throws ResourceException {
+		//aseguramos que se tengan los recursos 
+		if (getFood() > 5000 && getWood() > 10000 &&
+				getIron()> 12000){
+			//resto recursos
+			this.setFood(food-5000);
+			this.setWood(wood-10000);
+			this.setIron(iron-12000);
+			this.farm+= 1;//suma una farm
+			this.setWood(wood+(float)(wood*0.05));//incremento en wood
+		}else {
+			//se controla la falta de recursos
+			throw new ResourceException("You do not have enough resources to build a Carpentry");
+		}
+
+
+	}
+
+	void newSmithy() throws ResourceException {
+		//aseguramos que se tengan los recursos 
+		if (getFood() > 5000 && getWood() > 10000 &&
+				getIron()> 12000){
+			//resto recursos
+			this.setFood(food-5000);
+			this.setWood(wood-10000);
+			this.setIron(iron-12000);
+			this.farm+= 1;//suma una farm
+			this.setIron(iron + (float)(iron*0.05));//incremento del 5%
+		}else {
+			//se controla la falta de recursos
+			throw new ResourceException("You do not have enough resources to build a Carpentry");
+		}
+
+	}
+
+
+	void upgradeTechnologyDefense() throws ResourceException {
+		if (technologyDefense == 0) {//se paga el valor tec inicial
+			if (getFood() > 100 && getWood() > 200 &&
+					getIron()> 2000){
+				//resta recursos
+				this.setFood(food-100);
+				this.setWood(wood-200);
+				this.setIron(iron-2000);
+				this.technologyDefense+= 1;//sumamos uno
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("You do not have resources to improve your defense technology");
+			}
+		}else {//se calcula la cantidad a pagar dependiendo del nivel tec
+			if (getFood() > 100 + 100*(0.1*technologyDefense) && getWood() > 200*(0.15*technologyDefense) &&
+					getIron()> 2000*(0.2*technologyDefense)){
+				this.technologyDefense+= 1;//sumamos uno
+				//resta recursos con aumento segun nivel
+				this.setFood(food-100 + 100*(float)(0.1*technologyDefense));
+				this.setWood(wood-200*(float)(0.15*technologyDefense));
+				this.setIron(iron-2000*(float)(0.2*technologyDefense));
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("You do not have resources to improve your defense technology");
+			}
+
+		}
+
+	}
+
+	void upgradeTechnologyAttack() throws ResourceException {
+		if (technologyAttack == 0) {//se paga el valor tec inicial
+			if (getFood() > 100 && getWood() > 200 &&
+					getIron()> 2000){
+				//resta recursos
+				this.setFood(food-100);
+				this.setWood(wood-200);
+				this.setIron(iron-2000);
+				this.technologyAttack+= 1;//sumamos uno
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("You do not have resources to improve your attack technology");
+			}
+		}else {//se calcula la cantidad a pagar dependiendo del nivel tec
+			if (getFood() > 100 + 100*(0.1*technologyAttack) && getWood() > 200*(0.15*technologyAttack) &&
+					getIron()> 2000*(0.2*technologyAttack)){
+				this.technologyAttack+= 1;//sumamos uno
+				//resta recursos segun nivel tec
+				this.setFood(food-100 + 100*(float)(0.1*technologyAttack));
+				this.setWood(wood-200*(float)(0.15*technologyAttack));
+				this.setIron(iron-2000*(float)(0.2*technologyAttack));
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("You do not have resources to improve your attack technology");
+			}
+
+		}
+
+	}
+
+
+
+
+	void newSwordsman(int n) throws ResourceException {
+
+			for (int i = 0; i < n; i++) { 
+				if (getFood() > 8000 && getWood() > 3000 &&
+						getIron()> 50){
+					this.setFood(food-8000);
+					this.setWood(wood-3000);
+					this.setIron(iron-50);
+					Swordsman newSwordsman = new Swordsman();
+					army[0].add(newSwordsman);
+
+				}else {
+					//se controla la falta de recursos
+					throw new ResourceException("you do not have enough resources to create "+n+" Swordsman, has been created "+i);
+				}
+
+
+			}
+		}
 	
-	void newMagicTower() {
-		
-	}
+	void newSpearman(int n) throws ResourceException {
+			for (int i = 0; i < n; i++) { 
+				if (getFood() > 5000 && getWood() > 6500 &&
+						getIron()> 50){
+					this.setFood(food-5000);
+					this.setWood(wood-6500);
+					this.setIron(iron-50);
+					Spearman newSpearman = new Spearman();
+					army[1].add(newSpearman);
+
+				}else {
+					//se controla la falta de recursos
+					throw new ResourceException("you do not have enough resources to create "+n+" Spearman, has been created "+i);
+				}
+			}
+		}
 	
-	void newFarm() {
-		
+	void newCrossbow(int n) throws ResourceException {
+			for (int i = 0; i < n; i++) { 
+				if (getFood() > 0 && getWood() > 45000 &&
+						getIron()> 7000){
+					this.setWood(wood-45000);
+					this.setIron(iron-7000);
+					Crossbow newCrossbow = new Crossbow();
+					army[2].add(newCrossbow);
+
+				}else {
+					//se controla la falta de recursos
+					throw new ResourceException("you do not have enough resources to create "+n+" Crossbow, has been created "+i);
+				}
+			}
 	}
+
+
+	void newCannon(int n) throws ResourceException {
+			for (int i = 0; i < n; i++) { 
+				if (getFood() > 0 && getWood() > 30000 &&
+						getIron()> 15000){
+					this.setWood(wood-30000);
+					this.setIron(iron-15000);
+					Cannon newCannon = new Cannon();
+					army[3].add(newCannon);
+
+				}else {
+					//se controla la falta de recursos
+					throw new ResourceException("you do not have enough resources to create "+n+" Cannon, has been created "+i);
+				}
+			}
+		}
+
 	
-	void newCarpentry() {
+	void newArrowTower(int n) throws ResourceException {
 		
-	}
-	
-	void newSmithy() {
-		
-	}
-	
-	void upgradeTechnologyDefense() {
-		
-	}
-	
-	void upgradeTechnologyAttack() {
-		
-	}
-	
-	void newSwordsman(int n, Spearman sp) {
-		
-	}
-	void newSpearman(int n) {
-		
-	}
-	
-	void newCrossbow(int n) {
-		
-	}
-	
-	void newCannon(int n) {
-		
-	}
-	
-	void newArrowTower(int n) {
-		
-	}
+			for (int i = 0; i < n; i++) { 
+				if (getWood() > 2000){
+					this.setWood(wood-2000);
+
+					ArrowTower newArrowTower = new ArrowTower();
+					army[4].add(newArrowTower);
+
+				}else {
+					//se controla la falta de recursos
+					throw new ResourceException("you do not have enough resources to create "+n+" ArrowTower, has been created "+i);
+				}
+			}
+		}
+
 	
 	void newCatapult(int n) {
 		
-	}
-	
+			for (int i = 0; i < n; i++) { 
+				if (getWood() > 4000 && getIron()> 500){
+					this.setWood(wood-4000);
+					this.setIron(iron-500);
+
+					Catapult newCatapult = new Catapult();
+					army[5].add(newCatapult);
+
+				}else {
+					//se controla la falta de recursos
+					throw new ResourceException("you do not have enough resources to create "+n+" Catapult, has been created "+i);
+				}
+			}
+			}
+			
+		
 	void newRocketLauncher(int n) {
-		
+	
+		for (int i = 0; i < n; i++) { 
+			if (getWood() > 50000 && getIron()> 5000){
+				this.setWood(wood-50000);
+				this.setIron(iron-5000);
+
+				RocketLauncher newRocketLauncher = new RocketLauncher();
+				army[6].add(newRocketLauncher);
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" RocketLauncher, has been created "+i);
+			}
+		}
+	}
+
+	
+
+	void newMagician(int n) throws ResourceException {
+
+	
+		for (int i = 0; i < n; i++) { 
+			if (getFood() > 12000 && getWood() > 2000 &&
+					getMana()> 5000){
+				this.setWood(wood-2000);
+				this.setFood(food-1200);
+				this.setMana(mana-5000);
+				Magician newMagician = new Magician();
+				army[7].add(newMagician);
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" Magician, has been created "+i);
+			}
+		}
 	}
 	
-	void newMagician(int n) {
-		
-	}
 	
 	void newPriest(int n) {
-		
-	}
-	
-	void printStats() {
-	
-		
-	}
+		for (int i = 0; i < n; i++) { 
+			if (getFood() > 15000 && getMana()> 15000){
+				this.setFood(food-1200);
+				this.setMana(mana-5000);
+				Magician newMagician = new Magician();
+				army[8].add(newMagician);
 
-	
-	
-	
-	
-	
-	
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" Magician, has been created "+i);
 
-}
+			}
+		}
+		}
+
+			void printStats() {
+
+
+			}
+
+
+
+
+
+
+
+
+		}

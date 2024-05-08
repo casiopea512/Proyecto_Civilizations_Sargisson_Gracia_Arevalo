@@ -4,7 +4,7 @@ import interfaces.MilitaryUnit;
 import interfaces.Variables;
 import pkg_Principal.Civilization;
 
-public class Swordsman extends AttackUnit implements MilitaryUnit, Variables {
+public class Swordsman extends AttackUnit  {
 	
 	
     // Constructor1
