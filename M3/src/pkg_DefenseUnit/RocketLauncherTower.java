@@ -1,27 +1,14 @@
-package pkg_AttackUnit;
+package pkg_DefenseUnit;
 
 import interfaces.MilitaryUnit;
 import interfaces.Variables;
-import pkg_Principal.Civilization;
 
-public class Swordsman extends AttackUnit  {
-	
-	
-	// valores del constructor: int armor, int initialArmor, int baseDamage, boolean sanctified
-    // Constructor1
-	
-	public Swordsman(int armor, int baseDamage) {
+public class RocketLauncherTower extends DefenseUnit {
+
+	public RocketLauncherTower(int armor, int baseDamage) {
 	    super(armor, armor, baseDamage); // Llamada al constructor de la clase padre
 	}
-
-    // Constructor2
 	
-	// Constructor adicional para unidades enemigas
-	public Swordsman() {
-		super(ARMOR_SWORDSMAN, ARMOR_SWORDSMAN, BASE_DAMAGE_SWORDSMAN);
-		
-	}
-
 	// IMPLEMENTACION INTERFAZ MilitaryUnit
     public int attack() {
         return this.getBaseDamage(); // Obtener el daño base
@@ -41,31 +28,31 @@ public class Swordsman extends AttackUnit  {
     }
 
     public int getFoodCost() {
-        return FOOD_COST_SWORDSMAN;
+        return FOOD_COST_ROCKETLAUNCHERTOWER;
     }
 
     public int getWoodCost() {
-        return WOOD_COST_SWORDSMAN;
+        return WOOD_COST_ROCKETLAUNCHERTOWER;
     }
 
     public int getIronCost() {
-        return IRON_COST_SWORDSMAN;
+        return IRON_COST_ROCKETLAUNCHERTOWER;
     }
 
     public int getManaCost() {
-        return MANA_COST_SWORDSMAN;
+        return MANA_COST_ROCKETLAUNCHERTOWER;
     }
 
     public int getChanceGeneratinWaste() {
-        return CHANCE_GENERATNG_WASTE_SWORDSMAN;
+        return CHANCE_GENERATNG_WASTE_ROCKETLAUNCHERTOWER;
     }
 
     public int getChanceAttackAgain() {
-        return CHANCE_ATTACK_AGAIN_SWORDSMAN;
+        return CHANCE_ATTACK_AGAIN_ROCKETLAUNCHERTOWER;
     }
 
     public void resetArmor() {
         this.setArmor(this.getInitialArmor()); // Restablecer la armadura a su valor inicial
     }
-   
 }
+
