@@ -4,24 +4,24 @@ import interfaces.MilitaryUnit;
 import interfaces.Variables;
 import pkg_Principal.Civilization;
 
-public class Swordsman extends AttackUnit implements MilitaryUnit, Variables {
+public class Swordsman extends AttackUnit {
 	
 	// valores del constructor: int armor, int initialArmor, int baseDamage, boolean sanctified
     // Constructor1
 	
 	public Swordsman(int armor, int baseDamage) {
-	    super(armor, armor, baseDamage, false); // Llamada al constructor de la clase padre
+	    super(armor, armor, baseDamage); // Llamada al constructor de la clase padre
 	}
 
-    //constructor2
+    // Constructor2
 	
-	// Constructor adicional para Constructor 2
+	// Constructor adicional para unidades enemigas
 	public Swordsman() {
-		super(ARMOR_SWORDSMAN, ARMOR_SWORDSMAN, BASE_DAMAGE_SWORDSMAN, false);
+		super(ARMOR_SWORDSMAN, ARMOR_SWORDSMAN, BASE_DAMAGE_SWORDSMAN);
 		
 	}
 
-    // Implementación de métodos de la interfaz MilitaryUnit
+	// IMPLEMENTACION INTERFAZ MilitaryUnit
     public int attack() {
         return this.getBaseDamage(); // Obtener el daño base
     }
@@ -66,14 +66,5 @@ public class Swordsman extends AttackUnit implements MilitaryUnit, Variables {
     public void resetArmor() {
         this.setArmor(this.getInitialArmor()); // Restablecer la armadura a su valor inicial
     }
-
-//    experiencia existe como metodo abstracto y como atributo/////////////////////////////////////////
-    
-    public void setExperience(int n) {
-        this.setExperience(n); // Establecer la experiencia
-    }
-
-    public void getExperience() {
-        this.getExperience(); // Obtener la experiencia
-    }
+   
 }

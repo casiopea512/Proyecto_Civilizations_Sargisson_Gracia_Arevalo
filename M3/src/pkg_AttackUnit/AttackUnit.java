@@ -13,19 +13,17 @@ public abstract class AttackUnit implements MilitaryUnit, Variables {
 	
 	//constructores
 	
-	
-	public AttackUnit(int armor, int initialArmor, int baseDamage, boolean sanctified) {
+	public AttackUnit(int armor, int initialArmor, int baseDamage) {
 		super();
 		this.armor = armor;
 		this.initialArmor = armor;
 		this.baseDamage = baseDamage;
 		this.experience = 0;
-		this.sanctified = sanctified;
+		this.sanctified = false;
 	}
 
 	
 	//set and get
-
 	public int getArmor() {
 		return armor;
 	}
@@ -50,7 +48,13 @@ public abstract class AttackUnit implements MilitaryUnit, Variables {
 		this.baseDamage = baseDamage;
 	}
 
-	
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
 
 	public boolean isSanctified() {
 		return sanctified;
@@ -60,8 +64,4 @@ public abstract class AttackUnit implements MilitaryUnit, Variables {
 		this.sanctified = sanctified;
 	}
 	
-	
-	
-	
-
 }
