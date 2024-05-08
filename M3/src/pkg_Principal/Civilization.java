@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import exceptions.ResourceException;
 import interfaces.MilitaryUnit;
+import interfaces.Variables;
 import pkg_AttackUnit.Cannon;
 import pkg_AttackUnit.Crossbow;
 import pkg_AttackUnit.Spearman;
@@ -395,8 +396,11 @@ public class Civilization {
 					this.setFood(food-8000);
 					this.setWood(wood-3000);
 					this.setIron(iron-50);
-					int newArmor=
-					Swordsman newSwordsman = new Swordsman();
+					int newArmor = Variables.ARMOR_SWORDSMAN+(getTechnologyDefense()+
+							Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.ARMOR_SWORDSMAN/100;
+					int newDamage = Variables.BASE_DAMAGE_SWORDSMAN+(getTechnologyAttack()+
+							Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SWORDSMAN/100;
+					Swordsman newSwordsman = new Swordsman(newArmor,newDamage);
 					army[0].add(newSwordsman);
 
 				}else {
@@ -415,7 +419,11 @@ public class Civilization {
 					this.setFood(food-5000);
 					this.setWood(wood-6500);
 					this.setIron(iron-50);
-					Spearman newSpearman = new Spearman();
+					int newArmor = Variables.ARMOR_SPEARMAN+(getTechnologyDefense()+
+							Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.ARMOR_SPEARMAN/100;
+					int newDamage = Variables.BASE_DAMAGE_SPEARMAN+(getTechnologyAttack()+
+							Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SPEARMAN/100;
+					Spearman newSpearman = new Spearman(newArmor,newDamage);
 					army[1].add(newSpearman);
 
 				}else {
@@ -431,7 +439,11 @@ public class Civilization {
 						getIron()> 7000){
 					this.setWood(wood-45000);
 					this.setIron(iron-7000);
-					Crossbow newCrossbow = new Crossbow();
+					int newArmor = Variables.ARMOR_CROSSBOW+(getTechnologyDefense()+
+							Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.ARMOR_CROSSBOW/100;
+					int newDamage = Variables.BASE_DAMAGE_CROSSBOW+(getTechnologyAttack()+
+							Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CROSSBOW/100;
+					Crossbow newCrossbow = new Crossbow(newArmor,newDamage);
 					army[2].add(newCrossbow);
 
 				}else {
@@ -448,7 +460,11 @@ public class Civilization {
 						getIron()> 15000){
 					this.setWood(wood-30000);
 					this.setIron(iron-15000);
-					Cannon newCannon = new Cannon();
+					int newArmor = Variables.ARMOR_CANNON+(getTechnologyDefense()+
+							Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.ARMOR_CANNON/100;
+					int newDamage = Variables.BASE_DAMAGE_CANNON+(getTechnologyAttack()+
+							Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CANNON/100;
+					Cannon newCannon = new Cannon(newArmor,newDamage);
 					army[3].add(newCannon);
 
 				}else {
@@ -464,8 +480,11 @@ public class Civilization {
 			for (int i = 0; i < n; i++) { 
 				if (getWood() > 2000){
 					this.setWood(wood-2000);
-
-					ArrowTower newArrowTower = new ArrowTower();
+					int newArmor = Variables.ARMOR_ARROWTOWER+(getTechnologyDefense()+
+							Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.ARMOR_ARROWTOWER/100;
+					int newDamage = Variables.BASE_DAMAGE_ARROWTOWER+(getTechnologyAttack()+
+							Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_ARROWTOWER/100;
+					ArrowTower newArrowTower = new ArrowTower(newArmor,newDamage);
 					army[4].add(newArrowTower);
 
 				}else {
@@ -476,14 +495,17 @@ public class Civilization {
 		}
 
 	
-	void newCatapult(int n) {
+	void newCatapult(int n) throws ResourceException {
 		
 			for (int i = 0; i < n; i++) { 
 				if (getWood() > 4000 && getIron()> 500){
 					this.setWood(wood-4000);
 					this.setIron(iron-500);
-
-					Catapult newCatapult = new Catapult();
+					int newArmor = Variables.ARMOR_CATAPULT+(getTechnologyDefense()+
+							Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.ARMOR_CATAPULT/100;
+					int newDamage = Variables.BASE_DAMAGE_CATAPULT +(getTechnologyAttack()+
+							Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CATAPULT/100;
+					Catapult newCatapult = new Catapult(newArmor,newDamage);
 					army[5].add(newCatapult);
 
 				}else {
@@ -494,14 +516,17 @@ public class Civilization {
 			}
 			
 		
-	void newRocketLauncherTower(int n) {
+	void newRocketLauncherTower(int n) throws ResourceException {
 	
 		for (int i = 0; i < n; i++) { 
 			if (getWood() > 50000 && getIron()> 5000){
 				this.setWood(wood-50000);
 				this.setIron(iron-5000);
-
-				RocketLauncherTower newRocketLauncher = new RocketLauncherTower();
+				int newArmor = Variables.ARMOR_ROCKETLAUNCHERTOWER+(getTechnologyDefense()+
+						Variables.PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*Variables.ARMOR_ROCKETLAUNCHERTOWER/100;
+				int newDamage = Variables.BASE_DAMAGE_ROCKETLAUNCHERTOWER +(getTechnologyAttack()+
+						Variables.PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_ROCKETLAUNCHERTOWER/100;
+				RocketLauncherTower newRocketLauncher = new RocketLauncherTower(newArmor,newDamage);
 				army[6].add(newRocketLauncher);
 
 			}else {
