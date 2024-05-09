@@ -2,6 +2,7 @@ package pkg_Principal;
 
 import java.util.ArrayList;
 
+
 import exceptions.ResourceException;
 import interfaces.MilitaryUnit;
 import interfaces.Variables;
@@ -13,6 +14,7 @@ import pkg_DefenseUnit.ArrowTower;
 import pkg_DefenseUnit.Catapult;
 import pkg_DefenseUnit.RocketLauncherTower;
 import pkg_SpecialUnit.Magician;
+import pkg_SpecialUnit.Priest;
 
 
 
@@ -32,8 +34,8 @@ public class Civilization {
 	private int carpentry;
 
 	private int battles;
-	//private ArrayList<MilitaryUnit> army = new ArrayList<MilitaryUnit>(9);//puede ser un array
-	private ArrayList<MilitaryUnit>[] army = new ArrayList[9];
+
+	private ArrayList<MilitaryUnit>[] army = new ArrayList[9];//ES DE 8 O DE 9(SOLO HAY NUEVE UNIDADES Y EL 0 SE CUENTA)
 
 
 
@@ -55,6 +57,13 @@ public class Civilization {
 		this.smithy = smithy;
 		this.carpentry = carpentry;
 		this.battles = battles;
+
+		// Inicializar todas las listas en el arreglo army
+		for (int i = 0; i < army.length; i++) {
+			army[i] = new ArrayList<>();
+		}
+
+
 		this.army = army;
 	}
 
@@ -390,134 +399,137 @@ public class Civilization {
 
 	void newSwordsman(int n) throws ResourceException {
 
-			for (int i = 0; i < n; i++) { 
-				if (getFood() > 8000 && getWood() > 3000 &&
-						getIron()> 50){
-					this.setFood(food-8000);
-					this.setWood(wood-3000);
-					this.setIron(iron-50);
-					int newArmor = Variables.ARMOR_SWORDSMAN+(getTechnologyDefense()+
-							Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.ARMOR_SWORDSMAN/100;
-					int newDamage = Variables.BASE_DAMAGE_SWORDSMAN+(getTechnologyAttack()+
-							Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SWORDSMAN/100;
-					Swordsman newSwordsman = new Swordsman(newArmor,newDamage);
-					army[0].add(newSwordsman);
+		for (int i = 0; i < n; i++) { 
+			//comprobar si tenemos los recursos unidad a unidad
+			if (getFood() > 8000 && getWood() > 3000 &&
+					getIron()> 50){
+				//se resta los recursos de la unidad creada
+				this.setFood(food-8000);
+				this.setWood(wood-3000);
+				this.setIron(iron-50);
+				//se crean variables de creacion de uni
+				int newArmor = Variables.ARMOR_SWORDSMAN+(getTechnologyDefense()+
+						Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.ARMOR_SWORDSMAN/100;
+				int newDamage = Variables.BASE_DAMAGE_SWORDSMAN+(getTechnologyAttack()+
+						Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SWORDSMAN/100;
+				Swordsman newSwordsman = new Swordsman(newArmor,newDamage);//se pasa las variables con los valores
+				army[0].add(newSwordsman);//se añade al array que le pertoca
 
-				}else {
-					//se controla la falta de recursos
-					throw new ResourceException("you do not have enough resources to create "+n+" Swordsman, has been created "+i);
-				}
-
-
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" Swordsman, has been created "+i);
 			}
+
+
 		}
-	
+	}
+
 	void newSpearman(int n) throws ResourceException {
-			for (int i = 0; i < n; i++) { 
-				if (getFood() > 5000 && getWood() > 6500 &&
-						getIron()> 50){
-					this.setFood(food-5000);
-					this.setWood(wood-6500);
-					this.setIron(iron-50);
-					int newArmor = Variables.ARMOR_SPEARMAN+(getTechnologyDefense()+
-							Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.ARMOR_SPEARMAN/100;
-					int newDamage = Variables.BASE_DAMAGE_SPEARMAN+(getTechnologyAttack()+
-							Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SPEARMAN/100;
-					Spearman newSpearman = new Spearman(newArmor,newDamage);
-					army[1].add(newSpearman);
+		for (int i = 0; i < n; i++) { 
+			if (getFood() > 5000 && getWood() > 6500 &&
+					getIron()> 50){
+				this.setFood(food-5000);
+				this.setWood(wood-6500);
+				this.setIron(iron-50);
+				int newArmor = Variables.ARMOR_SPEARMAN+(getTechnologyDefense()+
+						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.ARMOR_SPEARMAN/100;
+				int newDamage = Variables.BASE_DAMAGE_SPEARMAN+(getTechnologyAttack()+
+						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SPEARMAN/100;
+				Spearman newSpearman = new Spearman(newArmor,newDamage);
+				army[1].add(newSpearman);
 
-				}else {
-					//se controla la falta de recursos
-					throw new ResourceException("you do not have enough resources to create "+n+" Spearman, has been created "+i);
-				}
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" Spearman, has been created "+i);
 			}
 		}
-	
-	void newCrossbow(int n) throws ResourceException {
-			for (int i = 0; i < n; i++) { 
-				if (getFood() > 0 && getWood() > 45000 &&
-						getIron()> 7000){
-					this.setWood(wood-45000);
-					this.setIron(iron-7000);
-					int newArmor = Variables.ARMOR_CROSSBOW+(getTechnologyDefense()+
-							Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.ARMOR_CROSSBOW/100;
-					int newDamage = Variables.BASE_DAMAGE_CROSSBOW+(getTechnologyAttack()+
-							Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CROSSBOW/100;
-					Crossbow newCrossbow = new Crossbow(newArmor,newDamage);
-					army[2].add(newCrossbow);
+	}
 
-				}else {
-					//se controla la falta de recursos
-					throw new ResourceException("you do not have enough resources to create "+n+" Crossbow, has been created "+i);
-				}
+	void newCrossbow(int n) throws ResourceException {
+		for (int i = 0; i < n; i++) { 
+			if (getFood() > 0 && getWood() > 45000 &&
+					getIron()> 7000){
+				this.setWood(wood-45000);
+				this.setIron(iron-7000);
+				int newArmor = Variables.ARMOR_CROSSBOW+(getTechnologyDefense()+
+						Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.ARMOR_CROSSBOW/100;
+				int newDamage = Variables.BASE_DAMAGE_CROSSBOW+(getTechnologyAttack()+
+						Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CROSSBOW/100;
+				Crossbow newCrossbow = new Crossbow(newArmor,newDamage);
+				army[2].add(newCrossbow);
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" Crossbow, has been created "+i);
 			}
+		}
 	}
 
 
 	void newCannon(int n) throws ResourceException {
-			for (int i = 0; i < n; i++) { 
-				if (getFood() > 0 && getWood() > 30000 &&
-						getIron()> 15000){
-					this.setWood(wood-30000);
-					this.setIron(iron-15000);
-					int newArmor = Variables.ARMOR_CANNON+(getTechnologyDefense()+
-							Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.ARMOR_CANNON/100;
-					int newDamage = Variables.BASE_DAMAGE_CANNON+(getTechnologyAttack()+
-							Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CANNON/100;
-					Cannon newCannon = new Cannon(newArmor,newDamage);
-					army[3].add(newCannon);
+		for (int i = 0; i < n; i++) { 
+			if (getFood() > 0 && getWood() > 30000 &&
+					getIron()> 15000){
+				this.setWood(wood-30000);
+				this.setIron(iron-15000);
+				int newArmor = Variables.ARMOR_CANNON+(getTechnologyDefense()+
+						Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.ARMOR_CANNON/100;
+				int newDamage = Variables.BASE_DAMAGE_CANNON+(getTechnologyAttack()+
+						Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CANNON/100;
+				Cannon newCannon = new Cannon(newArmor,newDamage);
+				army[3].add(newCannon);
 
-				}else {
-					//se controla la falta de recursos
-					throw new ResourceException("you do not have enough resources to create "+n+" Cannon, has been created "+i);
-				}
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" Cannon, has been created "+i);
 			}
 		}
+	}
 
-	
+
 	void newArrowTower(int n) throws ResourceException {
-		
-			for (int i = 0; i < n; i++) { 
-				if (getWood() > 2000){
-					this.setWood(wood-2000);
-					int newArmor = Variables.ARMOR_ARROWTOWER+(getTechnologyDefense()+
-							Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.ARMOR_ARROWTOWER/100;
-					int newDamage = Variables.BASE_DAMAGE_ARROWTOWER+(getTechnologyAttack()+
-							Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_ARROWTOWER/100;
-					ArrowTower newArrowTower = new ArrowTower(newArmor,newDamage);
-					army[4].add(newArrowTower);
 
-				}else {
-					//se controla la falta de recursos
-					throw new ResourceException("you do not have enough resources to create "+n+" ArrowTower, has been created "+i);
-				}
+		for (int i = 0; i < n; i++) { 
+			if (getWood() > 2000){
+				this.setWood(wood-2000);
+				int newArmor = Variables.ARMOR_ARROWTOWER+(getTechnologyDefense()+
+						Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.ARMOR_ARROWTOWER/100;
+				int newDamage = Variables.BASE_DAMAGE_ARROWTOWER+(getTechnologyAttack()+
+						Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_ARROWTOWER/100;
+				ArrowTower newArrowTower = new ArrowTower(newArmor,newDamage);
+				army[4].add(newArrowTower);
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" ArrowTower, has been created "+i);
 			}
 		}
+	}
 
-	
+
 	void newCatapult(int n) throws ResourceException {
-		
-			for (int i = 0; i < n; i++) { 
-				if (getWood() > 4000 && getIron()> 500){
-					this.setWood(wood-4000);
-					this.setIron(iron-500);
-					int newArmor = Variables.ARMOR_CATAPULT+(getTechnologyDefense()+
-							Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.ARMOR_CATAPULT/100;
-					int newDamage = Variables.BASE_DAMAGE_CATAPULT +(getTechnologyAttack()+
-							Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CATAPULT/100;
-					Catapult newCatapult = new Catapult(newArmor,newDamage);
-					army[5].add(newCatapult);
 
-				}else {
-					//se controla la falta de recursos
-					throw new ResourceException("you do not have enough resources to create "+n+" Catapult, has been created "+i);
-				}
+		for (int i = 0; i < n; i++) { 
+			if (getWood() > 4000 && getIron()> 500){
+				this.setWood(wood-4000);
+				this.setIron(iron-500);
+				int newArmor = Variables.ARMOR_CATAPULT+(getTechnologyDefense()+
+						Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.ARMOR_CATAPULT/100;
+				int newDamage = Variables.BASE_DAMAGE_CATAPULT +(getTechnologyAttack()+
+						Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CATAPULT/100;
+				Catapult newCatapult = new Catapult(newArmor,newDamage);
+				army[5].add(newCatapult);
+
+			}else {
+				//se controla la falta de recursos
+				throw new ResourceException("you do not have enough resources to create "+n+" Catapult, has been created "+i);
 			}
-			}
-			
-		
+		}
+	}
+
+
 	void newRocketLauncherTower(int n) throws ResourceException {
-	
+
 		for (int i = 0; i < n; i++) { 
 			if (getWood() > 50000 && getIron()> 5000){
 				this.setWood(wood-50000);
@@ -536,18 +548,21 @@ public class Civilization {
 		}
 	}
 
-	
+
 
 	void newMagician(int n) throws ResourceException {
 
-	
+
 		for (int i = 0; i < n; i++) { 
 			if (getFood() > 12000 && getWood() > 2000 &&
 					getMana()> 5000){
 				this.setWood(wood-2000);
 				this.setFood(food-1200);
 				this.setMana(mana-5000);
-				Magician newMagician = new Magician();
+				int newArmor = 0;
+				int newDamage = Variables.BASE_DAMAGE_MAGICIAN +(getTechnologyAttack()+
+						Variables.PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_MAGICIAN/100;
+				Magician newMagician = new Magician(newArmor,newDamage);
 				army[7].add(newMagician);
 
 			}else {
@@ -556,34 +571,64 @@ public class Civilization {
 			}
 		}
 	}
-	
-	
-	void newPriest(int n) {
+
+
+	void newPriest(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
 			if (getFood() > 15000 && getMana()> 15000){
-				this.setFood(food-1200);
-				this.setMana(mana-5000);
-				Magician newMagician = new Magician();
-				army[8].add(newMagician);
-
+				this.setFood(food-15000);
+				this.setMana(mana-15000);
+				int newArmor = 0;
+				int newDamage = 0;
+				Priest newPriest = new Priest(newArmor,newDamage);
+				army[8].add(newPriest);
 			}else {
 				//se controla la falta de recursos
 				throw new ResourceException("you do not have enough resources to create "+n+" Magician, has been created "+i);
 
 			}
 		}
-		}
+	}
 
-			void printStats() {
+	void printStats() {
+
+		System.out.println("           ******************************CIVILIZATION STATE******************************           ");
+		System.out.println();
+		System.out.println("----------------------------------------------TECHNOLOGY----------------------------------------------");
+		System.out.println();
+		System.out.printf("%80s%22s%n", "Attack","Defense" );
+		System.out.printf("%80d%22d%n", getTechnologyDefense(), getTechnologyAttack());
+		System.out.println();
+		System.out.println("----------------------------------------------BUILDINGS-----------------------------------------------");
+		System.out.println();
+		System.out.printf("%14s%22s%22s%22s%22s%n", "Farm","Smithy","Carpentry","Magic Tower","Church" );
+		System.out.printf("%14s%22s%22s%22s%22s%n", getFarm(), getSmithy(), getCarpentry(), getMagicTower(), getChurch());
+		System.out.println();
+		System.out.println("----------------------------------------------DEFENSES------------------------------------------------");
+		System.out.println();
+		System.out.printf("%58s%22s%22s%n", "Arrow Tower","Catapult","Rocket Launcher" );
+		System.out.printf("%58s%22s%22s%n", army[4].size(), army[5].size(), army[6].size());
+		System.out.println();
+		System.out.println("----------------------------------------------ATTACK UNITS--------------------------------------------");
+		System.out.println();
+		System.out.printf("%36s%22s%22s%22s%n", "Swordsman","Spearman","Crosswob","Cannon");
+		System.out.printf("%36s%22s%22s%22s%n", army[0].size(), army[1].size(), army[2].size(), army[3].size());
+		System.out.println();
+		System.out.println("----------------------------------------------ESPECIAL UNITS------------------------------------------");
+		System.out.println();
+		System.out.printf("%80s%22s%n", "Mague","Priest" );
+		System.out.printf("%80d%22d%n", army[7].size(), army[8].size());
+		System.out.println();
+		System.out.println("----------------------------------------------RESOURCES-----------------------------------------------");
+		System.out.println();
+		System.out.printf("%36s%22s%22s%22s%n", "Food","Wood","Iron","Mana");
+		System.out.printf("%36s%22s%22s%22s%n", (int)getFood(), (int)getWood(), (int)getIron(), (int)getMana());
+		System.out.println();
+		System.out.println("----------------------------------------------GENERATION RESOURCES------------------------------------");
+		System.out.println();
+		System.out.printf("%36s%22s%22s%22s%n", "Food","Wood","Iron","Mana");
+		System.out.printf("%36s%22s%22s%22s%n", (int)(getFood()*0.05)*getFarm(), (int)(getWood()*0.05)*getCarpentry(), (int)(getIron()*0.05)*getSmithy(), (int)3000*getChurch());
+	}
 
 
-			}
-
-
-
-
-
-
-
-
-		}
+}
