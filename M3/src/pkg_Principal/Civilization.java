@@ -10,7 +10,6 @@ import pkg_AttackUnit.Spearman;
 import pkg_AttackUnit.Swordsman;
 import pkg_DefenseUnit.ArrowTower;
 import pkg_DefenseUnit.Catapult;
-import pkg_DefenseUnit.RocketLauncherTower;
 import pkg_SpecialUnit.Magician;
 
 
@@ -63,111 +62,65 @@ public class Civilization {
 		return technologyDefense;
 	}
 
-
-
 	public void setTechnologyDefense(int technologyDefense) {
 		this.technologyDefense = technologyDefense;
 	}
-
-
 
 	public float getWood() {
 		return wood;
 	}
 
-
-
-
 	public void setWood(float wood) {
 		this.wood = wood;
 	}
-
-
-
 
 	public float getIron() {
 		return iron;
 	}
 
-
-
-
 	public void setIron(float iron) {
 		this.iron = iron;
 	}
-
-
-
 
 	public float getFood() {
 		return food;
 	}
 
-
-
-
 	public void setFood(float food) {
 		this.food = food;
 	}
-
-
-
 
 	public float getMana() {
 		return mana;
 	}
 
-
-
-
 	public void setMana(float mana) {
 		this.mana = mana;
 	}
-
-
-
 
 	public int getMagicTower() {
 		return magicTower;
 	}
 
-
-
-
 	public void setMagicTower(int magicTower) {
 		this.magicTower = magicTower;
 	}
-
-
-
 
 	public int getChurch() {
 		return church;
 	}
 
-
-
-
 	public void setChurch(int church) {
 		this.church = church;
 	}
-
-
-
 
 	public int getFarm() {
 		return farm;
 	}
 
-
-
-
 	public void setFarm(int farm) {
 		this.farm = farm;
 	}
-
-
-
 
 	public int getSmithy() {
 		return smithy;
@@ -231,8 +184,7 @@ public class Civilization {
 		this.army = army;
 	}
 
-
-
+/*
 	//metodo para construir iglesia
 	void newChurch() throws ResourceException {
 		//aseguramos que se tengan los recursos 
@@ -395,7 +347,6 @@ public class Civilization {
 					this.setFood(food-8000);
 					this.setWood(wood-3000);
 					this.setIron(iron-50);
-					int newArmor=
 					Swordsman newSwordsman = new Swordsman();
 					army[0].add(newSwordsman);
 
@@ -494,14 +445,14 @@ public class Civilization {
 			}
 			
 		
-	void newRocketLauncherTower(int n) {
+	void newRocketLauncher(int n) {
 	
 		for (int i = 0; i < n; i++) { 
 			if (getWood() > 50000 && getIron()> 5000){
 				this.setWood(wood-50000);
 				this.setIron(iron-5000);
 
-				RocketLauncherTower newRocketLauncher = new RocketLauncherTower();
+				RocketLauncher newRocketLauncher = new RocketLauncher();
 				army[6].add(newRocketLauncher);
 
 			}else {
@@ -555,7 +506,7 @@ public class Civilization {
 			}
 
 
-
+*/
 
 
 
