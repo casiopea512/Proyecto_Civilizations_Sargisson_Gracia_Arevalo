@@ -19,9 +19,10 @@ import pkg_SpecialUnit.Priest;
 
 
 public class Civilization {
-	private int technologyDefense;
-	private int technologyAttack;
-
+	
+	private String name;
+	private String username;
+	
 	private float wood;
 	private float iron;
 	private float food;
@@ -32,6 +33,9 @@ public class Civilization {
 	private int farm;
 	private int smithy;
 	private int carpentry;
+	
+	private int technologyDefense;
+	private int technologyAttack;
 
 	private int battles;
 
@@ -40,13 +44,12 @@ public class Civilization {
 
 
 	//constructor
-
-	public Civilization(int technologyDefense, int technologyAttack, float wood, float iron, float food, float mana,
-			int magicTower, int church, int farm, int smithy, int carpentry, int battles,
+	public Civilization(String name, String username, float wood, float iron, float food, float mana, int magicTower,
+			int church, int farm, int smithy, int carpentry, int technologyDefense, int technologyAttack, int battles,
 			ArrayList<MilitaryUnit>[] army) {
 		super();
-		this.technologyDefense = technologyDefense;
-		this.technologyAttack = technologyAttack;
+		this.name = name;
+		this.username = username;
 		this.wood = wood;
 		this.iron = iron;
 		this.food = food;
@@ -56,8 +59,10 @@ public class Civilization {
 		this.farm = farm;
 		this.smithy = smithy;
 		this.carpentry = carpentry;
+		this.technologyDefense = technologyDefense;
+		this.technologyAttack = technologyAttack;
 		this.battles = battles;
-
+		
 		// Inicializar todas las listas en el arreglo army
 		for (int i = 0; i < army.length; i++) {
 			army[i] = new ArrayList<>();
@@ -66,8 +71,142 @@ public class Civilization {
 
 		this.army = army;
 	}
+	
+	
+	//set/get
+	
+	
+	public String getName() {
+		return name;
+	}
 
-	//metodos
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public float getWood() {
+		return wood;
+	}
+
+
+
+	public void setWood(float wood) {
+		this.wood = wood;
+	}
+
+
+
+	public float getIron() {
+		return iron;
+	}
+
+
+
+	public void setIron(float iron) {
+		this.iron = iron;
+	}
+
+
+
+	public float getFood() {
+		return food;
+	}
+
+
+
+	public void setFood(float food) {
+		this.food = food;
+	}
+
+
+
+	public float getMana() {
+		return mana;
+	}
+
+
+
+	public void setMana(float mana) {
+		this.mana = mana;
+	}
+
+
+
+	public int getMagicTower() {
+		return magicTower;
+	}
+
+
+
+	public void setMagicTower(int magicTower) {
+		this.magicTower = magicTower;
+	}
+
+
+
+	public int getChurch() {
+		return church;
+	}
+
+
+
+	public void setChurch(int church) {
+		this.church = church;
+	}
+
+
+
+	public int getFarm() {
+		return farm;
+	}
+
+
+
+	public void setFarm(int farm) {
+		this.farm = farm;
+	}
+
+
+
+	public int getSmithy() {
+		return smithy;
+	}
+
+
+
+	public void setSmithy(int smithy) {
+		this.smithy = smithy;
+	}
+
+
+
+	public int getCarpentry() {
+		return carpentry;
+	}
+
+
+
+	public void setCarpentry(int carpentry) {
+		this.carpentry = carpentry;
+	}
+
+
 
 	public int getTechnologyDefense() {
 		return technologyDefense;
@@ -79,144 +218,6 @@ public class Civilization {
 		this.technologyDefense = technologyDefense;
 	}
 
-
-
-	public float getWood() {
-		return wood;
-	}
-
-
-
-
-	public void setWood(float wood) {
-		this.wood = wood;
-	}
-
-
-
-
-	public float getIron() {
-		return iron;
-	}
-
-
-
-
-	public void setIron(float iron) {
-		this.iron = iron;
-	}
-
-
-
-
-	public float getFood() {
-		return food;
-	}
-
-
-
-
-	public void setFood(float food) {
-		this.food = food;
-	}
-
-
-
-
-	public float getMana() {
-		return mana;
-	}
-
-
-
-
-	public void setMana(float mana) {
-		this.mana = mana;
-	}
-
-
-
-
-	public int getMagicTower() {
-		return magicTower;
-	}
-
-
-
-
-	public void setMagicTower(int magicTower) {
-		this.magicTower = magicTower;
-	}
-
-
-
-
-	public int getChurch() {
-		return church;
-	}
-
-
-
-
-	public void setChurch(int church) {
-		this.church = church;
-	}
-
-
-
-
-	public int getFarm() {
-		return farm;
-	}
-
-
-
-
-	public void setFarm(int farm) {
-		this.farm = farm;
-	}
-
-
-
-
-	public int getSmithy() {
-		return smithy;
-	}
-
-
-
-
-	public void setSmithy(int smithy) {
-		this.smithy = smithy;
-	}
-
-
-
-
-	public int getCarpentry() {
-		return carpentry;
-	}
-
-
-
-
-	public void setCarpentry(int carpentry) {
-		this.carpentry = carpentry;
-	}
-
-
-
-
-	public int getBattles() {
-		return battles;
-	}
-
-
-
-
-	public void setBattles(int battles) {
-		this.battles = battles;
-	}
 
 
 	public int getTechnologyAttack() {
@@ -231,6 +232,18 @@ public class Civilization {
 
 
 
+	public int getBattles() {
+		return battles;
+	}
+
+
+
+	public void setBattles(int battles) {
+		this.battles = battles;
+	}
+
+
+
 	public ArrayList<MilitaryUnit>[] getArmy() {
 		return army;
 	}
@@ -241,7 +254,7 @@ public class Civilization {
 		this.army = army;
 	}
 
-
+//metodos
 
 	//metodo para construir iglesia
 	void newChurch() throws ResourceException {
@@ -259,6 +272,8 @@ public class Civilization {
 			throw new ResourceException("You do not have enough resources to build a church");//se controla la falta de recursos
 		}
 	}
+	
+
 	//metodo para construir torre magica
 	void newMagicTower() throws ResourceException {
 		//aseguramos que se tengan los recursos 
