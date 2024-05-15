@@ -23,10 +23,10 @@ public class Civilization {
 	private String name;
 	private String username;
 	
-	private float wood;
-	private float iron;
-	private float food;
-	private float mana;
+	private int wood;
+	private int iron;
+	private int food;
+	private int mana;
 
 	private int magicTower;
 	private int church;
@@ -44,9 +44,8 @@ public class Civilization {
 
 
 	//constructor
-	public Civilization(String name, String username, float wood, float iron, float food, float mana, int magicTower,
-			int church, int farm, int smithy, int carpentry, int technologyDefense, int technologyAttack, int battles,
-			ArrayList<MilitaryUnit>[] army) {
+	public Civilization(String name, String username, int wood, int iron, int food, int mana, int magicTower,
+			int church, int farm, int smithy, int carpentry, int technologyDefense, int technologyAttack, int battles) {
 		super();
 		this.name = name;
 		this.username = username;
@@ -100,49 +99,49 @@ public class Civilization {
 
 
 
-	public float getWood() {
+	public int getWood() {
 		return wood;
 	}
 
 
 
-	public void setWood(float wood) {
+	public void setWood(int wood) {
 		this.wood = wood;
 	}
 
 
 
-	public float getIron() {
+	public int getIron() {
 		return iron;
 	}
 
 
 
-	public void setIron(float iron) {
+	public void setIron(int iron) {
 		this.iron = iron;
 	}
 
 
 
-	public float getFood() {
+	public int getFood() {
 		return food;
 	}
 
 
 
-	public void setFood(float food) {
+	public void setFood(int food) {
 		this.food = food;
 	}
 
 
 
-	public float getMana() {
+	public int getMana() {
 		return mana;
 	}
 
 
 
-	public void setMana(float mana) {
+	public void setMana(int mana) {
 		this.mana = mana;
 	}
 
@@ -285,7 +284,7 @@ public class Civilization {
 			this.setIron(iron-24000);
 			this.magicTower+= 1;//suma una 
 			this.setMana(mana+3000);//incremento en mana
-		}else {
+		} else {
 			//se controla la falta de recursos
 			throw new ResourceException("You do not have enough resources to build a Magic Tower");
 		}
@@ -301,8 +300,8 @@ public class Civilization {
 			this.setWood(wood-10000);
 			this.setIron(iron-12000);
 			this.farm+= 1;//suma una farm
-			this.setFood(food+(float)(food*0.05));//incremento en food
-		}else {
+			this.setFood(food+(int)(food*0.05));//incremento en food
+		} else {
 			//se controla la falta de recursos
 			throw new ResourceException("You do not have enough resources to build a Farm");
 		}
@@ -317,9 +316,9 @@ public class Civilization {
 			this.setFood(food-5000);
 			this.setWood(wood-10000);
 			this.setIron(iron-12000);
-			this.farm+= 1;//suma una farm
-			this.setWood(wood+(float)(wood*0.05));//incremento en wood
-		}else {
+			this.farm += 1;//suma una farm
+			this.setWood(wood+(int)(wood*0.05));//incremento en wood
+		} else {
 			//se controla la falta de recursos
 			throw new ResourceException("You do not have enough resources to build a Carpentry");
 		}
@@ -336,8 +335,8 @@ public class Civilization {
 			this.setWood(wood-10000);
 			this.setIron(iron-12000);
 			this.farm+= 1;//suma una farm
-			this.setIron(iron + (float)(iron*0.05));//incremento del 5%
-		}else {
+			this.setIron(iron + (int)(iron*0.05));//incremento del 5%
+		} else {
 			//se controla la falta de recursos
 			throw new ResourceException("You do not have enough resources to build a Carpentry");
 		}
@@ -364,9 +363,9 @@ public class Civilization {
 					getIron()> 2000*(0.2*technologyDefense)){
 				this.technologyDefense+= 1;//sumamos uno
 				//resta recursos con aumento segun nivel
-				this.setFood(food-100 + 100*(float)(0.1*technologyDefense));
-				this.setWood(wood-200*(float)(0.15*technologyDefense));
-				this.setIron(iron-2000*(float)(0.2*technologyDefense));
+				this.setFood(food-100 + 100*(int)(0.1*technologyDefense));
+				this.setWood(wood-200*(int)(0.15*technologyDefense));
+				this.setIron(iron-2000*(int)(0.2*technologyDefense));
 
 			}else {
 				//se controla la falta de recursos
@@ -396,9 +395,9 @@ public class Civilization {
 					getIron()> 2000*(0.2*technologyAttack)){
 				this.technologyAttack+= 1;//sumamos uno
 				//resta recursos segun nivel tec
-				this.setFood(food-100 + 100*(float)(0.1*technologyAttack));
-				this.setWood(wood-200*(float)(0.15*technologyAttack));
-				this.setIron(iron-2000*(float)(0.2*technologyAttack));
+				this.setFood(food-100 + 100*(int)(0.1*technologyAttack));
+				this.setWood(wood-200*(int)(0.15*technologyAttack));
+				this.setIron(iron-2000*(int)(0.2*technologyAttack));
 
 			}else {
 				//se controla la falta de recursos
@@ -644,6 +643,7 @@ public class Civilization {
 		System.out.printf("%36s%22s%22s%22s%n", "Food","Wood","Iron","Mana");
 		System.out.printf("%36s%22s%22s%22s%n", (int)(getFood()*0.05)*getFarm(), (int)(getWood()*0.05)*getCarpentry(), (int)(getIron()*0.05)*getSmithy(), (int)3000*getChurch());
 	}
-
+	
+	
 
 }
