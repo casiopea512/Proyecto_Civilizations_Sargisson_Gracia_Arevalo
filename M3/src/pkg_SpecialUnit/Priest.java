@@ -10,6 +10,7 @@ public class Priest extends SpecialUnit {
 	    super(armor, armor, baseDamage); // Llamada al constructor de la clase padre
 	}
 	
+	// IMPLEMENTACION INTERFAZ MilitaryUnit
     public int attack() {
         return this.getBaseDamage(); // Obtener el daño base
     }
