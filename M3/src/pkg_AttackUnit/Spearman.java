@@ -21,6 +21,9 @@ public class Spearman extends AttackUnit implements MilitaryUnit, Variables {
 	    public int attack() {
 	        return this.getBaseDamage(); // Obtener el daño base
 	    }
+	    public String getName() {
+	    	return "Spearman";
+	    }
 
 	    public void takeDamage(int receivedDamage) {
 	        int currentArmor = this.getArmor(); // Obtener la armadura actual

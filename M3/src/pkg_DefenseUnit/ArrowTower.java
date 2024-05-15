@@ -10,6 +10,7 @@ public class ArrowTower extends DefenseUnit {
     public int attack() {
         return this.getBaseDamage(); // Obtener el daño base
     }
+    
 
     public void takeDamage(int receivedDamage) {
         int currentArmor = this.getArmor(); // Obtener la armadura actual
@@ -22,6 +23,9 @@ public class ArrowTower extends DefenseUnit {
 
     public int getActualArmor() {
         return this.getArmor(); // Obtener la armadura actual
+    }
+    public String getName() {
+    	return "Arrow Tower";
     }
 
     public int getFoodCost() {

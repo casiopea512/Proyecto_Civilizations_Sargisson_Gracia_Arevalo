@@ -26,6 +26,9 @@ public class RocketLauncherTower extends DefenseUnit {
     public int getActualArmor() {
         return this.getArmor(); // Obtener la armadura actual
     }
+    public String getName() {
+    	return "Rocket Launcher Tower";
+    }
 
     public int getFoodCost() {
         return FOOD_COST_ROCKETLAUNCHERTOWER;

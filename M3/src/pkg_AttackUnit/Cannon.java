@@ -34,6 +34,10 @@ public class Cannon extends AttackUnit {
 	    public int getActualArmor() {
 	        return this.getArmor(); // Obtener la armadura actual
 	    }
+	    
+	    public String getName() {
+	    	return "Cannon";
+	    }
 
 	    public int getFoodCost() {
 	        return FOOD_COST_CANNON;

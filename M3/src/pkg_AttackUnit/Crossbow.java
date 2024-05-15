@@ -34,6 +34,9 @@ public class Crossbow extends AttackUnit implements MilitaryUnit, Variables {
 	    public int getActualArmor() {
 	        return this.getArmor(); // Obtener la armadura actual
 	    }
+	    public String getName() {
+	    	return "Crossbow";
+	    }
 
 	    public int getFoodCost() {
 	        return FOOD_COST_CROSSBOW;

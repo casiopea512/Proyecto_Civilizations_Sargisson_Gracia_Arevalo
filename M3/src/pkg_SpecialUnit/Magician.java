@@ -27,6 +27,9 @@ public class Magician extends SpecialUnit {
     public int getActualArmor() {
         return this.getArmor(); // Obtener la armadura actual
     }
+    public String getName() {
+    	return "Magician";
+    }
 
     public int getFoodCost() {
         return FOOD_COST_MAGICIAN;

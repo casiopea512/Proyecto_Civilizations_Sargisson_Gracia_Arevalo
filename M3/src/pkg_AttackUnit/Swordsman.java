@@ -26,6 +26,9 @@ public class Swordsman extends AttackUnit  {
     public int attack() {
         return this.getBaseDamage(); // Obtener el daño base
     }
+    public String getName() {
+    	return "Swordsman";
+    }
 
     public void takeDamage(int receivedDamage) {
         int currentArmor = this.getArmor(); // Obtener la armadura actual

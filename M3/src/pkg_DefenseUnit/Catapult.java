@@ -26,6 +26,9 @@ public class Catapult extends DefenseUnit {
     public int getActualArmor() {
         return this.getArmor(); // Obtener la armadura actual
     }
+    public String getName() {
+    	return "Catapult";
+    }
 
     public int getFoodCost() {
         return FOOD_COST_CATAPULT;
