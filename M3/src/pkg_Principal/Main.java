@@ -66,6 +66,41 @@ public class Main implements Variables {
 		
 		Main principal = new Main();
 		
+		principal.setCurrentCivilization(principal.loadCivilization(1));
+		principal.setCurrentCivilizationID(1);
+		System.out.println(principal.getCurrentCivilization().getName());
+		principal.getCurrentCivilization().setFood(1000000000);
+		principal.getCurrentCivilization().setWood(1000000000);
+		principal.getCurrentCivilization().setIron(1000000000);
+		principal.getCurrentCivilization().setMana(1000000000);
+		
+		System.out.println(principal.getCurrentCivilization().getChurch());
+		try {
+			principal.getCurrentCivilization().newChurch();
+			principal.getCurrentCivilization().setBattles(25);
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		}
+		System.out.println(principal.getCurrentCivilization().getChurch());
+
+		try {
+			principal.getCurrentCivilization().newSwordsman(2);	
+			principal.getCurrentCivilization().newSpearman(2);	
+			principal.getCurrentCivilization().newCrossbow(2);	
+			principal.getCurrentCivilization().newCannon(2);
+			principal.getCurrentCivilization().newArrowTower(2);
+			principal.getCurrentCivilization().newCatapult(2);
+			principal.getCurrentCivilization().newRocketLauncherTower(2);
+			principal.getCurrentCivilization().newMagician(3);
+			principal.getCurrentCivilization().newPriest(2);
+			
+		} catch (ResourceException e) {
+			e.printStackTrace();
+		}
+		
+		principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
+		
+        	
 		// CREAR PARTIDA
 		/*
 		principal.createCivilization("ABCDEFGH", "Prueba", principal);
@@ -127,9 +162,11 @@ public class Main implements Variables {
 		// EL QUE VALE ES EL COMENTADO, el otro es para que vaya más rápido de pruebas	
 		// timerAssignEnemyArmy.schedule(assignEnemyArmy, 60000, 180000);	CON CONTADOR CORRECTO --> DELAY DE 1 MINUTO + EJECUCION CADA TRES MINUTOS
 		timerAssignEnemyArmy.schedule(taskAssignEnemyArmy, 10000, 60000);	DELAY DE 10 SEC + EJECUCION CADA MINUTO
+		
 		*/
 		
 		/*
+		 
 		// GENERACIÓN DE RECURSOS
 		Timer timerResourceGeneration = new Timer();
 		TimerTask taskResourceGeneration = new TimerTask() {
@@ -157,11 +194,9 @@ public class Main implements Variables {
 				System.out.println("Mana = " + principal.getCurrentCivilization().getMana());
 				System.out.println("=".repeat(100));
 				
-				principal.updateResources(principal);
-				
-			 }
-			 
+			 } 
 		};
+		
 		timerResourceGeneration.schedule(taskResourceGeneration, 0, 30000);	Sin delay + ejecución cada 30 sec
 		*/
 		
@@ -267,12 +302,11 @@ public class Main implements Variables {
 		
 	}
 	
-	// DATOS
-	// Cargar partida (ArrayMilitar + Civilizacion)
 	
+	// GESTION DE LA PARTIDA: CREACION, CARGA Y ELIMINACIÓN
+
 	public void createCivilization(String civilizationName, String userName, Main main) {
 		Connection conn = null;
-        Statement stmt = null;
         int pkIDcivilization = -1;
         String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
         String USER = "Civilization";
@@ -293,8 +327,7 @@ public class Main implements Variables {
 	        String name, String username, 
 	        float wood, float iron, float food, float mana, 
 	        int magicTower, int church, int farm, int smithy, int carpentry, 
-	        int technologyDefense, int technologyAttack, int battles,
-	    	ArrayList<MilitaryUnit>[] army)	
+	        int technologyDefense, int technologyAttack, int battles)	
 	    	*/
 			
 			// se genera el objeto civilizacion
@@ -347,6 +380,7 @@ public class Main implements Variables {
 			
 			System.out.println(arrayPartidas.toString());
 			
+			// ATENCION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			// FORZADO!!!!!
 			// Esto se creará luego para cargarlo
 			choosenCivilizationID = 1;
@@ -367,7 +401,8 @@ public class Main implements Variables {
        
 	}
 	
-	public Civilization loadCivilization(int idLoadedCivilization) {
+	// Cargar partida (ArrayMilitar + Civilizacion)
+	public Civilization loadCivilization(int idChoosenCivilization) {
 			
 			//Civilizacion civilization = new Civilization();
 			Connection conn = null;
@@ -403,7 +438,7 @@ public class Main implements Variables {
 	    	        // carga de unidades atacantes
 	    	        System.out.println("ATTACK UNITS");
 	    	        System.out.println("=".repeat(100));
-	    	        String QUERY = "select type, armor, base_damage, experience, sanctified from attack_units_stats where civilization_id = " + idLoadedCivilization;
+	    	        String QUERY = "select type, armor, base_damage, experience, sanctified from attack_units_stats where civilization_id = " + idChoosenCivilization;
 	    	        ResultSet rs = stmt.executeQuery(QUERY);
 	    	        // System.out.println(rs.getInt(1) + " | " + rs.getInt(2) + " | " + rs.getInt(3) + " | " + rs.getInt(4)); 
 	    	        while(rs.next()) {
@@ -454,7 +489,7 @@ public class Main implements Variables {
 	    	        // unidades de defensa
 	    	        System.out.println("DEFENSE UNITS");
 	    	        System.out.println("=".repeat(100));
-	    	        QUERY = "select type, armor, base_damage, experience, sanctified from defense_units_stats where civilization_id = " + idLoadedCivilization;
+	    	        QUERY = "select type, armor, base_damage, experience, sanctified from defense_units_stats where civilization_id = " + idChoosenCivilization;
 	    	        rs = stmt.executeQuery(QUERY);
 	    	        
 	    	        while(rs.next()) {
@@ -496,7 +531,7 @@ public class Main implements Variables {
 	    	        // unidades especiales
 	    	        System.out.println("SPECIAL UNITS");
 	    	        System.out.println("=".repeat(100));
-	    	        QUERY = "select type, armor, base_damage, experience from special_units_stats where civilization_id = " + idLoadedCivilization;
+	    	        QUERY = "select type, armor, base_damage, experience from special_units_stats where civilization_id = " + idChoosenCivilization;
 	    	        rs = stmt.executeQuery(QUERY);
 	    	        while(rs.next()) {
 	        	        // System.out.println(rs.getInt(1) + " | " + rs.getInt(2) + " | " + rs.getString(3) + " | " + rs.getInt(4)+ " | " + rs.getInt(5)+ " | " + rs.getInt(6)+ " | " + rs.getInt(7));
@@ -545,7 +580,7 @@ public class Main implements Variables {
 	    	        
 	    	        //Civilization loadedCivilizationn = new Civilization();
 	    	       
-	    	        QUERY = "select * from civilization_stats where civilization_id = " + idLoadedCivilization;
+	    	        QUERY = "select * from civilization_stats where civilization_id = " + idChoosenCivilization;
 	    	        rs = stmt.executeQuery(QUERY);
 	    	        rs.next();
 	                civilization =  new Civilization(rs.getString(2), rs.getString(3), 
@@ -571,7 +606,52 @@ public class Main implements Variables {
 			return civilization;
 		}
 
-	public void updateResources(Main main) {
+	// A IMPLEMENTAR CON EL PAU
+	// Igual solo debo pasarle el id de la civilization, ya que no habrá partida cargada en el main
+	public void deleteCivilization(int civilizationID) {
+		
+		// UPDATE EN LA BBDD
+		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+        String USER = "Civilization";
+        String PASS = "civilization";
+        Connection conn = null;
+        CallableStatement stmt = null;
+        
+        try {
+            // Registrar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            // Establecer la conexión con la base de datos
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            String callProcedure = "{call deleteCivilization(?)}";
+            stmt = conn.prepareCall(callProcedure);
+
+            // Establecer los parámetros de entrada del procedimiento  
+            stmt.setInt(1, civilizationID);
+            // Ejecutar el procedimiento almacenado
+            stmt.execute();
+
+            System.out.println("PROCEDIMIENTO deleteCivilization OK");
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar la conexión y el CallableStatement
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+	}
+	
+	// GESTION DEL UPDATE/GUARDADO PARTIDA
+	
+	public void updateResources(int civilizationID, Civilization civilization) {
 		
 		// UPDATE EN LA BBDD
 		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -589,11 +669,11 @@ public class Main implements Variables {
             stmt = conn.prepareCall(callProcedure);
 
             // Establecer los parámetros de entrada del procedimiento
-            stmt.setInt(1, main.getCurrentCivilizationID());
-            stmt.setInt(2, main.getCurrentCivilization().getFood());
-            stmt.setInt(3, main.getCurrentCivilization().getWood());
-            stmt.setInt(4, main.getCurrentCivilization().getIron());
-            stmt.setInt(5, main.getCurrentCivilization().getMana());
+            stmt.setInt(1, civilizationID);
+            stmt.setInt(2, civilization.getFood());
+            stmt.setInt(3, civilization.getWood());
+            stmt.setInt(4, civilization.getIron());
+            stmt.setInt(5, civilization.getMana());
 
             // Ejecutar el procedimiento almacenado
             stmt.execute();
@@ -617,11 +697,9 @@ public class Main implements Variables {
         }
 	};
 
-	public void updateBuildingsAndTechnologies(Main main) {
+	public void updateBuildingsAndTechnologies(int civilizationID, Civilization civilization) {
 		
 
-		
-		
 		// UPDATE EN LA BBDD
 		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
         String USER = "Civilization";
@@ -634,22 +712,22 @@ public class Main implements Variables {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             // Establecer la conexión con la base de datos
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            String callProcedure = "{call updateBuildingsAndTechnologies(?, ?, ?, ?, ?, ?, ?, ?)}";
+            String callProcedure = "{call update_buildingsAndTechnologies (?, ?, ?, ?, ?, ?, ?, ?)}";
             stmt = conn.prepareCall(callProcedure);
 
             // Establecer los parámetros de entrada del procedimiento  
-            stmt.setInt(1, main.getCurrentCivilizationID());
-            stmt.setInt(2, main.getCurrentCivilization().getMagicTower());
-            stmt.setInt(3, main.getCurrentCivilization().getChurch());
-            stmt.setInt(4, main.getCurrentCivilization().getFarm());
-            stmt.setInt(5, main.getCurrentCivilization().getSmithy());
-            stmt.setInt(6, main.getCurrentCivilization().getCarpentry());
-            stmt.setInt(7, main.getCurrentCivilization().getTechnologyDefense());
-            stmt.setInt(8, main.getCurrentCivilization().getTechnologyAttack());
+            stmt.setInt(1, civilizationID);
+            stmt.setInt(2, civilization.getMagicTower());
+            stmt.setInt(3, civilization.getChurch());
+            stmt.setInt(4, civilization.getFarm());
+            stmt.setInt(5, civilization.getSmithy());
+            stmt.setInt(6, civilization.getCarpentry());
+            stmt.setInt(7, civilization.getTechnologyDefense());
+            stmt.setInt(8, civilization.getTechnologyAttack());
             // Ejecutar el procedimiento almacenado
             stmt.execute();
 
-            System.out.println("PROCEDIMIENTO updateBuildingsAndTechnologies OK");
+            System.out.println("PROCEDIMIENTO update_buildingsAndTechnologies OK");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -668,7 +746,7 @@ public class Main implements Variables {
         }
 	}
 	
-	public void updateBattleCounter(Main main) {
+	public void updateBattleCounter(int civilizationID, Civilization civilization) {
 		Connection conn = null;
         Statement stmt = null;
         String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -680,9 +758,9 @@ public class Main implements Variables {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("CONEXIÓN ESTABLECIDA");
-			String update = "UPDATE civilization_stats SET battles_counter = (?) WHERE civilization_id = " + main.getCurrentCivilizationID();
+			String update = "UPDATE civilization_stats SET battles_counter = (?) WHERE civilization_id = " + civilizationID;
 			PreparedStatement ps = conn.prepareStatement(update);
-			ps.setInt(1, main.getCurrentCivilization().getBattles());
+			ps.setInt(1, civilization.getBattles());
 			ps.executeUpdate();
 			
 			System.out.println("Update de las batallas realizado correctamente");
@@ -691,38 +769,7 @@ public class Main implements Variables {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
-	}
-	
-	// A IMPLEMENTAR CON EL PAU
-	// Igual solo debo pasarle el id de la civilization, ya que no habrá partida cargada en el main
-	public void deleteCivilization(Main main) {
-		
-		// UPDATE EN LA BBDD
-		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
-        String USER = "Civilization";
-        String PASS = "civilization";
-        Connection conn = null;
-        CallableStatement stmt = null;
-        
-        try {
-            // Registrar el driver JDBC de Oracle
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            // Establecer la conexión con la base de datos
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            String callProcedure = "{call deleteCivilization(?)}";
-            stmt = conn.prepareCall(callProcedure);
-
-            // Establecer los parámetros de entrada del procedimiento  
-            stmt.setInt(1, main.getCurrentCivilizationID());
-            // Ejecutar el procedimiento almacenado
-            stmt.execute();
-
-            System.out.println("PROCEDIMIENTO deleteCivilization OK");
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
+		} finally {
             // Cerrar la conexión y el CallableStatement
             try {
                 if (stmt != null) {
@@ -736,6 +783,91 @@ public class Main implements Variables {
             }
         }
 	}
+	
+	public void updateUnits(int civilizationID, Civilization civilization) {
+		Connection conn = null;
+		CallableStatement stmt = null;
+        String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+        String USER = "Civilization";
+        String PASS = "civilization";
+        try {
+        	
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			String callProcedure = "{call deleteUnits(?)}";
+	        stmt = conn.prepareCall(callProcedure);
+            stmt.setInt(1, civilizationID);
+            stmt.execute();
+	        System.out.println("PROCEDIMIENTO deleteUnits OK");
+			
+			for (ArrayList<MilitaryUnit> unidades : civilization.getArmy()) {
+				System.out.println(unidades.size());
+				for (MilitaryUnit unidad : unidades) {
+					if (unidad instanceof AttackUnit) {
+						
+						System.out.println("attack UNIT = " + unidad.getClass().getSimpleName());
+						String update = "INSERT INTO attack_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (?, ?, ?, ?, ?, ?)";
+						PreparedStatement ps = conn.prepareStatement(update);
+						ps.setInt(1, civilizationID);
+						ps.setString(2, unidad.getClass().getSimpleName());
+						ps.setInt(3, unidad.getActualArmor());
+						ps.setInt(4,3);
+						ps.setInt(5, unidad.getExperience());
+						ps.setInt(6, 0);
+						ps.executeUpdate();
+						
+					} else if (unidad instanceof DefenseUnit) {
+						System.out.println("defense UNIT = " + unidad.getClass().getSimpleName());
+						String update = "INSERT INTO defense_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (?, ?, ?, ?, ?, ?)";
+						PreparedStatement ps = conn.prepareStatement(update);
+						ps.setInt(1, civilizationID);
+						ps.setString(2, unidad.getClass().getSimpleName());
+						ps.setInt(3, unidad.getActualArmor());
+						ps.setInt(4,3);
+						ps.setInt(5, unidad.getExperience());
+						ps.setInt(6, 0);
+						ps.executeUpdate();
+					} else {
+						System.out.println("special UNIT = " + unidad.getClass().getSimpleName());
+						String update = "INSERT INTO special_units_stats (civilization_id, type, armor, base_damage, experience) VALUES (?, ?, ?, ?, ?)";
+						PreparedStatement ps = conn.prepareStatement(update);
+						ps.setInt(1, civilizationID);
+						ps.setString(2, unidad.getClass().getSimpleName());
+						ps.setInt(3, unidad.getActualArmor());
+						ps.setInt(4,3);
+						ps.setInt(5, unidad.getExperience());
+						ps.executeUpdate();
+					}
+				}
+			} 
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+            // Cerrar la conexión y el CallableStatement
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+	}
+	
+	public void saveGame(int civilizationID, Civilization civilization) {
+		this.updateResources(civilizationID, civilization);
+		this.updateBuildingsAndTechnologies(civilizationID, civilization);
+		this.updateBattleCounter(civilizationID, civilization);
+		this.updateUnits(civilizationID, civilization);
+	}
+	
+
 
 }
 
