@@ -18,7 +18,7 @@ import pkg_SpecialUnit.Priest;
 
 
 
-public class Civilization {
+public class Civilization implements Variables {
 	
 	private String name;
 	private String username;
@@ -258,13 +258,13 @@ public class Civilization {
 	//metodo para construir iglesia
 	void newChurch() throws ResourceException {
 		//aseguramos que se tengan los recursos 
-		if (getFood() > 10000 && getWood() > 20000 &&
-				getIron()> 24000 && getMana()>10000 ) {
+		if (getFood() > FOOD_COST_CHURCH && getWood() > WOOD_COST_CHURCH &&
+				getIron()> IRON_COST_CHURCH && getMana()>10000 ) {
 			//resto recursos
-			this.setFood(food-10000);
-			this.setWood(wood-20000);
-			this.setIron(iron-24000);
-			this.setMana(mana-10000);
+			this.setFood(food-FOOD_COST_CHURCH);
+			this.setWood(wood-WOOD_COST_CHURCH);
+			this.setIron(iron-IRON_COST_CHURCH);
+			this.setMana(mana-10000);// no hay variable para mana
 			this.church+= 1;//suma una 
 
 		}else {
@@ -276,12 +276,12 @@ public class Civilization {
 	//metodo para construir torre magica
 	void newMagicTower() throws ResourceException {
 		//aseguramos que se tengan los recursos 
-		if (getFood() > 10000 && getWood() > 20000 &&
-				getIron()> 24000 ){
+		if (getFood() > FOOD_COST_MAGICTOWER && getWood() > WOOD_COST_MAGICTOWER &&
+				getIron()> IRON_COST_MAGICTOWER ){
 			//resto recursos
-			this.setFood(food-10000);
-			this.setWood(wood-20000);
-			this.setIron(iron-24000);
+			this.setFood(food-FOOD_COST_MAGICTOWER);
+			this.setWood(wood-WOOD_COST_MAGICTOWER);
+			this.setIron(iron-IRON_COST_MAGICTOWER);
 			this.magicTower+= 1;//suma una 
 			this.setMana(mana+3000);//incremento en mana
 		} else {
@@ -293,12 +293,12 @@ public class Civilization {
 
 	void newFarm() throws ResourceException {
 		//aseguramos que se tengan los recursos 
-		if (getFood() > 5000 && getWood() > 10000 &&
-				getIron()> 12000){
+		if (getFood() > FOOD_COST_FARM && getWood() > WOOD_COST_FARM &&
+				getIron()> IRON_COST_FARM){
 			//resto recursos
-			this.setFood(food-5000);
-			this.setWood(wood-10000);
-			this.setIron(iron-12000);
+			this.setFood(food-FOOD_COST_FARM);
+			this.setWood(wood-WOOD_COST_FARM);
+			this.setIron(iron-IRON_COST_FARM);
 			this.farm+= 1;//suma una farm
 			this.setFood(food+(int)(food*0.05));//incremento en food
 		} else {
@@ -310,12 +310,12 @@ public class Civilization {
 
 	void newCarpentry() throws ResourceException {
 		//aseguramos que se tengan los recursos 
-		if (getFood() > 5000 && getWood() > 10000 &&
-				getIron()> 12000){
+		if (getFood() > FOOD_COST_CARPENTRY && getWood() > WOOD_COST_CARPENTRY &&
+				getIron()> IRON_COST_CARPENTRY){
 			//resto recursos
-			this.setFood(food-5000);
-			this.setWood(wood-10000);
-			this.setIron(iron-12000);
+			this.setFood(food-FOOD_COST_CARPENTRY);
+			this.setWood(wood-WOOD_COST_CARPENTRY);
+			this.setIron(iron-IRON_COST_CARPENTRY);
 			this.farm += 1;//suma una farm
 			this.setWood(wood+(int)(wood*0.05));//incremento en wood
 		} else {
@@ -328,12 +328,12 @@ public class Civilization {
 
 	void newSmithy() throws ResourceException {
 		//aseguramos que se tengan los recursos 
-		if (getFood() > 5000 && getWood() > 10000 &&
-				getIron()> 12000){
+		if (getFood() > FOOD_COST_SMITHY && getWood() > WOOD_COST_SMITHY &&
+				getIron()> IRON_COST_SMITHY){
 			//resto recursos
-			this.setFood(food-5000);
-			this.setWood(wood-10000);
-			this.setIron(iron-12000);
+			this.setFood(food-FOOD_COST_SMITHY);
+			this.setWood(wood-WOOD_COST_SMITHY);
+			this.setIron(iron-IRON_COST_SMITHY);
 			this.farm+= 1;//suma una farm
 			this.setIron(iron + (int)(iron*0.05));//incremento del 5%
 		} else {
@@ -379,7 +379,7 @@ public class Civilization {
 	void upgradeTechnologyAttack() throws ResourceException {
 		if (technologyAttack == 0) {//se paga el valor tec inicial
 			if (getFood() > 100 && getWood() > 200 &&
-					getIron()> 2000){
+					getIron()> UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST){
 				//resta recursos
 				this.setFood(food-100);
 				this.setWood(wood-200);
@@ -415,12 +415,12 @@ public class Civilization {
 
 		for (int i = 0; i < n; i++) { 
 			//comprobar si tenemos los recursos unidad a unidad
-			if (getFood() > 8000 && getWood() > 3000 &&
+			if (getFood() > FOOD_COST_SWORDSMAN && getWood() > WOOD_COST_SWORDSMAN &&
 					getIron()> 50){
 				//se resta los recursos de la unidad creada
-				this.setFood(food-8000);
-				this.setWood(wood-3000);
-				this.setIron(iron-50);
+				this.setFood(food-FOOD_COST_SWORDSMAN);
+				this.setWood(wood-WOOD_COST_SWORDSMAN);
+				this.setIron(iron-IRON_COST_SWORDSMAN);
 				//se crean variables de creacion de uni
 				int newArmor = Variables.ARMOR_SWORDSMAN+(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.ARMOR_SWORDSMAN/100;
@@ -440,11 +440,11 @@ public class Civilization {
 
 	void newSpearman(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
-			if (getFood() > 5000 && getWood() > 6500 &&
-					getIron()> 50){
-				this.setFood(food-5000);
-				this.setWood(wood-6500);
-				this.setIron(iron-50);
+			if (getFood() > FOOD_COST_SPEARMAN && getWood() > WOOD_COST_SPEARMAN &&
+					getIron()> IRON_COST_SPEARMAN){
+				this.setFood(food-FOOD_COST_SPEARMAN);
+				this.setWood(wood-WOOD_COST_SPEARMAN);
+				this.setIron(iron-IRON_COST_SPEARMAN);
 				int newArmor = Variables.ARMOR_SPEARMAN+(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.ARMOR_SPEARMAN/100;
 				int newDamage = Variables.BASE_DAMAGE_SPEARMAN+(getTechnologyAttack()+
@@ -461,10 +461,10 @@ public class Civilization {
 
 	void newCrossbow(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
-			if (getFood() > 0 && getWood() > 45000 &&
-					getIron()> 7000){
-				this.setWood(wood-45000);
-				this.setIron(iron-7000);
+			if ( getWood() > WOOD_COST_CROSSBOW &&
+					getIron()> IRON_COST_CROSSBOW){
+				this.setWood(wood-WOOD_COST_CROSSBOW);
+				this.setIron(iron-IRON_COST_CROSSBOW);
 				int newArmor = Variables.ARMOR_CROSSBOW+(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.ARMOR_CROSSBOW/100;
 				int newDamage = Variables.BASE_DAMAGE_CROSSBOW+(getTechnologyAttack()+
@@ -482,10 +482,10 @@ public class Civilization {
 
 	void newCannon(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
-			if (getFood() > 0 && getWood() > 30000 &&
-					getIron()> 15000){
-				this.setWood(wood-30000);
-				this.setIron(iron-15000);
+			if (getWood() > WOOD_COST_CANNON &&
+					getIron()> IRON_COST_CANNON){
+				this.setWood(wood-WOOD_COST_CANNON);
+				this.setIron(iron-IRON_COST_CANNON);
 				int newArmor = Variables.ARMOR_CANNON+(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.ARMOR_CANNON/100;
 				int newDamage = Variables.BASE_DAMAGE_CANNON+(getTechnologyAttack()+
@@ -504,8 +504,8 @@ public class Civilization {
 	void newArrowTower(int n) throws ResourceException {
 
 		for (int i = 0; i < n; i++) { 
-			if (getWood() > 2000){
-				this.setWood(wood-2000);
+			if (getWood() > WOOD_COST_ARROWTOWER){
+				this.setWood(wood-WOOD_COST_ARROWTOWER);
 				int newArmor = Variables.ARMOR_ARROWTOWER+(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.ARMOR_ARROWTOWER/100;
 				int newDamage = Variables.BASE_DAMAGE_ARROWTOWER+(getTechnologyAttack()+
@@ -524,9 +524,9 @@ public class Civilization {
 	void newCatapult(int n) throws ResourceException {
 
 		for (int i = 0; i < n; i++) { 
-			if (getWood() > 4000 && getIron()> 500){
-				this.setWood(wood-4000);
-				this.setIron(iron-500);
+			if (getWood() > WOOD_COST_CATAPULT && getIron()> IRON_COST_CATAPULT){
+				this.setWood(wood-WOOD_COST_CATAPULT);
+				this.setIron(iron-IRON_COST_CATAPULT);
 				int newArmor = Variables.ARMOR_CATAPULT+(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.ARMOR_CATAPULT/100;
 				int newDamage = Variables.BASE_DAMAGE_CATAPULT +(getTechnologyAttack()+
@@ -545,9 +545,9 @@ public class Civilization {
 	void newRocketLauncherTower(int n) throws ResourceException {
 
 		for (int i = 0; i < n; i++) { 
-			if (getWood() > 50000 && getIron()> 5000){
-				this.setWood(wood-50000);
-				this.setIron(iron-5000);
+			if (getWood() > WOOD_COST_ROCKETLAUNCHERTOWER && getIron()> IRON_COST_ROCKETLAUNCHERTOWER){
+				this.setWood(wood-WOOD_COST_ROCKETLAUNCHERTOWER);
+				this.setIron(iron-IRON_COST_ROCKETLAUNCHERTOWER);
 				int newArmor = Variables.ARMOR_ROCKETLAUNCHERTOWER+(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*Variables.ARMOR_ROCKETLAUNCHERTOWER/100;
 				int newDamage = Variables.BASE_DAMAGE_ROCKETLAUNCHERTOWER +(getTechnologyAttack()+
@@ -568,11 +568,13 @@ public class Civilization {
 
 
 		for (int i = 0; i < n; i++) { 
-			if (getFood() > 12000 && getWood() > 2000 &&
-					getMana()> 5000){
-				this.setWood(wood-2000);
-				this.setFood(food-1200);
-				this.setMana(mana-5000);
+			if (getFood() > FOOD_COST_MAGICIAN && getWood() > WOOD_COST_MAGICIAN &&
+					getIron()> IRON_COST_MAGICIAN &&
+					getMana()> MANA_COST_MAGICIAN){
+				this.setWood(wood-FOOD_COST_MAGICIAN);
+				this.setFood(food-WOOD_COST_MAGICIAN);
+				this.setIron(mana-IRON_COST_MAGICIAN);
+				this.setMana(mana-MANA_COST_MAGICIAN);
 				int newArmor = 0;
 				int newDamage = Variables.BASE_DAMAGE_MAGICIAN +(getTechnologyAttack()+
 						Variables.PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_MAGICIAN/100;
@@ -589,9 +591,9 @@ public class Civilization {
 
 	void newPriest(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
-			if (getFood() > 15000 && getMana()> 15000){
-				this.setFood(food-15000);
-				this.setMana(mana-15000);
+			if (getFood() > FOOD_COST_PRIEST && getMana()> MANA_COST_PRIEST){
+				this.setFood(food-FOOD_COST_PRIEST);
+				this.setMana(mana-MANA_COST_PRIEST);
 				int newArmor = 0;
 				int newDamage = 0;
 				Priest newPriest = new Priest(newArmor,newDamage);
