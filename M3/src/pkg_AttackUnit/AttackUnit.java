@@ -53,7 +53,7 @@ public abstract class AttackUnit implements MilitaryUnit, Variables {
 	}
 
 	public void setExperience(int experience) {
-		this.experience = experience;
+		this.experience += experience;
 	}
 
 	public boolean isSanctified() {
