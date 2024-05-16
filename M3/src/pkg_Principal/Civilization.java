@@ -18,7 +18,7 @@ import pkg_SpecialUnit.Priest;
 
 
 
-public class Civilization {
+public class Civilization implements Variables {
 	
 	private String name;
 	private String username;
@@ -422,7 +422,7 @@ public class Civilization {
 				this.setWood(wood-3000);
 				this.setIron(iron-50);
 				//se crean variables de creacion de uni
-				int newArmor = Variables.ARMOR_SWORDSMAN+(getTechnologyDefense()+
+				int newArmor = ARMOR_SWORDSMAN+(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.ARMOR_SWORDSMAN/100;
 				int newDamage = Variables.BASE_DAMAGE_SWORDSMAN+(getTechnologyAttack()+
 						Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SWORDSMAN/100;
@@ -445,14 +445,15 @@ public class Civilization {
 				this.setFood(food-5000);
 				this.setWood(wood-6500);
 				this.setIron(iron-50);
-				int newArmor = Variables.ARMOR_SPEARMAN+(getTechnologyDefense()+
-						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.ARMOR_SPEARMAN/100;
+				int newArmor = Variables.ARMOR_SPEARMAN + (getTechnologyDefense() +
+						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY) * Variables.ARMOR_SPEARMAN/100;
 				int newDamage = Variables.BASE_DAMAGE_SPEARMAN+(getTechnologyAttack()+
-						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SPEARMAN/100;
+						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY) * Variables.BASE_DAMAGE_SPEARMAN/100;
 				Spearman newSpearman = new Spearman(newArmor,newDamage);
 				army[1].add(newSpearman);
 
-			}else {
+				
+			} else {
 				//se controla la falta de recursos
 				throw new ResourceException("you do not have enough resources to create "+n+" Spearman, has been created "+i);
 			}
