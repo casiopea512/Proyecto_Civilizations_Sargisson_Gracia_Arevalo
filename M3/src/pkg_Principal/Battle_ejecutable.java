@@ -20,8 +20,7 @@ public class Battle_ejecutable implements Variables {
 		}
 
 
-		for(int i=0;i<1;i++) {
-			civilizationArmy[0].add(new Swordsman());
+		for(int i=0;i<2;i++) {
 			civilizationArmy[1].add(new Spearman());
 			civilizationArmy[2].add(new Crossbow());
 			civilizationArmy[3].add(new Cannon());
@@ -29,8 +28,8 @@ public class Battle_ejecutable implements Variables {
 		}
 
 		
-		for(int i=0;i<3;i++) {
-			civilizationArmy[1].add(new Spearman());
+		for(int i=0;i<20;i++) {
+			civilizationArmy[0].add(new Swordsman());
 		}
 
 
@@ -45,11 +44,10 @@ public class Battle_ejecutable implements Variables {
 			enemyArmy[0].add(new Swordsman());
 			enemyArmy[1].add(new Spearman());
 			enemyArmy[2].add(new Crossbow());
-			enemyArmy[3].add(new Cannon());
 		}
 
 		for(int i=0;i<4;i++) {
-			enemyArmy[1].add(new Spearman());
+			enemyArmy[3].add(new Cannon());
 		}
 		
 		// BATALLA
@@ -58,5 +56,9 @@ public class Battle_ejecutable implements Variables {
 		
 		System.out.println("\n\n\n\n");
 		System.out.println(bt.getReportePasos());
+		
+		
+		System.out.println("\n\n\n");
+		System.out.println(bt.getReporte());
 	}
 }

@@ -266,7 +266,12 @@ public class Battle implements Variables {
 		boolean continueBattle = true;
 		boolean repeatAttack = true;
 		
-		while (continueBattle) {
+		int limiteCivilization = (int) (porcentajeFinBatalla * initialNumberUnitsCivilization);
+		int limiteEnemy = (int) (porcentajeFinBatalla * initialNumberUnitsEnemy);
+		
+		System.out.println("El límite de Civilización es: "+limiteCivilization+"\nEl límite del Enemy es: "+limiteEnemy);
+		
+		while (num_actualUnitsCivilization > limiteCivilization && num_actualUnitsEnemy > limiteEnemy) {
 			System.out.println("\n\n******************* Change attacker *****************************\n");
 			
 			this.reportePaP("\n********************************CHANGE ATTACKER********************************\n");
@@ -285,13 +290,12 @@ public class Battle implements Variables {
 				// que se ataquen: devuelve true si se tiene que volver a repetir la batalla
 				repeatAttack = this.atacarse(defensor, atacante, civilizationArmy,0);
 				
-				while (repeatAttack && continueBattle) {
+				while (repeatAttack && (num_actualUnitsCivilization > limiteCivilization && num_actualUnitsEnemy > limiteEnemy)) {
 					System.out.println("SE REPITE LA BATALLA------------------------------------------------------");
 					// volver a cargar el número de unidades
 					this.updateActualNumberUnits();
 					this.updateNumActualUnits();
-					// comporbar si se ha bajado del 20%
-					continueBattle = this.checkContinueBattle(continueBattle);
+					
 					
 					defensor = this.getGroupDefender(actualNumberUnitsCivilization,0);
 					
@@ -317,13 +321,12 @@ public class Battle implements Variables {
 				// que se ataquen: devuelve true si se tiene que volver a repetir la batalla
 				repeatAttack = this.atacarse(defensor, atacante, enemyArmy,1);
 
-				while(repeatAttack && continueBattle) {
+				while(repeatAttack && (num_actualUnitsCivilization > limiteCivilization && num_actualUnitsEnemy > limiteEnemy)) {
 					System.out.println("SE REPITE LA BATALLA------------------------------------------------------");
 					// volver a cargar el número de unidades
 					this.updateActualNumberUnits();
 					this.updateNumActualUnits();
-					// comporbar si se ha bajado del 20%
-					continueBattle = this.checkContinueBattle(continueBattle);
+					
 					
 					defensor = this.getGroupDefender(actualNumberUnitsEnemy,1);
 					
@@ -344,8 +347,6 @@ public class Battle implements Variables {
 			this.updateActualNumberUnits();
 			this.updateNumActualUnits();
 			
-			// comporbar si se ha bajado del 20%
-			continueBattle = this.checkContinueBattle(continueBattle);
 						
 			// para pasar el turno manual: QUITAR !!!!!!!!!!!!!!!!!!!!!!!
 			Scanner sc = new Scanner(System.in);
@@ -354,20 +355,6 @@ public class Battle implements Variables {
 	}
 
 	
-	// comprobar si se ha bajado del 20%
-	public boolean checkContinueBattle(boolean continueBattle) {
-		int limiteCivilization = (int) (porcentajeFinBatalla * initialNumberUnitsCivilization);
-		int limiteEnemy = (int) (porcentajeFinBatalla * initialNumberUnitsEnemy);
-		
-		if(num_actualUnitsCivilization > limiteCivilization || num_actualUnitsEnemy > limiteEnemy) {
-			continueBattle = false;
-		}
-		else {
-			continueBattle = true;
-		}
-		
-		return continueBattle;
-	}
 	
 
 	// actualizar los array actualNumberUnits
@@ -845,5 +832,14 @@ public class Battle implements Variables {
 		
 	public String getReportePasos() {
 		return this.reportePasos;
+	}
+	
+	public String getReporte() {
+		
+		String reporteG = "Army plannet   Units    Drops   Initial Army Enemy   Units  Drops\n"+
+						   "Swordsman: "+actualNumberUnitsCivilization[0]+"%5d"+civilizationDrops[0];
+		
+		return reporteG;
+		
 	}
 }
