@@ -28,7 +28,7 @@ public class Battle_ejecutable implements Variables {
 		}
 
 		
-		for(int i=0;i<20;i++) {
+		for(int i=0;i<10;i++) {
 			civilizationArmy[0].add(new Swordsman());
 		}
 
@@ -40,13 +40,13 @@ public class Battle_ejecutable implements Variables {
 		}	
 
 
-		for(int i=0; i<2; i++) {
+		for(int i=0; i<10; i++) {
 			enemyArmy[0].add(new Swordsman());
 			enemyArmy[1].add(new Spearman());
 			enemyArmy[2].add(new Crossbow());
 		}
 
-		for(int i=0;i<4;i++) {
+		for(int i=0;i<2;i++) {
 			enemyArmy[3].add(new Cannon());
 		}
 		
