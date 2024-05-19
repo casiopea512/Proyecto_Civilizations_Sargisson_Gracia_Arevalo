@@ -16,57 +16,48 @@ public class Battle implements Variables {
 	// array de arraylists's
 	private ArrayList<MilitaryUnit>[] civilizationArmy;
 	private ArrayList<MilitaryUnit>[] enemyArmy;
-	
-	
-
-	// arraylist de las dos arraylist de las unidades: la array de civilization y enemy es la que me pasan
-//	private ArrayList armies = new ArrayList();
 	private ArrayList[][] armies = new ArrayList[2][9];
-//	private  ArrayList[][] armies1 = new ArrayList[2][9];
-	//private int[] nombre = new int[2];
 
-	// cantidad  unidades civilización
-	private int[] initialArmiesCivilization = new int[9]; // [swordsman, spearman, crossbow, cannon, || arrorT, catapult, rocketLT, ||magician, priest]
-	// cantidad  unidades enemy
+	
+	// cantidad  unidades - [swordsman, spearman, crossbow, cannon, || arrorT, catapult, rocketLT, ||magician, priest]
+	private int[] initialArmiesCivilization = new int[9];
 	private int[] initialArmiesEnemy = new int[4];
-
-	// varible initialArmies bidimensiona: conteo unidades incial
-	private int[][] initialArmies = new int[2][];
+	private int[][] initialArmies = new int[2][]; //bidimensional
 
 
-	// costes de la flota civilización
-	private int[] initialCostFleetCivilization = new int[3]; // [comida, madera, hierro]
-	// costes de la flota enemy
+	// costes de la flota - [comida, madera, hierro]
+	private int[] initialCostFleetCivilization = new int[3];
 	private int[] initialCostFleetEnemy = new int[3];
+	private int[][] initialCostFleet = new int[2][]; //bidimensional
 
-	// variable initialCostFleet bidimensional: costes de las flotas
-	private int[][] initialCostFleet = new int[2][];
-
+	
 	// residuos generados en la batalla
 	private int[] wasteWoodIron = new int[2];
 	
-	// unidades caídas
+	
+	// unidades caídas - [comida,madera,hierro,ponderación]
 	private int[] civilizationDrops = new int[9];
 	private int[] enemyDrops = new int[4];
-	
-	//array bidimensional drops y ponderacion
-	private int[][] resourcesLooses = new int[2][];
+	private int[][] resourcesLooses = new int[2][]; //bidimensional
 	
 	
-	// VARIABLES TOTAL UNIDADES: cuantificar el total de unidades que hay
+	// numero inicial de unidades (total)
 	private int initialNumberUnitsCivilization=0;
 	private int initialNumberUnitsEnemy=0;
-	// para el conteo durante la batalla y controlar el bucle while
+	
+	// numero actual durante la batalla de unidades (total): para el conteo durante la batalla y controlar el bucle while
 	private int num_actualUnitsCivilization;
 	private int num_actualUnitsEnemy;
 
-	// conteo unidades actuales: para la BATALLA
+	
+	// conteo unidades actuales - [swordsman, spearman, crossbow, cannon, || arrorT, catapult, rocketLT, ||magician, priest]
 	private int[] actualNumberUnitsCivilization;
 	private int[] actualNumberUnitsEnemy;
 
 	
 	// booleando para saber quién ha ganado
 	private boolean bool_civiWin = false;
+	
 	
 	// String de reporte paso a paso
 	private String reportePasos = "";
@@ -118,20 +109,10 @@ public class Battle implements Variables {
 	
 	
 	// inicializar ArrayList armies
-	public void initArmy() {
-//		this.armies.add(civilizationArmy);
-//		this.armies.add(enemyArmy);
-		
+	public void initArmy() {		
 		armies[0] = civilizationArmy;
 		armies[1] = enemyArmy;
 
-//		System.out.println(    (((ArrayList<MilitaryUnit>[]) (armies.get(0))) [0]).get(0) );
-		
-//		armies1[0] = civilizationArmy;
-//		armies1[1] = enemyArmy;		
-//		System.out.println(armies1[0][0].get(0));
-		//System.out.println(civilizationArmy[0]);
-		//String[] strings = (String[]) objects[0];
 	}
 
 	// calcular cantidad unidades y coste de éstas
@@ -139,8 +120,10 @@ public class Battle implements Variables {
 
 		// Civilización: conteo unidades y costes
 		System.out.println("Civilización----\n");
+		
 		for(int i=0; i<initialArmiesCivilization.length;i++) { // 9 veces
 			System.out.println("El índie "+i+" es el army "+civilizationArmy[i]);
+			
 			this.initialArmiesCivilization[i] += this.civilizationArmy[i].size(); // sumar al array cuántas unidades hay
 
 			for( int j=0; j<civilizationArmy[i].size(); j++) { // tantas como unidades haya
@@ -160,8 +143,10 @@ public class Battle implements Variables {
 
 		// Enemy: conteo unidades y costes
 		System.out.println("\n\nEnemy----\n");
+		
 		for(int i=0; i<initialArmiesEnemy.length;i++) { // 4 veces
 			System.out.println("El índie "+i+" es el army "+enemyArmy[i]);
+			
 			this.initialArmiesEnemy[i] += this.enemyArmy[i].size(); // sumar al array cuántas unidades hay
 
 			for( int j=0; j<enemyArmy[i].size(); j++) { // tantas como unidades haya				
@@ -221,7 +206,7 @@ public class Battle implements Variables {
 			this.initialNumberUnitsEnemy+= this.initialArmiesEnemy[i];
 		}
 		
-		// inicializar el actualUnits
+		// inicializar el num_actualUnits
 		num_actualUnitsCivilization = initialNumberUnitsCivilization;
 		num_actualUnitsEnemy = initialNumberUnitsEnemy;
 
@@ -236,9 +221,7 @@ public class Battle implements Variables {
 	// inicializar array actualNumberUnits
 	public void initActualNumberUnits() {
 
-		// civilización
 		this.actualNumberUnitsCivilization = this.initialArmiesCivilization.clone();
-		//enemigos
 		this.actualNumberUnitsEnemy = this.initialArmiesEnemy.clone();
 
 		System.out.println("\n\nArray actualNumberUnits----\n" +
@@ -260,83 +243,93 @@ public class Battle implements Variables {
 	
 	// donde se realiza la batalla
 	public void goBattle() {
+		
 		// gestión del turno
 		int turno = (int)(Math.random()*2); // 0: civ - 1:enemy
 		System.out.println("\n\nNumero Aleatorio para la gestión del turno es: "+turno+"\n");
 
-		// WHILE
-		
-		boolean continueBattle = true;
-		boolean repeatAttack = true;
-		
+		// control umbral 20%
 		int limiteCivilization = (int) (porcentajeFinBatalla * initialNumberUnitsCivilization);
 		int limiteEnemy = (int) (porcentajeFinBatalla * initialNumberUnitsEnemy);
-		
 		System.out.println("El límite de Civilización es: "+limiteCivilization+"\nEl límite del Enemy es: "+limiteEnemy);
 		
+		// control de repecitión del turno
+		boolean repeatAttack = true;
+		
+		
 		while (num_actualUnitsCivilization > limiteCivilization && num_actualUnitsEnemy > limiteEnemy) {
-			System.out.println("\n\n******************* Change attacker *****************************\n");
 			
+			System.out.println("\nCAMBIO TURNO\n");			
 			this.reportePaP("\n********************************CHANGE ATTACKER********************************\n");
+			
+			System.out.println("\nTurno: "+turno+"\n");
+			
 			repeatAttack = false;
+			
+			// Defendemos
+			if(turno==0) {
+				
+				// escoger unidad: 0 civ - 1 enemy
+				MilitaryUnit defensor = this.getGroupDefender(actualNumberUnitsCivilization,0); 
+				MilitaryUnit atacante = this.getGroupAttacker(actualNumberUnitsEnemy,1);
 
-			if(turno==0) { // defendemos
-				System.out.println("\nTurno: "+turno+"\n");
-				
-				// escoger unidad
-				MilitaryUnit defensor = this.getGroupDefender(actualNumberUnitsCivilization,0); // 0: civ - 1:enemy
-				MilitaryUnit atacante = this.getGroupAttacker(actualNumberUnitsEnemy,1); // 0: civ - 1:enemy
-				
 				// reporte paso a paso
 				this.reportePaP("Attacks army enemy: "+atacante.getName()+" attacks "+defensor.getName());
 
 				// que se ataquen: devuelve true si se tiene que volver a repetir la batalla
 				repeatAttack = this.atacarse(defensor, atacante, civilizationArmy,0);
 				
+				// volver a cargar el número de unidades
+				this.updateActualNumberUnits();
+				this.updateNumActualUnits();
+				
 				while (repeatAttack && (num_actualUnitsCivilization > limiteCivilization && num_actualUnitsEnemy > limiteEnemy)) {
 					System.out.println("SE REPITE LA BATALLA------------------------------------------------------");
-					// volver a cargar el número de unidades
-					this.updateActualNumberUnits();
-					this.updateNumActualUnits();
 					
-					
+					// elegir de nuevo el defensor
 					defensor = this.getGroupDefender(actualNumberUnitsCivilization,0);
 					
 					System.out.println("\n------------\nLe paso el defensor: "+defensor+"\nY el atacante: "+atacante+"\n--------------");
 					repeatAttack = this.atacarse(defensor, atacante, civilizationArmy,0);
 					
+					// volver a cargar el número de unidades
+					this.updateActualNumberUnits();
+					this.updateNumActualUnits();
 					
 				}
 
 				// cambio de turno
 				turno =1;
 			}
+			
 			else if(turno==1) { // atacamos
-				System.out.println("\nTurno: "+turno+"\n");
 				
-				// escoger unidad
-				MilitaryUnit defensor = this.getGroupDefender(actualNumberUnitsEnemy,1); // 0: civ - 1:enemy
-				MilitaryUnit atacante = this.getGroupAttacker(actualNumberUnitsCivilization,0); // 0: civ - 1:enemy
+				// escoger unidad: 0 civ - 1 enemy
+				MilitaryUnit defensor = this.getGroupDefender(actualNumberUnitsEnemy,1);
+				MilitaryUnit atacante = this.getGroupAttacker(actualNumberUnitsCivilization,0);
 
 				// reporte paso a paso
 				this.reportePaP("Attacks Civilization: "+atacante.getName()+" attacks "+defensor.getName());
 				
 				// que se ataquen: devuelve true si se tiene que volver a repetir la batalla
 				repeatAttack = this.atacarse(defensor, atacante, enemyArmy,1);
+				
+				// volver a cargar el número de unidades
+				this.updateActualNumberUnits();
+				this.updateNumActualUnits();
 
 				while(repeatAttack && (num_actualUnitsCivilization > limiteCivilization && num_actualUnitsEnemy > limiteEnemy)) {
-					System.out.println("SE REPITE LA BATALLA------------------------------------------------------");
-					// volver a cargar el número de unidades
-					this.updateActualNumberUnits();
-					this.updateNumActualUnits();
+					System.out.println("SE REPITE LA BATALLA------------------------------------------------------");					
 					
-					
+					// elegir de nuevo el defensor
 					defensor = this.getGroupDefender(actualNumberUnitsEnemy,1);
 					
 					System.out.println("\n------------\nLe paso el defensor: "+defensor+"\nY el atacante: "+atacante+"\n--------------");
 					repeatAttack = this.atacarse(defensor, atacante, enemyArmy,1);
 					
-					
+					// volver a cargar el número de unidades
+					this.updateActualNumberUnits();
+					this.updateNumActualUnits();
 				}
 
 				// cambio de turno
@@ -346,14 +339,10 @@ public class Battle implements Variables {
 			
 			System.out.println("\n\nFin de los if, vuelta a empezar\n\n");
 			
-			// volver a cargar el número de unidades
-			this.updateActualNumberUnits();
-			this.updateNumActualUnits();
-			
 						
-			// para pasar el turno manual: QUITAR !!!!!!!!!!!!!!!!!!!!!!!
-			Scanner sc = new Scanner(System.in);
-			sc.nextLine();
+			// para pasar el turno manual:
+//			Scanner sc = new Scanner(System.in);
+//			sc.nextLine();
 		}
 	}
 
@@ -446,7 +435,9 @@ public class Battle implements Variables {
 		int indiceUnidad_def = (int) (Math.random()*actualNumberUnits[indiceGrupo_def]);
 		System.out.println("La unidad elegida es la del índice: "+indiceUnidad_def);
 
-
+		
+		
+		// devolver la unidad defensora elegida
 		MilitaryUnit defensor = null;
 
 		// civilización
@@ -473,12 +464,13 @@ public class Battle implements Variables {
 
 		int probAcumulada =0;
 		int indiceGrupo_atack =0;
-
+		
+		// elegir GRUPO: a través de la probabilidad dada en las constantes
+		
+		// controlar que se elija un grupo que contenga al menos una unidad
 		boolean unidadElegida=false;
 		while(!unidadElegida) {
-			
-			System.out.println("\n\n---------------\nEl grupo elegido tiene cero unidades, se volverá a intentar\n-------------------\n\n");
-			
+						
 			// generar un número aleatorio entre 0 y 9(inclusive). Ya que, la probabilidad siempre será sobre 100
 			int numAleatorio_atacante = (int) (Math.random()*100);
 			System.out.println("Numero aleatorio para elegir el atacante es = "+numAleatorio_atacante);
@@ -487,8 +479,6 @@ public class Battle implements Variables {
 			// SWORDSMAN, SPEARMAN, CROSSBOW, CANNON, ARROWTOWER, CATAPULT, ROCKETLAUNCHERTOWER, MAGICIAN, PRIEST
 			// civilización -- CHANCE_ATTACK_CIVILIZATION_UNITS = {4,9,13,37,4,9,14,10,0};
 			if(atack==0) {
-
-				// GRUPO
 
 				// iterar sobre el array de probabilidad
 				for (int i=0; i<CHANCE_ATTACK_CIVILIZATION_UNITS.length; i++) {
@@ -507,8 +497,6 @@ public class Battle implements Variables {
 			// enemy -- CHANCE_ATTACK_ENEMY_UNITS = {10,20,30,40};
 			else if(atack==1) {
 
-				// GRUPO
-
 				// iterar sobre el array de probabilidad
 				for( int i=0; i<CHANCE_ATTACK_ENEMY_UNITS.length; i++) {
 					probAcumulada += CHANCE_ATTACK_ENEMY_UNITS[i];
@@ -521,13 +509,18 @@ public class Battle implements Variables {
 					}
 				}
 			}
+			
+			System.out.println("\n---------------\nEl grupo elegido tiene cero unidades, se volverá a intentar\n-------------------\n");
+
 		}
 
 
-		// UNIDAD
+		// elegir UNIDAD: de manera aleatoria
 		int indiceUnidad_atack = (int) (Math.random()*actualNumberUnits[indiceGrupo_atack]);
 		System.out.println("La unidad atacante elegida es la del índice: "+indiceUnidad_atack);
 
+		
+		// devolver la unidad atacante elegida
 		MilitaryUnit atacante = null;
 
 		// civilización
@@ -548,33 +541,34 @@ public class Battle implements Variables {
 
 	
 	
-	// atacarse entre ellos
+	/**
+	 * atacarse entre ellos
+	 * @param defensor : unidad militar defensora
+	 * @param atacante : unidad militar atacante
+	 * @param armyToRemove : ArrayList del ejercito que defiende, para así poder eliminar la unidad en caso de caer en combate
+	 * @param def numero : identificativo de ejercito que defiente: 0(def civi) - 1(def enemy)
+	 * @return true si la unidad atacante vuelve a atacar
+	 */
 	public boolean atacarse(MilitaryUnit defensor, MilitaryUnit atacante, ArrayList<MilitaryUnit>[] armyToRemove, int def) {
 		System.out.println("\n\nATAQUE----\n");
 		
-		//que reciba daño
+		// bajar armadura
 		
-		// reporte paso a paso
-		this.reportePaP("\n"+atacante.getName()+" generates the damage = "+atacante.attack());
-
 		System.out.println(defensor+" recibe un daño de "+atacante.attack()+" por parte de "+atacante);
+		this.reportePaP("\n"+atacante.getName()+" generates the damage = "+atacante.attack());
 
 		defensor.takeDamage(atacante.attack());
 		
-		// reporte paso a paso
+		System.out.println(defensor+" tiene "+defensor.getActualArmor()+" de armadura restante");
 		this.reportePaP("\n"+defensor.getName()+" stays with armor = "+ defensor.getActualArmor());
 		
-		System.out.println(defensor+" tiene "+defensor.getActualArmor()+" de armadura restante");
-
 
 		if(defensor.getActualArmor()<=0) {
 			
-			// reporte paso a paso
-			this.reportePaP("\nwe eliminate "+defensor.getName());
-			
 			System.out.println("La unidad defensiva "+defensor+" ha sido eliminada :(");
-			
-			// comprobar si es un sacerdote y ver si hay más
+			this.reportePaP("\nwe eliminate "+defensor.getName());
+						
+			// comprobar si es un sacerdote: si es el último desantifica las unidades
 			this.checkPriest(defensor);
 			
 			// comprobar si genera residuos
@@ -583,6 +577,7 @@ public class Battle implements Variables {
 			// elimina la unidad
 			for(int i=0; i<armyToRemove.length; i++) {
 				for (int j=0; j<armyToRemove[i].size(); j++) {
+					
 					if ( (armyToRemove[i].get(j)).equals(defensor) ) {
 						armyToRemove[i].remove(j);
 
@@ -608,8 +603,11 @@ public class Battle implements Variables {
 
 	}
 
-	// comprobar si es un sacerdote y ver si hay más
+	
+	
+	// comprobar si es un sacerdote: si es el último desantifica las unidades
 	public void checkPriest(MilitaryUnit defensor) {
+		
 		if(defensor instanceof Priest) {
 			
 			System.out.println("\nLa unidad defensiva es un Priest");
@@ -617,11 +615,9 @@ public class Battle implements Variables {
 			// si el número actual de unidades de priest es uno, es decir el que acaban de eliminar: desantificar
 			if( actualNumberUnitsCivilization[8] ==1 ) {
 				
-				// reporte paso a paso
-				this.reportePaP(", it was the last one.\nYour units are not longer sanctified");
-				
 				System.out.println("SE DESANTIFICAN LAS UNIDADES ENTERAS");
-				
+				this.reportePaP(", it was the last one.\nYour units are not longer sanctified");
+						
 				for (int i=0; i<civilizationArmy.length; i++) {
 					System.out.println("\nEl índie "+i+" corresponde a: "+civilizationArmy[i]);
 					
@@ -648,7 +644,6 @@ public class Battle implements Variables {
 	
 	// comprobar si genera recursos la unidad eliminada
 	public void generateResources(MilitaryUnit defensor) {
-
 		
 		System.out.println("\n\nComprobar generación de recursos\n");
 		
@@ -681,7 +676,8 @@ public class Battle implements Variables {
 		
 	}
 	
-	// comprobar si puede atacar de nuevo: estoy segura que hay una manera sin comprobar uno por uno
+	
+	// comprobar si puede atacar de nuevo
 	public boolean canAtackAgain(MilitaryUnit atacante) {
 		boolean probabilidad = false;		
 		int probabilidadAtacar = atacante.getChanceAttackAgain();
@@ -710,9 +706,12 @@ public class Battle implements Variables {
 	
 	// restablecer la armadura
 	public void resetArmyArmor() {
+		
 		System.out.println("\nRESTABLECER EL ARMOR\n");
 		
+		
 		System.out.println("Civilización");
+		
 		for (int i=0; i<civilizationArmy.length; i++) {
 			for (int j = 0; j < civilizationArmy[i].size(); j++) {
 				civilizationArmy[i].get(j).resetArmor();
@@ -721,6 +720,7 @@ public class Battle implements Variables {
 		}
 		
 		System.out.println("\nEnemy");
+		
 		for (int i=0; i<enemyArmy.length; i++) {
 			for (int j = 0; j < enemyArmy[i].size(); j++) {
 				enemyArmy[i].get(j).resetArmor();
@@ -731,7 +731,7 @@ public class Battle implements Variables {
 	
 	
 	// añadirles experiencia
-	public void updateExperience() { //// error
+	public void updateExperience() {
 		
 		System.out.println("\n\nUpdate Experiencia de las unidades\n");
 		
@@ -741,10 +741,8 @@ public class Battle implements Variables {
 			
 			for (int j=0; j<civilizationArmy[i].size(); j++) {
 				
-				System.out.println("El índice j es: "+j);
-				
-				System.out.println("El civ[i].get(j) es: "+civilizationArmy[i].get(j));
-				
+				System.out.println("El índice j es: "+j+ "\nEl civ[i].get(j) es: "+civilizationArmy[i].get(j));
+								
 				civilizationArmy[i].get(j).setExperience(1);
 				
 				System.out.println("La unidad "+civilizationArmy[i].get(j)+" ha aumentado 1exp: "+civilizationArmy[i].get(j));
@@ -772,6 +770,7 @@ public class Battle implements Variables {
 		
 		System.out.println("\n\nEl ejército CIVILIZATION ha tenido las siguientes pérdidas: "+Arrays.toString(civilizationDrops)+ 
 				           "\nEl ejército ENEMY ha tenido las siguientes pérdidas: "+Arrays.toString(enemyDrops));
+		
 		
 		// RESOURCES LOOSES UPDATE: añadir al resourcesLooses
 		for (int i=0; i<resourcesLooses.length;i++) {
@@ -820,7 +819,6 @@ public class Battle implements Variables {
 	// comprobar quién ha ganado
 	public void checkWin() {
 		System.out.println("\n\nVamos a ver quién ha ganado--------------------------------------------------------");
-
 		System.out.println("La ponderación de la civi es: "+resourcesLooses[0][3]+"\nLa ponderación del enemy es: "+resourcesLooses[1][3]);
 		
 		if(resourcesLooses[0][3] > resourcesLooses[1][3]) {
@@ -847,24 +845,9 @@ public class Battle implements Variables {
 	}
 	
 	public String getReporte() {
-//	    String reporteG = String.format("Army plannet %10s", " Units    Drops",  " Initial Army %10s", "Enemy   Units  Drops\n"+
-//	                                    "Swordsman: %10d %d", actualNumberUnitsCivilization[0], civilizationDrops[0]);
-	    
-//		String reporteG = String.format(
-//	            "Army plannet %10s" + "Units    Drops   Initial Army Enemy %10s" +"Units  Drops\n" +
-//	            "Swordsman: %10d %d",
-//	            "",  // Para ajustar "Army plannet"
-//	            "",  // Para ajustar "Initial Army"
-//	            actualNumberUnitsCivilization[0], 
-//	            civilizationDrops[0]
-//	        );
 		
-		String cabecera = String.format("%-20s %-10s %-10s %-25s %-10s %-10s",
-										"Army plannet","Units","Drops","Initial Army Enemy","Units","Drops"
-				);
+		String cabecera = String.format("%-20s %-10s %-10s %-25s %-10s %-10s","Army plannet","Units","Drops","Initial Army Enemy","Units","Drops");
 
-		
-		
 		String datos = String.format("%-15s %10d %10d %14s %21d %10d", "Swordsman",actualNumberUnitsCivilization[0], civilizationDrops[0], "Swordsman", actualNumberUnitsEnemy[0],enemyDrops[0]);
 		
 		datos +="\n"+ String.format("%-15s %10d %10d %13s %22d %10d", "Spearman",actualNumberUnitsCivilization[1], civilizationDrops[1], "Spearman", actualNumberUnitsEnemy[1],enemyDrops[1]);

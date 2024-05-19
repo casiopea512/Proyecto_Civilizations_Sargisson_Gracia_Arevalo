@@ -1,6 +1,9 @@
 package pkg_Principal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 import interfaces.MilitaryUnit;
 import interfaces.Variables;
@@ -22,13 +25,13 @@ public class Battle_ejecutable implements Variables {
 
 		for(int i=0;i<2;i++) {
 			civilizationArmy[1].add(new Spearman());
-			civilizationArmy[2].add(new Crossbow());
-			civilizationArmy[3].add(new Cannon());
-			civilizationArmy[8].add(new Priest(50, 10000));
+//			civilizationArmy[2].add(new Crossbow());
+//			civilizationArmy[3].add(new Cannon());
+//			civilizationArmy[8].add(new Priest(50, 10000));
 		}
 
 		
-		for(int i=0;i<10;i++) {
+		for(int i=0;i<2;i++) {
 			civilizationArmy[0].add(new Swordsman());
 		}
 
@@ -40,10 +43,10 @@ public class Battle_ejecutable implements Variables {
 		}	
 
 
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<2; i++) {
 			enemyArmy[0].add(new Swordsman());
-			enemyArmy[1].add(new Spearman());
-			enemyArmy[2].add(new Crossbow());
+//			enemyArmy[1].add(new Spearman());
+//			enemyArmy[2].add(new Crossbow());
 		}
 
 		for(int i=0;i<2;i++) {
@@ -51,14 +54,34 @@ public class Battle_ejecutable implements Variables {
 		}
 		
 		// BATALLA
+		
+		Map<String, String[]> mapaBatallas = new HashMap<>();
+		
 		Battle bt = new Battle(civilizationArmy,enemyArmy);
 		
+		//int numBatallas = principal.getCurrentCivilization().getBattles();
+		int numBatallas = 2;
+		String nombreClave = "batalla"+numBatallas;
 		
-		System.out.println("\n\n\n\n");
-		System.out.println(bt.getReportePasos());
+		String[] informacionBatalla = {bt.getReporte(),bt.getReportePasos()};
 		
+		mapaBatallas.put(nombreClave, informacionBatalla);
 		
-		System.out.println("\n\n\n");
-		System.out.println(bt.getReporte());
+		String[] arrayInfoBatalla = mapaBatallas.get("batalla2");
+		
+		System.out.println("\n\nQué quieres ver?\n1.Reporte General\n2.Reporte paso a paso\n->");
+		
+		Scanner sc = new Scanner(System.in);
+		if(sc.hasNextInt()) {
+			int opc = sc.nextInt();
+			
+			if(opc ==1) {
+				System.out.println(arrayInfoBatalla[0]);
+			}
+			else if(opc==2) {
+				System.out.println(arrayInfoBatalla[1]);
+			}
+		}
+		
 	}
 }

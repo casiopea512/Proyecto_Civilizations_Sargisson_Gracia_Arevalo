@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -37,7 +39,13 @@ public class Main implements Variables {
 	private Civilization currentCivilization;
 	private int currentCivilizationID;
 	private ArrayList<MilitaryUnit>[] enemyUnits;
+	private  Map<String, String[]> mapaBatallas = new HashMap<>();
 	
+	
+	public Map<String, String[]> getMapaBatallas() {
+		return mapaBatallas;
+	}
+
 	public Civilization getCurrentCivilization() {
 		return currentCivilization;
 	}
@@ -165,6 +173,90 @@ public class Main implements Variables {
 		timerResourceGeneration.schedule(taskResourceGeneration, 0, 30000);	Sin delay + ejecución cada 30 sec
 		*/
 		
+		
+		
+		
+		// Creación unidades militares y arraylist: se lo pasas al TimerTask
+		
+		/*
+		ArrayList<MilitaryUnit>[] civilizationArmy = new ArrayList[9];
+		for( int i=0; i<civilizationArmy.length; i++) {
+			civilizationArmy[i] = new ArrayList<>();
+		}
+
+		for(int i=0;i<2;i++) {
+			civilizationArmy[1].add(new Spearman());
+			civilizationArmy[2].add(new Crossbow());
+			civilizationArmy[3].add(new Cannon());
+			civilizationArmy[8].add(new Priest(50, 10000));
+		}
+		
+		for(int i=0;i<10;i++) {
+			civilizationArmy[0].add(new Swordsman());
+		}
+
+		ArrayList<MilitaryUnit>[] enemyArmy = new ArrayList[4];
+		for (int i = 0; i < enemyArmy.length; i++) {
+			enemyArmy[i] = new ArrayList<>();
+		}	
+
+		for(int i=0; i<10; i++) {
+			enemyArmy[0].add(new Swordsman());
+			enemyArmy[1].add(new Spearman());
+			enemyArmy[2].add(new Crossbow());
+		}
+
+		for(int i=0;i<2;i++) {
+			enemyArmy[3].add(new Cannon());
+		}
+		
+		
+		
+		// Creación de batalla cada 3 minutos
+		Timer timerBattle = new Timer();
+		TimerTask taskBattle = new TimerTask() {
+
+			public void run() {
+				
+				// BATALLA
+				Battle bt = new Battle(civilizationArmy,enemyArmy);
+				
+				// numero de batallas
+				//int numBatallas = principal.getCurrentCivilization().getBattles();
+				int numBatallas = 2;
+				String nombreClave = "batalla"+numBatallas;
+				
+				String[] informacionBatalla = {bt.getReporte(),bt.getReportePasos()};
+				
+				principal.mapaBatallas.put(nombreClave, informacionBatalla);
+				
+				// prueba
+				System.out.println(bt.getReporte());
+				
+				
+				// UPDATE A LA BD
+				//principal.updateBattleCounter(principal);
+				//principal.updateResources(principal);
+				// updateArmy
+				
+				
+			}
+			
+		};
+		//timerBattle.scheduleAtFixedRate(taskBattle, 180000, 180000); // cada 3 minutos sin delay con un delay de 3 mins
+		timerBattle.scheduleAtFixedRate(taskBattle, 30000, 30000); // cada medio minuto con un delay de medio minuto: prubas
+		
+		*/
+		
+		/*
+		// escoger ver el reporte de la batalla2
+		
+		String batallaEscoger = "batalla2";
+		
+		String[] arrayInfoBatalla = principal.mapaBatallas.get("batalla2");
+		
+		System.out.println(arrayInfoBatalla[0]);
+		*/	
 	}
 	
 	public ArrayList<MilitaryUnit>[] createEnemyArmy(Civilization civilization) {
@@ -736,6 +828,7 @@ public class Main implements Variables {
             }
         }
 	}
+
 
 }
 
