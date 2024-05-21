@@ -44,7 +44,7 @@ public abstract class SpecialUnit implements MilitaryUnit, Variables {
 	}
 	
 	public void setExperience(int experience) {
-		this.experience = experience;
+		this.experience += experience;
 		
 	}
 	

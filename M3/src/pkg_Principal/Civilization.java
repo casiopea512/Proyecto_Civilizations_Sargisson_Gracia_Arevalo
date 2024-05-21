@@ -41,11 +41,11 @@ public class Civilization implements Variables {
 
 	private ArrayList<MilitaryUnit>[] army = new ArrayList[9];//ES DE 8 O DE 9(SOLO HAY NUEVE UNIDADES Y EL 0 SE CUENTA)
 
-
+	private int timeLeft;
 
 	//constructor
 	public Civilization(String name, String username, int wood, int iron, int food, int mana, int magicTower,
-			int church, int farm, int smithy, int carpentry, int technologyDefense, int technologyAttack, int battles) {
+			int church, int farm, int smithy, int carpentry, int technologyDefense, int technologyAttack, int battles, int timeLeft) {
 		super();
 		this.name = name;
 		this.username = username;
@@ -67,8 +67,7 @@ public class Civilization implements Variables {
 			army[i] = new ArrayList<>();
 		}
 
-
-		this.army = army;
+		this.timeLeft = timeLeft;
 	}
 	
 	
@@ -251,6 +250,15 @@ public class Civilization implements Variables {
 
 	public void setArmy(ArrayList<MilitaryUnit>[] army) {
 		this.army = army;
+	}
+	
+	public int getTimeLeft() {
+		return timeLeft;
+	}
+
+
+	public void setTimeLeft(int timeLeft) {
+		this.timeLeft = timeLeft;
 	}
 
 //metodos
