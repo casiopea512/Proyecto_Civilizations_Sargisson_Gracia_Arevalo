@@ -53,15 +53,12 @@ END;
 /
 
 CREATE OR REPLACE PROCEDURE deleteCivilization ( p_civilization_id NUMBER) IS
-BEGIN
-    DELETE FROM civilization_attack_stats WHERE civilization_id = p_civilization_id;
-    DELETE FROM civilization_defense_stats WHERE civilization_id = p_civilization_id;
-    DELETE FROM civilization_special_stats WHERE civilization_id = p_civilization_id;
-    DELETE FROM enemy_attack_stats WHERE civilization_id = p_civilization_id;
+BEGIN    
+    DELETE FROM battle_log_reporte WHERE civilization_id = p_civilization_id;
+    DELETE FROM battle_log_paso_a_paso WHERE civilization_id = p_civilization_id;
     DELETE FROM attack_units_stats WHERE civilization_id = p_civilization_id;
     DELETE FROM defense_units_stats  WHERE civilization_id = p_civilization_id;
     DELETE FROM special_units_stats WHERE civilization_id = p_civilization_id;
-    DELETE FROM battle_log WHERE civilization_id = p_civilization_id;
     DELETE FROM battle_stats WHERE civilization_id = p_civilization_id;
     DELETE FROM civilization_stats WHERE civilization_id = p_civilization_id;
     COMMIT;
