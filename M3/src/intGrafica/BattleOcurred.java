@@ -45,7 +45,7 @@ public class BattleOcurred extends JFrame{
     public void initComponents() {
         // cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("./src/fondoPopUpBatalla.PNG"));
+            imagen = ImageIO.read(new File("./imagenes/fondoPopUpBatalla.PNG"));
         } catch (IOException e) {
             e.printStackTrace();
         }
