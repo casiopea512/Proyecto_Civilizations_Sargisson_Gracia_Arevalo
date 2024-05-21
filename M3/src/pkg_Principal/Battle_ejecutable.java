@@ -55,33 +55,10 @@ public class Battle_ejecutable implements Variables {
 		
 		// BATALLA
 		
-		Map<String, String[]> mapaBatallas = new HashMap<>();
 		
 		Battle bt = new Battle(civilizationArmy,enemyArmy);
 		
-		//int numBatallas = principal.getCurrentCivilization().getBattles();
-		int numBatallas = 2;
-		String nombreClave = "batalla"+numBatallas;
 		
-		String[] informacionBatalla = {bt.getReporte(),bt.getReportePasos()};
-		
-		mapaBatallas.put(nombreClave, informacionBatalla);
-		
-		String[] arrayInfoBatalla = mapaBatallas.get("batalla2");
-		
-		System.out.println("\n\nQué quieres ver?\n1.Reporte General\n2.Reporte paso a paso\n->");
-		
-		Scanner sc = new Scanner(System.in);
-		if(sc.hasNextInt()) {
-			int opc = sc.nextInt();
-			
-			if(opc ==1) {
-				System.out.println(arrayInfoBatalla[0]);
-			}
-			else if(opc==2) {
-				System.out.println(arrayInfoBatalla[1]);
-			}
-		}
 		
 	}
 }

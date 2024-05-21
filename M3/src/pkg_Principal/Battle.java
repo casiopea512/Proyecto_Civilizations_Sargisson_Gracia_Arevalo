@@ -60,6 +60,7 @@ public class Battle implements Variables {
 	
 	
 	// String de reporte paso a paso
+	private ArrayList<String> arrayList_reportePasos = new ArrayList<String>();
 	private String reportePasos = "";
 	
 
@@ -837,11 +838,13 @@ public class Battle implements Variables {
 	
 	// reporte paso a paso
 	public void reportePaP(String reporte) {
-		reportePasos += reporte;
+		
+		arrayList_reportePasos.add(reporte);
+		
 	}
 		
-	public String getReportePasos() {
-		return this.reportePasos;
+	public ArrayList<String> getReportePasos() {
+		return this.arrayList_reportePasos;
 	}
 	
 	public String getReporte() {

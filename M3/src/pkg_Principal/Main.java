@@ -39,11 +39,17 @@ public class Main implements Variables {
 	private Civilization currentCivilization;
 	private int currentCivilizationID;
 	private ArrayList<MilitaryUnit>[] enemyUnits;
-	private  Map<String, String[]> mapaBatallas = new HashMap<>();
 	
+	// mapas que guardan los reportes de las batallas: clave: batallaX - valor: reporte
+	private  Map<String, String> mapa_reporteGeneralBatallas = new HashMap<>();
+	private  Map<String, ArrayList<String>> mapa_reportePasoAPasoBatallas = new HashMap<>();
 	
-	public Map<String, String[]> getMapaBatallas() {
-		return mapaBatallas;
+	public Map<String, String> getmapa_reporteGeneralBatallas() {
+		return mapa_reporteGeneralBatallas;
+	}
+	
+	public Map<String, ArrayList<String>> getmapa_reportePasoAPasoBatallas() {
+		return mapa_reportePasoAPasoBatallas;
 	}
 
 	public Civilization getCurrentCivilization() {
@@ -226,13 +232,14 @@ public class Main implements Variables {
 				int numBatallas = 2;
 				String nombreClave = "batalla"+numBatallas;
 				
-				String[] informacionBatalla = {bt.getReporte(),bt.getReportePasos()};
 				
-				principal.mapaBatallas.put(nombreClave, informacionBatalla);
+				// añadir a los mapas la información de la batalla
+				principal.mapa_reporteGeneralBatallas.put(nombreClave, bt.getReporte());				
+				principal.mapa_reportePasoAPasoBatallas.put(nombreClave, bt.getReportePasos());
 				
 				// prueba
-				System.out.println(bt.getReporte());
-				
+				System.out.println(principal.mapa_reportePasoAPasoBatallas.get(nombreClave));
+								
 				
 				// UPDATE A LA BD
 				//principal.updateBattleCounter(principal);
