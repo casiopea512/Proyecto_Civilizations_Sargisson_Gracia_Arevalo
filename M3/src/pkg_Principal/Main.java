@@ -40,18 +40,6 @@ public class Main implements Variables {
 	private int currentCivilizationID;
 	private ArrayList<MilitaryUnit>[] enemyUnits;
 	
-	// mapas que guardan los reportes de las batallas: clave: batallaX - valor: reporte
-	private  Map<String, String> mapa_reporteGeneralBatallas = new HashMap<>();
-	private  Map<String, ArrayList<String>> mapa_reportePasoAPasoBatallas = new HashMap<>();
-	
-	public Map<String, String> getmapa_reporteGeneralBatallas() {
-		return mapa_reporteGeneralBatallas;
-	}
-	
-	public Map<String, ArrayList<String>> getmapa_reportePasoAPasoBatallas() {
-		return mapa_reportePasoAPasoBatallas;
-	}
-
 	public Civilization getCurrentCivilization() {
 		return currentCivilization;
 	}
@@ -227,18 +215,8 @@ public class Main implements Variables {
 				// BATALLA
 				Battle bt = new Battle(civilizationArmy,enemyArmy);
 				
-				// numero de batallas
-				//int numBatallas = principal.getCurrentCivilization().getBattles();
-				int numBatallas = 2;
-				String nombreClave = "batalla"+numBatallas;
-				
-				
-				// añadir a los mapas la información de la batalla
-				principal.mapa_reporteGeneralBatallas.put(nombreClave, bt.getReporte());				
-				principal.mapa_reportePasoAPasoBatallas.put(nombreClave, bt.getReportePasos());
-				
-				// prueba
-				System.out.println(principal.mapa_reportePasoAPasoBatallas.get(nombreClave));
+				int[] resourcesWin = bt.getWasteWoodIron();
+				principal.addResourcesCivilization(resourcesWin);
 								
 				
 				// UPDATE A LA BD
@@ -836,7 +814,16 @@ public class Main implements Variables {
         }
 	}
 
-
+	
+	// update resources de la civilización
+	public void addResourcesCivilization(int[] wasteWoodIron) {
+		currentCivilization.setWood(wasteWoodIron[0]);
+		currentCivilization.setWood(wasteWoodIron[1]);
+		
+		System.out.println("Se han añadido las perdidas de la batalla a la civilización");
+	}
+	
+	
 }
 
 

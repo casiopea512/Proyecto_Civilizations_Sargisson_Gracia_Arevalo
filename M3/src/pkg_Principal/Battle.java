@@ -830,6 +830,7 @@ public class Battle implements Variables {
 			
 			bool_civiWin = true;
 			
+			
 			System.out.println("Civilización gana los residuos generados: Madera("+wasteWoodIron[0]+") Hierro("+wasteWoodIron[1]+")");
 			
 		}
@@ -908,5 +909,11 @@ public class Battle implements Variables {
 		
 		return cabecera+"\n\n"+datos;
 	}
-
+	
+	
+	public int[] getWasteWoodIron() {
+		
+		return wasteWoodIron;
+		
+	}
 }
