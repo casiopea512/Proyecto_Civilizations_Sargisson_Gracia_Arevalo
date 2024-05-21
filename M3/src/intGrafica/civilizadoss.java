@@ -8,6 +8,11 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import pkg_Principal.Main;
@@ -77,25 +82,49 @@ class PantallaPrincipal extends JFrame {
         }
         
         
-    //    botonPG.addActionListener(new ActionListener() {
-   //         public void actionPerformed(ActionEvent e) {
-//            	if(partidas.size()==0) {
-//            		System.out.println(partidas);
-//            		Object[] options = {"OK"};
-//                    JOptionPane.showOptionDialog(null,
-//                            "There are no saved games",
-//                            "Error",
-//                            JOptionPane.DEFAULT_OPTION,
-//                            JOptionPane.INFORMATION_MESSAGE,
-//                            new ImageIcon(iconoPersonalizado),
-//                            options,
-//                            options[0]); // El botón p
-//            	}else {
-//            		new PartidasGuardadas();//boton partidas guardadas
-//            		dispose();
-//            	}
-//            }
-//        });
+        botonPG.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	Connection conn = null;
+            	Statement stmt = null;
+                int pkIDcivilization = -1;
+                String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+                String USER = "Civilization";
+                String PASS = "civilization";
+                try {
+                	
+                	// INSERT EN BBDD
+        			Class.forName("oracle.jdbc.driver.OracleDriver");
+        			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        			System.out.println("CONEXIÓN ESTABLECIDA");
+        			//select count(civilization_id) from civilization_stats;
+        			String select = "select count(civilization_id) from civilization_stats";
+        			stmt = conn.createStatement();
+        			ResultSet rs = stmt.executeQuery(select);
+	    	        rs.next();
+            	if(rs.getInt(1)==0) {
+            		System.out.println(rs.getInt(1));
+            		Object[] options = {"OK"};
+                    JOptionPane.showOptionDialog(null,
+                            "There are no saved games",
+                            "Error",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            new ImageIcon(iconoPersonalizado),
+                            options,
+                            options[0]); // El botón p
+            	}else {
+            		//new PartidasGuardadas();//boton partidas guardadas
+            		System.out.println("hay partidas");
+            		dispose();
+            	}
+                
+        		} catch (ClassNotFoundException ee) {
+        			ee.printStackTrace();
+        		} catch (SQLException ee) {
+        			ee.printStackTrace();
+        		}
+            }
+        });
         
         botonPlay.addActionListener(new ActionListener() {//RECUPERAR
 			public void actionPerformed(ActionEvent e) {
@@ -187,151 +216,151 @@ class PantallaPrincipal extends JFrame {
     }
     /////////////////////////////////////////////////////////////////////////////
     
-//    class PartidasGuardadas extends JFrame {//RECUPERAR
-//        private JLabel etiPG;
-//        private BufferedImage imagenFondo2, imageIcon3;
-//        private JPanel penel, panelPlay, panelEti, panelCentral, panelBack;
-//        private JScrollPane tablaPartidas;
-//        private JButton batonBack;
+    class PartidasGuardadas extends JFrame {//RECUPERAR
+        private JLabel etiPG;
+        private BufferedImage imagenFondo2, imageIcon3;
+        private JPanel penel, panelPlay, panelEti, panelCentral, panelBack;
+        private JScrollPane tablaPartidas;
+        private JButton batonBack;
 
-//        public PartidasGuardadas() {
-//            etiPG = new JLabel("PARTIDAS GUARDADAS");
-//            etiPG.setFont(new Font("Times New Roman", Font.BOLD, 35));
-//            etiPG.setForeground(Color.BLACK);
-//
-//            // Botón redondeado al sur del frame
-//            RoundedButton batonBack = new RoundedButton("  Back  ");
-//            batonBack.setFont(new Font("Times New Roman", Font.BOLD, 25));
-//            batonBack.setBackground(Color.BLACK);
-//            batonBack.setForeground(Color.WHITE);
-//
-//            batonBack.addActionListener(new ActionListener() {
-//                // Botón back, vuelve a pantalla principal
-//                public void actionPerformed(ActionEvent e) {
-//                    new PantallaPrincipal(); // Llama pantalla principal
-//                    dispose(); // Cierra pantalla actual
-//                }
-//            });
-//
-//            penel = new JPanel();
-//            panelPlay = new JPanel();
-//            panelEti = new JPanel();
-//            panelCentral = new JPanel();
-//            panelBack = new JPanel();
-//            // panelCentral.setOpaque(false);
-//
-//            panelEti.add(etiPG);
-//            panelEti.setOpaque(false);
-//
-//            panelBack.add(batonBack);
-//            panelBack.setOpaque(false);
-//
-//            try {
-//                imageIcon3 = ImageIO.read(new File("./src/imagenes/play.png"));
-//            } catch (IOException e) {
-//                System.out.println("El archivo no se encuentra");
-//            }
-//
-//            ImageIcon play = new ImageIcon(imageIcon3);
-//
-//            panelCentral.setLayout(new GridBagLayout());
-//            GridBagConstraints gbc = new GridBagConstraints();
-//            gbc.fill = GridBagConstraints.HORIZONTAL;
-//            gbc.gridx = 0;
-//            gbc.gridy = 0;
-//            gbc.insets = new Insets(10, 10, 10, 10); // Margen entre componentes
-//            
-//            
-//
-//            for (int i = 0; i < partidas.size(); i++) {
-//                JPanel panel2 = new JPanel(new BorderLayout());
-//                panel2.setOpaque(false);
-//
-//                Usuario usuario = partidas.get(i);
-//                String jugadores = usuario.getName() + "  -  " + usuario.getCivi() + ": ";
-//
-//                JLabel nombreUsuario = new JLabel(jugadores);
-//                nombreUsuario.setFont(new Font("Times New Roman", Font.BOLD, 35));
-//                nombreUsuario.setForeground(Color.BLACK);
-//                nombreUsuario.setPreferredSize(new Dimension(400, 50)); // Tamaño fijo para las etiquetas
-//                panel2.add(nombreUsuario, BorderLayout.CENTER); // Alinear JLabel al centro
-//
-//                RoundedButton boton = new RoundedButton(" Erease ");
-//                boton.setName("BotonBorrar" + i);
-//                boton.setFont(new Font("Times New Roman", Font.BOLD, 25));
-//                boton.setForeground(Color.BLACK);
-//                boton.setBackground(Color.RED);
-//                boton.addActionListener(new ActionListener() {//crea el evento de los botones
-//	                public void actionPerformed(ActionEvent e) {
-////	                    PARA ELIMINAR PARTIDA
-//	                	
-//	                }
-//	            });
-//                
-//                //boton.setBackground(new Color(255, 255, 255, 0)); // Fondo transparente
-//                panel2.add(boton, BorderLayout.EAST);
-//
-//                JButton boton2 = new JButton(play);
-//                boton2.setName("BotonPlay" + i);
-//                boton2.setFont(new Font("Times New Roman", Font.BOLD, 0));
-//                boton2.setBackground(Color.WHITE);
-//                boton2.setForeground(Color.WHITE);
-//                boton2.setOpaque(false);
-//                boton2.setBorderPainted(false); // Ocultar los bordes del botón
-//                boton2.addActionListener(new ActionListener() {//crea el evento de los botones
-//	                public void actionPerformed(ActionEvent e) {
-//	                   System.out.println(nombreUsuario.getText()); 
-//	                   //PARA CARGAR PARTIDA
-//	                	
-//	                }
-//	            });
-//                panel2.add(boton2, BorderLayout.WEST);
-//               
-//
-//                gbc.gridy = i; // Incrementar la fila para cada nueva entrada
-//                panelCentral.add(panel2, gbc);
-//            }
-//
-//            panelCentral.setOpaque(false);
-//           
-//
-//            try {
-//                imagenFondo2 = ImageIO.read(new File("./src/imagenes/pergamino.jpg"));
-//            } catch (IOException e) {
-//                System.out.println("El archivo no se encuentra");
-//            }
-//
-//            // Crear un ImageIcon a partir de la imagen de fondo
-//            ImageIcon foto = new ImageIcon(imagenFondo2);
-//            // Crear el panel de fondo con la imagen
-//            JPanelConFondo panelImagen2 = new JPanelConFondo(foto.getImage());
-//            panelImagen2.setLayout(new BorderLayout());
-//
-//            tablaPartidas = new JScrollPane(panelCentral);
-//            tablaPartidas.setOpaque(false);
-//            
-//            tablaPartidas.getViewport().setOpaque(false);
-//            tablaPartidas.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//
-//            panelImagen2.add(panelEti, BorderLayout.NORTH);
-//            panelImagen2.add(tablaPartidas, BorderLayout.CENTER);
-//            panelImagen2.add(panelBack, BorderLayout.SOUTH);
-//            panelImagen2.setOpaque(false);
-//
-//            // Agregar el panel de imágenes al JFrame
-//            this.add(panelImagen2);
-//
-//            // Indicaciones estándar para una ventana de crear usuario
-//            this.setSize(800, 1000);
-//            this.setTitle("Partidas Guardadas");
-//            this.setIconImage(imageIcon);
-//            this.setResizable(false); // No cambiar tamaño marco
-//            this.setLocationRelativeTo(null); // Sale en medio
-//            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Se para el programa al cerrar
-//            this.setVisible(true); // Para verla
-//        }
-//
-//    }
+        public PartidasGuardadas() {
+            etiPG = new JLabel("PARTIDAS GUARDADAS");
+            etiPG.setFont(new Font("Times New Roman", Font.BOLD, 35));
+            etiPG.setForeground(Color.BLACK);
+
+            // Botón redondeado al sur del frame
+            RoundedButton batonBack = new RoundedButton("  Back  ");
+            batonBack.setFont(new Font("Times New Roman", Font.BOLD, 25));
+            batonBack.setBackground(Color.BLACK);
+            batonBack.setForeground(Color.WHITE);
+
+            batonBack.addActionListener(new ActionListener() {
+                // Botón back, vuelve a pantalla principal
+                public void actionPerformed(ActionEvent e) {
+                    new PantallaPrincipal(); // Llama pantalla principal
+                    dispose(); // Cierra pantalla actual
+                }
+            });
+
+            penel = new JPanel();
+            panelPlay = new JPanel();
+            panelEti = new JPanel();
+            panelCentral = new JPanel();
+            panelBack = new JPanel();
+            // panelCentral.setOpaque(false);
+
+            panelEti.add(etiPG);
+            panelEti.setOpaque(false);
+
+            panelBack.add(batonBack);
+            panelBack.setOpaque(false);
+
+            try {
+                imageIcon3 = ImageIO.read(new File("./src/imagenes/play.png"));
+            } catch (IOException e) {
+                System.out.println("El archivo no se encuentra");
+            }
+
+            ImageIcon play = new ImageIcon(imageIcon3);
+
+            panelCentral.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.insets = new Insets(10, 10, 10, 10); // Margen entre componentes
+            //////////////////////////////////////////////////////////////////////////////////
+            //ENCONTRAR MANERA DE INSTANCIAR LOS BOTONES CON LOS DATOS DE LA BBDD
+
+            for (int i = 0; i < partidas.size(); i++) {
+                JPanel panel2 = new JPanel(new BorderLayout());
+                panel2.setOpaque(false);
+
+                Usuario usuario = partidas.get(i);
+                String jugadores = usuario.getName() + "  -  " + usuario.getCivi() + ": ";
+
+                JLabel nombreUsuario = new JLabel(jugadores);
+                nombreUsuario.setFont(new Font("Times New Roman", Font.BOLD, 35));
+                nombreUsuario.setForeground(Color.BLACK);
+                nombreUsuario.setPreferredSize(new Dimension(400, 50)); // Tamaño fijo para las etiquetas
+                panel2.add(nombreUsuario, BorderLayout.CENTER); // Alinear JLabel al centro
+
+                RoundedButton boton = new RoundedButton(" Erease ");
+                boton.setName("BotonBorrar" + i);
+                boton.setFont(new Font("Times New Roman", Font.BOLD, 25));
+                boton.setForeground(Color.BLACK);
+                boton.setBackground(Color.RED);
+                boton.addActionListener(new ActionListener() {//crea el evento de los botones
+	                public void actionPerformed(ActionEvent e) {
+	                    //principal.deleteCivilization(civilizationID);
+	                	
+	                }
+	            });
+                
+                //boton.setBackground(new Color(255, 255, 255, 0)); // Fondo transparente
+                panel2.add(boton, BorderLayout.EAST);
+
+                JButton boton2 = new JButton(play);
+                boton2.setName("BotonPlay" + i);
+                boton2.setFont(new Font("Times New Roman", Font.BOLD, 0));
+                boton2.setBackground(Color.WHITE);
+                boton2.setForeground(Color.WHITE);
+                boton2.setOpaque(false);
+                boton2.setBorderPainted(false); // Ocultar los bordes del botón
+                boton2.addActionListener(new ActionListener() {//crea el evento de los botones
+	                public void actionPerformed(ActionEvent e) {
+	                   System.out.println(nombreUsuario.getText()); 
+	                   //PARA CARGAR PARTIDA
+	                	
+	                }
+	            });
+                panel2.add(boton2, BorderLayout.WEST);
+               
+
+                gbc.gridy = i; // Incrementar la fila para cada nueva entrada
+    		panelCentral.add(panel2, gbc);
+            }
+
+            panelCentral.setOpaque(false);
+           
+
+            try {
+                imagenFondo2 = ImageIO.read(new File("./src/imagenes/pergamino.jpg"));
+            } catch (IOException e) {
+                System.out.println("El archivo no se encuentra");
+            }
+
+           // Crear un ImageIcon a partir de la imagen de fondo
+            ImageIcon foto = new ImageIcon(imagenFondo2);
+            // Crear el panel de fondo con la imagen
+            JPanelConFondo panelImagen2 = new JPanelConFondo(foto.getImage());
+            panelImagen2.setLayout(new BorderLayout());
+
+            tablaPartidas = new JScrollPane(panelCentral);
+            tablaPartidas.setOpaque(false);
+            
+            tablaPartidas.getViewport().setOpaque(false);
+            tablaPartidas.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+            panelImagen2.add(panelEti, BorderLayout.NORTH);
+            panelImagen2.add(tablaPartidas, BorderLayout.CENTER);
+            panelImagen2.add(panelBack, BorderLayout.SOUTH);
+            panelImagen2.setOpaque(false);
+
+            // Agregar el panel de imágenes al JFrame
+            this.add(panelImagen2);
+
+            // Indicaciones estándar para una ventana de crear usuario
+            this.setSize(800, 1000);
+            this.setTitle("Partidas Guardadas");
+            this.setIconImage(imageIcon);
+            this.setResizable(false); // No cambiar tamaño marco
+            this.setLocationRelativeTo(null); // Sale en medio
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Se para el programa al cerrar
+            this.setVisible(true); // Para verla
+        }
+
+   }
 
     	
 	class VentanaUsuario extends JFrame {
