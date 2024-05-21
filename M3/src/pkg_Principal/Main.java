@@ -225,8 +225,16 @@ public class Main implements Variables {
                         
                         // AQUI SE IMPLEMENTA LA BATALLA
                         
+                        
+                        
+                        
+                        
                         Battle bt = new Battle(principal.getCurrentCivilization().getArmy(),principal.getEnemyUnits());
         				
+                        // updateBattle
+                        // insert into battle_stats(civil_id)
+                        
+                        
         				int[] resourcesWin = bt.getWasteWoodIron();
         				boolean civilizationWin = bt.getBool_civiWin();
         				

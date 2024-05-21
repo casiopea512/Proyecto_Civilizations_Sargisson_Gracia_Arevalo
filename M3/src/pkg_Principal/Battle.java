@@ -1,5 +1,10 @@
 package pkg_Principal;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -913,6 +918,27 @@ public class Battle implements Variables {
 		}
 		
 		// update bd
+		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+        String USER = "Civilization";
+        String PASS = "civilization";
+        Connection conn = null;
+        CallableStatement stmt = null;
+        
+        try {
+        	 // Registrar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            // Establecer la conexión con la base de datos
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            
+            String update = "INSERT INTO x () VALUES (?)";
+            PreparedStatement ps = conn.prepareStatement(update);
+            ps.setString(1, datos_update);
+            ps.executeUpdate();
+            
+            
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
