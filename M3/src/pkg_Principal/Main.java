@@ -232,12 +232,14 @@ public class Main implements Variables {
                         principal.updateBattle(principal.getCurrentCivilizationID(),bt.getReportePasos(), bt.getReporte());
                         
                         
-        				int[] resourcesWin = bt.getWasteWoodIron();
+        				int[] wasteWoodIron = bt.getWasteWoodIron();
         				boolean civilizationWin = bt.getBool_civiWin();
         				
         				if(civilizationWin) {
-        					principal.addResourcesCivilization(resourcesWin, principal.currentCivilization);
+        					principal.addResourcesCivilization(wasteWoodIron, principal.currentCivilization);
         				}
+        				
+        				// salta la ventana de batalla
         				
         				
         				// guardar el juego

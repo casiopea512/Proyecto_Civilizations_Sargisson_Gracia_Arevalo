@@ -69,10 +69,6 @@ public class Battle implements Variables {
 	private String reportePasos = "";
 	
 
-	// AÑADIR A VARIABLES
-	private double porcentajeFinBatalla = 0.20; // 20%
-
-
 	// Constructor
 	public Battle(ArrayList<MilitaryUnit>[] civilizationArmy, ArrayList<MilitaryUnit>[] enemyArmy) {
 		this.civilizationArmy = civilizationArmy;
@@ -829,6 +825,7 @@ public class Battle implements Variables {
 		
 		if(resourcesLooses[0][3] > resourcesLooses[1][3]) {
 			System.out.println("El enemigo ha ganado");
+			bool_civiWin = false;
 		}
 		else {
 			System.out.println("La civilización ha ganado");

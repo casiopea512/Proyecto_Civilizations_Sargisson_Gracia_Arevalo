@@ -214,4 +214,8 @@ public interface Variables {
 	
 	// percentage of waste that will be generated with respect to the cost of the units
 	public final int PERCENTATGE_WASTE = 70;
+	
+	
+	// umbral de porcentaje que controla cuándo acaba la batalla
+	public final double porcentajeFinBatalla = 0.20; // 20%
 	}
