@@ -19,7 +19,7 @@ public interface MilitaryUnit {
 	abstract int getManaCost();
 	//Nos devolverá el coste de Mana que tiene crear una nueva unidad.
 	abstract int getChanceGeneratinWaste();
-	//Nos la probabilidad de generar residuos al ser totalmente eliminada
+	//Nos da la probabilidad de generar residuos al ser totalmente eliminada
 	//(blindaje 0 o inferior).
 
 	abstract int getChanceAttackAgain();
@@ -31,5 +31,7 @@ public interface MilitaryUnit {
 	abstract int getExperience();
 	//Nos devolverá la experiencia actual de la unidad.
 	
+	abstract String getName();
+	//Nos devolverá el nombre de la unidad.
 	
 }
