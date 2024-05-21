@@ -843,7 +843,11 @@ public class Battle implements Variables {
 		arrayList_reportePasos.add(reporte);
 		
 	}
-		
+	
+	
+	
+	// métodos que se necesitan fuera de la clase
+
 	public ArrayList<String> getReportePasos() {
 		return this.arrayList_reportePasos;
 	}
@@ -916,4 +920,9 @@ public class Battle implements Variables {
 		return wasteWoodIron;
 		
 	}
+	
+	public boolean getBool_civiWin() {
+		return bool_civiWin;
+	}
+	
 }

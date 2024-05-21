@@ -225,7 +225,19 @@ public class Main implements Variables {
                         
                         // AQUI SE IMPLEMENTA LA BATALLA
                         
-                        	
+                        Battle bt = new Battle(principal.getCurrentCivilization().getArmy(),principal.getEnemyUnits());
+        				
+        				int[] resourcesWin = bt.getWasteWoodIron();
+        				boolean civilizationWin = bt.getBool_civiWin();
+        				
+        				if(civilizationWin) {
+        					principal.addResourcesCivilization(resourcesWin, principal.currentCivilization);
+        				}
+        				
+        								
+        				
+        				// UPDATE A LA BD
+        				principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
                         
                         //
                         
@@ -279,79 +291,6 @@ public class Main implements Variables {
 		System.out.println(principal.getCurrentCivilization().getBattles());
 		*/	
 
-		
-		// Creación unidades militares y arraylist: se lo pasas al TimerTask
-		
-		/*
-		ArrayList<MilitaryUnit>[] civilizationArmy = new ArrayList[9];
-		for( int i=0; i<civilizationArmy.length; i++) {
-			civilizationArmy[i] = new ArrayList<>();
-		}
-
-		for(int i=0;i<2;i++) {
-			civilizationArmy[1].add(new Spearman());
-			civilizationArmy[2].add(new Crossbow());
-			civilizationArmy[3].add(new Cannon());
-			civilizationArmy[8].add(new Priest(50, 10000));
-		}
-		
-		for(int i=0;i<10;i++) {
-			civilizationArmy[0].add(new Swordsman());
-		}
-
-		ArrayList<MilitaryUnit>[] enemyArmy = new ArrayList[4];
-		for (int i = 0; i < enemyArmy.length; i++) {
-			enemyArmy[i] = new ArrayList<>();
-		}	
-
-		for(int i=0; i<10; i++) {
-			enemyArmy[0].add(new Swordsman());
-			enemyArmy[1].add(new Spearman());
-			enemyArmy[2].add(new Crossbow());
-		}
-
-		for(int i=0;i<2;i++) {
-			enemyArmy[3].add(new Cannon());
-		}
-		
-		
-		
-		// Creación de batalla cada 3 minutos
-		Timer timerBattle = new Timer();
-		TimerTask taskBattle = new TimerTask() {
-
-			public void run() {
-				
-				// BATALLA
-				Battle bt = new Battle(civilizationArmy,enemyArmy);
-				
-				int[] resourcesWin = bt.getWasteWoodIron();
-				principal.addResourcesCivilization(resourcesWin);
-								
-				
-				// UPDATE A LA BD
-				//principal.updateBattleCounter(principal);
-				//principal.updateResources(principal);
-				// updateArmy
-				
-				
-			}
-			
-		};
-		//timerBattle.scheduleAtFixedRate(taskBattle, 180000, 180000); // cada 3 minutos sin delay con un delay de 3 mins
-		timerBattle.scheduleAtFixedRate(taskBattle, 30000, 30000); // cada medio minuto con un delay de medio minuto: prubas
-		
-		*/
-		
-		/*
-		// escoger ver el reporte de la batalla2
-		
-		String batallaEscoger = "batalla2";
-		
-		String[] arrayInfoBatalla = principal.mapaBatallas.get("batalla2");
-		
-		System.out.println(arrayInfoBatalla[0]);
-		*/	
 	}
 	
 	public ArrayList<MilitaryUnit>[] createEnemyArmy(Civilization civilization) {
@@ -1031,10 +970,13 @@ public class Main implements Variables {
 	
 	// update resources de la civilización
 	public void addResourcesCivilization(int[] wasteWoodIron, Civilization civilization) {
+		
+		System.out.println("Se van a añadir las ganancias de la batalla, este es el estado antes de añadir: "+civilization.getWood()+" | "+civilization.getIron());
+		
 		civilization.setWood(civilization.getWood() + wasteWoodIron[0]);
 		civilization.setIron(civilization.getIron() + wasteWoodIron[1]);
 		
-		System.out.println("Se han añadido las perdidas de la batalla a la civilización");
+		System.out.println("Se han añadido las perdidas de la batalla a la civilización: "+civilization.getWood()+" | "+civilization.getIron());
 	}
 	
 	
