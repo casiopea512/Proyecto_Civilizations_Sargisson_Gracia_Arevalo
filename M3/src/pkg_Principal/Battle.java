@@ -857,7 +857,7 @@ public class Battle implements Variables {
 		return this.arrayList_reportePasos;
 	}
 	
-	public void getReporte() {
+	public String getReporte() {
 		
 		String datos_update ="";
 		
@@ -917,28 +917,7 @@ public class Battle implements Variables {
 			datos_update +="\nBattle Winned by Enemy";
 		}
 		
-		// update bd
-		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
-        String USER = "Civilization";
-        String PASS = "civilization";
-        Connection conn = null;
-        CallableStatement stmt = null;
-        
-        try {
-        	 // Registrar el driver JDBC de Oracle
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            // Establecer la conexión con la base de datos
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            
-            String update = "INSERT INTO x () VALUES (?)";
-            PreparedStatement ps = conn.prepareStatement(update);
-            ps.setString(1, datos_update);
-            ps.executeUpdate();
-            
-            
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		return datos_update;
 		
 	}
 	

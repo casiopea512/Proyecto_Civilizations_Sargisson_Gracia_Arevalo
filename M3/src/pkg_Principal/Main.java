@@ -223,16 +223,13 @@ public class Main implements Variables {
                         System.out.println("--".repeat(100));
                         System.out.println("Se ha generado batalla dentro del timer");
                         
+                        
                         // AQUI SE IMPLEMENTA LA BATALLA
-                        
-                        
-                        
-                        
                         
                         Battle bt = new Battle(principal.getCurrentCivilization().getArmy(),principal.getEnemyUnits());
         				
-                        // updateBattle
-                        // insert into battle_stats(civil_id)
+                        // insertar en la BBDD la batalla y sus reportes
+                        principal.updateBattle(principal.getCurrentCivilizationID(),bt.getReportePasos(), bt.getReporte());
                         
                         
         				int[] resourcesWin = bt.getWasteWoodIron();
@@ -242,9 +239,8 @@ public class Main implements Variables {
         					principal.addResourcesCivilization(resourcesWin, principal.currentCivilization);
         				}
         				
-        								
         				
-        				// UPDATE A LA BD
+        				// guardar el juego
         				principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
                         
                         //
@@ -974,6 +970,74 @@ public class Main implements Variables {
 		this.updateBuildingsAndTechnologies(civilizationID, civilization);
 		this.updateBattleAndTimerCounter(civilizationID, civilization);
 		this.updateUnits(civilizationID, civilization);
+	}
+	
+	
+	// crear la batalla en la bd
+	public void updateBattle(int civilizationID,ArrayList<String> log_pap, String logGeneral) {
+
+        // insert into battle_stats(civil_id)
+
+		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+        String USER = "Civilization";
+        String PASS = "civilization";
+        Connection conn = null;
+        CallableStatement stmt = null;
+        
+        try {
+        	 // Registrar el driver JDBC de Oracle
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            // Establecer la conexión con la base de datos
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            
+            
+            // CREAR BATALLA
+            String update = "INSERT INTO battle_stats (civilization_id) VALUES (?)";
+            PreparedStatement ps = conn.prepareStatement(update, new String[] {"num_battle"});
+            ps.setInt(1, civilizationID);
+            ps.executeUpdate();
+            
+            System.out.println("\nSe ha insertado correctamente en la BBDD la batalla");
+            
+            
+            // OBTENER PK generada
+            int pKIdBattle = 0;
+			ResultSet generatedKeys = ps.getGeneratedKeys();
+		    if (null != generatedKeys && generatedKeys.next()) {
+		    	pKIdBattle = generatedKeys.getInt(1);
+		    }
+		    
+		    System.out.println("\nSe ha generado correctamente la PK de la batalla: "+ pKIdBattle);
+		    
+		    
+		    // UPDATE REPORTE PAOS A PASO
+		    update = "INSERT INTO battle_log_paso_a_paso (civilization_id, num_battle, log_entry) VALUES (?,?,?)";
+		    ps = conn.prepareStatement(update);
+		    
+		    for (String line : log_pap) {
+		    	ps.setInt(1, civilizationID);
+			    ps.setInt(2, pKIdBattle);
+			    ps.setString(3, line);
+			    ps.executeUpdate();
+			}
+		    
+		    System.out.println("\nSe ha insertado correctamente en la BBDD el reporte paso a paso");
+		    
+		    
+		    // UPDATE REPORTE GENERAL
+		    update = "INSERT INTO battle_log_reporte (civilization_id, num_battle, log_entry) VALUES (?,?,?)";
+		    ps = conn.prepareStatement(update);
+		    ps.setInt(1, civilizationID);
+		    ps.setInt(2, pKIdBattle);
+		    ps.setString(3, logGeneral);
+		    ps.executeUpdate();
+		    
+		    System.out.println("\nSe ha insertado correctamente en la BBDD el reporte general");
+            
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	// update resources de la civilización
