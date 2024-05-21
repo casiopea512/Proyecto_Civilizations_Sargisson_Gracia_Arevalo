@@ -226,6 +226,7 @@ public class Main implements Variables {
                         // AQUI SE IMPLEMENTA LA BATALLA
                         
                         	
+                        
                         //
                         
                         System.out.println("=/".repeat(100));
@@ -277,9 +278,7 @@ public class Main implements Variables {
 		System.out.println(principal.getCurrentCivilization().getTechnologyAttack());
 		System.out.println(principal.getCurrentCivilization().getBattles());
 		*/	
-		
-		
-		
+
 		
 		// Creación unidades militares y arraylist: se lo pasas al TimerTask
 		
@@ -1030,13 +1029,10 @@ public class Main implements Variables {
 		this.updateUnits(civilizationID, civilization);
 	}
 	
-
-
-	
 	// update resources de la civilización
-	public void addResourcesCivilization(int[] wasteWoodIron) {
-		currentCivilization.setWood(wasteWoodIron[0]);
-		currentCivilization.setWood(wasteWoodIron[1]);
+	public void addResourcesCivilization(int[] wasteWoodIron, Civilization civilization) {
+		civilization.setWood(civilization.getWood() + wasteWoodIron[0]);
+		civilization.setIron(civilization.getIron() + wasteWoodIron[1]);
 		
 		System.out.println("Se han añadido las perdidas de la batalla a la civilización");
 	}
