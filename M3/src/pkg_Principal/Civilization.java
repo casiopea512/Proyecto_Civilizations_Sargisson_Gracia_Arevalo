@@ -282,7 +282,7 @@ public class Civilization implements Variables {
 			this.setFood(food-FOOD_COST_MAGICTOWER);
 			this.setWood(wood-WOOD_COST_MAGICTOWER);
 			this.setIron(iron-IRON_COST_MAGICTOWER);
-			this.magicTower+= 1;//suma una 
+			this.magicTower += 1;//suma una 
 			this.setMana(mana+CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER);//incremento en mana
 		} else {
 			//se controla la falta de recursos
@@ -299,7 +299,7 @@ public class Civilization implements Variables {
 			this.setFood(food-FOOD_COST_FARM);
 			this.setWood(wood-WOOD_COST_FARM);
 			this.setIron(iron-IRON_COST_FARM);
-			this.farm+= 1;//suma una farm
+			this.farm += 1;//suma una farm
 			this.setFood(food+CIVILIZATION_FOOD_GENERATED_PER_FARM);//incremento en food
 		} else {
 			//se controla la falta de recursos
@@ -334,7 +334,7 @@ public class Civilization implements Variables {
 			this.setFood(food-FOOD_COST_SMITHY);
 			this.setWood(wood-WOOD_COST_SMITHY);
 			this.setIron(iron-IRON_COST_SMITHY);
-			this.farm+= 1;//suma una farm
+			this.farm += 1;//suma una farm
 			this.setIron(iron + CIVILIZATION_IRON_GENERATED_PER_SMITHY);//incremento del 5%
 		} else {
 			//se controla la falta de recursos
