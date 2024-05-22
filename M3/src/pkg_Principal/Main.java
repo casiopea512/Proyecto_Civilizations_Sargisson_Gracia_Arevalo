@@ -66,237 +66,239 @@ public class Main implements Variables {
 
 	public static void main(String[] args) {
 		
-		Main principal = new Main();
-		
-		principal.setCurrentCivilization(principal.loadCivilization(1));
-		principal.setCurrentCivilizationID(1);
-		System.out.println(principal.getCurrentCivilization().getName());
-		principal.getCurrentCivilization().setFood(1000000000);
-		principal.getCurrentCivilization().setWood(1000000000);
-		principal.getCurrentCivilization().setIron(1000000000);
-		principal.getCurrentCivilization().setMana(1000000000);
-		
-		System.out.println(principal.getCurrentCivilization().getChurch());
-		try {
-			principal.getCurrentCivilization().newChurch();
-			principal.getCurrentCivilization().setBattles(25);
-		} catch (ResourceException e) {
-			e.printStackTrace();
-		}
-		System.out.println(principal.getCurrentCivilization().getChurch());
-
-		try {
-			principal.getCurrentCivilization().newSwordsman(2);	
-			principal.getCurrentCivilization().newSpearman(2);	
-			principal.getCurrentCivilization().newCrossbow(2);	
-			principal.getCurrentCivilization().newCannon(2);
-			principal.getCurrentCivilization().newArrowTower(2);
-			principal.getCurrentCivilization().newCatapult(2);
-			principal.getCurrentCivilization().newRocketLauncherTower(2);
-			principal.getCurrentCivilization().newMagician(3);
-			principal.getCurrentCivilization().newPriest(2);
-			
-		} catch (ResourceException e) {
-			e.printStackTrace();
-		}
-		
-		// principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
-		
-		Timer timer = new Timer();
-		// =============================================================================
-        int primerTiempoInicial = principal.getCurrentCivilization().getTimeLeft();  // GET del atributo timer de la civilizacion
-        // =============================================================================
-        int tiempoInicial = 179000;
-
-        // Crear la tarea del temporizador
-        TimerTask task = new TimerTask() {
-        	
-            int tiempoRestante = primerTiempoInicial;
-            boolean primeraEjecucion = true;
-            boolean hayEjercitoEnemigo = false;
-            boolean pause = false;
-            
-            public void run() {
-            	System.out.println(tiempoRestante);
-            	if (!pause) {
-            		System.out.println("TIEMPO RESTANTE EN MILISEGUNDOS " + tiempoRestante);
-                	if (tiempoRestante > 0) {
-                        // Imprimir el tiempo restante en segundos
-                        System.out.println("Tiempo restante: " + tiempoRestante / 1000 + " segundos");
-                          // Decrementar en 1 segundo (1000 milisegundos)
-                        System.out.println("Hay ejercito enemigo generado? = " + hayEjercitoEnemigo);
-                        
-                        if (tiempoRestante % 30000 == 0) { // cada 30 segundos
-                        	System.out.println("=/".repeat(100));
-                        	System.out.println("TIEMPO RESTANTE DENTRO DEL GENERADOR DE RECURSOS " + tiempoRestante);
-                        	System.out.println("=".repeat(100));
-            				System.out.println("ANTES");
-            				System.out.println("Food = " + principal.getCurrentCivilization().getFood());
-            				System.out.println(" + " + CIVILIZATION_FOOD_GENERATED);
-            				System.out.println(" + " + principal.getCurrentCivilization().getFarm() + " * " + CIVILIZATION_FOOD_GENERATED_PER_FARM + " = " + CIVILIZATION_FOOD_GENERATED_PER_FARM * principal.getCurrentCivilization().getFarm());
-            				System.out.println("Wood = " + principal.getCurrentCivilization().getWood());
-               				System.out.println(" + " + CIVILIZATION_WOOD_GENERATED);
-               				System.out.println(" + " + principal.getCurrentCivilization().getCarpentry() + " * " + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY + " = " + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY * principal.getCurrentCivilization().getCarpentry());
-            				System.out.println("Iron = " + principal.getCurrentCivilization().getIron());
-               				System.out.println(" + " + CIVILIZATION_IRON_GENERATED);
-               				System.out.println(" + " + principal.getCurrentCivilization().getSmithy() + " * " + CIVILIZATION_IRON_GENERATED_PER_SMITHY + " = " + CIVILIZATION_IRON_GENERATED_PER_SMITHY * principal.getCurrentCivilization().getSmithy());
-            				System.out.println("Mana = " + principal.getCurrentCivilization().getMana());
-            				System.out.println(" + " + principal.getCurrentCivilization().getMagicTower() + " * " + CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER + " = " + CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * principal.getCurrentCivilization().getMagicTower());
-            				
-            				principal.getCurrentCivilization().setFood(principal.getCurrentCivilization().getFood()+ CIVILIZATION_FOOD_GENERATED + CIVILIZATION_FOOD_GENERATED_PER_FARM * principal.getCurrentCivilization().getFarm());
-            				principal.getCurrentCivilization().setWood(principal.getCurrentCivilization().getWood()+ CIVILIZATION_WOOD_GENERATED + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY * principal.getCurrentCivilization().getCarpentry());
-            				principal.getCurrentCivilization().setIron(principal.getCurrentCivilization().getIron()+ CIVILIZATION_IRON_GENERATED + CIVILIZATION_IRON_GENERATED_PER_SMITHY * principal.getCurrentCivilization().getSmithy());
-            				principal.getCurrentCivilization().setMana(principal.getCurrentCivilization().getMana()+ CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * principal.getCurrentCivilization().getMagicTower());
-            				
-            				System.out.println("-".repeat(100));
-            				
-            				System.out.println("DESPUES");
-            				System.out.println("Food = " + principal.getCurrentCivilization().getFood());
-            				System.out.println("Wood = " + principal.getCurrentCivilization().getWood());
-            				System.out.println("Iron = " + principal.getCurrentCivilization().getIron());
-            				System.out.println("Mana = " + principal.getCurrentCivilization().getMana());
-            				System.out.println("=".repeat(100));
-                        	System.out.println("SE HAN GENERADO RECURSOS");
-                        	System.out.println("=/".repeat(100));
-                        }
-                        
-                        if (!hayEjercitoEnemigo && primeraEjecucion && tiempoRestante < 120000) {
-                        	System.out.println("=/".repeat(100));
-                        	System.out.println("TIEMPO RESTANTE DENTRO DEL GENERADOR DE ENEMIGOS " + tiempoRestante);
-                        	
-                        	principal.setEnemyUnits(principal.createEnemyArmy(principal.getCurrentCivilization()));
-                        	principal.getEnemyUnits()[0].size();
-                        	
-                        	System.out.println("EN EL EJERCITO ENEMIGO HAY:");
-                        	System.out.println("Swordsman = " + principal.getEnemyUnits()[0].size());
-                        	System.out.println("Spearman = " + principal.getEnemyUnits()[1].size());
-                        	System.out.println("Crossbow = " + principal.getEnemyUnits()[2].size());
-                        	System.out.println("Cannon = " + principal.getEnemyUnits()[3].size());
-                        	
-                        	/*
-                        	for (ArrayList<MilitaryUnit> unidades : principal.getEnemyUnits()) {
-    	       					System.out.println(unidades.size());
-    	       					for (MilitaryUnit unidad : unidades) {
-    	       						System.out.println(unidad.getClass().toString());
-    	       					}
-    	       				}
-    	       				*/
-                        	
-                        	System.out.println("SE HA GENERADO EJERCITO ENEMIGO en carga de partida");
-                        	hayEjercitoEnemigo = true;
-                        	System.out.println("=/".repeat(100));
-                        }
-                        
-                        if (tiempoRestante == 120000) {
-                        	System.out.println("=/".repeat(100));
-                        	System.out.println("TIEMPO RESTANTE DENTRO DEL GENERADOR DE ENEMIGOS " + tiempoRestante);
-                        	principal.setEnemyUnits(principal.createEnemyArmy(principal.getCurrentCivilization()));
-                        	System.out.println("EN EL EJERCITO ENEMIGO HAY:");
-                        	System.out.println("Swordsman = " + principal.getEnemyUnits()[0].size());
-                        	System.out.println("Spearman = " + principal.getEnemyUnits()[1].size());
-                        	System.out.println("Crossbow = " + principal.getEnemyUnits()[2].size());
-                        	System.out.println("Cannon = " + principal.getEnemyUnits()[3].size());
-    	       				// SOLAMENTE ES PARA VER RESULTADOS
-                        	/*
-    	       				for (ArrayList<MilitaryUnit> unidades : principal.getEnemyUnits()) {
-    	       					System.out.println(unidades.size());
-    	       					for (MilitaryUnit unidad : unidades) {
-    	       						System.out.println(unidad.getClass().toString());
-    	       					}
-    	       				}
-    	       				*/
-    	       				 
-    	       				 // Se ejecuta ventana viewThreat
-    	       				principal.viewthreat(principal.getEnemyUnits());
-    	                    System.out.println("SE HA GENERADO EJERCITO ENEMIGO");
-    	                    hayEjercitoEnemigo = true;
-    	                    System.out.println("=/".repeat(100));
-    	                }
-                    	tiempoRestante -= 1000;
-                    	principal.getCurrentCivilization().setTimeLeft(tiempoRestante);
-                    	
-                    } else {
-                    	
-                        // Ejecutar la tarea del temporizador
-                    	System.out.println("=/".repeat(100));
-                        System.out.println("¡Ejecutando tarea del temporizador!");
-                        System.out.println("--".repeat(100));
-                        System.out.println("Se ha generado batalla dentro del timer");
-                        
-                        
-                        // AQUI SE IMPLEMENTA LA BATALLA
-                        
-                        Battle bt = new Battle(principal.getCurrentCivilization().getArmy(),principal.getEnemyUnits());
-        				
-                        // insertar en la BBDD la batalla y sus reportes
-                        principal.updateBattle(principal.getCurrentCivilizationID(),bt.getReportePasos(), bt.getReporte());
-                        
-                        
-        				int[] resourcesWin = bt.getWasteWoodIron();
-        				boolean civilizationWin = bt.getBool_civiWin();
-        				
-        				if(civilizationWin) {
-        					principal.addResourcesCivilization(resourcesWin, principal.currentCivilization);
-        				}
-        				
-        				
-        				// guardar el juego
-        				principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
-                        
-                        //
-                        
-                        System.out.println("=/".repeat(100));
-                        hayEjercitoEnemigo = false;
-                        // Reiniciar el tiempo restante
-                        if (primeraEjecucion) {
-                            primeraEjecucion = false;
-                        } 
-                        tiempoRestante = tiempoInicial;
-                        principal.getCurrentCivilization().setTimeLeft(tiempoRestante);
-                    }
-            	}
-            	
-            }
-        };
-        
-        // Programar el temporizador para ejecutar la tarea cada segundo
-        timer.scheduleAtFixedRate(task, 0, 1000);  // Ejecutar la tarea inmediatamente y luego cada segundo
-		
-		
-		// CREAR PARTIDA
-		/*
-		principal.createCivilization("ABCDEFGH", "Prueba", principal);
-		// ESTE METODO YA ASIGNA AL MAIN LA PK (currentCivilizationID) Y CIVILIZACION (currentCivilization)
-		
-		// Datos de prueba
-		System.out.println(principal.getCurrentCivilization().getName());
-		System.out.println(principal.getCurrentCivilization().getUsername());
-		*/
-		
-		// CARGADO DE PARTIDAS
-		/*
-		principal.setCurrentCivilizationID(principal.chooseCivilizations());
-		principal.setCurrentCivilization(principal.loadCivilization(principal.getCurrentCivilizationID()));
-		
-		// Datos de prueba
-		System.out.println(principal.getCurrentCivilization().getName());
-		System.out.println(principal.getCurrentCivilization().getUsername());
-		System.out.println(principal.getCurrentCivilization().getFood());
-		System.out.println(principal.getCurrentCivilization().getWood());
-		System.out.println(principal.getCurrentCivilization().getIron());
-		System.out.println(principal.getCurrentCivilization().getMana());
-		System.out.println(principal.getCurrentCivilization().getMagicTower());
-		System.out.println(principal.getCurrentCivilization().getChurch());
-		System.out.println(principal.getCurrentCivilization().getFarm());
-		System.out.println(principal.getCurrentCivilization().getSmithy());
-		System.out.println(principal.getCurrentCivilization().getCarpentry());		
-		System.out.println(principal.getCurrentCivilization().getTechnologyDefense());
-		System.out.println(principal.getCurrentCivilization().getTechnologyAttack());
-		System.out.println(principal.getCurrentCivilization().getBattles());
-		*/	
+		new JTabbedPaneUno();
+		System.out.println("Hola");
+//		Main principal = new Main();
+//		
+//		principal.setCurrentCivilization(principal.loadCivilization(1));
+//		principal.setCurrentCivilizationID(1);
+//		System.out.println(principal.getCurrentCivilization().getName());
+//		principal.getCurrentCivilization().setFood(1000000000);
+//		principal.getCurrentCivilization().setWood(1000000000);
+//		principal.getCurrentCivilization().setIron(1000000000);
+//		principal.getCurrentCivilization().setMana(1000000000);
+//		
+//		System.out.println(principal.getCurrentCivilization().getChurch());
+//		try {
+//			principal.getCurrentCivilization().newChurch();
+//			principal.getCurrentCivilization().setBattles(25);
+//		} catch (ResourceException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println(principal.getCurrentCivilization().getChurch());
+//
+//		try {
+//			principal.getCurrentCivilization().newSwordsman(2);	
+//			principal.getCurrentCivilization().newSpearman(2);	
+//			principal.getCurrentCivilization().newCrossbow(2);	
+//			principal.getCurrentCivilization().newCannon(2);
+//			principal.getCurrentCivilization().newArrowTower(2);
+//			principal.getCurrentCivilization().newCatapult(2);
+//			principal.getCurrentCivilization().newRocketLauncherTower(2);
+//			principal.getCurrentCivilization().newMagician(3);
+//			principal.getCurrentCivilization().newPriest(2);
+//			
+//		} catch (ResourceException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		// principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
+//		
+//		Timer timer = new Timer();
+//		// =============================================================================
+//        int primerTiempoInicial = principal.getCurrentCivilization().getTimeLeft();  // GET del atributo timer de la civilizacion
+//        // =============================================================================
+//        int tiempoInicial = 179000;
+//
+//        // Crear la tarea del temporizador
+//        TimerTask task = new TimerTask() {
+//        	
+//            int tiempoRestante = primerTiempoInicial;
+//            boolean primeraEjecucion = true;
+//            boolean hayEjercitoEnemigo = false;
+//            boolean pause = false;
+//            
+//            public void run() {
+//            	System.out.println(tiempoRestante);
+//            	if (!pause) {
+//            		System.out.println("TIEMPO RESTANTE EN MILISEGUNDOS " + tiempoRestante);
+//                	if (tiempoRestante > 0) {
+//                        // Imprimir el tiempo restante en segundos
+//                        System.out.println("Tiempo restante: " + tiempoRestante / 1000 + " segundos");
+//                          // Decrementar en 1 segundo (1000 milisegundos)
+//                        System.out.println("Hay ejercito enemigo generado? = " + hayEjercitoEnemigo);
+//                        
+//                        if (tiempoRestante % 30000 == 0) { // cada 30 segundos
+//                        	System.out.println("=/".repeat(100));
+//                        	System.out.println("TIEMPO RESTANTE DENTRO DEL GENERADOR DE RECURSOS " + tiempoRestante);
+//                        	System.out.println("=".repeat(100));
+//            				System.out.println("ANTES");
+//            				System.out.println("Food = " + principal.getCurrentCivilization().getFood());
+//            				System.out.println(" + " + CIVILIZATION_FOOD_GENERATED);
+//            				System.out.println(" + " + principal.getCurrentCivilization().getFarm() + " * " + CIVILIZATION_FOOD_GENERATED_PER_FARM + " = " + CIVILIZATION_FOOD_GENERATED_PER_FARM * principal.getCurrentCivilization().getFarm());
+//            				System.out.println("Wood = " + principal.getCurrentCivilization().getWood());
+//               				System.out.println(" + " + CIVILIZATION_WOOD_GENERATED);
+//               				System.out.println(" + " + principal.getCurrentCivilization().getCarpentry() + " * " + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY + " = " + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY * principal.getCurrentCivilization().getCarpentry());
+//            				System.out.println("Iron = " + principal.getCurrentCivilization().getIron());
+//               				System.out.println(" + " + CIVILIZATION_IRON_GENERATED);
+//               				System.out.println(" + " + principal.getCurrentCivilization().getSmithy() + " * " + CIVILIZATION_IRON_GENERATED_PER_SMITHY + " = " + CIVILIZATION_IRON_GENERATED_PER_SMITHY * principal.getCurrentCivilization().getSmithy());
+//            				System.out.println("Mana = " + principal.getCurrentCivilization().getMana());
+//            				System.out.println(" + " + principal.getCurrentCivilization().getMagicTower() + " * " + CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER + " = " + CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * principal.getCurrentCivilization().getMagicTower());
+//            				
+//            				principal.getCurrentCivilization().setFood(principal.getCurrentCivilization().getFood()+ CIVILIZATION_FOOD_GENERATED + CIVILIZATION_FOOD_GENERATED_PER_FARM * principal.getCurrentCivilization().getFarm());
+//            				principal.getCurrentCivilization().setWood(principal.getCurrentCivilization().getWood()+ CIVILIZATION_WOOD_GENERATED + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY * principal.getCurrentCivilization().getCarpentry());
+//            				principal.getCurrentCivilization().setIron(principal.getCurrentCivilization().getIron()+ CIVILIZATION_IRON_GENERATED + CIVILIZATION_IRON_GENERATED_PER_SMITHY * principal.getCurrentCivilization().getSmithy());
+//            				principal.getCurrentCivilization().setMana(principal.getCurrentCivilization().getMana()+ CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * principal.getCurrentCivilization().getMagicTower());
+//            				
+//            				System.out.println("-".repeat(100));
+//            				
+//            				System.out.println("DESPUES");
+//            				System.out.println("Food = " + principal.getCurrentCivilization().getFood());
+//            				System.out.println("Wood = " + principal.getCurrentCivilization().getWood());
+//            				System.out.println("Iron = " + principal.getCurrentCivilization().getIron());
+//            				System.out.println("Mana = " + principal.getCurrentCivilization().getMana());
+//            				System.out.println("=".repeat(100));
+//                        	System.out.println("SE HAN GENERADO RECURSOS");
+//                        	System.out.println("=/".repeat(100));
+//                        }
+//                        
+//                        if (!hayEjercitoEnemigo && primeraEjecucion && tiempoRestante < 120000) {
+//                        	System.out.println("=/".repeat(100));
+//                        	System.out.println("TIEMPO RESTANTE DENTRO DEL GENERADOR DE ENEMIGOS " + tiempoRestante);
+//                        	
+//                        	principal.setEnemyUnits(principal.createEnemyArmy(principal.getCurrentCivilization()));
+//                        	principal.getEnemyUnits()[0].size();
+//                        	
+//                        	System.out.println("EN EL EJERCITO ENEMIGO HAY:");
+//                        	System.out.println("Swordsman = " + principal.getEnemyUnits()[0].size());
+//                        	System.out.println("Spearman = " + principal.getEnemyUnits()[1].size());
+//                        	System.out.println("Crossbow = " + principal.getEnemyUnits()[2].size());
+//                        	System.out.println("Cannon = " + principal.getEnemyUnits()[3].size());
+//                        	
+//                        	/*
+//                        	for (ArrayList<MilitaryUnit> unidades : principal.getEnemyUnits()) {
+//    	       					System.out.println(unidades.size());
+//    	       					for (MilitaryUnit unidad : unidades) {
+//    	       						System.out.println(unidad.getClass().toString());
+//    	       					}
+//    	       				}
+//    	       				*/
+//                        	
+//                        	System.out.println("SE HA GENERADO EJERCITO ENEMIGO en carga de partida");
+//                        	hayEjercitoEnemigo = true;
+//                        	System.out.println("=/".repeat(100));
+//                        }
+//                        
+//                        if (tiempoRestante == 120000) {
+//                        	System.out.println("=/".repeat(100));
+//                        	System.out.println("TIEMPO RESTANTE DENTRO DEL GENERADOR DE ENEMIGOS " + tiempoRestante);
+//                        	principal.setEnemyUnits(principal.createEnemyArmy(principal.getCurrentCivilization()));
+//                        	System.out.println("EN EL EJERCITO ENEMIGO HAY:");
+//                        	System.out.println("Swordsman = " + principal.getEnemyUnits()[0].size());
+//                        	System.out.println("Spearman = " + principal.getEnemyUnits()[1].size());
+//                        	System.out.println("Crossbow = " + principal.getEnemyUnits()[2].size());
+//                        	System.out.println("Cannon = " + principal.getEnemyUnits()[3].size());
+//    	       				// SOLAMENTE ES PARA VER RESULTADOS
+//                        	/*
+//    	       				for (ArrayList<MilitaryUnit> unidades : principal.getEnemyUnits()) {
+//    	       					System.out.println(unidades.size());
+//    	       					for (MilitaryUnit unidad : unidades) {
+//    	       						System.out.println(unidad.getClass().toString());
+//    	       					}
+//    	       				}
+//    	       				*/
+//    	       				 
+//    	       				 // Se ejecuta ventana viewThreat
+//    	       				principal.viewthreat(principal.getEnemyUnits());
+//    	                    System.out.println("SE HA GENERADO EJERCITO ENEMIGO");
+//    	                    hayEjercitoEnemigo = true;
+//    	                    System.out.println("=/".repeat(100));
+//    	                }
+//                    	tiempoRestante -= 1000;
+//                    	principal.getCurrentCivilization().setTimeLeft(tiempoRestante);
+//                    	
+//                    } else {
+//                    	
+//                        // Ejecutar la tarea del temporizador
+//                    	System.out.println("=/".repeat(100));
+//                        System.out.println("¡Ejecutando tarea del temporizador!");
+//                        System.out.println("--".repeat(100));
+//                        System.out.println("Se ha generado batalla dentro del timer");
+//                        
+//                        
+//                        // AQUI SE IMPLEMENTA LA BATALLA
+//                        
+//                        Battle bt = new Battle(principal.getCurrentCivilization().getArmy(),principal.getEnemyUnits());
+//        				
+//                        // insertar en la BBDD la batalla y sus reportes
+//                        principal.updateBattle(principal.getCurrentCivilizationID(),bt.getReportePasos(), bt.getReporte());
+//                        
+//                        
+//        				int[] resourcesWin = bt.getWasteWoodIron();
+//        				boolean civilizationWin = bt.getBool_civiWin();
+//        				
+//        				if(civilizationWin) {
+//        					principal.addResourcesCivilization(resourcesWin, principal.currentCivilization);
+//        				}
+//        				
+//        				
+//        				// guardar el juego
+//        				principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
+//                        
+//                        //
+//                        
+//                        System.out.println("=/".repeat(100));
+//                        hayEjercitoEnemigo = false;
+//                        // Reiniciar el tiempo restante
+//                        if (primeraEjecucion) {
+//                            primeraEjecucion = false;
+//                        } 
+//                        tiempoRestante = tiempoInicial;
+//                        principal.getCurrentCivilization().setTimeLeft(tiempoRestante);
+//                    }
+//            	}
+//            	
+//            }
+//        };
+//        
+//        // Programar el temporizador para ejecutar la tarea cada segundo
+//        timer.scheduleAtFixedRate(task, 0, 1000);  // Ejecutar la tarea inmediatamente y luego cada segundo
+//		
+//		
+//		// CREAR PARTIDA
+//		/*
+//		principal.createCivilization("ABCDEFGH", "Prueba", principal);
+//		// ESTE METODO YA ASIGNA AL MAIN LA PK (currentCivilizationID) Y CIVILIZACION (currentCivilization)
+//		
+//		// Datos de prueba
+//		System.out.println(principal.getCurrentCivilization().getName());
+//		System.out.println(principal.getCurrentCivilization().getUsername());
+//		*/
+//		
+//		// CARGADO DE PARTIDAS
+//		/*
+//		principal.setCurrentCivilizationID(principal.chooseCivilizations());
+//		principal.setCurrentCivilization(principal.loadCivilization(principal.getCurrentCivilizationID()));
+//		
+//		// Datos de prueba
+//		System.out.println(principal.getCurrentCivilization().getName());
+//		System.out.println(principal.getCurrentCivilization().getUsername());
+//		System.out.println(principal.getCurrentCivilization().getFood());
+//		System.out.println(principal.getCurrentCivilization().getWood());
+//		System.out.println(principal.getCurrentCivilization().getIron());
+//		System.out.println(principal.getCurrentCivilization().getMana());
+//		System.out.println(principal.getCurrentCivilization().getMagicTower());
+//		System.out.println(principal.getCurrentCivilization().getChurch());
+//		System.out.println(principal.getCurrentCivilization().getFarm());
+//		System.out.println(principal.getCurrentCivilization().getSmithy());
+//		System.out.println(principal.getCurrentCivilization().getCarpentry());		
+//		System.out.println(principal.getCurrentCivilization().getTechnologyDefense());
+//		System.out.println(principal.getCurrentCivilization().getTechnologyAttack());
+//		System.out.println(principal.getCurrentCivilization().getBattles());
+//		*/	
 
 	}
-	
+
 	public ArrayList<MilitaryUnit>[] createEnemyArmy(Civilization civilization) {
 		
 		// Inicialización de los arraylist de las unidades
