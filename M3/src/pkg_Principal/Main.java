@@ -66,43 +66,18 @@ public class Main implements Variables {
 
 	public static void main(String[] args) {
 		
-		new JTabbedPaneUno();
-		System.out.println("Hola");
-//		Main principal = new Main();
-//		
-//		principal.setCurrentCivilization(principal.loadCivilization(1));
-//		principal.setCurrentCivilizationID(1);
-//		System.out.println(principal.getCurrentCivilization().getName());
-//		principal.getCurrentCivilization().setFood(1000000000);
-//		principal.getCurrentCivilization().setWood(1000000000);
-//		principal.getCurrentCivilization().setIron(1000000000);
-//		principal.getCurrentCivilization().setMana(1000000000);
-//		
-//		System.out.println(principal.getCurrentCivilization().getChurch());
-//		try {
-//			principal.getCurrentCivilization().newChurch();
-//			principal.getCurrentCivilization().setBattles(25);
-//		} catch (ResourceException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println(principal.getCurrentCivilization().getChurch());
-//
-//		try {
-//			principal.getCurrentCivilization().newSwordsman(2);	
-//			principal.getCurrentCivilization().newSpearman(2);	
-//			principal.getCurrentCivilization().newCrossbow(2);	
-//			principal.getCurrentCivilization().newCannon(2);
-//			principal.getCurrentCivilization().newArrowTower(2);
-//			principal.getCurrentCivilization().newCatapult(2);
-//			principal.getCurrentCivilization().newRocketLauncherTower(2);
-//			principal.getCurrentCivilization().newMagician(3);
-//			principal.getCurrentCivilization().newPriest(2);
-//			
-//		} catch (ResourceException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		// principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
+		Main principal = new Main();
+		
+		principal.setCurrentCivilization(principal.loadCivilization(1));
+		principal.setCurrentCivilizationID(1);
+		
+		principal.getCurrentCivilization().setFood(1000000000);
+		principal.getCurrentCivilization().setWood(1000000000);
+		principal.getCurrentCivilization().setIron(1000000000);
+		principal.getCurrentCivilization().setMana(1000000000);
+		
+		new JTabbedPaneUno(principal);
+		
 //		
 //		Timer timer = new Timer();
 //		// =============================================================================
