@@ -34,8 +34,6 @@ import interfaces.Variables;
 
 public class JTabbedPaneUno extends JFrame implements Variables {
 	
-	Main mainObject;
-	
 	private JTabbedPane tabbedPane;
 	private JPanel panelInternoUno, panelInternoDos, panelInternoTres, panelInternoCuatro;
 
@@ -52,77 +50,191 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	public void initComponents(Main main){
 		
 		tabbedPane = new JTabbedPane();
-		initMainMenu();
+		this.setTitle("CIVILIZATION");
+		initMainMenu(main);
 		initBuildingsAndTechnologyPanel(main);
 		initUnitsPanel(main);
-		initBattlePanel();
+		initBattlePanel(main);
 		add(tabbedPane);
 	}
+
 	
-	public void initMainMenu() {
-		panelInternoUno = new JPanel();
-		panelInternoUno.setBackground(Color.BLUE);
-		tabbedPane.addTab("Main menu", panelInternoUno);
-	}
+	// RECURSOS
 	
-	JPanel panelRecursos, panelPrincipalEdificios, panelInferior;
-	JLabel food, wood, iron, mana;
+	JPanel panelRecursosEdificios, panelPrincipalEdificios, panelInferior;
+	JLabel foodEdificios, woodEdificios, ironEdificios, manaEdificios;
 	ImageIcon iconFood, iconWood, iconIron, iconMana;
-	JLabel battleCountdown;
-	JButton viewthreat, pause, save, exit;
-	
-	public void initResourcesPanel(Main main) {
+
+	public JLabel getFoodEdificios() {
+		return foodEdificios;
+	}
+
+	public void setFoodEdificios(JLabel food) {
+		this.foodEdificios = food;
+	}
+
+	public JLabel getWoodEdificios() {
+		return woodEdificios;
+	}
+
+	public void setWoodEdificios(JLabel wood) {
+		this.woodEdificios = wood;
+	}
+
+	public JLabel getIronEdificios() {
+		return ironEdificios;
+	}
+
+	public void setIronEdificios(JLabel iron) {
+		this.ironEdificios = iron;
+	}
+
+	public JLabel getManaEdificios() {
+		return manaEdificios;
+	}
+
+	public void setManaEdificios(JLabel mana) {
+		this.manaEdificios = mana;
+	}
+
+	public void initResourcesEdificiosPanel(Main main) {
+
 		
-		panelRecursos = new JPanel();
-		panelRecursos.setLayout(new BoxLayout(panelRecursos, BoxLayout.X_AXIS));
-		panelRecursos.setBackground(Color.BLACK);
+		panelRecursosEdificios = new JPanel();
+		panelRecursosEdificios.setLayout(new BoxLayout(panelRecursosEdificios, BoxLayout.X_AXIS));
+		panelRecursosEdificios.setBackground(Color.BLACK);
 		
 		iconFood = createScaledImageIcon("./src/food.png", 40, 40);
         iconWood = createScaledImageIcon("./src/wood.png", 40, 40);
         iconIron = createScaledImageIcon("./src/iron.png", 40, 40);
         iconMana = createScaledImageIcon("./src/mana.png", 40, 40);
 		
-		food = new JLabel(String.valueOf(main.getCurrentCivilization().getFood()), iconFood, SwingConstants.CENTER);
-		food.setForeground(Color.WHITE);
-		food.setFont(new Font("Arial", Font.BOLD, 20));
-		food.setHorizontalAlignment(JLabel.CENTER);
-		wood = new JLabel(String.valueOf(main.getCurrentCivilization().getWood()), iconWood, SwingConstants.CENTER);
-		wood.setForeground(Color.WHITE);
-		wood.setFont(new Font("Arial", Font.BOLD, 20));
-		wood.setHorizontalAlignment(JLabel.CENTER);
-		iron = new JLabel(String.valueOf(main.getCurrentCivilization().getIron()), iconIron, SwingConstants.CENTER);
-		iron.setForeground(Color.WHITE);
-		iron.setHorizontalAlignment(JLabel.CENTER);
-		iron.setFont(new Font("Arial", Font.BOLD, 20));
-		mana = new JLabel(String.valueOf(main.getCurrentCivilization().getMana()), iconMana, SwingConstants.CENTER);
-		mana.setForeground(Color.WHITE);
-		mana.setFont(new Font("Arial", Font.BOLD, 20));
-		mana.setHorizontalAlignment(JLabel.CENTER);
+		foodEdificios = new JLabel(String.valueOf(main.getCurrentCivilization().getFood()), iconFood, SwingConstants.CENTER);
+		foodEdificios.setForeground(Color.WHITE);
+		foodEdificios.setFont(new Font("Arial", Font.BOLD, 20));
+		foodEdificios.setHorizontalAlignment(JLabel.CENTER);
+		woodEdificios = new JLabel(String.valueOf(main.getCurrentCivilization().getWood()), iconWood, SwingConstants.CENTER);
+		woodEdificios.setForeground(Color.WHITE);
+		woodEdificios.setFont(new Font("Arial", Font.BOLD, 20));
+		woodEdificios.setHorizontalAlignment(JLabel.CENTER);
+		ironEdificios = new JLabel(String.valueOf(main.getCurrentCivilization().getIron()), iconIron, SwingConstants.CENTER);
+		ironEdificios.setForeground(Color.WHITE);
+		ironEdificios.setHorizontalAlignment(JLabel.CENTER);
+		ironEdificios.setFont(new Font("Arial", Font.BOLD, 20));
+		manaEdificios = new JLabel(String.valueOf(main.getCurrentCivilization().getMana()), iconMana, SwingConstants.CENTER);
+		manaEdificios.setForeground(Color.WHITE);
+		manaEdificios.setFont(new Font("Arial", Font.BOLD, 20));
+		manaEdificios.setHorizontalAlignment(JLabel.CENTER);
 		
-		panelRecursos.add(Box.createHorizontalGlue()); // Spacer for equal distribution
-		panelRecursos.add(food);
-		panelRecursos.add(Box.createHorizontalGlue()); // Spacer for equal distribution
-        panelRecursos.add(wood);
-        panelRecursos.add(Box.createHorizontalGlue()); // Spacer for equal distribution
-        panelRecursos.add(iron);
-        panelRecursos.add(Box.createHorizontalGlue()); // Spacer for equal distribution
-        panelRecursos.add(mana);
-        panelRecursos.add(Box.createHorizontalGlue());
+		panelRecursosEdificios.add(Box.createHorizontalGlue()); 
+		panelRecursosEdificios.add(foodEdificios);
+		panelRecursosEdificios.add(Box.createHorizontalGlue()); 
+		panelRecursosEdificios.add(woodEdificios);
+		panelRecursosEdificios.add(Box.createHorizontalGlue()); 
+		panelRecursosEdificios.add(ironEdificios);
+        panelRecursosEdificios.add(Box.createHorizontalGlue()); 
+        panelRecursosEdificios.add(manaEdificios);
+        panelRecursosEdificios.add(Box.createHorizontalGlue());
 		
 	}
 	
-	public void initBarraInferior(Main main) {
+	JPanel panelPrincipalUnidades;
+	JPanel panelRecursosUnits, panelPrincipalUnits, panelUnits;
+	JLabel foodUnits, woodUnits, ironUnits, manaUnits;
+
+	public JLabel getFoodUnits() {
+		return foodUnits;
+	}
+
+	public void setFoodUnits(JLabel foodUnits) {
+		this.foodUnits = foodUnits;
+	}
+
+	public JLabel getWoodUnits() {
+		return woodUnits;
+	}
+
+	public void setWoodUnits(JLabel woodUnits) {
+		this.woodUnits = woodUnits;
+	}
+
+	public JLabel getIronUnits() {
+		return ironUnits;
+	}
+
+	public void setIronUnits(JLabel ironUnits) {
+		this.ironUnits = ironUnits;
+	}
+
+	public JLabel getManaUnits() {
+		return manaUnits;
+	}
+
+	public void setManaUnits(JLabel manaUnits) {
+		this.manaUnits = manaUnits;
+	}
+
+	public void initResourcesUnitsPanel(Main main) {
+		
+		panelRecursosUnits = new JPanel();
+		panelRecursosUnits.setLayout(new BoxLayout(panelRecursosUnits, BoxLayout.X_AXIS));
+		panelRecursosUnits.setBackground(Color.BLACK);
+		
+        foodUnits = new JLabel(String.valueOf(main.getCurrentCivilization().getFood()), iconFood, SwingConstants.CENTER);
+        foodUnits.setForeground(Color.WHITE);
+        foodUnits.setFont(new Font("Arial", Font.BOLD, 20));
+        foodUnits.setHorizontalAlignment(JLabel.CENTER);
+        woodUnits = new JLabel(String.valueOf(main.getCurrentCivilization().getWood()), iconWood, SwingConstants.CENTER);
+        woodUnits.setForeground(Color.WHITE);
+        woodUnits.setFont(new Font("Arial", Font.BOLD, 20));
+        woodUnits.setHorizontalAlignment(JLabel.CENTER);
+        ironUnits = new JLabel(String.valueOf(main.getCurrentCivilization().getIron()), iconIron, SwingConstants.CENTER);
+        ironUnits.setForeground(Color.WHITE);
+        ironUnits.setHorizontalAlignment(JLabel.CENTER);
+        ironUnits.setFont(new Font("Arial", Font.BOLD, 20));
+        manaUnits = new JLabel(String.valueOf(main.getCurrentCivilization().getMana()), iconMana, SwingConstants.CENTER);
+        manaUnits.setForeground(Color.WHITE);
+        manaUnits.setFont(new Font("Arial", Font.BOLD, 20));
+        manaUnits.setHorizontalAlignment(JLabel.CENTER);
+		
+        panelRecursosUnits.add(Box.createHorizontalGlue()); // Spacer for equal distribution
+        panelRecursosUnits.add(foodUnits);
+        panelRecursosUnits.add(Box.createHorizontalGlue()); // Spacer for equal distribution
+        panelRecursosUnits.add(woodUnits);
+        panelRecursosUnits.add(Box.createHorizontalGlue()); // Spacer for equal distribution
+        panelRecursosUnits.add(ironUnits);
+        panelRecursosUnits.add(Box.createHorizontalGlue()); // Spacer for equal distribution
+        panelRecursosUnits.add(manaUnits);
+        panelRecursosUnits.add(Box.createHorizontalGlue());
+		
+	}
+	
+	// BARRA INFERIOR 
+	
+	JButton viewthreat, pause, save, exit;
+	
+	JLabel battleCountdownMenuPrincipal;
+	 
+	public JLabel getBattleCountdownMenuPrincipal() {
+		return battleCountdownMenuPrincipal;
+	}
+
+	public void BattleCountdownMenuPrincipal(JLabel battleCountdownMenuPrincipal) {
+		this.battleCountdownMenuPrincipal = battleCountdownMenuPrincipal;
+	}
+
+	public void initBarraMenuPrincipal(Main main) {
 		panelInferior = new JPanel();
 		panelInferior.setBackground(Color.BLACK);
 		panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));
 		
 		JPanel panelCountdown = new JPanel();
 		panelCountdown.setBackground(Color.BLACK);
-		battleCountdown = new JLabel("BATTLE COUNTDOWN: " + "120 seconds" + " ");
-		battleCountdown.setForeground(Color.WHITE);
-		battleCountdown.setFont(new Font("Arial", Font.BOLD, 30));
+		battleCountdownMenuPrincipal = new JLabel("BATTLE COUNTDOWN: " + main.getCurrentCivilization().getTimeLeft() + " ");
+		battleCountdownMenuPrincipal.setForeground(Color.WHITE);
+		battleCountdownMenuPrincipal.setFont(new Font("Arial", Font.BOLD, 30));
 		viewthreat = new JButton("VIEW THREAT");
-		panelCountdown.add(battleCountdown);
+		panelCountdown.add(battleCountdownMenuPrincipal);
 		panelCountdown.add(viewthreat);
 		panelInferior.add(panelCountdown);
 		
@@ -144,7 +256,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("ViewThreat");
+				main.viewthreat(main.getEnemyUnits());
 				
 			}
 			
@@ -181,13 +293,275 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		});
 	}
 	
+	JLabel battleCountdownEdificios;
+	
+	public JLabel getBattleCountdownEdificios() {
+		return battleCountdownEdificios;
+	}
+
+	public void setBattleCountdownEdificios(JLabel battleCountdownEdificios) {
+		this.battleCountdownEdificios = battleCountdownEdificios;
+	}
+
+	public void initBarraInferiorEdificios(Main main) {
+		panelInferior = new JPanel();
+		panelInferior.setBackground(Color.BLACK);
+		panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));
+		
+		JPanel panelCountdown = new JPanel();
+		panelCountdown.setBackground(Color.BLACK);
+		battleCountdownEdificios = new JLabel("BATTLE COUNTDOWN: " + main.getCurrentCivilization().getTimeLeft() + " ");
+		battleCountdownEdificios.setForeground(Color.WHITE);
+		battleCountdownEdificios.setFont(new Font("Arial", Font.BOLD, 30));
+		viewthreat = new JButton("VIEW THREAT");
+		panelCountdown.add(battleCountdownEdificios);
+		panelCountdown.add(viewthreat);
+		panelInferior.add(panelCountdown);
+		
+		JPanel panelBotones = new JPanel();
+		panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
+		panelBotones.setBackground(Color.BLACK);
+		pause = new JButton("PAUSE");
+		save = new JButton("SAVE");
+		exit = new JButton("EXIT");
+		panelBotones.add(Box.createHorizontalGlue());
+		panelBotones.add(pause);
+		panelBotones.add(Box.createHorizontalGlue());
+		panelBotones.add(save);
+		panelBotones.add(exit);
+		panelBotones.add(Box.createHorizontalGlue());
+		panelInferior.add(panelBotones);
+		
+		viewthreat.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				main.viewthreat(main.getEnemyUnits());
+				
+			}
+			
+		});
+		
+		pause.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Pause");
+				
+			}
+			
+		});
+		
+		save.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Save");
+				
+			}
+			
+		});
+		
+		exit.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Exit");
+				
+			}
+			
+		});
+	}
+	
+	JLabel battleCountdownUnidades;
+ 
+	public JLabel getBattleCountdownUnidades() {
+		return battleCountdownUnidades;
+	}
+
+	public void setBattleCountdownUnidades(JLabel battleCountdownUnidades) {
+		this.battleCountdownUnidades = battleCountdownUnidades;
+	}
+
+	public void initBarraInferiorUnidades(Main main) {
+		panelInferior = new JPanel();
+		panelInferior.setBackground(Color.BLACK);
+		panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));
+		
+		JPanel panelCountdown = new JPanel();
+		panelCountdown.setBackground(Color.BLACK);
+		battleCountdownUnidades = new JLabel("BATTLE COUNTDOWN: " + main.getCurrentCivilization().getTimeLeft() + " ");
+		battleCountdownUnidades.setForeground(Color.WHITE);
+		battleCountdownUnidades.setFont(new Font("Arial", Font.BOLD, 30));
+		viewthreat = new JButton("VIEW THREAT");
+		panelCountdown.add(battleCountdownUnidades);
+		panelCountdown.add(viewthreat);
+		panelInferior.add(panelCountdown);
+		
+		JPanel panelBotones = new JPanel();
+		panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
+		panelBotones.setBackground(Color.BLACK);
+		pause = new JButton("PAUSE");
+		save = new JButton("SAVE");
+		exit = new JButton("EXIT");
+		panelBotones.add(Box.createHorizontalGlue());
+		panelBotones.add(pause);
+		panelBotones.add(Box.createHorizontalGlue());
+		panelBotones.add(save);
+		panelBotones.add(exit);
+		panelBotones.add(Box.createHorizontalGlue());
+		panelInferior.add(panelBotones);
+		
+		viewthreat.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				main.viewthreat(main.getEnemyUnits());
+				
+			}
+			
+		});
+		
+		pause.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Pause");
+				
+			}
+			
+		});
+		
+		save.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Save");
+				
+			}
+			
+		});
+		
+		exit.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Exit");
+				
+			}
+			
+		});
+	}
+	
+	JLabel battleCountdownBattle;
+	 
+	public JLabel getBattleCountdownBattle() {
+		return battleCountdownBattle;
+	}
+
+	public void setBattleCountdownBattle(JLabel battleCountdownBattle) {
+		this.battleCountdownBattle = battleCountdownBattle;
+	}
+
+	public void initBarraInferiorBattle(Main main) {
+		panelInferior = new JPanel();
+		panelInferior.setBackground(Color.BLACK);
+		panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));
+		
+		JPanel panelCountdown = new JPanel();
+		panelCountdown.setBackground(Color.BLACK);
+		battleCountdownBattle = new JLabel("BATTLE COUNTDOWN: " + main.getCurrentCivilization().getTimeLeft() + " ");
+		battleCountdownBattle.setForeground(Color.WHITE);
+		battleCountdownBattle.setFont(new Font("Arial", Font.BOLD, 30));
+		viewthreat = new JButton("VIEW THREAT");
+		panelCountdown.add(battleCountdownBattle);
+		panelCountdown.add(viewthreat);
+		panelInferior.add(panelCountdown);
+		
+		JPanel panelBotones = new JPanel();
+		panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
+		panelBotones.setBackground(Color.BLACK);
+		pause = new JButton("PAUSE");
+		save = new JButton("SAVE");
+		exit = new JButton("EXIT");
+		panelBotones.add(Box.createHorizontalGlue());
+		panelBotones.add(pause);
+		panelBotones.add(Box.createHorizontalGlue());
+		panelBotones.add(save);
+		panelBotones.add(exit);
+		panelBotones.add(Box.createHorizontalGlue());
+		panelInferior.add(panelBotones);
+		
+		viewthreat.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				main.viewthreat(main.getEnemyUnits());
+				
+			}
+			
+		});
+		
+		pause.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Pause");
+				
+			}
+			
+		});
+		
+		save.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Save");
+				
+			}
+			
+		});
+		
+		exit.addActionListener(new ActionListener() {
+
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Exit");
+				
+			}
+			
+		});
+	}
+	
+	// PANELES PRINCIPALES
+	
+	public void initMainMenu(Main main) {
+		panelInternoUno = new JPanel();
+		panelInternoUno.setBackground(Color.BLUE);
+		panelInternoUno.setLayout(new BorderLayout());
+		
+		// INTEGRACION DE PANEL SUPERIOR CENTRAL
+		
+			JPanel panelPrincipal = new JPanel();
+			panelPrincipal.setBackground(Color.ORANGE);
+		
+		// 
+		
+		initBarraMenuPrincipal(main);
+		
+		panelInternoUno.add(panelPrincipal, BorderLayout.CENTER);
+		panelInternoUno.add(panelInferior, BorderLayout.SOUTH);
+		tabbedPane.addTab("Main menu", panelInternoUno);
+		
+	}
+	
 	public void initBuildingsAndTechnologyPanel(Main main) {
 		panelInternoDos = new JPanel();
 		panelInternoDos.setBackground(Color.YELLOW);
 		panelInternoDos.setLayout(new BorderLayout());
 		
 		// PANEL DE RECURSOS
-		initResourcesPanel(main);
+		initResourcesEdificiosPanel(main);
 		
         // PANEL CENTRAL
         
@@ -372,23 +746,22 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         
 		// PANEL INFERIOR
         
-		initBarraInferior(main);
+        initBarraInferiorEdificios(main);
 		
-		panelInternoDos.add(panelRecursos, BorderLayout.NORTH);
+		panelInternoDos.add(panelRecursosEdificios, BorderLayout.NORTH);
 		panelInternoDos.add(panelPrincipalEdificios, BorderLayout.CENTER);
 		panelInternoDos.add(panelInferior, BorderLayout.SOUTH);
 		tabbedPane.addTab("Buildings and Technology", panelInternoDos);
 		
 	}
 	
-	JPanel panelPrincipalUnidades;
 	
 	public void initUnitsPanel(Main main) {
 		panelInternoTres =  new JPanel();
 		panelInternoTres.setBackground(Color.GREEN);
 		panelInternoTres.setLayout(new BorderLayout());
 		
-		initResourcesPanel(main);
+		initResourcesUnitsPanel(main);
 		
         // PANEL CENTRAL
         
@@ -488,18 +861,33 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         
 		// PANEL INFERIOR
         
-		initBarraInferior(main);
+		initBarraInferiorUnidades(main);
 		
-		panelInternoTres.add(panelRecursos, BorderLayout.NORTH);
+		panelInternoTres.add(panelRecursosUnits, BorderLayout.NORTH);
 		panelInternoTres.add(panelPrincipalUnidades, BorderLayout.CENTER);
 		panelInternoTres.add(panelInferior, BorderLayout.SOUTH);
 		tabbedPane.addTab("Units", panelInternoTres);
 	}
 	
-	public void initBattlePanel() {
+	public void initBattlePanel(Main main) {
+		
 		panelInternoCuatro =  new JPanel();
 		panelInternoCuatro.setBackground(Color.BLACK);
+		panelInternoCuatro.setLayout(new BorderLayout());
+		
+		// INTEGRACION DE PANEL SUPERIOR CENTRAL
+		
+		JPanel panelPrincipal = new JPanel();
+		panelPrincipal.setBackground(Color.ORANGE);
+		
+		// 
+		
+		initBarraInferiorBattle(main);
+		
+		panelInternoCuatro.add(panelPrincipal, BorderLayout.CENTER); // AQUI LLAMAS AL PANEL CREADO
+		panelInternoCuatro.add(panelInferior, BorderLayout.SOUTH);
 		tabbedPane.addTab("Battle", panelInternoCuatro);
+		
 	}
 	
 	 public static ImageIcon createScaledImageIcon(String path, int width, int height) {
