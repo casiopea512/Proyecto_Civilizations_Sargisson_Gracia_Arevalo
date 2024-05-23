@@ -21,13 +21,9 @@ import pkg_Principal.Main;
 
 public class civilizadoss {
     public static void main(String[] args) {
-        new PantallaPrincipal();
-        
-        
+        new PantallaPrincipal();        
     }
 }
-
-
 
 
 class PantallaPrincipal extends JFrame {
