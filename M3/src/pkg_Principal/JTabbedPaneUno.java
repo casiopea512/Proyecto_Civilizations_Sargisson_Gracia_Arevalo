@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -450,7 +451,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 	}
 	
-	// PanelPrincipalEdificios tiene
+	// PanelPrincipalEdificios tiene(declarado internamente)
 	// - PanelPrincipalSuperior
 	// - PanelErrores
 	
@@ -484,14 +485,22 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
         // EDIFICIOS
         String[] buildings = {"    Farm", "    Carpentry", "    Smithy", "    Magic Tower", "    Church"};
-        int[] quantityBuildings = {5, 8, 7, 3, 1};
+        int[] quantityBuildings = {main.getCurrentCivilization().getFarm(), 
+        		main.getCurrentCivilization().getCarpentry(), 
+        		main.getCurrentCivilization().getSmithy(), 
+        		main.getCurrentCivilization().getMagicTower(), 
+        		main.getCurrentCivilization().getChurch()};
+        
         int[][] costBuildings =
             {{FOOD_COST_FARM, WOOD_COST_FARM, IRON_COST_FARM, 0},
              {FOOD_COST_CARPENTRY, WOOD_COST_CARPENTRY, IRON_COST_CARPENTRY, 0},
              {FOOD_COST_SMITHY, WOOD_COST_SMITHY, IRON_COST_SMITHY, 0},
              {FOOD_COST_MAGICTOWER, WOOD_COST_MAGICTOWER, IRON_COST_MAGICTOWER, 0},
              {FOOD_COST_CHURCH, WOOD_COST_CHURCH, IRON_COST_CHURCH, 10000}};
-
+        
+        ArrayList<JButton> arrayButtons = new ArrayList<JButton>();
+        ArrayList<JLabel> arrayJLabel = new ArrayList<JLabel>();
+        
         for (int i = 0; i < buildings.length; i++) {
             JLabel buildingLabel = new JLabel(buildings[i]);
             gbc.gridx = 0;
@@ -509,6 +518,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
             gbc.weightx = 0.1;
             gbc.weighty = 0.1;
             gbc.fill = GridBagConstraints.NONE;
+            arrayButtons.add(addButton);
             panelPrincipalSuperior.add(addButton, gbc);
 
             JLabel totalLabel = new JLabel("Total: " + quantityBuildings[i]);
@@ -518,6 +528,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
             gbc.weightx = 0.1;
             gbc.weighty = 0.1;
             gbc.fill = GridBagConstraints.HORIZONTAL;
+            arrayJLabel.add(totalLabel);
             panelPrincipalSuperior.add(totalLabel, gbc);
 
             for (int j = 0; j < costBuildings[0].length; j++) {
@@ -531,6 +542,13 @@ public class JTabbedPaneUno extends JFrame implements Variables {
             }
         }
 
+        System.out.println("LONGITUD DE BOTONES: " + arrayButtons.size());
+        System.out.println("LONGITUD DE JLABEL: " + arrayJLabel.size());
+        
+        // EVENTOS DE LOS BOTONES
+        
+        
+        
         // TITULOS
 
         JLabel buildingsLabel = new JLabel("BUILDINGS");
@@ -656,7 +674,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	}
 	
 	
-	// PanelPrincipalUnidades tiene
+	// PanelPrincipalUnidades tiene (declarado internamente)
 	// - PanelPrincipalSuperior
 	// - PanelErrores
 	
