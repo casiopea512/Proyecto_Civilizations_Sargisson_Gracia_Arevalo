@@ -6,7 +6,9 @@
 
 # JAVA
 
-M3/bin/
+M3/.settings
+
+M3/.classpath
 
 # Compiled class file
 *.class
