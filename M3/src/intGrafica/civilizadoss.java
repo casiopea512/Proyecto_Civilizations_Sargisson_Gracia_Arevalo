@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+
+import pkg_Principal.Civilization;
 import pkg_Principal.Main;
 
 public class civilizadoss {
@@ -113,8 +115,8 @@ class PantallaPrincipal extends JFrame {
                             options,
                             options[0]); // El botón p
             	}else {
-            		//new PartidasGuardadas();//boton partidas guardadas
-            		System.out.println("hay partidas");
+            		new PartidasGuardadas();//boton partidas guardadas
+            		//System.out.println("hay partidas");
             		dispose();
             	}
                 
@@ -216,12 +218,14 @@ class PantallaPrincipal extends JFrame {
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    class PartidasGuardadas extends JFrame {//RECUPERAR
+    class PartidasGuardadas extends JFrame {
         private JLabel etiPG;
         private BufferedImage imagenFondo2, imageIcon3;
         private JPanel penel, panelPlay, panelEti, panelCentral, panelBack;
         private JScrollPane tablaPartidas;
         private JButton batonBack;
+        
+       
 
         public PartidasGuardadas() {
             etiPG = new JLabel("PARTIDAS GUARDADAS");
@@ -256,7 +260,7 @@ class PantallaPrincipal extends JFrame {
             panelBack.setOpaque(false);
 
             try {
-                imageIcon3 = ImageIO.read(new File("./src/imagenes/play.png"));
+                imageIcon3 = ImageIO.read(new File("./imagenes/play.png"));
             } catch (IOException e) {
                 System.out.println("El archivo no se encuentra");
             }
@@ -269,30 +273,83 @@ class PantallaPrincipal extends JFrame {
             gbc.gridx = 0;
             gbc.gridy = 0;
             gbc.insets = new Insets(10, 10, 10, 10); // Margen entre componentes
-            //////////////////////////////////////////////////////////////////////////////////
-            //ENCONTRAR MANERA DE INSTANCIAR LOS BOTONES CON LOS DATOS DE LA BBDD
-
-            for (int i = 0; i < partidas.size(); i++) {
+            
+            
+        	Connection conn = null;
+            Statement stmt = null;
+            String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+            String USER = "Civilization";
+            String PASS = "civilization";
+            int choosenCivilizationID = 0;
+            ArrayList arrayPartidas = new ArrayList();
+            ArrayList arrayDes = new ArrayList();
+            String totalCivilizacion = "";
+            try {
+                
+    			Class.forName("oracle.jdbc.driver.OracleDriver");
+    			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+    			System.out.println("CONEXIÓN ESTABLECIDA");
+    			stmt = conn.createStatement();
+    			String QUERY = "select civilization_id, name, username, battles_counter from civilization_stats";
+    			ResultSet rs = stmt.executeQuery(QUERY);   	        
+    			
+    			
+    			while (rs.next()) {
+    				
+    				System.out.println("RS EJECUTADO");
+    				
+    				int civilization_id = rs.getInt(1);
+    				totalCivilizacion =  " - " + rs.getString(2) + " - " + rs.getString(3) + " - " + rs.getInt(4);
+    				arrayDes.add(totalCivilizacion);
+    				arrayPartidas.add(civilization_id);
+    				
+    			}
+            } catch (ClassNotFoundException | SQLException e) {
+    			e.printStackTrace();
+    		} finally {
+    			try {
+    				stmt.close();
+    				conn.close();
+    			} catch (SQLException e) {
+    				e.printStackTrace();
+    			}
+    		}
+    			
+            for (int i = 0; i < arrayPartidas.size(); i++) {
                 JPanel panel2 = new JPanel(new BorderLayout());
+                //JPanel panelEti = new JPanel(new GridLayout(1,2));
+                JPanel panelEti = new JPanel(new FlowLayout());
                 panel2.setOpaque(false);
+                panelEti.setOpaque(false);
+                String jugadores = arrayPartidas.get(i).toString();
+                String des = arrayDes.get(i).toString();
 
-                Usuario usuario = partidas.get(i);
-                String jugadores = usuario.getName() + "  -  " + usuario.getCivi() + ": ";
-
-                JLabel nombreUsuario = new JLabel(jugadores);
-                nombreUsuario.setFont(new Font("Times New Roman", Font.BOLD, 35));
-                nombreUsuario.setForeground(Color.BLACK);
-                nombreUsuario.setPreferredSize(new Dimension(400, 50)); // Tamaño fijo para las etiquetas
-                panel2.add(nombreUsuario, BorderLayout.CENTER); // Alinear JLabel al centro
+                JLabel id = new JLabel(jugadores);
+                JLabel descripcion = new JLabel(des);
+                id.setFont(new Font("Times New Roman", Font.BOLD, 25));
+                id.setForeground(Color.BLACK);
+                id.setPreferredSize(new Dimension(50, 50)); // Tamaño fijo para las etiquetas
+                descripcion.setFont(new Font("Times New Roman", Font.BOLD, 30));
+                descripcion.setForeground(Color.BLACK);
+                descripcion.setPreferredSize(new Dimension(300, 50)); // Tamaño fijo para las etiquetas
+                descripcion.setHorizontalAlignment(SwingConstants.LEFT); // Alinea el texto a la izquierda
+                //panelEti.setPreferredSize(new Dimension(305, 50));
+                panelEti.add(id);
+                panelEti.add(descripcion);
+                
+                panel2.add(panelEti, BorderLayout.CENTER); // Alinear JLabel al centro
 
                 RoundedButton boton = new RoundedButton(" Erease ");
                 boton.setName("BotonBorrar" + i);
-                boton.setFont(new Font("Times New Roman", Font.BOLD, 25));
+                boton.setFont(new Font("Times New Roman", Font.BOLD, 30));
                 boton.setForeground(Color.BLACK);
                 boton.setBackground(Color.RED);
                 boton.addActionListener(new ActionListener() {//crea el evento de los botones
 	                public void actionPerformed(ActionEvent e) {
-	                    //principal.deleteCivilization(civilizationID);
+	                	int id = Integer.parseInt(jugadores);
+	                	//eliminar partida
+	                    principal.deleteCivilization(id);
+	                    new PartidasGuardadas().repaint();
 	                	
 	                }
 	            });
@@ -309,8 +366,10 @@ class PantallaPrincipal extends JFrame {
                 boton2.setBorderPainted(false); // Ocultar los bordes del botón
                 boton2.addActionListener(new ActionListener() {//crea el evento de los botones
 	                public void actionPerformed(ActionEvent e) {
-	                   System.out.println(nombreUsuario.getText()); 
-	                   //PARA CARGAR PARTIDA
+	                	int id = Integer.parseInt(jugadores);
+	                	 //cargar partida con boton play
+	                	principal.loadCivilization(id); 
+	                	System.out.println(id);
 	                	
 	                }
 	            });
@@ -325,7 +384,7 @@ class PantallaPrincipal extends JFrame {
            
 
             try {
-                imagenFondo2 = ImageIO.read(new File("./src/imagenes/pergamino.jpg"));
+                imagenFondo2 = ImageIO.read(new File("./imagenes/pergamino.jpg"));
             } catch (IOException e) {
                 System.out.println("El archivo no se encuentra");
             }
@@ -351,7 +410,7 @@ class PantallaPrincipal extends JFrame {
             this.add(panelImagen2);
 
             // Indicaciones estándar para una ventana de crear usuario
-            this.setSize(800, 1000);
+            this.setSize(900, 1000);
             this.setTitle("Partidas Guardadas");
             this.setIconImage(imageIcon);
             this.setResizable(false); // No cambiar tamaño marco
@@ -466,7 +525,7 @@ class PantallaPrincipal extends JFrame {
 			this.add(panelImagenes, BorderLayout.CENTER);
 
 			//se meten las indicaciones estandar para una ventana de crear usuario
-			this.setSize(800,600);
+			this.setSize(900,700);
 			this.setTitle("Crear Usuario");
 			this.setIconImage(imageIcon);
 			this.setResizable(false);//no cambiar tamaño marco
@@ -531,12 +590,6 @@ class PantallaPrincipal extends JFrame {
 		            	principal.createCivilization(userName,civilizationName,principal); 
 		            	
 		            	
-		            	
-		            	
-		            	
-		            	
-		            	
-		            	
 			        	dispose();
 			        	//////////////////////////////////
 		            } else {
@@ -585,6 +638,15 @@ class RoundedButton extends JButton {
     public Insets getInsets() {
         return new Insets(4, 8, 4, 8); // Margen interior para el texto dentro del botón
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 //clase para difuminar color titulo pantalla principal
 class GradientLabel extends JLabel {

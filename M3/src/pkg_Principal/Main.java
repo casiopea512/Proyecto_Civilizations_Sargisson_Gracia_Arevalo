@@ -40,6 +40,7 @@ public class Main implements Variables {
 	private int currentCivilizationID;
 	private ArrayList<MilitaryUnit>[] enemyUnits;
 	
+
 	public Civilization getCurrentCivilization() {
 		return currentCivilization;
 	}
@@ -462,14 +463,14 @@ public class Main implements Variables {
         int choosenCivilizationID = 0;
         
         try {
-        
+            ArrayList arrayPartidas = new ArrayList();
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("CONEXIÓN ESTABLECIDA");
 			stmt = conn.createStatement();
 			String QUERY = "select civilization_id, name, username, battles_counter from civilization_stats";
 			ResultSet rs = stmt.executeQuery(QUERY);   	        
-			ArrayList arrayPartidas = new ArrayList();
+			
 			
 			while (rs.next()) {
 				
