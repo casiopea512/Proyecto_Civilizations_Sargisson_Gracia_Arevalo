@@ -589,7 +589,7 @@ public class Civilization implements Variables {
 				Magician newMagician = new Magician(newArmor,newDamage);
 				army[7].add(newMagician);
 
-			}else {
+			} else {
 				//se controla la falta de recursos
 				throw new ResourceException("you do not have enough resources to create "+n+" Magician, has been created "+i);
 			}
