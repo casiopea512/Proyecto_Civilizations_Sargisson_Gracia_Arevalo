@@ -29,6 +29,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import exceptions.ResourceException;
 import interfaces.Variables;
 
 
@@ -545,9 +546,32 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         System.out.println("LONGITUD DE BOTONES: " + arrayButtons.size());
         System.out.println("LONGITUD DE JLABEL: " + arrayJLabel.size());
         
+        
         // EVENTOS DE LOS BOTONES
         
-        
+        arrayButtons.get(0).addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				try {
+					main.getCurrentCivilization().newFarm();
+					arrayJLabel.get(0).setText("Total: " + main.getCurrentCivilization().getFarm());
+					this.foodEdificios.setText(String.valueOf(main.getCurrentCivilization().getFood()));
+    				
+				} catch (ResourceException e1) {
+					e1.printStackTrace();
+				}
+			}
+        	
+        });
+        /*
+        ventanaPrincipal.getFoodUnits().setText(String.valueOf(principal.getCurrentCivilization().getFood()));
+		ventanaPrincipal.getWoodEdificios().setText(String.valueOf(principal.getCurrentCivilization().getWood()));
+		ventanaPrincipal.getWoodUnits().setText(String.valueOf(principal.getCurrentCivilization().getWood()));
+		ventanaPrincipal.getIronEdificios().setText(String.valueOf(principal.getCurrentCivilization().getIron()));
+		ventanaPrincipal.getIronUnits().setText(String.valueOf(principal.getCurrentCivilization().getIron()));
+		ventanaPrincipal.getManaEdificios().setText(String.valueOf(principal.getCurrentCivilization().getMana()));
+		ventanaPrincipal.getManaUnits().setText(String.valueOf(principal.getCurrentCivilization().getMana()));
+        */
         
         // TITULOS
 
