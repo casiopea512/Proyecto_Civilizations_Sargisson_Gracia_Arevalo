@@ -732,7 +732,15 @@ public class Main implements Variables {
 						ps.setInt(3, unidad.getActualArmor());
 						ps.setInt(4,3);
 						ps.setInt(5, unidad.getExperience());
-						ps.setInt(6, 0);
+		
+						if (((AttackUnit) unidad).isSanctified()) {
+							System.out.println("Unidad santificada; SI");
+							ps.setInt(6, 1);
+						} else {
+							System.out.println("Unidad santificada; NO");
+							ps.setInt(6, 0);
+						}
+						
 						ps.executeUpdate();
 						
 					} else if (unidad instanceof DefenseUnit) {
@@ -744,7 +752,14 @@ public class Main implements Variables {
 						ps.setInt(3, unidad.getActualArmor());
 						ps.setInt(4,3);
 						ps.setInt(5, unidad.getExperience());
-						ps.setInt(6, 0);
+						
+						if (((DefenseUnit) unidad).isSanctified()) {
+							System.out.println("Unidad santificada; SI");
+							ps.setInt(6, 1);
+						} else {
+							System.out.println("Unidad santificada; NO");
+							ps.setInt(6, 0);
+						}
 						ps.executeUpdate();
 					} else {
 						//System.out.println("special UNIT = " + unidad.getClass().getSimpleName());

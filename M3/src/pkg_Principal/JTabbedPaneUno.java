@@ -61,9 +61,14 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	
 	// RECURSOS
 	
-	JPanel panelRecursosEdificios, panelPrincipalEdificios, panelInferior;
-	JLabel foodEdificios, woodEdificios, ironEdificios, manaEdificios;
+	// RECURSOS PANEL 
+	
+	// ICONOS REUTILIZABLES
 	ImageIcon iconFood, iconWood, iconIron, iconMana;
+	
+	JPanel panelRecursosEdificios, panelPrincipalEdificios;
+	JLabel foodEdificios, woodEdificios, ironEdificios, manaEdificios;
+	
 
 	public JLabel getFoodEdificios() {
 		return foodEdificios;
@@ -138,8 +143,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 	}
 	
-	JPanel panelPrincipalUnidades;
-	JPanel panelRecursosUnits, panelPrincipalUnits, panelUnits;
+	// RECURSOS PANEL UNIDADES
+	
+	JPanel panelRecursosUnits, panelPrincipalUnidades;
 	JLabel foodUnits, woodUnits, ironUnits, manaUnits;
 
 	public JLabel getFoodUnits() {
@@ -209,12 +215,17 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 	}
 	
-	// BARRA INFERIOR 
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	JButton viewthreat, pause, save, exit;
+	// BARRA INFERIOR 
+	JPanel panelInferior;
+	
+	
+	JButton viewthreat, pause, save, exit; // REUTILIZABLES
+	
 	
 	JLabel battleCountdownMenuPrincipal;
-	 
+
 	public JLabel getBattleCountdownMenuPrincipal() {
 		return battleCountdownMenuPrincipal;
 	}
@@ -224,6 +235,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	}
 
 	public void initBarraMenuPrincipal(Main main) {
+
 		panelInferior = new JPanel();
 		panelInferior.setBackground(Color.BLACK);
 		panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));
@@ -252,46 +264,16 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelBotones.add(Box.createHorizontalGlue());
 		panelInferior.add(panelBotones);
 		
-		viewthreat.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				main.viewthreat(main.getEnemyUnits());
-				
-			}
-			
-		});
+		viewthreat.addActionListener(new EventoViewthreath(main));
 		
-		pause.addActionListener(new ActionListener() {
+		pause.addActionListener(new EventoPause(main));
 
+		save.addActionListener(new EventoSave(main));
 
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Pause");
-				
-			}
-			
-		});
-		
-		save.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Save");
-				
-			}
-			
-		});
-		
-		exit.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Exit");
-				
-			}
-			
-		});
+		exit.addActionListener(new EventoExit(main));
 	}
+	
+	
 	
 	JLabel battleCountdownEdificios;
 	
@@ -332,58 +314,31 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelBotones.add(Box.createHorizontalGlue());
 		panelInferior.add(panelBotones);
 		
-		viewthreat.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				main.viewthreat(main.getEnemyUnits());
-				
-			}
-			
-		});
+		viewthreat.addActionListener(new EventoViewthreath(main));
 		
-		pause.addActionListener(new ActionListener() {
+		pause.addActionListener(new EventoPause(main));
 
+		save.addActionListener(new EventoSave(main));
 
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Pause");
-				
-			}
-			
-		});
-		
-		save.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Save");
-				
-			}
-			
-		});
-		
-		exit.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Exit");
-				
-			}
-			
-		});
+		exit.addActionListener(new EventoExit(main));
 	}
+	
+	
 	
 	JLabel battleCountdownUnidades;
  
 	public JLabel getBattleCountdownUnidades() {
+
 		return battleCountdownUnidades;
 	}
 
 	public void setBattleCountdownUnidades(JLabel battleCountdownUnidades) {
+
 		this.battleCountdownUnidades = battleCountdownUnidades;
 	}
 
 	public void initBarraInferiorUnidades(Main main) {
+
 		panelInferior = new JPanel();
 		panelInferior.setBackground(Color.BLACK);
 		panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));
@@ -412,46 +367,16 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelBotones.add(Box.createHorizontalGlue());
 		panelInferior.add(panelBotones);
 		
-		viewthreat.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				main.viewthreat(main.getEnemyUnits());
-				
-			}
-			
-		});
+		viewthreat.addActionListener(new EventoViewthreath(main));
 		
-		pause.addActionListener(new ActionListener() {
+		pause.addActionListener(new EventoPause(main));
 
+		save.addActionListener(new EventoSave(main));
 
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Pause");
-				
-			}
-			
-		});
-		
-		save.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Save");
-				
-			}
-			
-		});
-		
-		exit.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Exit");
-				
-			}
-			
-		});
+		exit.addActionListener(new EventoExit(main));
 	}
+	
+	
 	
 	JLabel battleCountdownBattle;
 	 
@@ -492,46 +417,16 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelBotones.add(Box.createHorizontalGlue());
 		panelInferior.add(panelBotones);
 		
-		viewthreat.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				main.viewthreat(main.getEnemyUnits());
-				
-			}
-			
-		});
+		viewthreat.addActionListener(new EventoViewthreath(main));
 		
-		pause.addActionListener(new ActionListener() {
+		pause.addActionListener(new EventoPause(main));
 
+		save.addActionListener(new EventoSave(main));
 
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Pause");
-				
-			}
-			
-		});
-		
-		save.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Save");
-				
-			}
-			
-		});
-		
-		exit.addActionListener(new ActionListener() {
-
-
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Exit");
-				
-			}
-			
-		});
+		exit.addActionListener(new EventoExit(main));
 	}
+	
+	// INICIALIZACION DE PANELES PRINCIPALES
 	
 	// PANELES PRINCIPALES
 	
@@ -555,7 +450,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 	}
 	
+	// PanelPrincipalEdificios tiene
+	// - PanelPrincipalSuperior
+	// - PanelErrores
+	
 	public void initBuildingsAndTechnologyPanel(Main main) {
+
 		panelInternoDos = new JPanel();
 		panelInternoDos.setBackground(Color.YELLOW);
 		panelInternoDos.setLayout(new BorderLayout());
@@ -756,6 +656,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	}
 	
 	
+	// PanelPrincipalUnidades tiene
+	// - PanelPrincipalSuperior
+	// - PanelErrores
+	
 	public void initUnitsPanel(Main main) {
 		panelInternoTres =  new JPanel();
 		panelInternoTres.setBackground(Color.GREEN);
@@ -890,7 +794,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 	}
 	
-	 public static ImageIcon createScaledImageIcon(String path, int width, int height) {
+	
+	// CARGADOR DE INCONOS
+	public static ImageIcon createScaledImageIcon(String path, int width, int height) {
 	        try {
 	            BufferedImage img = ImageIO.read(new File(path));
 	            Image scaledImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
@@ -902,3 +808,61 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	    }
 	
 }
+
+
+// EVENTOS DEL PANEL INFERIOR ESTANDARIZADOS
+
+class EventoViewthreath implements ActionListener {
+	Main main;
+	
+	EventoViewthreath(Main main) {
+		this.main = main;
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		main.viewthreat(main.getEnemyUnits());
+	}
+	
+}
+
+class EventoPause implements ActionListener {
+	Main main;
+	
+	EventoPause(Main main){
+		this.main = main;
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Pause button in class");
+	}
+	
+}
+
+class EventoSave implements ActionListener {
+	Main main;
+	
+	EventoSave(Main main){
+		this.main = main;
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Save button in class");
+	}
+	
+}
+
+class EventoExit implements ActionListener {
+	Main main;
+	
+	EventoExit(Main main){
+		this.main = main;
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Exit button in class");
+	}
+	
+}
+
+
+

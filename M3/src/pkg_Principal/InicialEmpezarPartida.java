@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import exceptions.ResourceException;
 import interfaces.Variables;
 
 public class InicialEmpezarPartida extends JFrame implements Variables {
