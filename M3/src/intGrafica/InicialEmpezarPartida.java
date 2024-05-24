@@ -231,6 +231,8 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 			        					principal.addResourcesCivilization(resourcesWin, principal.getCurrentCivilization());
 			        				}
 			        				
+			        				// se ejecuta la ventana de batalla ocurrida
+			        				new BattleOcurred(civilizationWin, resourcesWin);
 			        				
 			        				// guardar el juego
 			        				principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
