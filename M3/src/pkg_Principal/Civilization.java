@@ -365,12 +365,12 @@ public class Civilization implements Variables {
 				throw new ResourceException("You do not have resources to improve your Defense Technology");
 			}
 		}else {//se calcula la cantidad a pagar dependiendo del nivel tec
-			if (getWood() >= UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST*(UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST*technologyDefense) &&
-				getIron()>= UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST*(UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST*technologyDefense)){
+			if (getWood() >= (UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + (technologyDefense * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST/100)) &&
+				getIron()>= (UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST + (technologyDefense * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST/100))){
 				this.technologyDefense+= 1;//sumamos uno
 				//resta recursos con aumento segun nivel				
-				this.setWood(wood-UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST*technologyDefense);
-				this.setIron(iron-UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST*technologyDefense);
+				this.setWood(wood-(UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + (technologyDefense * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST/100)));
+				this.setIron(iron-(UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST + (technologyDefense * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST/100)));
 
 			}else {
 				//se controla la falta de recursos
@@ -380,6 +380,8 @@ public class Civilization implements Variables {
 		}
 
 	}
+	
+	
 
 	public void upgradeTechnologyAttack() throws ResourceException {
 		if (technologyAttack == 0) {//se paga el valor tec inicial
@@ -395,14 +397,14 @@ public class Civilization implements Variables {
 				throw new ResourceException("You do not have resources to improve your Attack Technology");
 			}
 		}else {//se calcula la cantidad a pagar dependiendo del nivel tec
-			if (getWood() >= UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST*(UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST*technologyDefense) &&
-					getIron()>= UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST*(UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST*technologyDefense)){
+			if (getWood() >= (UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST + (technologyAttack * UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST/100)) &&
+					getIron()>= (UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST + (technologyAttack * UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST/100))){
 				this.technologyAttack+= 1;//sumamos uno
 				//resta recursos segun nivel tec				
-				this.setWood(wood-UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST*UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST*technologyDefense);
-				this.setIron(iron-UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST*UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST*technologyDefense);
-
-			}else {
+				this.setWood(wood-(UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST + (technologyAttack * UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST/100)));
+				this.setIron(iron-(UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST + (technologyAttack * UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST/100)));
+			
+			} else {
 				//se controla la falta de recursos
 				throw new ResourceException("You do not have resources to improve your Attack Technology");
 			}
@@ -425,10 +427,10 @@ public class Civilization implements Variables {
 				this.setWood(wood-WOOD_COST_SWORDSMAN);
 				this.setIron(iron-IRON_COST_SWORDSMAN);
 				//se crean variables de creacion de uni
-				int newArmor = Variables.ARMOR_SWORDSMAN+(getTechnologyDefense()*
-						Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.ARMOR_SWORDSMAN/100;
-				int newDamage = Variables.BASE_DAMAGE_SWORDSMAN+(getTechnologyAttack()*
-						Variables.PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SWORDSMAN/100;
+				int newArmor = ARMOR_SWORDSMAN+(getTechnologyDefense()*
+						PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*ARMOR_SWORDSMAN/100;
+				int newDamage = BASE_DAMAGE_SWORDSMAN+(getTechnologyAttack()*
+						PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*BASE_DAMAGE_SWORDSMAN/100;
 				Swordsman newSwordsman = new Swordsman(newArmor,newDamage);//se pasa las variables con los valores
 				army[0].add(newSwordsman);//se añade al array que le pertoca
 
@@ -448,10 +450,10 @@ public class Civilization implements Variables {
 				this.setFood(food-FOOD_COST_SPEARMAN);
 				this.setWood(wood-WOOD_COST_SPEARMAN);
 				this.setIron(iron-IRON_COST_SPEARMAN);
-				int newArmor = Variables.ARMOR_SPEARMAN+(getTechnologyDefense()*
-						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.ARMOR_SPEARMAN/100;
-				int newDamage = Variables.BASE_DAMAGE_SPEARMAN+(getTechnologyAttack()*
-						Variables.PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_SPEARMAN/100;
+				int newArmor = ARMOR_SPEARMAN+(getTechnologyDefense()*
+						PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*ARMOR_SPEARMAN/100;
+				int newDamage = BASE_DAMAGE_SPEARMAN+(getTechnologyAttack()*
+						PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*BASE_DAMAGE_SPEARMAN/100;
 				Spearman newSpearman = new Spearman(newArmor,newDamage);
 				army[1].add(newSpearman);
 
@@ -468,10 +470,10 @@ public class Civilization implements Variables {
 					getIron()>= IRON_COST_CROSSBOW){
 				this.setWood(wood-WOOD_COST_CROSSBOW);
 				this.setIron(iron-IRON_COST_CROSSBOW);
-				int newArmor = Variables.ARMOR_CROSSBOW+(getTechnologyDefense()*
-						Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.ARMOR_CROSSBOW/100;
-				int newDamage = Variables.BASE_DAMAGE_CROSSBOW+(getTechnologyAttack()*
-						Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CROSSBOW/100;
+				int newArmor = ARMOR_CROSSBOW+(getTechnologyDefense()*
+						PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*ARMOR_CROSSBOW/100;
+				int newDamage = BASE_DAMAGE_CROSSBOW+(getTechnologyAttack()*
+						PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*BASE_DAMAGE_CROSSBOW/100;
 				Crossbow newCrossbow = new Crossbow(newArmor,newDamage);
 				army[2].add(newCrossbow);
 
@@ -489,10 +491,10 @@ public class Civilization implements Variables {
 					getIron()>= IRON_COST_CANNON){
 				this.setWood(wood-WOOD_COST_CANNON);
 				this.setIron(iron-IRON_COST_CANNON);
-				int newArmor = Variables.ARMOR_CANNON+(getTechnologyDefense()*
-						Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.ARMOR_CANNON/100;
-				int newDamage = Variables.BASE_DAMAGE_CANNON+(getTechnologyAttack()*
-						Variables.PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CANNON/100;
+				int newArmor = ARMOR_CANNON+(getTechnologyDefense()*
+						PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.ARMOR_CANNON/100;
+				int newDamage = BASE_DAMAGE_CANNON+(getTechnologyAttack()*
+						PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CANNON/100;
 				Cannon newCannon = new Cannon(newArmor,newDamage);
 				army[3].add(newCannon);
 
@@ -509,10 +511,10 @@ public class Civilization implements Variables {
 		for (int i = 0; i < n; i++) { 
 			if (getWood() >= WOOD_COST_ARROWTOWER){
 				this.setWood(wood-WOOD_COST_ARROWTOWER);
-				int newArmor = Variables.ARMOR_ARROWTOWER+(getTechnologyDefense()*
-						Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.ARMOR_ARROWTOWER/100;
-				int newDamage = Variables.BASE_DAMAGE_ARROWTOWER+(getTechnologyAttack()*
-						Variables.PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_ARROWTOWER/100;
+				int newArmor = ARMOR_ARROWTOWER+(getTechnologyDefense()*
+						PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*ARMOR_ARROWTOWER/100;
+				int newDamage = BASE_DAMAGE_ARROWTOWER+(getTechnologyAttack()*
+						PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*BASE_DAMAGE_ARROWTOWER/100;
 				ArrowTower newArrowTower = new ArrowTower(newArmor,newDamage);
 				army[4].add(newArrowTower);
 
@@ -530,10 +532,10 @@ public class Civilization implements Variables {
 			if (getWood() >= WOOD_COST_CATAPULT && getIron()>= IRON_COST_CATAPULT){
 				this.setWood(wood-WOOD_COST_CATAPULT);
 				this.setIron(iron-IRON_COST_CATAPULT);
-				int newArmor = Variables.ARMOR_CATAPULT+(getTechnologyDefense()*
-						Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.ARMOR_CATAPULT/100;
-				int newDamage = Variables.BASE_DAMAGE_CATAPULT +(getTechnologyAttack()*
-						Variables.PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CATAPULT/100;
+				int newArmor = ARMOR_CATAPULT+(getTechnologyDefense()*
+						PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*ARMOR_CATAPULT/100;
+				int newDamage = BASE_DAMAGE_CATAPULT +(getTechnologyAttack()*
+						PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*BASE_DAMAGE_CATAPULT/100;
 				Catapult newCatapult = new Catapult(newArmor,newDamage);
 				army[5].add(newCatapult);
 
@@ -551,10 +553,10 @@ public class Civilization implements Variables {
 			if (getWood() >= WOOD_COST_ROCKETLAUNCHERTOWER && getIron()>= IRON_COST_ROCKETLAUNCHERTOWER){
 				this.setWood(wood-WOOD_COST_ROCKETLAUNCHERTOWER);
 				this.setIron(iron-IRON_COST_ROCKETLAUNCHERTOWER);
-				int newArmor = Variables.ARMOR_ROCKETLAUNCHERTOWER+(getTechnologyDefense()*
-						Variables.PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*Variables.ARMOR_ROCKETLAUNCHERTOWER/100;
-				int newDamage = Variables.BASE_DAMAGE_ROCKETLAUNCHERTOWER +(getTechnologyAttack()*
-						Variables.PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_ROCKETLAUNCHERTOWER/100;
+				int newArmor = ARMOR_ROCKETLAUNCHERTOWER +(getTechnologyDefense()*
+						PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*ARMOR_ROCKETLAUNCHERTOWER/100;
+				int newDamage = BASE_DAMAGE_ROCKETLAUNCHERTOWER +(getTechnologyAttack()*
+						PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*BASE_DAMAGE_ROCKETLAUNCHERTOWER/100;
 				RocketLauncherTower newRocketLauncher = new RocketLauncherTower(newArmor,newDamage);
 				army[6].add(newRocketLauncher);
 
@@ -579,8 +581,8 @@ public class Civilization implements Variables {
 				this.setIron(mana-IRON_COST_MAGICIAN);
 				this.setMana(mana-MANA_COST_MAGICIAN);
 				int newArmor = 0;
-				int newDamage = Variables.BASE_DAMAGE_MAGICIAN +(getTechnologyAttack()*
-						Variables.PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_MAGICIAN/100;
+				int newDamage = BASE_DAMAGE_MAGICIAN +(getTechnologyAttack()*
+						PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)* BASE_DAMAGE_MAGICIAN/100;
 				Magician newMagician = new Magician(newArmor,newDamage);
 				army[7].add(newMagician);
 
