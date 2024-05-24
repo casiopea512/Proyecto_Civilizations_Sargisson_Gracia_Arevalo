@@ -509,7 +509,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
     panelEti8.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
     panelEti9.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
     panelEti10.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
-       
+    
        civili = new JLabel("CIVILIZATION BUILDINGS");
        civili.setFont(new Font("Times New Roman", Font.BOLD, 30));
        civili.setForeground(Color.BLACK);
@@ -519,7 +519,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        mtower = new JLabel("Magic Towers: ");
        int cantidadTower = main.getCurrentCivilization().getMagicTower(); 
-       mtower2 = new JLabel(""+cantidadTower);
+       mtower2 = new JLabel(String.valueOf(cantidadTower));
        mtower.setFont(new Font("Times New Roman", Font.BOLD, 20));
        mtower.setForeground(Color.BLACK);
        mtower2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -530,7 +530,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        church = new JLabel("Church: ");
        int cantidadChurch =main.getCurrentCivilization().getChurch(); 
-       church2 = new JLabel(""+cantidadChurch);
+       church2 = new JLabel(String.valueOf(cantidadChurch));
        church.setFont(new Font("Times New Roman", Font.BOLD, 20));
        church.setForeground(Color.BLACK);
        church2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -540,7 +540,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        farm = new JLabel("Farm: ");
        int cantidadfarm = main.getCurrentCivilization().getFarm(); 
-       farm2 = new JLabel(""+cantidadfarm);
+       farm2 = new JLabel(String.valueOf(cantidadfarm));
        farm.setFont(new Font("Times New Roman", Font.BOLD, 20));
        farm.setForeground(Color.BLACK);
        farm2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -550,7 +550,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        smithy = new JLabel("Smithy: ");
        int cantidadsmithy = main.getCurrentCivilization().getSmithy(); 
-       smithy2 = new JLabel(""+cantidadsmithy);
+       smithy2 = new JLabel(String.valueOf(cantidadsmithy));
        smithy.setFont(new Font("Times New Roman", Font.BOLD, 20));
        smithy.setForeground(Color.BLACK);
        smithy2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -560,7 +560,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        carprntry = new JLabel("Carperntry: ");
        int cantidadcarprntry =main.getCurrentCivilization().getCarpentry(); 
-       carpentry2 = new JLabel(""+cantidadcarprntry);
+       carpentry2 = new JLabel(String.valueOf(cantidadcarprntry));
        carprntry.setFont(new Font("Times New Roman", Font.BOLD, 20));
        carprntry.setForeground(Color.BLACK);
        carpentry2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -575,7 +575,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        alevel = new JLabel("Technology Attack: ");
        int cantidadalevel= main.getCurrentCivilization().getTechnologyAttack(); 
-       alevel2 = new JLabel(""+cantidadalevel);
+       alevel2 = new JLabel(String.valueOf(cantidadalevel));
        alevel.setFont(new Font("Times New Roman", Font.BOLD, 20));
        alevel.setForeground(Color.BLACK);
        alevel2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -595,7 +595,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        battle = new JLabel("Battle Currents: ");
        int cantidadbattle= main.getCurrentCivilization().getBattles(); 
-       battle2 = new JLabel(""+cantidadbattle);
+       battle2 = new JLabel(String.valueOf(cantidadbattle));
        battle.setFont(new Font("Times New Roman", Font.BOLD, 30));
        battle.setForeground(Color.BLACK);
        battle2.setFont(new Font("Times New Roman", Font.BOLD, 30));
@@ -605,9 +605,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        
        panelTotalEti.setLayout(new BoxLayout(panelTotalEti, BoxLayout.Y_AXIS));
+       //panelTotalEti.add(Box.createVerticalStrut(100));
        
        // Margen entre los paneles y el borde del panelTotalEti
-       int margenEntrePaneles = 200;
+       int margenEntrePaneles = 50;
        panelTotalEti.setBorder(BorderFactory.createEmptyBorder(margenEntrePaneles, margenEntrePaneles, margenEntrePaneles, margenEntrePaneles));
        
        panelTotalEti.add(panelEti1);
@@ -2071,6 +2072,13 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 		// LABELS PAU MAIN MENU
 		
+		mtower2.setText(String.valueOf((main.getCurrentCivilization().getMagicTower())));
+		church2.setText(String.valueOf((main.getCurrentCivilization().getChurch())));
+		farm2.setText(String.valueOf((main.getCurrentCivilization().getFarm())));
+		smithy2.setText(String.valueOf((main.getCurrentCivilization().getSmithy())));
+		carpentry2.setText(String.valueOf((main.getCurrentCivilization().getCarpentry())));
+		
+		
 		
 		
 	}
@@ -2080,12 +2088,15 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		// LABELS WILLIAM
 		
 		// LABELS PAU
+		alevel2.setText(String.valueOf((main.getCurrentCivilization().getTechnologyAttack())));
+		dlevel2.setText(String.valueOf((main.getCurrentCivilization().getTechnologyDefense())));
 			// MAIN MENU
 	}
 	
 	public void updateBattleCounter(Main main) {
 		
 		// MAIN MENU
+		battle2.setText(String.valueOf((main.getCurrentCivilization().getBattles())));
 		
 	}
 	
