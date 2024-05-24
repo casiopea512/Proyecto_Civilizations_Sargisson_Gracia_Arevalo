@@ -88,13 +88,13 @@ public class BattleOcurred extends JFrame{
     
     // Clase interna para el panel con fondo de imagen
     class BackgroundPanel extends JPanel {
-        private BufferedImage image;
+    	private BufferedImage image;
         
         public BackgroundPanel(BufferedImage image) {
             this.image = image;
         }
         
-        @Override
+       
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             if (image != null) {
