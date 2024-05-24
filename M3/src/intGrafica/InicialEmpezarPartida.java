@@ -32,7 +32,7 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 			setVisible(true); 
 		}
 		
-		public void initComponents(){
+	public void initComponents(){
 			
 			JPanel panel = new JPanel();
 			JButton boton = new JButton("Empezar partida");
@@ -45,8 +45,9 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 					 
 					Main principal = new Main();
 					
-					principal.setCurrentCivilization(principal.loadCivilization(1));
-					principal.setCurrentCivilizationID(1);
+					principal.setCurrentCivilization(principal.loadCivilization(2));
+					principal.setCurrentCivilizationID(2);
+
 					
 					JTabbedPaneUno ventanaPrincipal = new JTabbedPaneUno(principal);
 					
@@ -163,6 +164,7 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 			                        	System.out.println("Spearman = " + principal.getEnemyUnits()[1].size());
 			                        	System.out.println("Crossbow = " + principal.getEnemyUnits()[2].size());
 			                        	System.out.println("Cannon = " + principal.getEnemyUnits()[3].size());
+			                        	
 			    	       				// SOLAMENTE ES PARA VER RESULTADOS
 			                        	/*
 			    	       				for (ArrayList<MilitaryUnit> unidades : principal.getEnemyUnits()) {
