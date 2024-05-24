@@ -299,7 +299,7 @@ public class Civilization implements Variables {
 
 	}
 
-	void newFarm() throws ResourceException {
+	public void newFarm() throws ResourceException {
 		//aseguramos que se tengan los recursos 
 		if (getFood() >= FOOD_COST_FARM && getWood() >= WOOD_COST_FARM &&
 				getIron()>= IRON_COST_FARM){
