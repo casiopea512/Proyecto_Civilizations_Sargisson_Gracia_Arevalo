@@ -201,6 +201,7 @@ public class Main implements Variables {
 
 	public void createCivilization(String civilizationName, String userName, Main main) {
 		Connection conn = null;
+		PreparedStatement ps = null;
         int pkIDcivilization = -1;
         String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
         String USER = "Civilization";
@@ -212,7 +213,7 @@ public class Main implements Variables {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("CONEXIÓN ESTABLECIDA");
 			String update = "INSERT INTO civilization_stats (name, username) VALUES (?, ?)";
-			PreparedStatement ps = conn.prepareStatement(update, new String[] {"civilization_id"});
+			ps = conn.prepareStatement(update, new String[] {"civilization_id"});
 			ps.setString(1, civilizationName);
 			ps.setString(2, userName);
 			ps.executeUpdate();
@@ -239,7 +240,19 @@ public class Main implements Variables {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		} finally {
+            // Cerrar la conexión y el CallableStatement
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 		
 	}
 	
@@ -598,7 +611,7 @@ public class Main implements Variables {
 	
 	public void updateBattleAndTimerCounter(int civilizationID, Civilization civilization) {
 		Connection conn = null;
-        Statement stmt = null;
+		PreparedStatement ps = null;
         String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
         String USER = "Civilization";
         String PASS = "civilization";
@@ -609,7 +622,7 @@ public class Main implements Variables {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			System.out.println("CONEXIÓN ESTABLECIDA");
 			String update = "UPDATE civilization_stats SET battles_counter = (?) WHERE civilization_id = " + civilizationID;
-			PreparedStatement ps = conn.prepareStatement(update);
+			ps = conn.prepareStatement(update);
 			ps.setInt(1, civilization.getBattles());
 			ps.executeUpdate();
 			System.out.println("Update de las batallas realizado correctamente");
@@ -626,8 +639,8 @@ public class Main implements Variables {
 			e.printStackTrace();
 		} finally {
             try {
-                if (stmt != null) {
-                    stmt.close();
+                if (ps != null) {
+                	ps.close();
                 }
                 if (conn != null) {
                     conn.close();
@@ -804,7 +817,19 @@ public class Main implements Variables {
             
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-		}
+		} finally {
+            // Cerrar la conexión y el CallableStatement
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 		
 	}
 	

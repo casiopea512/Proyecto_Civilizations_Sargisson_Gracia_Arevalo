@@ -969,8 +969,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         arrayCostAttackTechnology = new ArrayList<JLabel>();
         int[] costAttackTechnology = {
         		0, 
-        		UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST + ((main.getCurrentCivilization().getTechnologyAttack()+1) * UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST/100), 
-        		UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST + ((main.getCurrentCivilization().getTechnologyAttack()+1) * UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST/100), 
+        		UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST + (main.getCurrentCivilization().getTechnologyAttack() * UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST/100), 
+        		UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST + (main.getCurrentCivilization().getTechnologyAttack() * UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST/100), 
         		0};
         for (int i = 0; i < costAttackTechnology.length; i++) {
             JLabel technologyCost = new JLabel(String.valueOf(costAttackTechnology[i]));
@@ -1031,8 +1031,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         
         int[] costDefenseTechnology = {
         		0, 
-        		UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + ((main.getCurrentCivilization().getTechnologyDefense()+1) * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST/100), 
-        		UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST + ((main.getCurrentCivilization().getTechnologyDefense()+1) * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST/100), 
+        		UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + (main.getCurrentCivilization().getTechnologyDefense() * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST/100), 
+        		UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST + (main.getCurrentCivilization().getTechnologyDefense() * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST/100), 
         		0};
        
         for (int i = 0; i < costDefenseTechnology.length; i++) {
@@ -2114,8 +2114,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 		int[] costDefenseTechnology = {
         		0, 
-        		UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + ((main.getCurrentCivilization().getTechnologyDefense()+1) * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST/100), 
-        		UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST + ((main.getCurrentCivilization().getTechnologyDefense()+1) * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST/100), 
+        		UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + ((main.getCurrentCivilization().getTechnologyDefense()) * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST/100), 
+        		UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST + ((main.getCurrentCivilization().getTechnologyDefense()) * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST/100), 
         		0};
 		
 		for (int i = 0; i < arrayCostDefenseTechnology.size(); i++) {
@@ -2125,8 +2125,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
         int[] costAttackTechnology = {
         		0, 
-        		UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST + ((main.getCurrentCivilization().getTechnologyAttack()+1) * UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST/100), 
-        		UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST + ((main.getCurrentCivilization().getTechnologyAttack()+1) * UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST/100), 
+        		UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST + ((main.getCurrentCivilization().getTechnologyAttack()) * UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST/100), 
+        		UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST + ((main.getCurrentCivilization().getTechnologyAttack()) * UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST/100), 
         		0};
 		
         for (int i = 0; i < arrayCostAttackTechnology.size(); i++) {
