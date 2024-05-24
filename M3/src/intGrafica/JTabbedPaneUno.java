@@ -1,7 +1,8 @@
-package pkg_Principal;
+package intGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -30,7 +32,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import exceptions.ResourceException;
+import interfaces.MilitaryUnit;
 import interfaces.Variables;
+import pkg_AttackUnit.AttackUnit;
+import pkg_DefenseUnit.DefenseUnit;
+import pkg_Principal.Main;
 
 
 
@@ -761,7 +767,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 					arrayCostDefenseTechnology.get(1).setText(String.valueOf(costDefenseTechnology[1]));
 					arrayCostDefenseTechnology.get(2).setText(String.valueOf(costDefenseTechnology[2]));
 					arrayCostDefenseTechnology.get(3).setText(String.valueOf(costDefenseTechnology[3]));
-					
+
 				} catch (ResourceException e1) {
 					attentionLabelBuilding.setText(e1.getMessage());
 				}
@@ -797,6 +803,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	// - PanelErrores
 	
 	JLabel attentionLabelUnits;
+	ArrayList<JLabel> damageUnitsArrayLabel;
+	ArrayList<JLabel> armorUnitsArrayLabel;
+	ArrayList<JLabel> totalUnitsArrayLabel;
 	
 	public void initUnitsPanel(Main main) {
 		panelInternoTres =  new JPanel();
@@ -814,13 +823,11 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelPrincipalSuperior.setLayout(new GridBagLayout());
 
 		String[] units = {
-		        "Swordsman", "Spearman", "Crossbow", "Cannon", "Arrow Tower",
-		        "Catapult", "Rocket Launcher Tower", "Magician", "Priest"
+		        "     Swordsman", "     Spearman", "     Crossbow", "     Cannon", "     Arrow Tower",
+		        "     Catapult", "     Rocket Launcher Tower", "     Magician", "     Priest"
 		};
-		String[] unitHeaders = {"ARMOR", "DAMAGE", "", "", "FOOD", "WOOD", "IRON", "MANA"};
-		int armor = 50;
-		int damage = 75;
-		int[] resources = {100, 200, 300, 400};
+		String[] unitHeaders = {"ARMOR", "DAMAGE", "", ""};
+		
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH; // Adjusts both width and height
@@ -861,7 +868,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 				(main.getCurrentCivilization().getArmy())[8].size(),
 		};
 		
-		ArrayList<JLabel> totalUnitsArrayLabel = new ArrayList<JLabel>();
+		totalUnitsArrayLabel = new ArrayList<JLabel>();
 		
 		for (int i = 0; i < totalUnitsArray.length; i++) {
 			gbc.gridy = i + 1;
@@ -884,7 +891,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 				 0,
 		};
 		
-		ArrayList<JLabel> armorUnitsArrayLabel = new ArrayList<JLabel>();
+		armorUnitsArrayLabel = new ArrayList<JLabel>();
 		
 		for (int i = 0; i < units.length; i++) {
 			gbc.gridy = i + 1;
@@ -897,18 +904,18 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		// BASE_DAMAGE_SWORDSMAN +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY/100 * BASE_DAMAGE_SWORDSMAN);
 		
 		int[] damageUnitsArray = {
-				BASE_DAMAGE_SWORDSMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY/100 * ARMOR_SWORDSMAN),
-				BASE_DAMAGE_SPEARMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY/100 * ARMOR_SPEARMAN),
-				BASE_DAMAGE_CROSSBOW +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_CROSSBOW_BY_TECHNOLOGY/100 * ARMOR_CROSSBOW),
-				BASE_DAMAGE_CANNON +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_CANNON_BY_TECHNOLOGY/100 * ARMOR_CANNON),
-				BASE_DAMAGE_ARROWTOWER +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY/100 * ARMOR_ARROWTOWER),
-				BASE_DAMAGE_CATAPULT +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY/100 * ARMOR_CATAPULT),
-				BASE_DAMAGE_ROCKETLAUNCHERTOWER +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY/100 * ARMOR_ROCKETLAUNCHERTOWER),
-				BASE_DAMAGE_MAGICIAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_MAGICIAN_BY_TECHNOLOGY/100 * BASE_DAMAGE_MAGICIAN),
+				BASE_DAMAGE_SWORDSMAN +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY/100 * BASE_DAMAGE_SWORDSMAN),
+				BASE_DAMAGE_SPEARMAN +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY/100 * BASE_DAMAGE_SPEARMAN),
+				BASE_DAMAGE_CROSSBOW +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_CROSSBOW_BY_TECHNOLOGY/100 * BASE_DAMAGE_CROSSBOW),
+				BASE_DAMAGE_CANNON +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_CANNON_BY_TECHNOLOGY/100 * BASE_DAMAGE_CANNON),
+				BASE_DAMAGE_ARROWTOWER +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY/100 * BASE_DAMAGE_ARROWTOWER),
+				BASE_DAMAGE_CATAPULT +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY/100 * BASE_DAMAGE_CATAPULT),
+				BASE_DAMAGE_ROCKETLAUNCHERTOWER +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY/100 * BASE_DAMAGE_ROCKETLAUNCHERTOWER),
+				BASE_DAMAGE_MAGICIAN +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_MAGICIAN_BY_TECHNOLOGY/100 * BASE_DAMAGE_MAGICIAN),
 				0,
 		};
 		
-		ArrayList<JLabel> damageUnitsArrayLabel = new ArrayList<JLabel>();
+		damageUnitsArrayLabel = new ArrayList<JLabel>();
 		
 		for (int i = 0; i < units.length; i++) {
 			gbc.gridy = i + 1;
@@ -918,49 +925,41 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		    panelPrincipalSuperior.add(damageUnitsLabel, gbc);
 		}
 		
-		// Add unit rows
-		for (int i = 0; i < units.length; i++) {
-			
-			gbc.gridy = i + 1;
-		    gbc.gridx = 4;
-		    JTextField quantityField = new JTextField("", 4);
-		    quantityField.setHorizontalAlignment(JTextField.CENTER);
-		    panelPrincipalSuperior.add(quantityField, gbc);
-
-		    gbc.gridx = 5;
-		    JButton createButton = new JButton("Create");
-		    panelPrincipalSuperior.add(createButton, gbc);
-		    
-		    /*
-		    createButton.addActionListener(new ActionListener() {
-		        public void actionPerformed(ActionEvent e) {
-		            try {
-		                int currentTotal = Integer.parseInt(totalUnitsLabel.getText());
-		                int quantityToAdd = Integer.parseInt(quantityField.getText());
-		                if (quantityToAdd < 0) {
-		                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-		                    return;
-		                }
-		                totalUnitsLabel.setText(String.valueOf(currentTotal + quantityToAdd));
-		            } catch (NumberFormatException ex) {
-		                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please enter a valid number.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-		            }
-		        }
-		    });
-			*/
-		    
-		    for (int j = 0; j < resources.length; j++) {
-		        gbc.gridx = 6 + j;
-		        JLabel resourceLabel = new JLabel(String.valueOf(resources[j]));
-		        panelPrincipalSuperior.add(resourceLabel, gbc);
-		    }
+		ArrayList<JTextField> insertDesiredUnitsArrayJTextField = new ArrayList<JTextField>();
+		for (int i = 0; i < units.length; i++) {	
+				gbc.gridy = i + 1;
+			    gbc.gridx = 4;
+			    JTextField quantityField = new JTextField("0", 4);
+			    quantityField.setHorizontalAlignment(JTextField.CENTER);
+			    insertDesiredUnitsArrayJTextField.add(quantityField);
+			    panelPrincipalSuperior.add(quantityField, gbc);
 		}
-
+		
+		ArrayList<JButton> createButtonUnitsArray = new ArrayList<JButton>();
+		for (int i = 0; i < units.length; i++) {
+			gbc.gridy = i + 1;
+		    gbc.gridx = 5;
+		    JButton createButton = new JButton("Add");
+		    createButtonUnitsArray.add(createButton);
+		    panelPrincipalSuperior.add(createButton, gbc);
+		}
+		
+		
+		
+		/*
+		int[][] costIndividualUn.get =
+            {{FOOD_COST_FARM, WOOD_COST_FARM, IRON_COST_FARM, 0},
+             {FOOD_COST_CARPENTRY, WOOD_COST_CARPENTRY, IRON_COST_CARPENTRY, 0},
+             {FOOD_COST_SMITHY, WOOD_COST_SMITHY, IRON_COST_SMITHY, 0},
+             {FOOD_COST_MAGICTOWER, WOOD_COST_MAGICTOWER, IRON_COST_MAGICTOWER, 0},
+             {FOOD_COST_CHURCH, WOOD_COST_CHURCH, IRON_COST_CHURCH, 10000}};
+		*/
+		
         // ERROR
         // Attention message
-        
+		
         JPanel panelError = new JPanel();
-        attentionLabelUnits = new JLabel("ATTENTION: You don't have enough resources to create the new building!");
+        attentionLabelUnits = new JLabel("");
         attentionLabelUnits.setForeground(Color.RED);
         panelError.add(attentionLabelUnits);
 
@@ -975,7 +974,732 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelInternoTres.add(panelPrincipalUnidades, BorderLayout.CENTER);
 		panelInternoTres.add(panelInferior, BorderLayout.SOUTH);
 		tabbedPane.addTab("Units", panelInternoTres);
+		
+		createButtonUnitsArray.get(0).addActionListener(new ActionListener() {
+		
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						try { 
+							
+			                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(0).getText());
+			                if (quantityToAdd < 0) {
+			                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+			                    return;
+			                }
+			                
+			                JPanel panel = new JPanel();
+			                panel.setLayout(new BorderLayout());
+							JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+							
+							JPanel panelCoste = new JPanel();
+							panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+							
+							int foodCost = quantityToAdd * FOOD_COST_SWORDSMAN;
+							int woodCost = quantityToAdd * WOOD_COST_SWORDSMAN;
+							int ironCost = quantityToAdd * IRON_COST_SWORDSMAN;
+							int manaCost = quantityToAdd * MANA_COST_SWORDSMAN;
+							
+							JLabel espacioSuperior = new JLabel(" ");
+							JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+							JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+							JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+							JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+							JLabel espacioInferior = new JLabel(" ");
+							
+			                panelCoste.add(espacioSuperior);
+			                panelCoste.add(foodCostJLabel);
+			                panelCoste.add(woodCostJLabel);
+			                panelCoste.add(ironCostJLabel);
+			                panelCoste.add(manaCostJLabel);
+			                panelCoste.add(espacioInferior);
+			                
+			                JPanel confirmation = new JPanel();
+							 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+			                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+			                confirmation.add(confirmationLabel);
+			                
+			                panel.add(title, BorderLayout.NORTH);
+			                panel.add(panelCoste, BorderLayout.CENTER);
+			                panel.add(confirmation, BorderLayout.SOUTH);
+		
+			                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+		
+			                if (respuesta == JOptionPane.YES_OPTION) {
+			                    
+			                    System.out.println("SE HA SELECCIONADO SI");
+			                    
+			                    try {
+			                    	System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[0].size());
+									main.getCurrentCivilization().newSwordsman(quantityToAdd);
+									System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[0].size());
+									
+									updateResourceLabels(main);
+									updateUnitsLabel(main);
+									
+								} catch (ResourceException e1) {
+									
+									attentionLabelUnits.setText(e1.getMessage());
+									updateResourceLabels(main);
+									updateUnitsLabel(main);
+
+								}
+			                    
+			                } 
+			               
+			            } catch (NumberFormatException ex) {
+			                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+			            }
+						
+				}
+					
+		});
+		
+		createButtonUnitsArray.get(1).addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				try { 
+					
+	                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(1).getText());
+	                if (quantityToAdd < 0) {
+	                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+	                
+	                JPanel panel = new JPanel();
+	                panel.setLayout(new BorderLayout());
+					JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+					
+					JPanel panelCoste = new JPanel();
+					panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+					
+					int foodCost = quantityToAdd * FOOD_COST_SPEARMAN;
+					int woodCost = quantityToAdd * WOOD_COST_SPEARMAN;
+					int ironCost = quantityToAdd * IRON_COST_SPEARMAN;
+					int manaCost = quantityToAdd * MANA_COST_SPEARMAN;
+					
+					JLabel espacioSuperior = new JLabel(" ");
+					JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+					JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+					JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+					JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+					JLabel espacioInferior = new JLabel(" ");
+					
+	                panelCoste.add(espacioSuperior);
+	                panelCoste.add(foodCostJLabel);
+	                panelCoste.add(woodCostJLabel);
+	                panelCoste.add(ironCostJLabel);
+	                panelCoste.add(manaCostJLabel);
+	                panelCoste.add(espacioInferior);
+	                
+	                JPanel confirmation = new JPanel();
+					 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+	                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+	                confirmation.add(confirmationLabel);
+	                
+	                panel.add(title, BorderLayout.NORTH);
+	                panel.add(panelCoste, BorderLayout.CENTER);
+	                panel.add(confirmation, BorderLayout.SOUTH);
+
+	                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+	                if (respuesta == JOptionPane.YES_OPTION) {
+	                    
+	                    System.out.println("SE HA SELECCIONADO SI");
+	                    
+	                    try {
+	                    	System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[1].size());
+							main.getCurrentCivilization().newSpearman(quantityToAdd);
+							System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[1].size());
+							
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+							
+						} catch (ResourceException e1) {
+							
+							attentionLabelUnits.setText(e1.getMessage());
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+
+						}
+	                    
+	                } 
+	               
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
+			
+		});
+		
+		createButtonUnitsArray.get(2).addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				try { 
+					
+	                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(2).getText());
+	                if (quantityToAdd < 0) {
+	                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+	                
+	                JPanel panel = new JPanel();
+	                panel.setLayout(new BorderLayout());
+					JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+					
+					JPanel panelCoste = new JPanel();
+					panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+					
+					int foodCost = quantityToAdd * FOOD_COST_CROSSBOW;
+					int woodCost = quantityToAdd * WOOD_COST_CROSSBOW;
+					int ironCost = quantityToAdd * IRON_COST_CROSSBOW;
+					int manaCost = quantityToAdd * MANA_COST_CROSSBOW;
+					
+					JLabel espacioSuperior = new JLabel(" ");
+					JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+					JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+					JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+					JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+					JLabel espacioInferior = new JLabel(" ");
+					
+	                panelCoste.add(espacioSuperior);
+	                panelCoste.add(foodCostJLabel);
+	                panelCoste.add(woodCostJLabel);
+	                panelCoste.add(ironCostJLabel);
+	                panelCoste.add(manaCostJLabel);
+	                panelCoste.add(espacioInferior);
+	                
+	                JPanel confirmation = new JPanel();
+					 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+	                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+	                confirmation.add(confirmationLabel);
+	                
+	                panel.add(title, BorderLayout.NORTH);
+	                panel.add(panelCoste, BorderLayout.CENTER);
+	                panel.add(confirmation, BorderLayout.SOUTH);
+
+	                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+	                if (respuesta == JOptionPane.YES_OPTION) {
+	                    
+	                    System.out.println("SE HA SELECCIONADO SI");
+	                    
+	                    try {
+	                    	System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[2].size());
+							main.getCurrentCivilization().newCrossbow(quantityToAdd);
+							System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[2].size());
+							
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+							
+						} catch (ResourceException e1) {
+							
+							attentionLabelUnits.setText(e1.getMessage());
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+
+						}
+	                    
+	                } 
+	               
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
+			
+		});
+		
+		createButtonUnitsArray.get(3).addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				try { 
+					
+	                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(3).getText());
+	                if (quantityToAdd < 0) {
+	                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+	                
+	                JPanel panel = new JPanel();
+	                panel.setLayout(new BorderLayout());
+					JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+					
+					JPanel panelCoste = new JPanel();
+					panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+					
+					int foodCost = quantityToAdd * FOOD_COST_CANNON;
+					int woodCost = quantityToAdd * WOOD_COST_CANNON;
+					int ironCost = quantityToAdd * IRON_COST_CANNON;
+					int manaCost = quantityToAdd * MANA_COST_CANNON;
+					
+					JLabel espacioSuperior = new JLabel(" ");
+					JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+					JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+					JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+					JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+					JLabel espacioInferior = new JLabel(" ");
+					
+	                panelCoste.add(espacioSuperior);
+	                panelCoste.add(foodCostJLabel);
+	                panelCoste.add(woodCostJLabel);
+	                panelCoste.add(ironCostJLabel);
+	                panelCoste.add(manaCostJLabel);
+	                panelCoste.add(espacioInferior);
+	                
+	                JPanel confirmation = new JPanel();
+					 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+	                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+	                confirmation.add(confirmationLabel);
+	                
+	                panel.add(title, BorderLayout.NORTH);
+	                panel.add(panelCoste, BorderLayout.CENTER);
+	                panel.add(confirmation, BorderLayout.SOUTH);
+
+	                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+	                if (respuesta == JOptionPane.YES_OPTION) {
+	                    
+	                    System.out.println("SE HA SELECCIONADO SI");
+	                    
+	                    try {
+	   
+							main.getCurrentCivilization().newCannon(quantityToAdd);				
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+							
+						} catch (ResourceException e1) {
+							
+							attentionLabelUnits.setText(e1.getMessage());
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+
+						}
+	                    
+	                } 
+	               
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
+			
+		});
+	
+		createButtonUnitsArray.get(4).addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				try { 
+					
+	                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(4).getText());
+	                if (quantityToAdd < 0) {
+	                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+	                
+	                JPanel panel = new JPanel();
+	                panel.setLayout(new BorderLayout());
+					JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+					
+					JPanel panelCoste = new JPanel();
+					panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+					
+					int foodCost = quantityToAdd * FOOD_COST_ARROWTOWER;
+					int woodCost = quantityToAdd * WOOD_COST_ARROWTOWER;
+					int ironCost = quantityToAdd * IRON_COST_ARROWTOWER;
+					int manaCost = quantityToAdd * MANA_COST_ARROWTOWER;
+					
+					JLabel espacioSuperior = new JLabel(" ");
+					JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+					JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+					JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+					JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+					JLabel espacioInferior = new JLabel(" ");
+					
+	                panelCoste.add(espacioSuperior);
+	                panelCoste.add(foodCostJLabel);
+	                panelCoste.add(woodCostJLabel);
+	                panelCoste.add(ironCostJLabel);
+	                panelCoste.add(manaCostJLabel);
+	                panelCoste.add(espacioInferior);
+	                
+	                JPanel confirmation = new JPanel();
+					 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+	                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+	                confirmation.add(confirmationLabel);
+	                
+	                panel.add(title, BorderLayout.NORTH);
+	                panel.add(panelCoste, BorderLayout.CENTER);
+	                panel.add(confirmation, BorderLayout.SOUTH);
+
+	                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+	                if (respuesta == JOptionPane.YES_OPTION) {
+	                    
+	                    System.out.println("SE HA SELECCIONADO SI");
+	                    
+	                    try {
+							main.getCurrentCivilization().newArrowTower(quantityToAdd);
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+							
+						} catch (ResourceException e1) {
+							
+							attentionLabelUnits.setText(e1.getMessage());
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+
+						}
+	                    
+	                } 
+	               
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
+			
+		});
+		
+		createButtonUnitsArray.get(5).addActionListener(new ActionListener() {
+					
+					
+					public void actionPerformed(ActionEvent e) {
+						
+						try { 
+							
+			                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(5).getText());
+			                if (quantityToAdd < 0) {
+			                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+			                    return;
+			                }
+			                
+			                JPanel panel = new JPanel();
+			                panel.setLayout(new BorderLayout());
+							JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+							
+							JPanel panelCoste = new JPanel();
+							panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+							
+							int foodCost = quantityToAdd * FOOD_COST_CATAPULT;
+							int woodCost = quantityToAdd * WOOD_COST_CATAPULT;
+							int ironCost = quantityToAdd * IRON_COST_CATAPULT;
+							int manaCost = quantityToAdd * MANA_COST_CATAPULT;
+							
+							JLabel espacioSuperior = new JLabel(" ");
+							JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+							JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+							JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+							JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+							JLabel espacioInferior = new JLabel(" ");
+							
+			                panelCoste.add(espacioSuperior);
+			                panelCoste.add(foodCostJLabel);
+			                panelCoste.add(woodCostJLabel);
+			                panelCoste.add(ironCostJLabel);
+			                panelCoste.add(manaCostJLabel);
+			                panelCoste.add(espacioInferior);
+			                
+			                JPanel confirmation = new JPanel();
+							 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+			                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+			                confirmation.add(confirmationLabel);
+			                
+			                panel.add(title, BorderLayout.NORTH);
+			                panel.add(panelCoste, BorderLayout.CENTER);
+			                panel.add(confirmation, BorderLayout.SOUTH);
+		
+			                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+		
+			                if (respuesta == JOptionPane.YES_OPTION) {
+			                    
+			                    System.out.println("SE HA SELECCIONADO SI");
+			                    
+			                    try {
+									main.getCurrentCivilization().newCatapult(quantityToAdd);
+									updateResourceLabels(main);
+									updateUnitsLabel(main);
+									
+								} catch (ResourceException e1) {
+									
+									attentionLabelUnits.setText(e1.getMessage());
+									updateResourceLabels(main);
+									updateUnitsLabel(main);
+		
+								}
+			                    
+			                } 
+			               
+			            } catch (NumberFormatException ex) {
+			                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+			            }
+						
+					}
+					
+				});
+	
+		createButtonUnitsArray.get(6).addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				try { 
+					
+	                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(6).getText());
+	                if (quantityToAdd < 0) {
+	                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+	                
+	                JPanel panel = new JPanel();
+	                panel.setLayout(new BorderLayout());
+					JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+					
+					JPanel panelCoste = new JPanel();
+					panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+					
+					int foodCost = quantityToAdd * FOOD_COST_ROCKETLAUNCHERTOWER;
+					int woodCost = quantityToAdd * WOOD_COST_ROCKETLAUNCHERTOWER;
+					int ironCost = quantityToAdd * IRON_COST_ROCKETLAUNCHERTOWER;
+					int manaCost = quantityToAdd * MANA_COST_ROCKETLAUNCHERTOWER;
+					
+					JLabel espacioSuperior = new JLabel(" ");
+					JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+					JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+					JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+					JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+					JLabel espacioInferior = new JLabel(" ");
+					
+	                panelCoste.add(espacioSuperior);
+	                panelCoste.add(foodCostJLabel);
+	                panelCoste.add(woodCostJLabel);
+	                panelCoste.add(ironCostJLabel);
+	                panelCoste.add(manaCostJLabel);
+	                panelCoste.add(espacioInferior);
+	                
+	                JPanel confirmation = new JPanel();
+					 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+	                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+	                confirmation.add(confirmationLabel);
+	                
+	                panel.add(title, BorderLayout.NORTH);
+	                panel.add(panelCoste, BorderLayout.CENTER);
+	                panel.add(confirmation, BorderLayout.SOUTH);
+
+	                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+	                if (respuesta == JOptionPane.YES_OPTION) {
+	                    
+	                    System.out.println("SE HA SELECCIONADO SI");
+	                    
+	                    try {
+	                    	
+							main.getCurrentCivilization().newRocketLauncherTower(quantityToAdd);
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+							
+						} catch (ResourceException e1) {
+							
+							attentionLabelUnits.setText(e1.getMessage());
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+
+						}
+	                    
+	                } 
+	               
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
+			
+		});
+		
+		createButtonUnitsArray.get(7).addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				try { 
+					
+	                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(7).getText());
+	                if (quantityToAdd < 0) {
+	                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+	                
+	                JPanel panel = new JPanel();
+	                panel.setLayout(new BorderLayout());
+					JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+					
+					JPanel panelCoste = new JPanel();
+					panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+					
+					int foodCost = quantityToAdd * FOOD_COST_MAGICIAN;
+					int woodCost = quantityToAdd * WOOD_COST_MAGICIAN;
+					int ironCost = quantityToAdd * IRON_COST_MAGICIAN;
+					int manaCost = quantityToAdd * MANA_COST_MAGICIAN;
+					
+					JLabel espacioSuperior = new JLabel(" ");
+					JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+					JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+					JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+					JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+					JLabel espacioInferior = new JLabel(" ");
+					
+	                panelCoste.add(espacioSuperior);
+	                panelCoste.add(foodCostJLabel);
+	                panelCoste.add(woodCostJLabel);
+	                panelCoste.add(ironCostJLabel);
+	                panelCoste.add(manaCostJLabel);
+	                panelCoste.add(espacioInferior);
+	                
+	                JPanel confirmation = new JPanel();
+					 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+	                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+	                confirmation.add(confirmationLabel);
+	                
+	                panel.add(title, BorderLayout.NORTH);
+	                panel.add(panelCoste, BorderLayout.CENTER);
+	                panel.add(confirmation, BorderLayout.SOUTH);
+
+	                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+	                if (respuesta == JOptionPane.YES_OPTION) {
+	                    
+	                    System.out.println("SE HA SELECCIONADO SI");
+	                    
+	                    try {
+							main.getCurrentCivilization().newMagician(quantityToAdd);
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+							
+						} catch (ResourceException e1) {
+							
+							attentionLabelUnits.setText(e1.getMessage());
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+
+						}
+	                   
+	                    
+	                } 
+	               
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
+			
+		});
+	
+		createButtonUnitsArray.get(8).addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				try { 
+					
+	                int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(8).getText());
+	                if (quantityToAdd < 0) {
+	                    JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
+	                
+	                JPanel panel = new JPanel();
+	                panel.setLayout(new BorderLayout());
+					JLabel title = new JLabel("You will need the following resources to generate the units you desire: ");
+					
+					JPanel panelCoste = new JPanel();
+					panelCoste.setLayout(new BoxLayout(panelCoste, BoxLayout.Y_AXIS));
+					
+					int foodCost = quantityToAdd * FOOD_COST_PRIEST;
+					int woodCost = quantityToAdd * WOOD_COST_PRIEST;
+					int ironCost = quantityToAdd * IRON_COST_PRIEST;
+					int manaCost = quantityToAdd * MANA_COST_PRIEST;
+					
+					JLabel espacioSuperior = new JLabel(" ");
+					JLabel foodCostJLabel = new JLabel("  - Food: " + foodCost);
+					JLabel woodCostJLabel = new JLabel("  - Wood: " + woodCost);
+					JLabel ironCostJLabel = new JLabel("  - Iron: " + ironCost);
+					JLabel manaCostJLabel = new JLabel("  - Mana: " + manaCost);
+					JLabel espacioInferior = new JLabel(" ");
+					
+	                panelCoste.add(espacioSuperior);
+	                panelCoste.add(foodCostJLabel);
+	                panelCoste.add(woodCostJLabel);
+	                panelCoste.add(ironCostJLabel);
+	                panelCoste.add(manaCostJLabel);
+	                panelCoste.add(espacioInferior);
+	                
+	                JPanel confirmation = new JPanel();
+					 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+	                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
+	                confirmation.add(confirmationLabel);
+	                
+	                panel.add(title, BorderLayout.NORTH);
+	                panel.add(panelCoste, BorderLayout.CENTER);
+	                panel.add(confirmation, BorderLayout.SOUTH);
+
+	                int respuesta = JOptionPane.showConfirmDialog(null, panel, "Unit generation confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+	                if (respuesta == JOptionPane.YES_OPTION) {
+	                    
+	                    System.out.println("SE HA SELECCIONADO SI");
+	                    
+	                    try {
+							main.getCurrentCivilization().newPriest(quantityToAdd);
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+							
+						} catch (ResourceException e1) {
+							
+							attentionLabelUnits.setText(e1.getMessage());
+							updateResourceLabels(main);
+							updateUnitsLabel(main);
+
+						}
+	                   
+	                    // Se santifican unidades
+	                    if ((main.getCurrentCivilization().getArmy())[8].size() > 0) {
+	                    	System.out.println("UNIDADES SANTIFICADA / HAY PRIEST = " + (main.getCurrentCivilization().getArmy())[8].size());
+	                    	for (ArrayList<MilitaryUnit> unidades : main.getCurrentCivilization().getArmy()) {
+	            				System.out.println(unidades.size());
+	            				for (MilitaryUnit unidad : unidades) {
+	            					
+	            					if (unidad instanceof AttackUnit) {
+	            						((AttackUnit) unidad).setSanctified(true);
+	            		
+	            					} else if (unidad instanceof DefenseUnit) {
+	            						((DefenseUnit) unidad).setSanctified(true);
+	            				} 
+	            			 } 
+	                    
+	                    }
+	                  }
+	               } 
+	               
+	            } catch (NumberFormatException ex) {
+	                JOptionPane.showMessageDialog(panelPrincipalSuperior, "Please, enter a valid number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+	            }
+				
+			}
+			
+		});
+		
 	}
+	
+	
 	
 	public void initBattlePanel(Main main) {
 		
@@ -1011,7 +1735,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	        }
 	    }
 	
+	// UPDATE DE LABELS DE RECURSOS
 	public void updateResourceLabels(Main main) {
+		
 		foodEdificios.setText(String.valueOf(main.getCurrentCivilization().getFood()));
 		foodUnits.setText(String.valueOf(main.getCurrentCivilization().getFood()));
 		woodEdificios.setText(String.valueOf(main.getCurrentCivilization().getWood()));
@@ -1020,6 +1746,31 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		ironUnits.setText(String.valueOf(main.getCurrentCivilization().getIron()));
 		manaEdificios.setText(String.valueOf(main.getCurrentCivilization().getMana()));
 		manaUnits.setText(String.valueOf(main.getCurrentCivilization().getMana()));
+		
+		
+	}
+	
+	public void updateErrorLabel() {
+		
+	};
+	
+	public void updateUnitsLabel(Main main) {
+		
+		totalUnitsArrayLabel.get(0).setText(String.valueOf((main.getCurrentCivilization().getArmy())[0].size()));
+		totalUnitsArrayLabel.get(1).setText(String.valueOf((main.getCurrentCivilization().getArmy())[1].size()));
+		totalUnitsArrayLabel.get(2).setText(String.valueOf((main.getCurrentCivilization().getArmy())[2].size()));
+		totalUnitsArrayLabel.get(3).setText(String.valueOf((main.getCurrentCivilization().getArmy())[3].size()));
+		totalUnitsArrayLabel.get(4).setText(String.valueOf((main.getCurrentCivilization().getArmy())[4].size()));
+		totalUnitsArrayLabel.get(5).setText(String.valueOf((main.getCurrentCivilization().getArmy())[5].size()));
+		totalUnitsArrayLabel.get(6).setText(String.valueOf((main.getCurrentCivilization().getArmy())[6].size()));
+		totalUnitsArrayLabel.get(7).setText(String.valueOf((main.getCurrentCivilization().getArmy())[7].size()));
+		totalUnitsArrayLabel.get(8).setText(String.valueOf((main.getCurrentCivilization().getArmy())[8].size()));
+		
+		
+	}
+	
+	public void updateTechnology(Main main) {
+		
 	}
 	
 }

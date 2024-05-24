@@ -263,7 +263,7 @@ public class Civilization implements Variables {
 //metodos
 
 	//metodo para construir iglesia
-	void newChurch() throws ResourceException {
+	public void newChurch() throws ResourceException {
 		//aseguramos que se tengan los recursos 
 		if (getFood() > FOOD_COST_CHURCH && getWood() > WOOD_COST_CHURCH &&
 				getIron()> IRON_COST_CHURCH && getMana()>10000 ) {
@@ -281,7 +281,7 @@ public class Civilization implements Variables {
 	
 
 	//metodo para construir torre magica
-	void newMagicTower() throws ResourceException {
+	public void newMagicTower() throws ResourceException {
 		//aseguramos que se tengan los recursos 
 		if (getFood() > FOOD_COST_MAGICTOWER && getWood() > WOOD_COST_MAGICTOWER &&
 				getIron()> IRON_COST_MAGICTOWER ){
@@ -298,7 +298,7 @@ public class Civilization implements Variables {
 
 	}
 
-	void newFarm() throws ResourceException {
+	public void newFarm() throws ResourceException {
 		//aseguramos que se tengan los recursos 
 		if (getFood() > FOOD_COST_FARM && getWood() > WOOD_COST_FARM &&
 				getIron()> IRON_COST_FARM){
@@ -315,7 +315,7 @@ public class Civilization implements Variables {
 
 	}
 
-	void newCarpentry() throws ResourceException {
+	public void newCarpentry() throws ResourceException {
 		//aseguramos que se tengan los recursos 
 		if (getFood() > FOOD_COST_CARPENTRY && getWood() > WOOD_COST_CARPENTRY &&
 				getIron()> IRON_COST_CARPENTRY){
@@ -333,7 +333,7 @@ public class Civilization implements Variables {
 
 	}
 
-	void newSmithy() throws ResourceException {
+	public void newSmithy() throws ResourceException {
 		//aseguramos que se tengan los recursos 
 		if (getFood() > FOOD_COST_SMITHY && getWood() > WOOD_COST_SMITHY &&
 				getIron()> IRON_COST_SMITHY){
@@ -351,7 +351,7 @@ public class Civilization implements Variables {
 	}
 
 
-	void upgradeTechnologyDefense() throws ResourceException {
+	public void upgradeTechnologyDefense() throws ResourceException {
 		if (technologyDefense == 0) {//se paga el valor tec inicial
 			if (getFood() > 100 && getWood() > 200 &&
 					getIron()> UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST){
@@ -383,7 +383,7 @@ public class Civilization implements Variables {
 
 	}
 
-	void upgradeTechnologyAttack() throws ResourceException {
+	public void upgradeTechnologyAttack() throws ResourceException {
 		if (technologyAttack == 0) {//se paga el valor tec inicial
 			if (getFood() > 100 && getWood() > 200 &&
 					getIron()> UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST){
@@ -418,7 +418,7 @@ public class Civilization implements Variables {
 
 
 
-	void newSwordsman(int n) throws ResourceException {
+	public void newSwordsman(int n) throws ResourceException {
 
 		for (int i = 0; i < n; i++) { 
 			//comprobar si tenemos los recursos unidad a unidad
@@ -445,7 +445,7 @@ public class Civilization implements Variables {
 		}
 	}
 
-	void newSpearman(int n) throws ResourceException {
+	public void newSpearman(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
 			if (getFood() > FOOD_COST_SPEARMAN && getWood() > WOOD_COST_SPEARMAN &&
 					getIron()> IRON_COST_SPEARMAN){
@@ -466,13 +466,13 @@ public class Civilization implements Variables {
 		}
 	}
 
-	void newCrossbow(int n) throws ResourceException {
+	public void newCrossbow(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
 			if ( getWood() > WOOD_COST_CROSSBOW &&
 					getIron()> IRON_COST_CROSSBOW){
 				this.setWood(wood-WOOD_COST_CROSSBOW);
 				this.setIron(iron-IRON_COST_CROSSBOW);
-				int newArmor = Variables.ARMOR_CROSSBOW+(getTechnologyDefense()+
+				int newArmor = ARMOR_CROSSBOW +(getTechnologyDefense()+
 						Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.ARMOR_CROSSBOW/100;
 				int newDamage = Variables.BASE_DAMAGE_CROSSBOW+(getTechnologyAttack()+
 						Variables.PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*Variables.BASE_DAMAGE_CROSSBOW/100;
@@ -487,7 +487,7 @@ public class Civilization implements Variables {
 	}
 
 
-	void newCannon(int n) throws ResourceException {
+	public void newCannon(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
 			if (getWood() > WOOD_COST_CANNON &&
 					getIron()> IRON_COST_CANNON){
@@ -508,7 +508,7 @@ public class Civilization implements Variables {
 	}
 
 
-	void newArrowTower(int n) throws ResourceException {
+	public void newArrowTower(int n) throws ResourceException {
 
 		for (int i = 0; i < n; i++) { 
 			if (getWood() > WOOD_COST_ARROWTOWER){
@@ -528,7 +528,7 @@ public class Civilization implements Variables {
 	}
 
 
-	void newCatapult(int n) throws ResourceException {
+	public void newCatapult(int n) throws ResourceException {
 
 		for (int i = 0; i < n; i++) { 
 			if (getWood() > WOOD_COST_CATAPULT && getIron()> IRON_COST_CATAPULT){
@@ -549,7 +549,7 @@ public class Civilization implements Variables {
 	}
 
 
-	void newRocketLauncherTower(int n) throws ResourceException {
+	public void newRocketLauncherTower(int n) throws ResourceException {
 
 		for (int i = 0; i < n; i++) { 
 			if (getWood() > WOOD_COST_ROCKETLAUNCHERTOWER && getIron()> IRON_COST_ROCKETLAUNCHERTOWER){
@@ -571,7 +571,7 @@ public class Civilization implements Variables {
 
 
 
-	void newMagician(int n) throws ResourceException {
+	public void newMagician(int n) throws ResourceException {
 
 
 		for (int i = 0; i < n; i++) { 
@@ -596,7 +596,7 @@ public class Civilization implements Variables {
 	}
 
 
-	void newPriest(int n) throws ResourceException {
+	public void newPriest(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
 			if (getFood() > FOOD_COST_PRIEST && getMana()> MANA_COST_PRIEST){
 				this.setFood(food-FOOD_COST_PRIEST);
@@ -613,7 +613,7 @@ public class Civilization implements Variables {
 		}
 	}
 
-	void printStats() {
+	public void printStats() {
 
 		System.out.println("           ******************************CIVILIZATION STATE******************************           ");
 		System.out.println();

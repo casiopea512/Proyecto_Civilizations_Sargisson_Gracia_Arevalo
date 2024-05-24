@@ -1,4 +1,4 @@
-package pkg_Principal;
+package intGrafica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +12,8 @@ import javax.swing.JTabbedPane;
 
 import exceptions.ResourceException;
 import interfaces.Variables;
+import pkg_Principal.Battle;
+import pkg_Principal.Main;
 
 public class InicialEmpezarPartida extends JFrame implements Variables {
 
@@ -46,6 +48,7 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 					principal.setCurrentCivilization(principal.loadCivilization(2));
 					principal.setCurrentCivilizationID(2);
 
+					
 					JTabbedPaneUno ventanaPrincipal = new JTabbedPaneUno(principal);
 					
 					Timer timer = new Timer();
@@ -161,6 +164,7 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 			                        	System.out.println("Spearman = " + principal.getEnemyUnits()[1].size());
 			                        	System.out.println("Crossbow = " + principal.getEnemyUnits()[2].size());
 			                        	System.out.println("Cannon = " + principal.getEnemyUnits()[3].size());
+			                        	
 			    	       				// SOLAMENTE ES PARA VER RESULTADOS
 			                        	/*
 			    	       				for (ArrayList<MilitaryUnit> unidades : principal.getEnemyUnits()) {
@@ -229,7 +233,7 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 			        					principal.addResourcesCivilization(resourcesWin, principal.getCurrentCivilization());
 			        				}
 			        				
-			        				
+			        				new BattleOcurred(civilizationWin, resourcesWin);
 			        				// guardar el juego
 			        				principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
 			                        

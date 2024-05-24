@@ -261,7 +261,6 @@ public class Main implements Variables {
 			String QUERY = "select civilization_id, name, username, battles_counter from civilization_stats";
 			ResultSet rs = stmt.executeQuery(QUERY);   	        
 			
-			
 			while (rs.next()) {
 				
 				System.out.println("RS EJECUTADO");
@@ -640,11 +639,13 @@ public class Main implements Variables {
 	}
 	
 	public void updateUnits(int civilizationID, Civilization civilization) {
+		
 		Connection conn = null;
 		CallableStatement stmt = null;
         String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
         String USER = "Civilization";
         String PASS = "civilization";
+        
         try {
         	
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -710,7 +711,9 @@ public class Main implements Variables {
 					}
 				}
 			} 
+			
 			System.out.println("INSERT de unidades CORRECTAMENTE");
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
