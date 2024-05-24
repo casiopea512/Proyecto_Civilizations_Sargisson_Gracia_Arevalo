@@ -457,14 +457,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 				            				principal.getCurrentCivilization().setIron(principal.getCurrentCivilization().getIron()+ CIVILIZATION_IRON_GENERATED + CIVILIZATION_IRON_GENERATED_PER_SMITHY * principal.getCurrentCivilization().getSmithy());
 				            				principal.getCurrentCivilization().setMana(principal.getCurrentCivilization().getMana()+ CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * principal.getCurrentCivilization().getMagicTower());
 				            				
-				            				ventanaPrincipal.getFoodEdificios().setText(String.valueOf(principal.getCurrentCivilization().getFood()));
-				            				ventanaPrincipal.getFoodUnits().setText(String.valueOf(principal.getCurrentCivilization().getFood()));
-				            				ventanaPrincipal.getWoodEdificios().setText(String.valueOf(principal.getCurrentCivilization().getWood()));
-				            				ventanaPrincipal.getWoodUnits().setText(String.valueOf(principal.getCurrentCivilization().getWood()));
-				            				ventanaPrincipal.getIronEdificios().setText(String.valueOf(principal.getCurrentCivilization().getIron()));
-				            				ventanaPrincipal.getIronUnits().setText(String.valueOf(principal.getCurrentCivilization().getIron()));
-				            				ventanaPrincipal.getManaEdificios().setText(String.valueOf(principal.getCurrentCivilization().getMana()));
-				            				ventanaPrincipal.getManaUnits().setText(String.valueOf(principal.getCurrentCivilization().getMana()));
+				            				ventanaPrincipal.updateResourceLabels(principal);
 				            				
 				            				System.out.println("-".repeat(100));
 				            				
@@ -585,6 +578,12 @@ class PantallaPrincipal extends JFrame implements Variables {
 				        				// guardar el juego
 				        				principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
 				                        
+				        				//updates visuales
+				        				ventanaPrincipal.updateResourceLabels(principal);
+				        				ventanaPrincipal.updateUnitsLabel(principal);
+				        				ventanaPrincipal.updateTechnologyLabels(principal);
+				        				ventanaPrincipal.updateBattleCounter(principal);
+				        				
 				                        //
 				                        
 				                        System.out.println("=/".repeat(100));
@@ -937,14 +936,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 				            				principal.getCurrentCivilization().setIron(principal.getCurrentCivilization().getIron()+ CIVILIZATION_IRON_GENERATED + CIVILIZATION_IRON_GENERATED_PER_SMITHY * principal.getCurrentCivilization().getSmithy());
 				            				principal.getCurrentCivilization().setMana(principal.getCurrentCivilization().getMana()+ CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * principal.getCurrentCivilization().getMagicTower());
 				            				
-				            				ventanaPrincipal.getFoodEdificios().setText(String.valueOf(principal.getCurrentCivilization().getFood()));
-				            				ventanaPrincipal.getFoodUnits().setText(String.valueOf(principal.getCurrentCivilization().getFood()));
-				            				ventanaPrincipal.getWoodEdificios().setText(String.valueOf(principal.getCurrentCivilization().getWood()));
-				            				ventanaPrincipal.getWoodUnits().setText(String.valueOf(principal.getCurrentCivilization().getWood()));
-				            				ventanaPrincipal.getIronEdificios().setText(String.valueOf(principal.getCurrentCivilization().getIron()));
-				            				ventanaPrincipal.getIronUnits().setText(String.valueOf(principal.getCurrentCivilization().getIron()));
-				            				ventanaPrincipal.getManaEdificios().setText(String.valueOf(principal.getCurrentCivilization().getMana()));
-				            				ventanaPrincipal.getManaUnits().setText(String.valueOf(principal.getCurrentCivilization().getMana()));
+				            				ventanaPrincipal.updateResourceLabels(principal);
 				            				
 				            				System.out.println("-".repeat(100));
 				            				
@@ -1064,7 +1056,13 @@ class PantallaPrincipal extends JFrame implements Variables {
 				        				
 				        				// guardar el juego
 				        				principal.saveGame(principal.getCurrentCivilizationID(), principal.getCurrentCivilization());
-				                        
+				        				
+				        				//updates visuales
+				        				ventanaPrincipal.updateResourceLabels(principal);
+				        				ventanaPrincipal.updateUnitsLabel(principal);
+				        				ventanaPrincipal.updateTechnologyLabels(principal);
+				        				ventanaPrincipal.updateBattleCounter(principal);
+				        				
 				                        //
 				                        
 				                        System.out.println("=/".repeat(100));
