@@ -256,7 +256,6 @@ public class Civilization implements Variables {
 		return timeLeft;
 	}
 
-
 	public void setTimeLeft(int timeLeft) {
 		this.timeLeft = timeLeft;
 	}
@@ -276,7 +275,7 @@ public class Civilization implements Variables {
 			this.church+= 1;//suma una 
 
 		}else {
-			throw new ResourceException("You do not have enough resources to build a church");//se controla la falta de recursos
+			throw new ResourceException("You do not have enough resources to build a Church");//se controla la falta de recursos
 		}
 	}
 	
@@ -324,7 +323,7 @@ public class Civilization implements Variables {
 			this.setFood(food-FOOD_COST_CARPENTRY);
 			this.setWood(wood-WOOD_COST_CARPENTRY);
 			this.setIron(iron-IRON_COST_CARPENTRY);
-			this.farm += 1;//suma una farm
+			this.carpentry += 1;//suma una farm
 			this.setWood(wood+CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY);//incremento en wood
 		} else {
 			//se controla la falta de recursos
@@ -342,11 +341,11 @@ public class Civilization implements Variables {
 			this.setFood(food-FOOD_COST_SMITHY);
 			this.setWood(wood-WOOD_COST_SMITHY);
 			this.setIron(iron-IRON_COST_SMITHY);
-			this.farm += 1;//suma una farm
+			this.smithy += 1;//suma una farm
 			this.setIron(iron + CIVILIZATION_IRON_GENERATED_PER_SMITHY);//incremento del 5%
 		} else {
 			//se controla la falta de recursos
-			throw new ResourceException("You do not have enough resources to build a Carpentry");
+			throw new ResourceException("You do not have enough resources to build a Smithy");
 		}
 
 	}
@@ -364,7 +363,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("You do not have resources to improve your defense technology");
+				throw new ResourceException("You do not have resources to improve your Defense Technology");
 			}
 		}else {//se calcula la cantidad a pagar dependiendo del nivel tec
 			if (getFood() > 100 + 100*(0.1*technologyDefense) && getWood() > 200*(0.15*technologyDefense) &&
@@ -377,7 +376,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("You do not have resources to improve your defense technology");
+				throw new ResourceException("You do not have resources to improve your Defense Technology");
 			}
 
 		}
@@ -396,7 +395,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("You do not have resources to improve your attack technology");
+				throw new ResourceException("You do not have resources to improve your Attack Technology");
 			}
 		}else {//se calcula la cantidad a pagar dependiendo del nivel tec
 			if (getFood() > 100 + 100*(0.1*technologyAttack) && getWood() > 200*(0.15*technologyAttack) &&
@@ -409,7 +408,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("You do not have resources to improve your attack technology");
+				throw new ResourceException("You do not have resources to improve your Attack Technology");
 			}
 
 		}

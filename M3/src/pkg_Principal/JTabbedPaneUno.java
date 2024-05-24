@@ -456,6 +456,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	// - PanelPrincipalSuperior
 	// - PanelErrores
 	
+	JLabel attentionLabelBuilding;
+	
 	public void initBuildingsAndTechnologyPanel(Main main) {
 
 		panelInternoDos = new JPanel();
@@ -542,10 +544,6 @@ public class JTabbedPaneUno extends JFrame implements Variables {
                 panelPrincipalSuperior.add(resourceValue, gbc);
             }
         }
-
-        System.out.println("LONGITUD DE BOTONES: " + arrayButtons.size());
-        System.out.println("LONGITUD DE JLABEL: " + arrayJLabel.size());
-        
         
         // EVENTOS DE LOS BOTONES
         
@@ -555,23 +553,70 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 				try {
 					main.getCurrentCivilization().newFarm();
 					arrayJLabel.get(0).setText("Total: " + main.getCurrentCivilization().getFarm());
-					this.foodEdificios.setText(String.valueOf(main.getCurrentCivilization().getFood()));
-    				
+					updateResourceLabels(main);
 				} catch (ResourceException e1) {
-					e1.printStackTrace();
+					attentionLabelBuilding.setText(e1.getMessage());
+					
 				}
 			}
         	
         });
-        /*
-        ventanaPrincipal.getFoodUnits().setText(String.valueOf(principal.getCurrentCivilization().getFood()));
-		ventanaPrincipal.getWoodEdificios().setText(String.valueOf(principal.getCurrentCivilization().getWood()));
-		ventanaPrincipal.getWoodUnits().setText(String.valueOf(principal.getCurrentCivilization().getWood()));
-		ventanaPrincipal.getIronEdificios().setText(String.valueOf(principal.getCurrentCivilization().getIron()));
-		ventanaPrincipal.getIronUnits().setText(String.valueOf(principal.getCurrentCivilization().getIron()));
-		ventanaPrincipal.getManaEdificios().setText(String.valueOf(principal.getCurrentCivilization().getMana()));
-		ventanaPrincipal.getManaUnits().setText(String.valueOf(principal.getCurrentCivilization().getMana()));
-        */
+        arrayButtons.get(1).addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				try {
+					main.getCurrentCivilization().newCarpentry();
+					arrayJLabel.get(1).setText("Total: " + main.getCurrentCivilization().getCarpentry());
+					updateResourceLabels(main);
+				} catch (ResourceException e1) {
+					attentionLabelBuilding.setText(e1.getMessage());
+					
+				}
+			}
+        	
+        });
+        arrayButtons.get(2).addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				try {
+					main.getCurrentCivilization().newSmithy();
+					arrayJLabel.get(2).setText("Total: " + main.getCurrentCivilization().getSmithy());
+					updateResourceLabels(main);
+				} catch (ResourceException e1) {
+					attentionLabelBuilding.setText(e1.getMessage());
+					
+				}
+			}
+        	
+        });
+        arrayButtons.get(3).addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				try {
+					main.getCurrentCivilization().newMagicTower();
+					arrayJLabel.get(3).setText("Total: " + main.getCurrentCivilization().getMagicTower());
+					updateResourceLabels(main);
+				} catch (ResourceException e1) {
+					attentionLabelBuilding.setText(e1.getMessage());
+					
+				}
+			}
+        	
+        });
+        arrayButtons.get(4).addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				try {
+					main.getCurrentCivilization().newChurch();
+					arrayJLabel.get(4).setText("Total: " + main.getCurrentCivilization().getChurch());
+					updateResourceLabels(main);
+				} catch (ResourceException e1) {
+					attentionLabelBuilding.setText(e1.getMessage());
+				}
+			}
+        	
+        });
+        
         
         // TITULOS
 
@@ -596,8 +641,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         panelPrincipalSuperior.add(technologyLabel, gbc);
 
         gbc.gridwidth = 1; // Reset gridwidth after use
-
+        
+        
         // TECNOLOGIA DE ATAQUE
+        
         JLabel attackLabel = new JLabel("    Attack Level");
         gbc.gridx = 0;
         gbc.gridy = buildings.length + 2;
@@ -615,8 +662,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         gbc.weighty = 0.1;
         gbc.fill = GridBagConstraints.NONE;
         panelPrincipalSuperior.add(attackButton, gbc);
-
-        JLabel attackLevelLabel = new JLabel("Current level: " + 2);
+        
+        JLabel attackLevelLabel = new JLabel("Current level: " + main.getCurrentCivilization().getTechnologyAttack());
         gbc.gridx = 2;
         gbc.gridy = buildings.length + 2;
         gbc.anchor = GridBagConstraints.WEST;
@@ -624,7 +671,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         gbc.weighty = 0.1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelPrincipalSuperior.add(attackLevelLabel, gbc);
-
+        
+       
+        ArrayList<JLabel> arrayCostAttackTechnology = new ArrayList<JLabel>();
         int[] costAttackTechnology = {12323232, 111111, 32323232, 0};
         for (int i = 0; i < costAttackTechnology.length; i++) {
             JLabel technologyCost = new JLabel(String.valueOf(costAttackTechnology[i]));
@@ -633,10 +682,30 @@ public class JTabbedPaneUno extends JFrame implements Variables {
             gbc.weightx = 0.1;
             gbc.weighty = 0.1;
             gbc.fill = GridBagConstraints.HORIZONTAL;
+            arrayCostAttackTechnology.add(technologyCost);
             panelPrincipalSuperior.add(technologyCost, gbc);
         }
+        
+        attackButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					main.getCurrentCivilization().upgradeTechnologyAttack();;
+					attackLevelLabel.setText("Current level: " + main.getCurrentCivilization().getTechnologyAttack());
+					updateResourceLabels(main);
+					int[] costAttackTechnology = {55555, 5555, 5555, 55555};
+					arrayCostAttackTechnology.get(0).setText(String.valueOf(costAttackTechnology[0]));
+					arrayCostAttackTechnology.get(1).setText(String.valueOf(costAttackTechnology[1]));
+					arrayCostAttackTechnology.get(2).setText(String.valueOf(costAttackTechnology[2]));
+					arrayCostAttackTechnology.get(3).setText(String.valueOf(costAttackTechnology[3]));
+				} catch (ResourceException e1) {
+					attentionLabelBuilding.setText(e1.getMessage());
+				}
+			}
+        });
 
+        
         // TECNOLOGIA DE DEFENSA
+        
         JLabel defenseLabel = new JLabel("    Defense Level");
         gbc.gridx = 0;
         gbc.gridy = buildings.length + 3;
@@ -655,7 +724,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         gbc.fill = GridBagConstraints.NONE;
         panelPrincipalSuperior.add(defenseButton, gbc);
 
-        JLabel defenseLevelLabel = new JLabel("Current level: " + 3);
+        JLabel defenseLevelLabel = new JLabel("Current level: " + main.getCurrentCivilization().getTechnologyDefense());
         gbc.gridx = 2;
         gbc.gridy = buildings.length + 3;
         gbc.anchor = GridBagConstraints.WEST;
@@ -663,8 +732,11 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         gbc.weighty = 0.1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelPrincipalSuperior.add(defenseLevelLabel, gbc);
-
+        
+       
+        ArrayList<JLabel> arrayCostDefenseTechnology = new ArrayList<JLabel>();
         int[] costDefenseTechnology = {22222222, 333333333, 1111111, 0};
+      
         for (int i = 0; i < costDefenseTechnology.length; i++) {
             JLabel technologyCost = new JLabel(String.valueOf(costDefenseTechnology[i]));
             gbc.gridx = i + 3;
@@ -672,16 +744,38 @@ public class JTabbedPaneUno extends JFrame implements Variables {
             gbc.weightx = 0.1;
             gbc.weighty = 0.1;
             gbc.fill = GridBagConstraints.HORIZONTAL;
+            arrayCostDefenseTechnology.add(technologyCost);
             panelPrincipalSuperior.add(technologyCost, gbc);
         }
+        
+        defenseButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				try {
+					main.getCurrentCivilization().upgradeTechnologyDefense();;
+					defenseLevelLabel.setText("Current level: " + main.getCurrentCivilization().getTechnologyDefense());
+					updateResourceLabels(main);
+					
+					int[] costDefenseTechnology = {55555, 5555, 5555, 55555};
+					arrayCostDefenseTechnology.get(0).setText(String.valueOf(costDefenseTechnology[0]));
+					arrayCostDefenseTechnology.get(1).setText(String.valueOf(costDefenseTechnology[1]));
+					arrayCostDefenseTechnology.get(2).setText(String.valueOf(costDefenseTechnology[2]));
+					arrayCostDefenseTechnology.get(3).setText(String.valueOf(costDefenseTechnology[3]));
+					
+				} catch (ResourceException e1) {
+					attentionLabelBuilding.setText(e1.getMessage());
+				}
+			}
+        	
+        });
 
         // ERROR
         // Attention message
         
         JPanel panelError = new JPanel();
-        JLabel attentionLabel = new JLabel("ATTENTION: You don't have enough resources to create the new building!");
-        attentionLabel.setForeground(Color.RED);
-        panelError.add(attentionLabel);
+        attentionLabelBuilding = new JLabel("");
+        attentionLabelBuilding.setForeground(Color.RED);
+        panelError.add(attentionLabelBuilding);
 
         panelPrincipalEdificios.add(panelPrincipalSuperior, BorderLayout.CENTER);
         panelPrincipalEdificios.add(panelError, BorderLayout.SOUTH);
@@ -702,6 +796,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	// - PanelPrincipalSuperior
 	// - PanelErrores
 	
+	JLabel attentionLabelUnits;
+	
 	public void initUnitsPanel(Main main) {
 		panelInternoTres =  new JPanel();
 		panelInternoTres.setBackground(Color.GREEN);
@@ -721,7 +817,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		        "Swordsman", "Spearman", "Crossbow", "Cannon", "Arrow Tower",
 		        "Catapult", "Rocket Launcher Tower", "Magician", "Priest"
 		};
-		String[] headers = {"ARMOR", "DAMAGE", "", "", "FOOD", "WOOD", "IRON", "MANA"};
+		String[] unitHeaders = {"ARMOR", "DAMAGE", "", "", "FOOD", "WOOD", "IRON", "MANA"};
 		int armor = 50;
 		int damage = 75;
 		int[] resources = {100, 200, 300, 400};
@@ -740,37 +836,102 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		gbc.gridx = 1;
 		panelPrincipalSuperior.add(new JLabel("TOTAL UNITS"), gbc);
 
-		for (int i = 0; i < headers.length; i++) {
+		for (int i = 0; i < unitHeaders.length; i++) {
 		    gbc.gridx = i + 2;
-		    JLabel headerLabel = new JLabel(headers[i]);
+		    JLabel headerLabel = new JLabel(unitHeaders[i]);
 		    panelPrincipalSuperior.add(headerLabel, gbc);
 		}
-
+		
+		// NOMBRES
+		for (int i = 0; i < units.length; i++) {
+			 gbc.gridy = i + 1;
+			 gbc.gridx = 0;
+			 panelPrincipalSuperior.add(new JLabel(units[i]), gbc);
+		}
+		
+		int[] totalUnitsArray = {
+				(main.getCurrentCivilization().getArmy())[0].size(),
+				(main.getCurrentCivilization().getArmy())[1].size(),
+				(main.getCurrentCivilization().getArmy())[2].size(),
+				(main.getCurrentCivilization().getArmy())[3].size(),
+				(main.getCurrentCivilization().getArmy())[4].size(),
+				(main.getCurrentCivilization().getArmy())[5].size(),
+				(main.getCurrentCivilization().getArmy())[6].size(),
+				(main.getCurrentCivilization().getArmy())[7].size(),
+				(main.getCurrentCivilization().getArmy())[8].size(),
+		};
+		
+		ArrayList<JLabel> totalUnitsArrayLabel = new ArrayList<JLabel>();
+		
+		for (int i = 0; i < totalUnitsArray.length; i++) {
+			gbc.gridy = i + 1;
+		    gbc.gridx = 1;
+		    JLabel totalUnitsLabel = new JLabel(String.valueOf(totalUnitsArray[i]));
+		    totalUnitsArrayLabel.add(totalUnitsLabel);
+		    panelPrincipalSuperior.add(totalUnitsLabel, gbc);
+		}
+		
+		// ARMOR_SWORDSMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY/100 * ARMOR_SWORDSMAN);
+		int[] armorUnitsArray = {
+				 ARMOR_SWORDSMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY/100 * ARMOR_SWORDSMAN),
+				 ARMOR_SPEARMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY/100 * ARMOR_SPEARMAN),
+				 ARMOR_CROSSBOW +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY/100 * ARMOR_CROSSBOW),
+				 ARMOR_CANNON +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_CANNON_BY_TECHNOLOGY/100 * ARMOR_CANNON),
+				 ARMOR_ARROWTOWER +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY/100 * ARMOR_ARROWTOWER),
+				 ARMOR_CATAPULT +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY/100 * ARMOR_CATAPULT),
+				 ARMOR_ROCKETLAUNCHERTOWER +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY/100 * ARMOR_ROCKETLAUNCHERTOWER),
+				 0,
+				 0,
+		};
+		
+		ArrayList<JLabel> armorUnitsArrayLabel = new ArrayList<JLabel>();
+		
+		for (int i = 0; i < units.length; i++) {
+			gbc.gridy = i + 1;
+		    gbc.gridx = 2;
+		    JLabel armorUnitsLabel = new JLabel(String.valueOf(armorUnitsArray[i]));
+		    armorUnitsArrayLabel.add(armorUnitsLabel);
+		    panelPrincipalSuperior.add(armorUnitsLabel, gbc);
+		}
+		
+		// BASE_DAMAGE_SWORDSMAN +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY/100 * BASE_DAMAGE_SWORDSMAN);
+		
+		int[] damageUnitsArray = {
+				BASE_DAMAGE_SWORDSMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY/100 * ARMOR_SWORDSMAN),
+				BASE_DAMAGE_SPEARMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY/100 * ARMOR_SPEARMAN),
+				BASE_DAMAGE_CROSSBOW +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_CROSSBOW_BY_TECHNOLOGY/100 * ARMOR_CROSSBOW),
+				BASE_DAMAGE_CANNON +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_CANNON_BY_TECHNOLOGY/100 * ARMOR_CANNON),
+				BASE_DAMAGE_ARROWTOWER +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY/100 * ARMOR_ARROWTOWER),
+				BASE_DAMAGE_CATAPULT +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY/100 * ARMOR_CATAPULT),
+				BASE_DAMAGE_ROCKETLAUNCHERTOWER +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY/100 * ARMOR_ROCKETLAUNCHERTOWER),
+				BASE_DAMAGE_MAGICIAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ATTACK_MAGICIAN_BY_TECHNOLOGY/100 * BASE_DAMAGE_MAGICIAN),
+				0,
+		};
+		
+		ArrayList<JLabel> damageUnitsArrayLabel = new ArrayList<JLabel>();
+		
+		for (int i = 0; i < units.length; i++) {
+			gbc.gridy = i + 1;
+		    gbc.gridx = 3;
+		    JLabel damageUnitsLabel = new JLabel(String.valueOf(damageUnitsArray[i]));
+		    damageUnitsArrayLabel.add(damageUnitsLabel);
+		    panelPrincipalSuperior.add(damageUnitsLabel, gbc);
+		}
+		
 		// Add unit rows
 		for (int i = 0; i < units.length; i++) {
-		    gbc.gridy = i + 1;
-		    gbc.gridx = 0;
-		    panelPrincipalSuperior.add(new JLabel(units[i]), gbc);
-
-		    gbc.gridx = 1;
-		    JLabel totalUnitsLabel = new JLabel("50");
-		    panelPrincipalSuperior.add(totalUnitsLabel, gbc);
-
-		    gbc.gridx = 2;
-		    panelPrincipalSuperior.add(new JLabel(String.valueOf(armor)), gbc);
-
-		    gbc.gridx = 3;
-		    panelPrincipalSuperior.add(new JLabel(String.valueOf(damage)), gbc);
-
+			
+			gbc.gridy = i + 1;
 		    gbc.gridx = 4;
-		    JTextField quantityField = new JTextField("10", 5);
+		    JTextField quantityField = new JTextField("", 4);
 		    quantityField.setHorizontalAlignment(JTextField.CENTER);
 		    panelPrincipalSuperior.add(quantityField, gbc);
 
 		    gbc.gridx = 5;
 		    JButton createButton = new JButton("Create");
 		    panelPrincipalSuperior.add(createButton, gbc);
-
+		    
+		    /*
 		    createButton.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
 		            try {
@@ -786,7 +947,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		            }
 		        }
 		    });
-
+			*/
+		    
 		    for (int j = 0; j < resources.length; j++) {
 		        gbc.gridx = 6 + j;
 		        JLabel resourceLabel = new JLabel(String.valueOf(resources[j]));
@@ -798,9 +960,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         // Attention message
         
         JPanel panelError = new JPanel();
-        JLabel attentionLabel = new JLabel("ATTENTION: You don't have enough resources to create the new building!");
-        attentionLabel.setForeground(Color.RED);
-        panelError.add(attentionLabel);
+        attentionLabelUnits = new JLabel("ATTENTION: You don't have enough resources to create the new building!");
+        attentionLabelUnits.setForeground(Color.RED);
+        panelError.add(attentionLabelUnits);
 
         panelPrincipalUnidades.add(panelPrincipalSuperior, BorderLayout.CENTER);
         panelPrincipalUnidades.add(panelError, BorderLayout.SOUTH);
@@ -848,6 +1010,17 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	            return null;
 	        }
 	    }
+	
+	public void updateResourceLabels(Main main) {
+		foodEdificios.setText(String.valueOf(main.getCurrentCivilization().getFood()));
+		foodUnits.setText(String.valueOf(main.getCurrentCivilization().getFood()));
+		woodEdificios.setText(String.valueOf(main.getCurrentCivilization().getWood()));
+		woodUnits.setText(String.valueOf(main.getCurrentCivilization().getWood()));
+		ironEdificios.setText(String.valueOf(main.getCurrentCivilization().getIron()));
+		ironUnits.setText(String.valueOf(main.getCurrentCivilization().getIron()));
+		manaEdificios.setText(String.valueOf(main.getCurrentCivilization().getMana()));
+		manaUnits.setText(String.valueOf(main.getCurrentCivilization().getMana()));
+	}
 	
 }
 

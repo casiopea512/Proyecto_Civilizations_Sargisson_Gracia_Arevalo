@@ -30,7 +30,7 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 			setVisible(true); 
 		}
 		
-		public void initComponents(){
+	public void initComponents(){
 			
 			JPanel panel = new JPanel();
 			JButton boton = new JButton("Empezar partida");
@@ -43,9 +43,9 @@ public class InicialEmpezarPartida extends JFrame implements Variables {
 					 
 					Main principal = new Main();
 					
-					principal.setCurrentCivilization(principal.loadCivilization(1));
-					principal.setCurrentCivilizationID(1);
-					
+					principal.setCurrentCivilization(principal.loadCivilization(2));
+					principal.setCurrentCivilizationID(2);
+
 					JTabbedPaneUno ventanaPrincipal = new JTabbedPaneUno(principal);
 					
 					Timer timer = new Timer();

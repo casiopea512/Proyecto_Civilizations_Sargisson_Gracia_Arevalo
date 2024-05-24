@@ -78,34 +78,12 @@ public class Main implements Variables {
 //		/*
 //		principal.createCivilization("ABCDEFGH", "Prueba", principal);
 //		// ESTE METODO YA ASIGNA AL MAIN LA PK (currentCivilizationID) Y CIVILIZACION (currentCivilization)
-//		
-//		// Datos de prueba
-//		System.out.println(principal.getCurrentCivilization().getName());
-//		System.out.println(principal.getCurrentCivilization().getUsername());
-//		*/
-//		
+
 //		// CARGADO DE PARTIDAS
 //		/*
 //		principal.setCurrentCivilizationID(principal.chooseCivilizations());
 //		principal.setCurrentCivilization(principal.loadCivilization(principal.getCurrentCivilizationID()));
-//		
-//		// Datos de prueba
-//		System.out.println(principal.getCurrentCivilization().getName());
-//		System.out.println(principal.getCurrentCivilization().getUsername());
-//		System.out.println(principal.getCurrentCivilization().getFood());
-//		System.out.println(principal.getCurrentCivilization().getWood());
-//		System.out.println(principal.getCurrentCivilization().getIron());
-//		System.out.println(principal.getCurrentCivilization().getMana());
-//		System.out.println(principal.getCurrentCivilization().getMagicTower());
-//		System.out.println(principal.getCurrentCivilization().getChurch());
-//		System.out.println(principal.getCurrentCivilization().getFarm());
-//		System.out.println(principal.getCurrentCivilization().getSmithy());
-//		System.out.println(principal.getCurrentCivilization().getCarpentry());		
-//		System.out.println(principal.getCurrentCivilization().getTechnologyDefense());
-//		System.out.println(principal.getCurrentCivilization().getTechnologyAttack());
-//		System.out.println(principal.getCurrentCivilization().getBattles());
-//		*/	
-//
+
 //	}
 	
 
@@ -521,49 +499,6 @@ public class Main implements Variables {
 	         }
 			return civilization;
 		}
-
-	// A IMPLEMENTAR CON EL PAU
-	// Igual solo debo pasarle el id de la civilization, ya que no habrá partida cargada en el main
-	public void deleteCivilization(int civilizationID) {
-		
-		// UPDATE EN LA BBDD
-		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
-        String USER = "Civilization";
-        String PASS = "civilization";
-        Connection conn = null;
-        CallableStatement stmt = null;
-        
-        try {
-            // Registrar el driver JDBC de Oracle
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            // Establecer la conexión con la base de datos
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            String callProcedure = "{call deleteCivilization(?)}";
-            stmt = conn.prepareCall(callProcedure);
-
-            // Establecer los parámetros de entrada del procedimiento  
-            stmt.setInt(1, civilizationID);
-            // Ejecutar el procedimiento almacenado
-            stmt.execute();
-
-            System.out.println("PROCEDIMIENTO deleteCivilization OK");
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Cerrar la conexión y el CallableStatement
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-	}
 	
 	// GESTION DEL UPDATE/GUARDADO PARTIDA
 	
