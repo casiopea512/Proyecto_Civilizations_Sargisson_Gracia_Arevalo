@@ -8,20 +8,28 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.imageio.ImageIO;
 
+import pkg_Principal.Battle;
 import pkg_Principal.Civilization;
 import pkg_Principal.Main;
+import interfaces.Variables;
+
 
 public class civilizadoss {
     public static void main(String[] args) {
-        new PantallaPrincipal();        
+        new PantallaPrincipal();
+        
     }
 }
 
@@ -260,8 +268,10 @@ class PantallaPrincipal extends JFrame {
             } catch (IOException e) {
                 System.out.println("El archivo no se encuentra");
             }
+            
 
             ImageIcon play = new ImageIcon(imageIcon3);
+            
 
             panelCentral.setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
@@ -342,12 +352,20 @@ class PantallaPrincipal extends JFrame {
                 boton.setBackground(Color.RED);
                 boton.addActionListener(new ActionListener() {//crea el evento de los botones
 	                public void actionPerformed(ActionEvent e) {
-	                	int id = Integer.parseInt(jugadores);
-	                	//eliminar partida
-	                    principal.deleteCivilization(id);
-	                    new PartidasGuardadas().repaint();
-	                	
-	                }
+	                	  int id = Integer.parseInt(jugadores);
+	                      // Mostrar el JOptionPane de confirmación
+	                      int response = JOptionPane.showConfirmDialog(null,
+	                              "Are you sure you want to delete the game??",
+	                              "Confirm deletion",
+	                              JOptionPane.YES_NO_OPTION,
+	                              JOptionPane.QUESTION_MESSAGE,
+	                              new ImageIcon(iconoPersonalizado));
+	                      if (response == JOptionPane.YES_OPTION) {
+	                          // Eliminar partida llamando al método
+	                          deleteCivilization(id);
+	                          new PartidasGuardadas().repaint();
+	                      }
+	                  }
 	            });
                 
                 //boton.setBackground(new Color(255, 255, 255, 0)); // Fondo transparente
@@ -360,11 +378,13 @@ class PantallaPrincipal extends JFrame {
                 boton2.setForeground(Color.WHITE);
                 boton2.setOpaque(false);
                 boton2.setBorderPainted(false); // Ocultar los bordes del botón
+                boton2.setContentAreaFilled(false); // Eliminar el fondo del botón
                 boton2.addActionListener(new ActionListener() {//crea el evento de los botones
 	                public void actionPerformed(ActionEvent e) {
 	                	int id = Integer.parseInt(jugadores);
-	                	 //cargar partida con boton play
+	                	 //cargar partida con boton play llamando al metodo
 	                	principal.loadCivilization(id); 
+	                	dispose();
 	                	System.out.println(id);
 	                	
 	                }
@@ -374,6 +394,7 @@ class PantallaPrincipal extends JFrame {
 
                 gbc.gridy = i; // Incrementar la fila para cada nueva entrada
     		panelCentral.add(panel2, gbc);
+    		
             }
 
             panelCentral.setOpaque(false);
@@ -396,7 +417,8 @@ class PantallaPrincipal extends JFrame {
             
             tablaPartidas.getViewport().setOpaque(false);
             tablaPartidas.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
+            tablaPartidas.setBorder(null); // Eliminar bordes del JScrollPane
+            tablaPartidas.setViewportBorder(null); // Eliminar bordes del viewport
             panelImagen2.add(panelEti, BorderLayout.NORTH);
             panelImagen2.add(tablaPartidas, BorderLayout.CENTER);
             panelImagen2.add(panelBack, BorderLayout.SOUTH);
@@ -407,13 +429,58 @@ class PantallaPrincipal extends JFrame {
 
             // Indicaciones estándar para una ventana de crear usuario
             this.setSize(900, 1000);
-            this.setTitle("Partidas Guardadas");
+            this.setTitle("PG");
             this.setIconImage(imageIcon);
             this.setResizable(false); // No cambiar tamaño marco
             this.setLocationRelativeTo(null); // Sale en medio
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Se para el programa al cerrar
             this.setVisible(true); // Para verla
+       
         }
+        
+        //metodo eliminar partida
+        public void deleteCivilization(int civilizationID) {
+
+            // UPDATE EN LA BBDD
+            String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+            String USER = "Civilization";
+            String PASS = "civilization";
+            Connection conn = null;
+            CallableStatement stmt = null;
+
+            try {
+                // Registrar el driver JDBC de Oracle
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                // Establecer la conexión con la base de datos
+                conn = DriverManager.getConnection(DB_URL, USER, PASS);
+                String callProcedure = "{call deleteCivilization(?)}";
+                stmt = conn.prepareCall(callProcedure);
+
+                // Establecer los parámetros de entrada del procedimiento
+                stmt.setInt(1, civilizationID);
+                // Ejecutar el procedimiento almacenado
+                stmt.execute();
+
+                System.out.println("PROCEDIMIENTO deleteCivilization OK");
+
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // Cerrar la conexión y el CallableStatement
+                try {
+                    if (stmt != null) {
+                        stmt.close();
+                    }
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+       
 
    }
 
@@ -583,6 +650,7 @@ class PantallaPrincipal extends JFrame {
 		            if (civilizationName.length() >= 1 && civilizationName.length() <= 10) {
 		            	System.out.println(civilizationName);//prueba
 		            	
+		            	//llamamos al metodo para empezar una partida nueva
 		            	principal.createCivilization(userName,civilizationName,principal); 
 		            	
 		            	
@@ -612,7 +680,7 @@ class RoundedButton extends JButton {
         setOpaque(false); // Hace que el botón no sea opaco para que podamos pintar el fondo nosotros mismos
     }
 
-    @Override
+    
     protected void paintComponent(Graphics g) {
         if (getModel().isArmed()) {
             g.setColor(Color.gray); // Color del fondo cuando el botón está presionado
@@ -635,16 +703,8 @@ class RoundedButton extends JButton {
         return new Insets(4, 8, 4, 8); // Margen interior para el texto dentro del botón
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
+   
 }
-//clase para difuminar color titulo pantalla principal
 class GradientLabel extends JLabel {
     private Color startColor;
     private Color endColor;
@@ -672,6 +732,7 @@ class GradientLabel extends JLabel {
         g2d.dispose();
     }
 }
+
 
     
 

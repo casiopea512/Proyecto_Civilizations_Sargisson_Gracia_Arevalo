@@ -1,4 +1,4 @@
-package pkg_Principal;
+package intGrafica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +12,8 @@ import javax.swing.JTabbedPane;
 
 import exceptions.ResourceException;
 import interfaces.Variables;
+import pkg_Principal.Battle;
+import pkg_Principal.Main;
 
 public class InicialEmpezarPartida extends JFrame implements Variables {
 

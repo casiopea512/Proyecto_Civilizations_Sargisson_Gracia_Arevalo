@@ -1,4 +1,4 @@
-package pkg_Principal;
+package intGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import interfaces.Variables;
+import pkg_Principal.Main;
 
 
 
