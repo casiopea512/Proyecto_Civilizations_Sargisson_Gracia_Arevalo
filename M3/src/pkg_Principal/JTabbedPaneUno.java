@@ -555,7 +555,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 				try {
 					main.getCurrentCivilization().newFarm();
 					arrayJLabel.get(0).setText("Total: " + main.getCurrentCivilization().getFarm());
-					this.foodEdificios.setText(String.valueOf(main.getCurrentCivilization().getFood()));
+					foodEdificios.setText(String.valueOf(main.getCurrentCivilization().getFood()));
     				
 				} catch (ResourceException e1) {
 					e1.printStackTrace();
