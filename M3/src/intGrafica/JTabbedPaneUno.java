@@ -50,7 +50,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
     private JLabel etiqueta1, civili, mtower, church,mtower2,church2,farm,farm2,smithy,smithy2,carprntry,carpentry2;
     private JLabel tec,alevel,alevel2,dlevel,dlevel2,battle,battle2;
     private BufferedImage imagenMapa, escoreWood, escoreIron, escoreMana;
-    private JTabbedPane panelCentral, panelJPMenu;
+    private JTabbedPane  panelJPMenu;
     //private Civilization civilization;
 
 	JTabbedPaneUno(Main main){
@@ -474,60 +474,61 @@ public class JTabbedPaneUno extends JFrame implements Variables {
    	panelEti9 = new JPanel();
    	 
    	 
-   	 	panelTotalEti = new JPanel();
-       panel1 = new JPanel();
-       panel2 = new JPanel();
-       panel3 = new JPanel();
-       panel4 = new JPanel();
-       panelPrincipal = new JPanel();
-       panelNorte = new JPanel();
-       panelNorte.setPreferredSize(new Dimension(100, 50));
-       panelNorte.setBackground(Color.BLACK);
-       panel11 = new JPanel();
-       panel22 = new JPanel();
-       panel33 = new JPanel();
-       panelSud = new JPanel();
-       panelSud.setPreferredSize(new Dimension(100, 50));
-       panelSud.setBackground(Color.BLACK);
+   	panelTotalEti = new JPanel();
+    panel1 = new JPanel();
+    panel2 = new JPanel();
+    panel3 = new JPanel();
+    panel4 = new JPanel();
+    panelPrincipal = new JPanel();
+      
+    panel11 = new JPanel();
+    panel22 = new JPanel();
+    panel33 = new JPanel();
        
-       panelCentral = new JTabbedPane();
-       panel1Central = new JPanel();
-       panelJPMenu = new JTabbedPane();
+       
+       
+    panel1Central = new JPanel();
+    panelJPMenu = new JTabbedPane();
        
        civili = new JLabel("CIVILIZATION BUILDINGS");
        civili.setFont(new Font("Times New Roman", Font.BOLD, 30));
        civili.setForeground(Color.BLACK);
        civili.setPreferredSize(new Dimension(300, 50));
-       panelEti1.add(mtower);
+       panelEti1.add(civili);
        
        mtower = new JLabel("Magic Towers");
        int cantidadTower = main.getCurrentCivilization().getMagicTower(); 
-       mtower2 = new JLabel(String.valueOf(cantidadTower));
+       mtower2 = new JLabel(""+cantidadTower);
+       
        panelEti2.add(mtower);
        panelEti2.add(mtower2);
        
        
        church = new JLabel("Church");
        int cantidadChurch =main.getCurrentCivilization().getChurch(); 
-       church2 = new JLabel(String.valueOf(cantidadChurch));
+       church2 = new JLabel(""+cantidadChurch);
+       
        panelEti3.add(church);
        panelEti3.add(church2);
        
        farm = new JLabel("Farm");
        int cantidadfarm = main.getCurrentCivilization().getFarm(); 
-       farm2 = new JLabel(String.valueOf(cantidadfarm));
+       farm2 = new JLabel(""+cantidadfarm);
+       
        panelEti4.add(farm);
        panelEti4.add(farm2);
        
        smithy = new JLabel("Smithy");
        int cantidadsmithy = main.getCurrentCivilization().getSmithy(); 
-       smithy2 = new JLabel(String.valueOf(cantidadsmithy));
+       smithy2 = new JLabel(""+cantidadsmithy);
+       
        panelEti5.add(smithy);
-       panelEti5.add(smithy);
+       panelEti5.add(smithy2);
        
        carprntry = new JLabel("Carperntry");
        int cantidadcarprntry =main.getCurrentCivilization().getCarpentry(); 
-       carpentry2 = new JLabel(String.valueOf(cantidadcarprntry));
+       carpentry2 = new JLabel(""+cantidadcarprntry);
+       
        panelEti6.add(carprntry);
        panelEti6.add(carpentry2);
 
@@ -536,21 +537,26 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        alevel = new JLabel("Carperntry");
        int cantidadalevel= main.getCurrentCivilization().getTechnologyAttack(); 
-       alevel2 = new JLabel(String.valueOf(cantidadalevel));
+       alevel2 = new JLabel(""+cantidadalevel);
+       
        panelEti7.add(alevel);
        panelEti7.add(alevel2);
        
        dlevel = new JLabel("Carperntry");
        int cantidaddlevel= main.getCurrentCivilization().getTechnologyDefense(); 
-       dlevel2 = new JLabel(String.valueOf(cantidaddlevel));
+       dlevel2 = new JLabel(""+cantidaddlevel);
+       
        panelEti8.add(dlevel);
        panelEti8.add(dlevel2);
        
        battle = new JLabel("Carperntry");
        int cantidadbattle= main.getCurrentCivilization().getBattles(); 
-       battle2 = new JLabel(String.valueOf(cantidadbattle));
+       battle2 = new JLabel(""+cantidadbattle);
+       
        panelEti9.add(battle);
-       panelEti9.add(battle);
+       panelEti9.add(battle2);
+       
+       panelTotalEti.setLayout(new FlowLayout());
        
        panelTotalEti.add(panelEti1);
        panelTotalEti.add(panelEti2);
@@ -590,9 +596,6 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        Font tabFont = new Font("Arial", Font.BOLD, 20);
        panelJPMenu.setFont(tabFont);
 
-       // Listener para actualizar colores al seleccionar una pestaña
-       panelCentral.addChangeListener(e -> updateTabColors(panelJPMenu));
-
        // Inicialmente actualizar los colores
        updateTabColors(panelJPMenu);
        // Listener para actualizar colores al seleccionar una pestaña
@@ -602,7 +605,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 
        // Inicialmente actualizar los colores
-       updateTabColors(panelCentral);
+       //updateTabColors(panelCentral);
        //panelCentral.setBorder(null); // Eliminar bordes del JScrollPane
        
        panel11.setBackground(Color.DARK_GRAY);
@@ -639,8 +642,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        panel1Central.setBackground(Color.BLACK);
        panelPrincipal.add(panel1Central, BorderLayout.CENTER);
-       
-		
+//		panelPrincipal=new JPanel();
+//		panelPrincipal.setBackground(Color.CYAN);
        initBarraMenuPrincipal(main);
        
        panelInternoUno.add(panelPrincipal, BorderLayout.CENTER); // < todo mi p<nel central
