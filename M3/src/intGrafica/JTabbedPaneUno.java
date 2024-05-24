@@ -1882,7 +1882,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	                panelCoste.add(espacioInferior);
 	                
 	                JPanel confirmation = new JPanel();
-					 confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
+					confirmation.setLayout(new FlowLayout(FlowLayout.CENTER));
 	                JLabel confirmationLabel = new JLabel("Do you wish to continue?");
 	                confirmation.add(confirmationLabel);
 	                
@@ -1997,11 +1997,19 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		manaEdificios.setText(String.valueOf(main.getCurrentCivilization().getMana()));
 		manaUnits.setText(String.valueOf(main.getCurrentCivilization().getMana()));
 		
+		// LABELS DE LA MAIN MENU
+			
+			// RECURSOS
+		
+		
+			// GENERACIÓN ACTUAL
+			
 		
 	}
 	
 	public void updateErrorLabel() {
-		
+		attentionLabelBuilding.setText("");
+		attentionLabelUnits.setText("");
 	};
 	
 	public void updateUnitsLabel(Main main) {
@@ -2016,10 +2024,23 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		totalUnitsArrayLabel.get(7).setText(String.valueOf((main.getCurrentCivilization().getArmy())[7].size()));
 		totalUnitsArrayLabel.get(8).setText(String.valueOf((main.getCurrentCivilization().getArmy())[8].size()));
 		
+		// LABELS PAU MAIN MENU
+		
+		
 		
 	}
 	
 	public void updateTechnology(Main main) {
+		
+		// LABELS WILLIAM
+		
+		// LABELS PAU
+			// MAIN MENU
+	}
+	
+	public void updateBattleCounter(Main main) {
+		
+		// MAIN MENU
 		
 	}
 	
