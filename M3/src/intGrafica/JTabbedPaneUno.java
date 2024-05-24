@@ -2,6 +2,8 @@ package intGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -28,6 +31,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 
 import exceptions.ResourceException;
 import interfaces.Variables;
@@ -39,6 +44,14 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	
 	private JTabbedPane tabbedPane;
 	private JPanel panelInternoUno, panelInternoDos, panelInternoTres, panelInternoCuatro;
+	//////////////////////////////////////////////////////////////////////////////////////////
+	private JPanel panel1, panel2, panel3, panel4, panelPrincipal,panel11,panel22,panel33,panelNorte,panel1Central,panelSud;
+    private JPanel panelEti1,panelEti2,panelEti4,panelEti5,panelEti6,panelEti7,panelEti8,panelEti9,panelEti10,panelEti3,panelTotalEti;
+    private JLabel etiqueta1, civili, mtower, church,mtower2,church2,farm,farm2,smithy,smithy2,carprntry,carpentry2;
+    private JLabel tec,alevel,alevel2,dlevel,dlevel2,battle,battle2;
+    private BufferedImage imagenMapa, escoreWood, escoreIron, escoreMana;
+    private JTabbedPane panelCentral, panelJPMenu;
+    //private Civilization civilization;
 
 	JTabbedPaneUno(Main main){
 		
@@ -433,25 +446,245 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	
 	// PANELES PRINCIPALES
 	
+	
+	
 	public void initMainMenu(Main main) {
 		panelInternoUno = new JPanel();
 		panelInternoUno.setBackground(Color.BLUE);
 		panelInternoUno.setLayout(new BorderLayout());
+		//////////////////////////////////////////////////////////////////////////////////////////
 		
-		// INTEGRACION DE PANEL SUPERIOR CENTRAL
 		
-			JPanel panelPrincipal = new JPanel();
-			panelPrincipal.setBackground(Color.ORANGE);
+//		JPanel[] panels = new JPanel[10];
+//   	 for (int i = 0; i < 10; i++) {
+//            panels[i] = new JPanel();
+//            panels[i].setName("panelEti" + (i + 1)); // Asignar nombre dinámico al panel
+//            panels[i].setLayout(new FlowLayout()); // Cambiar el layout a FlowLayout
+//            // Opcional: Puedes configurar otras propiedades del panel aquí si es necesario
+//        }
+   	 
+   	panelEti1 = new JPanel();
+   	panelEti2 = new JPanel();
+   	panelEti3 = new JPanel();
+   	panelEti4 = new JPanel();
+   	panelEti5 = new JPanel();
+   	panelEti6 = new JPanel();
+   	panelEti7 = new JPanel();
+   	panelEti8 = new JPanel();
+   	panelEti9 = new JPanel();
+   	 
+   	 
+   	 	panelTotalEti = new JPanel();
+       panel1 = new JPanel();
+       panel2 = new JPanel();
+       panel3 = new JPanel();
+       panel4 = new JPanel();
+       panelPrincipal = new JPanel();
+       panelNorte = new JPanel();
+       panelNorte.setPreferredSize(new Dimension(100, 50));
+       panelNorte.setBackground(Color.BLACK);
+       panel11 = new JPanel();
+       panel22 = new JPanel();
+       panel33 = new JPanel();
+       panelSud = new JPanel();
+       panelSud.setPreferredSize(new Dimension(100, 50));
+       panelSud.setBackground(Color.BLACK);
+       
+       panelCentral = new JTabbedPane();
+       panel1Central = new JPanel();
+       panelJPMenu = new JTabbedPane();
+       
+       civili = new JLabel("CIVILIZATION BUILDINGS");
+       civili.setFont(new Font("Times New Roman", Font.BOLD, 30));
+       civili.setForeground(Color.BLACK);
+       civili.setPreferredSize(new Dimension(300, 50));
+       panelEti1.add(mtower);
+       
+       mtower = new JLabel("Magic Towers");
+       int cantidadTower = main.getCurrentCivilization().getMagicTower(); 
+       mtower2 = new JLabel(String.valueOf(cantidadTower));
+       panelEti2.add(mtower);
+       panelEti2.add(mtower2);
+       
+       
+       church = new JLabel("Church");
+       int cantidadChurch =main.getCurrentCivilization().getChurch(); 
+       church2 = new JLabel(String.valueOf(cantidadChurch));
+       panelEti3.add(church);
+       panelEti3.add(church2);
+       
+       farm = new JLabel("Farm");
+       int cantidadfarm = main.getCurrentCivilization().getFarm(); 
+       farm2 = new JLabel(String.valueOf(cantidadfarm));
+       panelEti4.add(farm);
+       panelEti4.add(farm2);
+       
+       smithy = new JLabel("Smithy");
+       int cantidadsmithy = main.getCurrentCivilization().getSmithy(); 
+       smithy2 = new JLabel(String.valueOf(cantidadsmithy));
+       panelEti5.add(smithy);
+       panelEti5.add(smithy);
+       
+       carprntry = new JLabel("Carperntry");
+       int cantidadcarprntry =main.getCurrentCivilization().getCarpentry(); 
+       carpentry2 = new JLabel(String.valueOf(cantidadcarprntry));
+       panelEti6.add(carprntry);
+       panelEti6.add(carpentry2);
+
+       tec = new JLabel("TECHNOLOGY");
+       panelEti7.add(tec);
+       
+       alevel = new JLabel("Carperntry");
+       int cantidadalevel= main.getCurrentCivilization().getTechnologyAttack(); 
+       alevel2 = new JLabel(String.valueOf(cantidadalevel));
+       panelEti7.add(alevel);
+       panelEti7.add(alevel2);
+       
+       dlevel = new JLabel("Carperntry");
+       int cantidaddlevel= main.getCurrentCivilization().getTechnologyDefense(); 
+       dlevel2 = new JLabel(String.valueOf(cantidaddlevel));
+       panelEti8.add(dlevel);
+       panelEti8.add(dlevel2);
+       
+       battle = new JLabel("Carperntry");
+       int cantidadbattle= main.getCurrentCivilization().getBattles(); 
+       battle2 = new JLabel(String.valueOf(cantidadbattle));
+       panelEti9.add(battle);
+       panelEti9.add(battle);
+       
+       panelTotalEti.add(panelEti1);
+       panelTotalEti.add(panelEti2);
+       panelTotalEti.add(panelEti3);
+       panelTotalEti.add(panelEti4);
+       panelTotalEti.add(panelEti5);
+       panelTotalEti.add(panelEti6);
+       panelTotalEti.add(panelEti7);
+       panelTotalEti.add(panelEti8);
+       panelTotalEti.add(panelEti9);
+       
+       
+       panel11.setLayout(new BorderLayout());
+       panel11.add(panelTotalEti, BorderLayout.CENTER);
+      
+       ImageIcon imagenMapa;
+       imagenMapa = createScaledImageIcon1("./imagenes/mapa.jpg", 1000, 950);
+       etiqueta1 = new JLabel(imagenMapa);
+       
+      
+       //panel1.add(etiqueta1);
+       panelPrincipal.setLayout(new BorderLayout());
+       
+
+       
+       //menu pestañas principal
+       // Establecer UIManager para cambiar colores de pestañas
+       UIManager.put("TabbedPane.selected", Color.WHITE);
+       UIManager.put("TabbedPane.background", Color.BLACK);
+       UIManager.put("TabbedPane.foreground", Color.WHITE);
+       UIManager.put("TabbedPane.unselectedBackground", Color.BLACK);
+       UIManager.put("TabbedPane.selectedForeground", Color.BLACK);
+      
+      
+
+       // Personalizar la fuente y tamaño de los títulos de las pestañas
+       Font tabFont = new Font("Arial", Font.BOLD, 20);
+       panelJPMenu.setFont(tabFont);
+
+       // Listener para actualizar colores al seleccionar una pestaña
+       panelCentral.addChangeListener(e -> updateTabColors(panelJPMenu));
+
+       // Inicialmente actualizar los colores
+       updateTabColors(panelJPMenu);
+       // Listener para actualizar colores al seleccionar una pestaña
+       panelJPMenu.addChangeListener(e -> {
+           updateTabColors(panelJPMenu);
+      });
+
+
+       // Inicialmente actualizar los colores
+       updateTabColors(panelCentral);
+       //panelCentral.setBorder(null); // Eliminar bordes del JScrollPane
+       
+       panel11.setBackground(Color.DARK_GRAY);
+       panel22.setBackground(Color.DARK_GRAY);
+       panel33.setBackground(Color.DARK_GRAY);
+       
+       // Configurar las pestañas
+       panelJPMenu.addTab(" Civilization ", panel11);
+       panelJPMenu.addTab(" Units ", panel22);
+       panelJPMenu.addTab(" Civilization ", panel33);
+     
+
+       // Personalizar la fuente y tamaño de los títulos de las pestañas
+       Font tabFont2 = new Font("Arial", Font.BOLD, 20);
+       panelJPMenu.setFont(tabFont2);
+       // Inicialmente actualizar los colores
+       
+       // Listener para actualizar colores al seleccionar una pestaña
+       
+
+       // Establecer tamaño preferido para panelJPMenu
+       panelJPMenu.setPreferredSize(new Dimension(915, 1000));
+       
+      
+       
+       
+     
+       // Agregar el contenedor al panel1
+       //panel1Central.setLayout(new BorderLayout());
+       panel1Central.add(etiqueta1);
+       panel1Central.add(panelJPMenu);
+       panel1Central.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+       panel1Central.setBorder(BorderFactory.createEmptyBorder()); // Elimina los bordes del panel
+       
+       panel1Central.setBackground(Color.BLACK);
+       panelPrincipal.add(panel1Central, BorderLayout.CENTER);
+       
 		
-		// 
-		
-		initBarraMenuPrincipal(main);
-		
-		panelInternoUno.add(panelPrincipal, BorderLayout.CENTER);
+       initBarraMenuPrincipal(main);
+       
+       panelInternoUno.add(panelPrincipal, BorderLayout.CENTER); // < todo mi p<nel central
 		panelInternoUno.add(panelInferior, BorderLayout.SOUTH);
 		tabbedPane.addTab("Main menu", panelInternoUno);
+
+
+       //this.setSize(1200, 900);
+       this.setTitle("");
+       this.setResizable(false);
+       this.setLocationRelativeTo(null);
+       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       this.setVisible(true);
+   
+
+  
+
+		// INTEGRACION DE PANEL SUPERIOR CENTRAL
 		
+		//JPanel panelPrincipal = new JPanel();
+		//panelPrincipal.setBackground(Color.ORANGE);
+		//main.getCurrentCivilization().getCarpentry();
+		// 
+		
+		
+		
+		
+}
+		
+	
+
+	private void updateTabColors(JTabbedPane tabbedPane) {
+	    for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+	        if (tabbedPane.getSelectedIndex() == i) {
+	            tabbedPane.setForegroundAt(i, Color.BLACK);
+	            tabbedPane.setBackgroundAt(i, Color.WHITE);
+	        } else {
+	            tabbedPane.setForegroundAt(i, Color.WHITE);
+	            tabbedPane.setBackgroundAt(i, Color.BLACK);
+	        }
+	    }
 	}
+
 	
 	// PanelPrincipalEdificios tiene(declarado internamente)
 	// - PanelPrincipalSuperior
@@ -848,7 +1081,18 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	            System.err.println("Couldn't load file: " + path);
 	            return null;
 	        }
+	}
+	
+	public static ImageIcon createScaledImageIcon1(String path, int width, int height) {
+	    try {
+	        BufferedImage img = ImageIO.read(new File(path));
+	        Image scaledImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+	        return new ImageIcon(scaledImg);
+	    } catch (IOException e) {
+	        System.err.println("Couldn't load file: " + path);
+	        return null;
 	    }
+	}
 	
 }
 
@@ -906,6 +1150,7 @@ class EventoExit implements ActionListener {
 	}
 	
 }
+
 
 
 
