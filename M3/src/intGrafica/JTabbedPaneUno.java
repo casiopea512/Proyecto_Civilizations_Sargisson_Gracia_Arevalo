@@ -2,6 +2,7 @@ package intGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -472,6 +473,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
    	panelEti7 = new JPanel();
    	panelEti8 = new JPanel();
    	panelEti9 = new JPanel();
+   	panelEti10 = new JPanel();
    	 
    	 
    	panelTotalEti = new JPanel();
@@ -489,74 +491,116 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
     panel1Central = new JPanel();
     panelJPMenu = new JTabbedPane();
+    panelEti1.setLayout(new FlowLayout(FlowLayout.LEFT));
+    panelEti2.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti3.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti4.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti5.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti6.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti7.setLayout(new FlowLayout(FlowLayout.LEFT));
+    panelEti8.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti9.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti10.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
        
        civili = new JLabel("CIVILIZATION BUILDINGS");
        civili.setFont(new Font("Times New Roman", Font.BOLD, 30));
        civili.setForeground(Color.BLACK);
-       civili.setPreferredSize(new Dimension(300, 50));
+       civili.setAlignmentX(Component.LEFT_ALIGNMENT);
+       //civili.setPreferredSize(new Dimension(300, 50));
        panelEti1.add(civili);
        
-       mtower = new JLabel("Magic Towers");
+       mtower = new JLabel("Magic Towers: ");
        int cantidadTower = main.getCurrentCivilization().getMagicTower(); 
        mtower2 = new JLabel(""+cantidadTower);
-       
+       mtower.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       mtower.setForeground(Color.BLACK);
+       mtower2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       mtower2.setForeground(Color.BLACK);
        panelEti2.add(mtower);
        panelEti2.add(mtower2);
        
        
-       church = new JLabel("Church");
+       church = new JLabel("Church: ");
        int cantidadChurch =main.getCurrentCivilization().getChurch(); 
        church2 = new JLabel(""+cantidadChurch);
-       
+       church.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       church.setForeground(Color.BLACK);
+       church2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       church2.setForeground(Color.BLACK);
        panelEti3.add(church);
        panelEti3.add(church2);
        
-       farm = new JLabel("Farm");
+       farm = new JLabel("Farm: ");
        int cantidadfarm = main.getCurrentCivilization().getFarm(); 
        farm2 = new JLabel(""+cantidadfarm);
-       
+       farm.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       farm.setForeground(Color.BLACK);
+       farm2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       farm2.setForeground(Color.BLACK);
        panelEti4.add(farm);
        panelEti4.add(farm2);
        
-       smithy = new JLabel("Smithy");
+       smithy = new JLabel("Smithy: ");
        int cantidadsmithy = main.getCurrentCivilization().getSmithy(); 
        smithy2 = new JLabel(""+cantidadsmithy);
-       
+       smithy.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       smithy.setForeground(Color.BLACK);
+       smithy2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       smithy2.setForeground(Color.BLACK);
        panelEti5.add(smithy);
        panelEti5.add(smithy2);
        
-       carprntry = new JLabel("Carperntry");
+       carprntry = new JLabel("Carperntry: ");
        int cantidadcarprntry =main.getCurrentCivilization().getCarpentry(); 
        carpentry2 = new JLabel(""+cantidadcarprntry);
-       
+       carprntry.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       carprntry.setForeground(Color.BLACK);
+       carpentry2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       carpentry2.setForeground(Color.BLACK);
        panelEti6.add(carprntry);
        panelEti6.add(carpentry2);
 
        tec = new JLabel("TECHNOLOGY");
+       tec.setFont(new Font("Times New Roman", Font.BOLD, 30));
+       tec.setForeground(Color.BLACK);
        panelEti7.add(tec);
        
-       alevel = new JLabel("Carperntry");
+       alevel = new JLabel("Technology Attack: ");
        int cantidadalevel= main.getCurrentCivilization().getTechnologyAttack(); 
        alevel2 = new JLabel(""+cantidadalevel);
+       alevel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       alevel.setForeground(Color.BLACK);
+       alevel2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       alevel2.setForeground(Color.BLACK);
+       panelEti8.add(alevel);
+       panelEti8.add(alevel2);
        
-       panelEti7.add(alevel);
-       panelEti7.add(alevel2);
-       
-       dlevel = new JLabel("Carperntry");
+       dlevel = new JLabel("Technology Defense: ");
        int cantidaddlevel= main.getCurrentCivilization().getTechnologyDefense(); 
        dlevel2 = new JLabel(""+cantidaddlevel);
+       dlevel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       dlevel.setForeground(Color.BLACK);
+       dlevel2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       dlevel2.setForeground(Color.BLACK);
+       panelEti9.add(dlevel);
+       panelEti9.add(dlevel2);
        
-       panelEti8.add(dlevel);
-       panelEti8.add(dlevel2);
-       
-       battle = new JLabel("Carperntry");
+       battle = new JLabel("Battle Currents: ");
        int cantidadbattle= main.getCurrentCivilization().getBattles(); 
        battle2 = new JLabel(""+cantidadbattle);
+       battle.setFont(new Font("Times New Roman", Font.BOLD, 30));
+       battle.setForeground(Color.BLACK);
+       battle2.setFont(new Font("Times New Roman", Font.BOLD, 30));
+       battle2.setForeground(Color.BLACK);
+       panelEti10.add(battle);
+       panelEti10.add(battle2);
        
-       panelEti9.add(battle);
-       panelEti9.add(battle2);
        
-       panelTotalEti.setLayout(new FlowLayout());
+       panelTotalEti.setLayout(new BoxLayout(panelTotalEti, BoxLayout.Y_AXIS));
+       
+       // Margen entre los paneles y el borde del panelTotalEti
+       int margenEntrePaneles = 200;
+       panelTotalEti.setBorder(BorderFactory.createEmptyBorder(margenEntrePaneles, margenEntrePaneles, margenEntrePaneles, margenEntrePaneles));
        
        panelTotalEti.add(panelEti1);
        panelTotalEti.add(panelEti2);
@@ -567,6 +611,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        panelTotalEti.add(panelEti7);
        panelTotalEti.add(panelEti8);
        panelTotalEti.add(panelEti9);
+       panelTotalEti.add(panelEti10);
        
        
        panel11.setLayout(new BorderLayout());
