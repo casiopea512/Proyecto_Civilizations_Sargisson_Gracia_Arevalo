@@ -1699,44 +1699,41 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		defenseLevelLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		panelPrincipalSuperior.add(defenseLevelLabel, gbc);
 
+		arrayCostDefenseTechnology = new ArrayList<JLabel>();
+		int[] costDefenseTechnology = {
+                0, 
+                UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + (main.getCurrentCivilization().getTechnologyDefense() * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST/100), 
+                UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST + (main.getCurrentCivilization().getTechnologyDefense() * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST/100), 
+                0};
 
-		ArrayList<JLabel> arrayCostDefenseTechnology = new ArrayList<JLabel>();
-		int[] costDefenseTechnology = {22222222, 333333333, 1111111, 0};
+        for (int i = 0; i < costDefenseTechnology.length; i++) {
+            JLabel technologyCost = new JLabel(String.valueOf(costDefenseTechnology[i]));
+            gbc.gridx = i + 3;
+            gbc.gridy = buildings.length + 3;
+            gbc.weightx = 0.1;
+            gbc.weighty = 0.1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            technologyCost.setFont(new Font("Arial", Font.BOLD, 15));
+            arrayCostDefenseTechnology.add(technologyCost);
+            panelPrincipalSuperior.add(technologyCost, gbc);
+        }
 
-		for (int i = 0; i < costDefenseTechnology.length; i++) {
-			JLabel technologyCost = new JLabel(String.valueOf(costDefenseTechnology[i]));
-			gbc.gridx = i + 3;
-			gbc.gridy = buildings.length + 3;
-			gbc.weightx = 0.1;
-			gbc.weighty = 0.1;
-			gbc.fill = GridBagConstraints.HORIZONTAL;
-			technologyCost.setFont(new Font("Arial", Font.BOLD, 15));
-			arrayCostDefenseTechnology.add(technologyCost);
-			panelPrincipalSuperior.add(technologyCost, gbc);
-		}
+        defenseButton.addActionListener(new ActionListener() {
 
-		defenseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    updateErrorLabel();
+                    main.getCurrentCivilization().upgradeTechnologyDefense();;
+                    defenseLevelLabel.setText("Current level: " + main.getCurrentCivilization().getTechnologyDefense());
+                    updateResourceLabels(main);
+                    updateTechnologyLabels(main);
 
-			public void actionPerformed(ActionEvent e) {
-				try {
-					updateErrorLabel();
-					main.getCurrentCivilization().upgradeTechnologyDefense();;
-					defenseLevelLabel.setText("Current level: " + main.getCurrentCivilization().getTechnologyDefense());
-					updateResourceLabels(main);
-					updateTechnologyLabels(main);
+                } catch (ResourceException e1) {
+                    attentionLabelBuilding.setText(e1.getMessage());
+                }
+            }
 
-					int[] costDefenseTechnology = {55555, 5555, 5555, 55555};
-					arrayCostDefenseTechnology.get(0).setText(String.valueOf(costDefenseTechnology[0]));
-					arrayCostDefenseTechnology.get(1).setText(String.valueOf(costDefenseTechnology[1]));
-					arrayCostDefenseTechnology.get(2).setText(String.valueOf(costDefenseTechnology[2]));
-					arrayCostDefenseTechnology.get(3).setText(String.valueOf(costDefenseTechnology[3]));
-
-				} catch (ResourceException e1) {
-					attentionLabelBuilding.setText(e1.getMessage());
-				}
-			}
-
-		});
+        });
 
 		// ERROR
 		// Attention message
