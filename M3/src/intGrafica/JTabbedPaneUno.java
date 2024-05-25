@@ -1677,11 +1677,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 					attackLevelLabel.setText("Current level: " + main.getCurrentCivilization().getTechnologyAttack());
 					updateResourceLabels(main);
 					updateTechnologyLabels(main);
-					int[] costAttackTechnology = {55555, 5555, 5555, 55555};
-					arrayCostAttackTechnology.get(0).setText(String.valueOf(costAttackTechnology[0]));
-					arrayCostAttackTechnology.get(1).setText(String.valueOf(costAttackTechnology[1]));
-					arrayCostAttackTechnology.get(2).setText(String.valueOf(costAttackTechnology[2]));
-					arrayCostAttackTechnology.get(3).setText(String.valueOf(costAttackTechnology[3]));
+
 				} catch (ResourceException e1) {
 					attentionLabelBuilding.setText(e1.getMessage());
 				}
