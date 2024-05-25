@@ -170,7 +170,11 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 
 						// guardar el juego: IF !TIEMPO RESTANTE && 179000
-						main.saveGame(main.getCurrentCivilizationID(), main.getCurrentCivilization());
+						if (!primeraEjecucion) {
+                            if (tiempoRestante == 179000) {
+                                main.saveGame(main.getCurrentCivilizationID(), main.getCurrentCivilization());
+                            }
+                        }
 
 						if (tiempoRestante % 30000 == 0) { // cada 30 segundos
 
@@ -3004,15 +3008,15 @@ class EventoViewthreath implements ActionListener {
 }
 
 class EventoSave implements ActionListener {
-	private Main main;
+    Main main;
 
-	EventoSave(Main main){
-		this.main = main;
-	}
+    EventoSave(Main main){
+        this.main = main;
+    }
 
-	public void actionPerformed(ActionEvent e) {
-		System.out.println("Save button in class");
-	}
+    public void actionPerformed(ActionEvent e) {
+        main.saveGame(main.getCurrentCivilizationID(), main.getCurrentCivilization());
+    }
 
 }
 
