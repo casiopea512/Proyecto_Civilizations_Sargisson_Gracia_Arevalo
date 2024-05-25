@@ -83,7 +83,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 		botonPG.setForeground(Color.WHITE);
 
 		try {
-			iconoPersonalizado = ImageIO.read(new File("./imagenes/icono.jpg"));
+			iconoPersonalizado = ImageIO.read(new File("./imagenes/iconoEliminarCivilizacion.png"));
 		} catch (IOException e) {
 			System.out.println("El archivo no se encuentra");
 		}
@@ -154,7 +154,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 
 		imagenes = new ArrayList<>();
-		for (int i = 1; i <= 2; i++) {
+		for (int i = 1; i <= 3; i++) {
 			try {
 				imagenes.add(ImageIO.read(new File("./imagenes/fotoPrincipal" + i + ".JPG")));
 			} catch (IOException e) {
@@ -258,7 +258,19 @@ class PantallaPrincipal extends JFrame implements Variables {
 			panelBack = new JPanel();
 			// panelCentral.setOpaque(false);
 			
-			panelEti.add(etiPG);
+			panelEti.setLayout(new BoxLayout(panelEti, BoxLayout.Y_AXIS));
+			
+			// añadir espacio vertical
+			panelEti.add(Box.createRigidArea(new Dimension(0,150)));
+			
+			// box horizontal para centrar la etiqueta
+			Box boxCentro = Box.createHorizontalBox();
+	        boxCentro.add(Box.createHorizontalGlue());
+	        boxCentro.add(etiPG);
+	        boxCentro.add(Box.createHorizontalGlue());
+	        
+	        
+	        panelEti.add(boxCentro);
 			panelEti.setOpaque(false);
 
 			panelBack.add(batonBack);
@@ -348,12 +360,13 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 				RoundedButton boton = new RoundedButton(" Erease ");
 				boton.setName("BotonBorrar" + i);
-				boton.setFont(new Font("Times New Roman", Font.BOLD, 30));
+				boton.setFont(new Font("Times New Roman", Font.BOLD, 20));
 				boton.setForeground(Color.BLACK);
-				boton.setBackground(Color.RED);
+				boton.setBackground(Color.decode("#B46F55"));
 				boton.addActionListener(new ActionListener() {//crea el evento de los botones
 					public void actionPerformed(ActionEvent e) {
 						int id = Integer.parseInt(jugadores);
+						
 						// Mostrar el JOptionPane de confirmación
 						int response = JOptionPane.showConfirmDialog(null,
 								"Are you sure you want to delete the game??",
@@ -429,7 +442,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 			
 			// Crear el panel de fondo con la imagen
 			JPanelConFondo panelImagen2 = new JPanelConFondo(foto.getImage());
-			panelImagen2.setLayout(new BorderLayout());
+			panelImagen2.setLayout(new BoxLayout(panelImagen2, BoxLayout.Y_AXIS));
 
 			tablaPartidas = new JScrollPane(panelCentral);
 			tablaPartidas.setOpaque(false);
@@ -440,9 +453,9 @@ class PantallaPrincipal extends JFrame implements Variables {
 			tablaPartidas.setViewportBorder(null); // Eliminar bordes del viewport
 			
 			
-			panelImagen2.add(panelEti, BorderLayout.NORTH);
-			panelImagen2.add(tablaPartidas, BorderLayout.CENTER);
-			panelImagen2.add(panelBack, BorderLayout.SOUTH);
+			panelImagen2.add(panelEti);
+			panelImagen2.add(tablaPartidas);
+			panelImagen2.add(panelBack);
 			
 			panelImagen2.setOpaque(false);
 
