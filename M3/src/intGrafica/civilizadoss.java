@@ -337,7 +337,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 					System.out.println("RS EJECUTADO");
 
 					int civilization_id = rs.getInt(1);
-					totalCivilizacion =  " - " + rs.getString(2) + " - " + rs.getString(3) + " - " + rs.getInt(4);
+					totalCivilizacion =   rs.getString(2) + "     -     " + rs.getString(3) + "    -    " + rs.getInt(4);
 					arrayDes.add(totalCivilizacion);
 					arrayPartidas.add(civilization_id);
 
@@ -355,10 +355,12 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 			for (int i = 0; i < arrayPartidas.size(); i++) {
 				JPanel panel2 = new JPanel(new BorderLayout());
-				//JPanel panelEti = new JPanel(new GridLayout(1,2));
-				JPanel panelEti = new JPanel(new FlowLayout());
+				
+				//JPanel panelEti = new JPanel(new FlowLayout());
+				JPanel panelEti = new JPanel(new FlowLayout(FlowLayout.LEFT, 50, 10)); // Aumentar espacios horizontal y vertical
 				panel2.setOpaque(false);
 				panelEti.setOpaque(false);
+				panel2.setPreferredSize(new Dimension(800, 50));
 				String jugadores = arrayPartidas.get(i).toString();
 				String des = arrayDes.get(i).toString();
 
@@ -366,12 +368,13 @@ class PantallaPrincipal extends JFrame implements Variables {
 				JLabel descripcion = new JLabel(des);
 				id.setFont(new Font("Times New Roman", Font.BOLD, 25));
 				id.setForeground(Color.BLACK);
-				id.setPreferredSize(new Dimension(50, 50)); // Tamaño fijo para las etiquetas
-				descripcion.setFont(new Font("Times New Roman", Font.BOLD, 30));
+				id.setPreferredSize(new Dimension(50, 30)); // Tamaño fijo para las etiquetas
+				descripcion.setFont(new Font("Times New Roman", Font.BOLD, 25));
 				descripcion.setForeground(Color.BLACK);
-				descripcion.setPreferredSize(new Dimension(300, 50)); // Tamaño fijo para las etiquetas
+				descripcion.setPreferredSize(new Dimension(500, 30)); // Tamaño fijo para las etiquetas
 				descripcion.setHorizontalAlignment(SwingConstants.LEFT); // Alinea el texto a la izquierda
 				//panelEti.setPreferredSize(new Dimension(305, 50));
+				
 				panelEti.add(id);
 				panelEti.add(descripcion);
 
@@ -379,7 +382,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 				RoundedButton boton = new RoundedButton(" Erease ");
 				boton.setName("BotonBorrar" + i);
-				boton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+				boton.setFont(new Font("Times New Roman", Font.BOLD, 15));
 				boton.setForeground(Color.BLACK);
 				boton.setBackground(Color.decode("#B46F55"));
 				boton.addActionListener(new ActionListener() {//crea el evento de los botones

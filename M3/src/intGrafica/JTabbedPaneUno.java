@@ -1284,28 +1284,42 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		//panel1.add(etiqueta1);
 		panelPrincipal.setLayout(new BorderLayout());
 
-
+//		tabbedPane.setForegroundAt(i, Color.WHITE);
+//		tabbedPane.setBackgroundAt(i, Color.BLACK);
+//	} else {
+//		tabbedPane.setForegroundAt(i, Color.BLACK);
+//		tabbedPane.setBackgroundAt(i, Color.WHITE);
+//	}
 
 		//menu pestañas principal
+		
 		// Establecer UIManager para cambiar colores de pestañas
-		UIManager.put("TabbedPane.selected", Color.WHITE);
-		UIManager.put("TabbedPane.background", Color.BLACK);
-		UIManager.put("TabbedPane.foreground", Color.WHITE);
-		UIManager.put("TabbedPane.unselectedBackground", Color.BLACK);
-		UIManager.put("TabbedPane.selectedForeground", Color.BLACK);
+//        UIManager.put("TabbedPane.selected", Color.BLACK);
+//        UIManager.put("TabbedPane.background", Color.WHITE);
+//        UIManager.put("TabbedPane.foreground", Color.BLACK);
+//        UIManager.put("TabbedPane.unselectedBackground", Color.WHITE);
+//        UIManager.put("TabbedPane.selectedForeground", Color.WHITE);
 
 
-
+     // Establecer el LookAndFeel de la UI
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 		// Personalizar la fuente y tamaño de los títulos de las pestañas
 		Font tabFont = new Font("Arial", Font.BOLD, 20);
+		 // Establecer color de fondo para todas las pestañas
+		panelJPMenu.setBackground(Color.GRAY);
+
+        // Establecer color del texto para todas las pestañas
+        panelJPMenu.setForeground(Color.BLACK);
 		panelJPMenu.setFont(tabFont);
 
 		// Inicialmente actualizar los colores
-		updateTabColors(panelJPMenu);
+		//updateTabColors(panelJPMenu);
 		// Listener para actualizar colores al seleccionar una pestaña
-		panelJPMenu.addChangeListener(e -> {
-			updateTabColors(panelJPMenu);
-		});
+		 //panelJPMenu.addChangeListener(e -> updateTabColors(panelJPMenu));
 
 
 		// Inicialmente actualizar los colores
@@ -1323,8 +1337,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 
 		// Personalizar la fuente y tamaño de los títulos de las pestañas
-		Font tabFont2 = new Font("Arial", Font.BOLD, 20);
-		panelJPMenu.setFont(tabFont2);
+		
 		// Inicialmente actualizar los colores
 
 		// Listener para actualizar colores al seleccionar una pestaña
@@ -1381,19 +1394,18 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	}
 
 
-
-	private void updateTabColors(JTabbedPane tabbedPane) {
-		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-			if (tabbedPane.getSelectedIndex() == i) {
-				tabbedPane.setForegroundAt(i, Color.BLACK);
-				tabbedPane.setBackgroundAt(i, Color.WHITE);
-			} else {
-				tabbedPane.setForegroundAt(i, Color.WHITE);
-				tabbedPane.setBackgroundAt(i, Color.BLACK);
-			}
-		}
-	}
-
+//
+//	  private void updateTabColors(JTabbedPane tabbedPane) {
+//	        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+//	            if (tabbedPane.getSelectedIndex() == i) {
+//	                tabbedPane.setBackgroundAt(i, Color.BLACK);
+//	                tabbedPane.setForegroundAt(i, Color.WHITE);
+//	            } else {
+//	                tabbedPane.setBackgroundAt(i, Color.WHITE);
+//	                tabbedPane.setForegroundAt(i, Color.BLACK);
+//	            }
+//	        }
+//	    }
 
 	// PanelPrincipalEdificios tiene(declarado internamente)
 	// - PanelPrincipalSuperior
@@ -1759,7 +1771,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		// PANEL INFERIOR
 
 		initBarraInferiorEdificios(main);
-
+		Font tabFont = new Font("Arial", Font.BOLD, 20);
+		tabbedPane.setBackground(Color.GRAY);
+		tabbedPane.setForeground(Color.BLACK);
+		tabbedPane.setFont(tabFont);
 		panelInternoDos.add(panelRecursosEdificios, BorderLayout.NORTH);
 		panelInternoDos.add(panelPrincipalEdificios, BorderLayout.CENTER);
 		panelInternoDos.add(panelInferior, BorderLayout.SOUTH);

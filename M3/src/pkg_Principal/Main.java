@@ -65,7 +65,7 @@ public class Main implements Variables {
 	public void setEnemyUnits(ArrayList<MilitaryUnit>[] enemyUnits) {
 		this.enemyUnits = enemyUnits;
 	}
-
+	
 	//	public static void main(String[] args) {
 	//		
 	//		
@@ -85,7 +85,7 @@ public class Main implements Variables {
 	//		principal.setCurrentCivilization(principal.loadCivilization(principal.getCurrentCivilizationID()));
 
 	//	}
-
+	
 
 	public ArrayList<MilitaryUnit>[] createEnemyArmy(Civilization civilization) {
 
