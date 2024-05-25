@@ -2003,14 +2003,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						}
 
@@ -2028,9 +2026,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 
 			public void actionPerformed(ActionEvent e) {
-
+				updateErrorLabel();
 				try { 
-					updateErrorLabel();
 					int quantityToAdd = Integer.parseInt(insertDesiredUnitsArrayJTextField.get(1).getText());
 					if (quantityToAdd < 0) {
 						JOptionPane.showMessageDialog(panelPrincipalSuperior, "Quantity must be non-negative.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
@@ -2085,14 +2082,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						}
 
@@ -2167,14 +2162,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						}
 
@@ -2247,15 +2240,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 							main.getCurrentCivilization().newCannon(quantityToAdd);				
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
-
 						}
 
 					} 
@@ -2326,14 +2316,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 							main.getCurrentCivilization().newArrowTower(quantityToAdd);
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						}
 
@@ -2405,14 +2393,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 							main.getCurrentCivilization().newCatapult(quantityToAdd);
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						}
 
@@ -2485,14 +2471,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 							main.getCurrentCivilization().newRocketLauncherTower(quantityToAdd);
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						}
 
@@ -2564,14 +2548,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 							main.getCurrentCivilization().newMagician(quantityToAdd);
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						}
 
@@ -2645,14 +2627,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 							main.getCurrentCivilization().newPriest(quantityToAdd);
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						} catch (ResourceException e1) {
 
 							attentionLabelUnits.setText(e1.getMessage());
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
-							updateBuildingsLabel(main);
 
 						}
 
@@ -2901,7 +2881,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		totalUnitsArrayLabel.get(6).setText(String.valueOf((main.getCurrentCivilization().getArmy())[6].size()));
 		totalUnitsArrayLabel.get(7).setText(String.valueOf((main.getCurrentCivilization().getArmy())[7].size()));
 		totalUnitsArrayLabel.get(8).setText(String.valueOf((main.getCurrentCivilization().getArmy())[8].size()));
-
+		
+		
 	}
 
 	public void updateBuildingsLabel (Main main) {
@@ -2918,7 +2899,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	public void updateTechnologyLabels(Main main) {
 
 		// LABELS WILLIAM
-
+		
+		// actualizacion del armor/damage en en panel units cuando se aumenta tecnologia
 		int[] armorUnitsArray = {
 				ARMOR_SWORDSMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY * ARMOR_SWORDSMAN/100),
 				ARMOR_SPEARMAN +(main.getCurrentCivilization().getTechnologyDefense() * PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY * ARMOR_SPEARMAN/100),
@@ -2932,7 +2914,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		};
 
 
-
+		
 		for (int i = 0; i < armorUnitsArrayLabel.size(); i++) {
 			armorUnitsArrayLabel.get(i).setText(String.valueOf(armorUnitsArray[i]));
 		}
@@ -2948,11 +2930,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 				BASE_DAMAGE_MAGICIAN +(main.getCurrentCivilization().getTechnologyAttack() * PLUS_ATTACK_MAGICIAN_BY_TECHNOLOGY * BASE_DAMAGE_MAGICIAN/100),
 				0,
 		};
-
+		
 		for (int i = 0; i < damageUnitsArrayLabel.size(); i++) {
 			damageUnitsArrayLabel.get(i).setText(String.valueOf(damageUnitsArray[i]));
 		}
 
+		// actualizacion del coste al añadir 1
 		int[] costDefenseTechnology = {
 				0, 
 				UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + ((main.getCurrentCivilization().getTechnologyDefense()) * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST/100), 
