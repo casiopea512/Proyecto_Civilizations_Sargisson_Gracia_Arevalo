@@ -60,8 +60,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
     private JPanel panelEti1,panelEti2,panelEti4,panelEti5,panelEti6,panelEti7,panelEti8,panelEti9,panelEti10,panelEti3,panelTotalEti;
     private JLabel etiqueta1, civili, mtower, church,mtower2,church2,farm,farm2,smithy,smithy2,carprntry,carpentry2;
     private JLabel tec,alevel,alevel2,dlevel,dlevel2,battle,battle2;
-    private BufferedImage imagenMapa, escoreWood, escoreIron, escoreMana;
+    private BufferedImage imagenMapa, escoreWood, escoreIron, escoreMana,imageIcon;
     private JTabbedPane  panelJPMenu;
+    private JPanel panelTotalEti2,panelEti11,panelEti12,panelEti13,panelEti14,panelEti15,panelEti16,panelEti17,panelEti18,panelEti19,panelEti20,panelEti21,panelEti22,panelEti23,panelEti24,panelEti25,panelEti26,panelEti27,panelEti28,panelEti29,panelEti30,panelEti31,panelEti32;
+    private JLabel attack,sword,spearman,crosbow,cannon,deffense,tower,catapult,rocket,special,magician,priest;
     //private Civilization civilization;
 
 	JTabbedPaneUno(Main main){
@@ -463,14 +465,15 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelInternoUno.setLayout(new BorderLayout());
 		//////////////////////////////////////////////////////////////////////////////////////////
 		
-		
-//		JPanel[] panels = new JPanel[10];
-//   	 for (int i = 0; i < 10; i++) {
-//            panels[i] = new JPanel();
-//            panels[i].setName("panelEti" + (i + 1)); // Asignar nombre dinámico al panel
-//            panels[i].setLayout(new FlowLayout()); // Cambiar el layout a FlowLayout
-//            // Opcional: Puedes configurar otras propiedades del panel aquí si es necesario
-//        }
+		 ArrayList<JPanel> panels = new ArrayList<>();
+
+	        
+//	        for (int i = 0; i < 50; i++) {
+//	            JPanel panel = new JPanel();
+//	            panel.setName("panelEti" + (i + 1)); 
+//	            panel.setLayout(new FlowLayout(FlowLayout.LEFT,20,0)); 
+//	            //panels.add(panel); 
+//	        }
    	 
    	panelEti1 = new JPanel();
    	panelEti2 = new JPanel();
@@ -482,9 +485,34 @@ public class JTabbedPaneUno extends JFrame implements Variables {
    	panelEti8 = new JPanel();
    	panelEti9 = new JPanel();
    	panelEti10 = new JPanel();
+   	
+   	panelEti11 = new JPanel();
+   	panelEti12 = new JPanel();
+   	panelEti13 = new JPanel();
+   	panelEti14 = new JPanel();
+   	panelEti15 = new JPanel();
+   	panelEti16 = new JPanel();
+   	panelEti17 = new JPanel();
+   	panelEti18 = new JPanel();
+   	panelEti19 = new JPanel();
+   	panelEti21 = new JPanel();
+   	panelEti22 = new JPanel();
+   	panelEti23 = new JPanel();
+   	panelEti24 = new JPanel();
+   	panelEti25 = new JPanel();
+   	panelEti26 = new JPanel();
+   	panelEti27 = new JPanel();
+   	panelEti28 = new JPanel();
+   	panelEti29 = new JPanel();
+   	panelEti30 = new JPanel();
+   	panelEti31 = new JPanel();
+   	panelEti32 = new JPanel();
+   	
+   	
    	 
    	 
    	panelTotalEti = new JPanel();
+   	panelTotalEti2 = new JPanel();
     panel1 = new JPanel();
     panel2 = new JPanel();
     panel3 = new JPanel();
@@ -509,6 +537,36 @@ public class JTabbedPaneUno extends JFrame implements Variables {
     panelEti8.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
     panelEti9.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
     panelEti10.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    
+    panelEti11.setLayout(new FlowLayout(FlowLayout.LEFT));
+    panelEti12.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti13.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti14.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti15.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti16.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti17.setLayout(new FlowLayout(FlowLayout.LEFT));
+    panelEti18.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti19.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti20.setLayout(new FlowLayout(FlowLayout.LEFT));
+    panelEti21.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti22.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti23.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti24.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti25.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti26.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti27.setLayout(new FlowLayout(FlowLayout.LEFT));
+    panelEti28.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti29.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti30.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    panelEti31.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    //panelEti32.setLayout(new FlowLayout(FlowLayout.LEFT,20,0));
+    
+    
+    
+    
+    
+    
+  //PANEL111
     
        civili = new JLabel("CIVILIZATION BUILDINGS");
        civili.setFont(new Font("Times New Roman", Font.BOLD, 30));
@@ -593,7 +651,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        panelEti9.add(dlevel);
        panelEti9.add(dlevel2);
        
-       battle = new JLabel("Battle Currents: ");
+       battle = new JLabel("BATTLE COUNTER: ");
        int cantidadbattle= main.getCurrentCivilization().getBattles(); 
        battle2 = new JLabel(String.valueOf(cantidadbattle));
        battle.setFont(new Font("Times New Roman", Font.BOLD, 30));
@@ -608,7 +666,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        //panelTotalEti.add(Box.createVerticalStrut(100));
        
        // Margen entre los paneles y el borde del panelTotalEti
-       int margenEntrePaneles = 50;
+       int margenEntrePaneles = 70;
        panelTotalEti.setBorder(BorderFactory.createEmptyBorder(margenEntrePaneles, margenEntrePaneles, margenEntrePaneles, margenEntrePaneles));
        
        panelTotalEti.add(panelEti1);
@@ -625,9 +683,36 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
        panel11.setLayout(new BorderLayout());
        panel11.add(panelTotalEti, BorderLayout.CENTER);
+       
+       
+       //PANEL122
+       
+       attack = new JLabel("CIVILIZATION BUILDINGS");
+       civili.setFont(new Font("Times New Roman", Font.BOLD, 30));
+       civili.setForeground(Color.BLACK);
+       civili.setAlignmentX(Component.LEFT_ALIGNMENT);
+       //civili.setPreferredSize(new Dimension(300, 50));
+       panelEti1.add(civili);
+       
+       mtower = new JLabel("Magic Towers: ");
+       int cantidadTower1 = main.getCurrentCivilization().getMagicTower(); 
+       mtower2 = new JLabel(String.valueOf(cantidadTower));
+       mtower.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       mtower.setForeground(Color.BLACK);
+       mtower2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+       mtower2.setForeground(Color.BLACK);
+       panelEti2.add(mtower);
+       panelEti2.add(mtower2);
+       
+       
+       
+       
+       
+       
+       
       
        ImageIcon imagenMapa;
-       imagenMapa = createScaledImageIcon1("./imagenes/mapa.jpg", 1000, 950);
+       imagenMapa = createScaledImageIcon1("./imagenes/mapa.jpg", 1300, 980);
        etiqueta1 = new JLabel(imagenMapa);
        
       
@@ -681,7 +766,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        
 
        // Establecer tamaño preferido para panelJPMenu
-       panelJPMenu.setPreferredSize(new Dimension(915, 1000));
+       panelJPMenu.setPreferredSize(new Dimension(615, 980));
        
       
        
@@ -703,10 +788,15 @@ public class JTabbedPaneUno extends JFrame implements Variables {
        panelInternoUno.add(panelPrincipal, BorderLayout.CENTER); // < todo mi p<nel central
 		panelInternoUno.add(panelInferior, BorderLayout.SOUTH);
 		tabbedPane.addTab("Main menu", panelInternoUno);
-
+		 try {
+	            imageIcon = ImageIO.read(new File("./imagenes/images.png"));
+	        } catch (IOException e) {
+	            System.out.println("El archivo no se encuentra");
+	        }
 
        //this.setSize(1200, 900);
-       this.setTitle("");
+       this.setTitle("CIVILIZATION");
+       this.setIconImage(imageIcon);
        this.setResizable(false);
        this.setLocationRelativeTo(null);
        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
