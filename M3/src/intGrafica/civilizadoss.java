@@ -154,9 +154,9 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 
 		imagenes = new ArrayList<>();
-		for (int i = 1; i <= 6; i++) {
+		for (int i = 1; i <= 2; i++) {
 			try {
-				imagenes.add(ImageIO.read(new File("./imagenes/Images" + i + ".JPG")));
+				imagenes.add(ImageIO.read(new File("./imagenes/fotoPrincipal" + i + ".JPG")));
 			} catch (IOException e) {
 				System.out.println("error2");
 			}
