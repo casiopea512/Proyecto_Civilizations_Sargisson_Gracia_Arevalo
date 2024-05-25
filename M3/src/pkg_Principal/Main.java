@@ -764,6 +764,7 @@ public class Main implements Variables {
 		String PASS = "civilization";
 		Connection conn = null;
 		CallableStatement stmt = null;
+		PreparedStatement ps = null;
 
 		try {
 			// Registrar el driver JDBC de Oracle
@@ -774,7 +775,7 @@ public class Main implements Variables {
 
 			// CREAR BATALLA
 			String update = "INSERT INTO battle_stats (civilization_id) VALUES (?)";
-			PreparedStatement ps = conn.prepareStatement(update, new String[] {"num_battle"});
+			ps = conn.prepareStatement(update, new String[] {"num_battle"});
 			ps.setInt(1, civilizationID);
 			ps.executeUpdate();
 
@@ -794,7 +795,7 @@ public class Main implements Variables {
 			// UPDATE REPORTE PAOS A PASO
 			update = "INSERT INTO battle_log_paso_a_paso (civilization_id, num_battle, log_entry) VALUES (?,?,?)";
 			ps = conn.prepareStatement(update);
-
+			
 			for (String line : log_pap) {
 				ps.setInt(1, civilizationID);
 				ps.setInt(2, pKIdBattle);
@@ -814,6 +815,8 @@ public class Main implements Variables {
 			ps.executeUpdate();
 
 			System.out.println("\nSe ha insertado correctamente en la BBDD el reporte general");
+			
+			
 
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -825,6 +828,10 @@ public class Main implements Variables {
 				}
 				if (conn != null) {
 					conn.close();
+				}
+				if( ps != null) {
+					ps.close();
+					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -851,6 +858,7 @@ public class Main implements Variables {
 		int[] id5Batallas = new int[5];	
 
 		Connection conn = null;
+		PreparedStatement ps = null;
 		int pkIDcivilization = -1;
 		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
 		String USER = "Civilization";
@@ -863,7 +871,7 @@ public class Main implements Variables {
 
 			//seleccionar el número de las últimas batallas
 			String query = "select * from battle_stats where civilization_id = ? and ROWNUM <= 5 order by num_battle desc"; 
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ps.setInt(1, idCiv);
 			ResultSet rs = ps.executeQuery();
 
@@ -880,6 +888,19 @@ public class Main implements Variables {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			// Cerrar la conexión y el CallableStatement
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if( ps != null) {
+					ps.close();
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return id5Batallas;
@@ -893,6 +914,7 @@ public class Main implements Variables {
 		String reporte = "";
 		
 		Connection conn = null;
+		PreparedStatement ps = null;
 		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
 		String USER = "Civilization";
 		String PASS = "civilization";
@@ -904,7 +926,7 @@ public class Main implements Variables {
 
 			//seleccionar el número de las últimas batallas
 			String query = "SELECT log_entry FROM battle_log_reporte WHERE civilization_id = ?  AND num_battle = ?";
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ResultSet rs;
 			
 			ps.setInt(1, idCiv);
@@ -922,6 +944,19 @@ public class Main implements Variables {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			// Cerrar la conexión y el CallableStatement
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if( ps != null) {
+					ps.close();
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return reporte;
@@ -933,6 +968,7 @@ public class Main implements Variables {
 		String reportePasos ="";
 		
 		Connection conn = null;
+		PreparedStatement ps = null;
 		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
 		String USER = "Civilization";
 		String PASS = "civilization";
@@ -943,7 +979,7 @@ public class Main implements Variables {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 			String query = "SELECT log_entry FROM battle_log_paso_a_paso WHERE civilization_id = ?  AND num_battle = ?";
-			PreparedStatement ps = conn.prepareStatement(query);
+			ps = conn.prepareStatement(query);
 			ResultSet rs;
 
 				
@@ -965,6 +1001,19 @@ public class Main implements Variables {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			// Cerrar la conexión y el CallableStatement
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if( ps != null) {
+					ps.close();
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return reportePasos;

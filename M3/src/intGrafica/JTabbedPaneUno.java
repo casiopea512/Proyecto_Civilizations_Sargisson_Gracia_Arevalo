@@ -120,6 +120,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 		initComponents(main);
 		
+		setResizable(true);
 		setVisible(true); 
 		
 		
@@ -162,6 +163,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
                         	System.out.println("No hay ejercito enemigo cargado");
                         }
                         
+                        
+                        // guardar el juego: IF !TIEMPO RESTANTE && 179000
+        				main.saveGame(main.getCurrentCivilizationID(), main.getCurrentCivilization());
+        				
                         if (tiempoRestante % 30000 == 0) { // cada 30 segundos
                         	
 //                        	System.out.println("=/".repeat(100));
@@ -295,6 +300,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
                         // AQUI SE IMPLEMENTA LA BATALLA
                         
                         Battle bt = new Battle(main.getCurrentCivilization().getArmy(),main.getEnemyUnits());
+                        
+                        System.out.println("El reporte general es:\n"+bt.getReporte());
+                        System.out.println("El reporte PaP es:\n"+bt.getReportePasos());
         				
                         // insertar en la BBDD la batalla y sus reportes
                         main.updateBattle(main.getCurrentCivilizationID(),bt.getReportePasos(), bt.getReporte());
@@ -309,10 +317,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         				
         				new BattleOcurred(civilizationWin, resourcesWin);
         				
+        				// actualizar el número de batallas
         				main.getCurrentCivilization().setBattles(main.getCurrentCivilization().getBattles()+1);
         				
-        				// guardar el juego
-        				main.saveGame(main.getCurrentCivilizationID(), main.getCurrentCivilization());
         				
         				//updates visuales
         				updateResourceLabels(main);
@@ -362,10 +369,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelRecursosEdificios.setLayout(new BoxLayout(panelRecursosEdificios, BoxLayout.X_AXIS));
 		panelRecursosEdificios.setBackground(Color.BLACK);
 		
-		iconFood = createScaledImageIcon("./src/food.png", 40, 40);
-        iconWood = createScaledImageIcon("./src/wood.png", 40, 40);
-        iconIron = createScaledImageIcon("./src/iron.png", 40, 40);
-        iconMana = createScaledImageIcon("./src/mana.png", 40, 40);
+		iconFood = createScaledImageIcon("./imagenes/food.png", 40, 40);
+        iconWood = createScaledImageIcon("./imagenes/wood.png", 40, 40);
+        iconIron = createScaledImageIcon("./imagenes/iron.png", 40, 40);
+        iconMana = createScaledImageIcon("./imagenes/mana.png", 40, 40);
 		
 		foodEdificios = new JLabel(String.valueOf(main.getCurrentCivilization().getFood()), iconFood, SwingConstants.CENTER);
 		foodEdificios.setForeground(Color.WHITE);
@@ -2310,7 +2317,29 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		// botón ver reporte
 		JButton boton_view = new JButton("View log");
 		
+		JButton boton_actualizar = new JButton("Update");
 		
+		boton_actualizar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				int[] id5batallas = main.getIDLastBattles(main.getCurrentCivilizationID());
+				
+				System.out.println("Se ha actualizado el array de las batallas: "+Arrays.toString(id5batallas));
+				
+				cb_numBatalla.removeAllItems();
+				
+				for (int i : id5batallas) {
+					cb_numBatalla.addItem(i);
+				}
+				
+				System.out.println("Se ha actualizado el cb");
+			}
+		});
+		
+		
+		
+		// añadir al panel
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -2338,7 +2367,11 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		gbc.gridy = 7;
 		panelI.add(boton_view, gbc);
 		gbc.gridy = 8;
-		panelI.add(Box.createRigidArea(new Dimension(0,20)), gbc);
+		panelI.add(Box.createRigidArea(new Dimension(0,10)), gbc);
+		gbc.gridy = 9;
+		panelI.add(boton_actualizar, gbc);
+		gbc.gridy = 10;
+		panelI.add(Box.createRigidArea(new Dimension(0,10)), gbc);
 		
 		gbc.gridx = 1;
 		gbc.gridy = 0;

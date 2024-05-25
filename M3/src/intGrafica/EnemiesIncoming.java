@@ -37,6 +37,7 @@ public class EnemiesIncoming extends JFrame {
 		
 		initComponents(enemyUnit);
 		
+		this.setUndecorated(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 		
