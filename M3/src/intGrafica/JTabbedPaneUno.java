@@ -307,6 +307,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         					main.addResourcesCivilization(resourcesWin, main.getCurrentCivilization());
         				}
         				
+        				new BattleOcurred(civilizationWin, resourcesWin);
+        				
+        				main.getCurrentCivilization().setBattles(main.getCurrentCivilization().getBattles()+1);
         				
         				// guardar el juego
         				main.saveGame(main.getCurrentCivilizationID(), main.getCurrentCivilization());
