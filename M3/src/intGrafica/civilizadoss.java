@@ -234,7 +234,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 		public PartidasGuardadas() {
 			etiPG = new JLabel("SAVED GAMES");
-			etiPG.setFont(new Font("Times New Roman", Font.BOLD, 35));
+			etiPG.setFont(new Font("Times New Roman", Font.BOLD, 70));
 			etiPG.setForeground(Color.BLACK);
 
 			// Botón redondeado al sur del frame
