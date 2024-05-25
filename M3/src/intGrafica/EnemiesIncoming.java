@@ -1,15 +1,25 @@
 package intGrafica;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import intGrafica.BattleOcurred.BackgroundPanel;
 import interfaces.MilitaryUnit;
 
 public class EnemiesIncoming extends JFrame {
@@ -29,6 +39,8 @@ public class EnemiesIncoming extends JFrame {
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
+		
+
 		
 	}
 	
@@ -68,3 +80,4 @@ public class EnemiesIncoming extends JFrame {
 	} 
 
 }
+
