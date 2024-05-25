@@ -226,7 +226,7 @@ public class Main implements Variables {
 			 */
 
 			// se genera el objeto civilizacion
-			main.setCurrentCivilization(new Civilization(civilizationName, userName, 0,0,0,0,0,0,0,0,0,0,0,0, 179000)); 
+			main.setCurrentCivilization(new Civilization(civilizationName, userName, 3500,1000,6000,0,0,0,0,0,0,0,0,0, 179000)); 
 
 			// OBTENER PK generada
 			ResultSet generatedKeys = ps.getGeneratedKeys();

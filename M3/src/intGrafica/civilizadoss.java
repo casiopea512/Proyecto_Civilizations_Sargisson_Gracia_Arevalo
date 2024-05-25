@@ -714,7 +714,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 						Main principal = new Main();
 
-						principal.createCivilization(userName,civilizationName,principal);
+						principal.createCivilization(civilizationName, userName, principal);
 
 						JTabbedPaneUno ventanaPrincipal = new JTabbedPaneUno(principal);
 
