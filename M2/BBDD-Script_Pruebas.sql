@@ -1,9 +1,9 @@
 -- civilization_stats
 
 INSERT INTO civilization_stats (name, username, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defense_level, technology_attack_level, battles_counter, time_left)
-VALUES ('Civilization A', 'Cowed', 1000, 500, 2000, 300, 3, 2, 5, 4, 3, 2, 3, 10, 110000);
+VALUES ('CivilA', 'Will', 1000, 500, 2000, 300, 3, 2, 5, 4, 3, 2, 3, 10, 110000);
 INSERT INTO civilization_stats (name, username, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defense_level, technology_attack_level, battles_counter,  time_left)
-VALUES ('Civilization B', 'Kahba', 800, 700, 1500, 400, 2, 3, 4, 3, 2, 1, 2, 5, 130000);
+VALUES ('Civil B', 'Pau', 800, 700, 1500, 400, 2, 3, 4, 3, 2, 1, 2, 5, 130000);
 
 
 -- attack_units_stats

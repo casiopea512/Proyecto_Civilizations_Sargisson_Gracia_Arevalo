@@ -9,9 +9,9 @@ CREATE TABLE civilization_stats
     name VARCHAR2( 50 ),
     username VARCHAR2( 50 ),
     
-    wood_amount NUMBER DEFAULT 0,
-    iron_amount NUMBER DEFAULT 0,
-    food_amount NUMBER DEFAULT 0,
+    wood_amount NUMBER DEFAULT 3500,
+    iron_amount NUMBER DEFAULT 1000,
+    food_amount NUMBER DEFAULT 6000,
     mana_amount NUMBER DEFAULT 0,
     
     magicTower_counter NUMBER DEFAULT 0,

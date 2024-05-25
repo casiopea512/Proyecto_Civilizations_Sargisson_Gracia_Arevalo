@@ -74,4 +74,5 @@ BEGIN
     DELETE FROM attack_units_stats WHERE civilization_id = p_civilization_id;
     DELETE FROM defense_units_stats  WHERE civilization_id = p_civilization_id;
     DELETE FROM special_units_stats WHERE civilization_id = p_civilization_id;
+    COMMIT;
 END;
