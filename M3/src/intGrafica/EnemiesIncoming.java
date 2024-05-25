@@ -22,63 +22,92 @@ import javax.swing.JPanel;
 import intGrafica.BattleOcurred.BackgroundPanel;
 import interfaces.MilitaryUnit;
 
-public class EnemiesIncoming extends JFrame {
+public class EnemiesIncoming extends JFrame{
 	
-	private JPanel panelPrincipal;
-	private JLabel labelAttention, labelMessage, labelSwordsman, labelSpearman, labelCrossbow, labelCannon;
-	private JButton salir;
+	private BackgroundPanel panelPrincipal;
 	
-	public EnemiesIncoming(ArrayList<MilitaryUnit>[] enemyUnit) {
-		
-		this.setTitle("ENEMIES INCOMING!");
-		this.setSize(500, 300);
-		// setResizable(false);
-		this.setLocationRelativeTo(null); 
-		
-		initComponents(enemyUnit);
-		
-		this.setUndecorated(true);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
-		
+    private JLabel labelTitle, labelWin, labelCollect;
+    
+    private JButton exit;
+    private BufferedImage imagen;
+    
 
-		
-	}
-	
-	public void initComponents(ArrayList<MilitaryUnit>[] enemyUnit) {
-		
-		JPanel panelPrincipal = new JPanel();
-		JLabel labelAttention = new JLabel("Careful! There are enemies nearby your civilization!");
-		JLabel labelMessage = new JLabel("The following units have been sighted: ");
+    
+    public EnemiesIncoming(ArrayList<MilitaryUnit>[] enemyUnit) {
+
+        this.setTitle("ENEMIES INCOMING!");
+        this.setSize(500, 300);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        
+        this.initComponents(enemyUnit);
+        
+        this.setUndecorated(true);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+    
+    public void initComponents(ArrayList<MilitaryUnit>[] enemyUnit) {
+        // cargar imagen de fondo
+        try {
+            imagen = ImageIO.read(new File("./imagenes/enemies_incoming.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        panelPrincipal = new BackgroundPanel(imagen);
+        panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
+        
+        labelTitle = new JLabel("ENEMIES INCOMING!");
+        
+        JLabel labelAttention = new JLabel("Careful! There are enemies nearby your civilization!");
+		//JLabel labelMessage = new JLabel("The following units have been sighted: ");
 		JLabel labelSwordsman = new JLabel("Swordsman: " + enemyUnit[0].size());
 		JLabel labelSpearman = new JLabel("Spearman: " + enemyUnit[1].size());
 		JLabel labelCrossbow = new JLabel("Crossbow: " + enemyUnit[2].size());
 		JLabel labelCannon = new JLabel("Cannon: " + enemyUnit[3].size());
-		JButton salir =  new JButton("Exit");
-				
-		panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
-		
-		panelPrincipal.add(labelAttention);
-		panelPrincipal.add(labelMessage);
-		panelPrincipal.add(labelSwordsman);
-		panelPrincipal.add(labelSpearman);
-		panelPrincipal.add(labelCrossbow);
-		panelPrincipal.add(labelCannon);
-		panelPrincipal.add(salir);
-		this.add(panelPrincipal);
-		
-		salir.addActionListener(new ActionListener() {
-
-			
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
-			}
-			
-		});
-		
-		
-	} 
-
+        
+        
+        labelTitle.setFont(new Font("Arial", Font.BOLD, 20));
+        labelAttention.setFont(new Font("Arial", Font.BOLD, 15));
+        labelSwordsman.setFont(new Font("Arial", Font.BOLD, 15));
+        labelSpearman.setFont(new Font("Arial", Font.BOLD, 15));
+        labelCrossbow.setFont(new Font("Arial", Font.BOLD, 15));
+        labelCannon.setFont(new Font("Arial", Font.BOLD, 15));
+        
+        exit = new JButton("Exit");
+        
+        panelPrincipal.add(Box.createRigidArea(new Dimension(100, 60)));
+        panelPrincipal.add(labelTitle);
+        panelPrincipal.add(Box.createRigidArea(new Dimension(0, 10)));
+        panelPrincipal.add(labelAttention);
+        panelPrincipal.add(Box.createRigidArea(new Dimension(0, 10)));
+        panelPrincipal.add(labelSwordsman);
+        panelPrincipal.add(labelSpearman);
+        panelPrincipal.add(labelCrossbow);
+        panelPrincipal.add(labelCannon);
+        panelPrincipal.add(Box.createRigidArea(new Dimension(0, 10)));
+        panelPrincipal.add(exit);
+        
+        this.add(panelPrincipal, BorderLayout.CENTER);
+        
+        exit.addActionListener(e -> dispose());
+    }
+    
+    // Clase interna para el panel con fondo de imagen
+    class BackgroundPanel extends JPanel {
+    	private BufferedImage image;
+        
+        public BackgroundPanel(BufferedImage image) {
+            this.image = image;
+        }
+        
+       
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (image != null) {
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
+    }
 }
-
