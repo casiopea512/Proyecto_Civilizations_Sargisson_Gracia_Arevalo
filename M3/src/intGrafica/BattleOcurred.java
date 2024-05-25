@@ -39,6 +39,7 @@ public class BattleOcurred extends JFrame{
         
         this.initComponents();
         
+        this.setUndecorated(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
     }

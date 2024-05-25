@@ -436,7 +436,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" Swordsman, has been created "+i);
+				throw new ResourceException("You do not have enough resources to create "+n+" Swordsman. Swordsman created: "+i);
 			}
 
 
@@ -459,7 +459,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" Spearman, has been created "+i);
+				throw new ResourceException("You do not have enough resources to create "+n+" Spearman. Spearman created: "+i);
 			}
 		}
 	}
@@ -479,7 +479,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" Crossbow, has been created "+i);
+				throw new ResourceException("You do not have enough resources to create "+n+" Crossbow. Crossbow created: "+i);
 			}
 		}
 	}
@@ -500,7 +500,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" Cannon, has been created "+i);
+				throw new ResourceException("You do not have enough resources to create "+n+" Cannon. Cannon created: "+i);
 			}
 		}
 	}
@@ -520,7 +520,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" ArrowTower, has been created "+i);
+				throw new ResourceException("You do not have enough resources to create "+n+" ArrowTower. ArrowTower created: "+i);
 			}
 		}
 	}
@@ -541,7 +541,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" Catapult, has been created "+i);
+				throw new ResourceException("You do not have enough resources to create "+n+" Catapult. Catapult created: "+i);
 			}
 		}
 	}
@@ -562,7 +562,7 @@ public class Civilization implements Variables {
 
 			}else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" RocketLauncher, has been created "+i);
+				throw new ResourceException("you do not have enough resources to create "+n+" RocketLauncher. RocketLauncher created: "+i);
 			}
 		}
 	}
@@ -588,7 +588,7 @@ public class Civilization implements Variables {
 
 			} else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" Magician, has been created "+i);
+				throw new ResourceException("you do not have enough resources to create "+n+" Magician. Magician created: "+i);
 			}
 		}
 	}
@@ -596,6 +596,11 @@ public class Civilization implements Variables {
 
 	public void newPriest(int n) throws ResourceException {
 		for (int i = 0; i < n; i++) { 
+			
+			if (army[8].size() >= church) {
+				throw new ResourceException("You do not have enough Churches to create a new Priest");
+			}
+			
 			if (getFood() >= FOOD_COST_PRIEST && getMana()>= MANA_COST_PRIEST){
 				this.setFood(food-FOOD_COST_PRIEST);
 				this.setMana(mana-MANA_COST_PRIEST);
@@ -603,9 +608,10 @@ public class Civilization implements Variables {
 				int newDamage = 0;
 				Priest newPriest = new Priest(newArmor,newDamage);
 				army[8].add(newPriest);
-			}else {
+				
+			} else {
 				//se controla la falta de recursos
-				throw new ResourceException("you do not have enough resources to create "+n+" Magician, has been created "+i);
+				throw new ResourceException("You do not have enough resources to create " + n + " Priest. Priest created: "+i);
 
 			}
 		}
