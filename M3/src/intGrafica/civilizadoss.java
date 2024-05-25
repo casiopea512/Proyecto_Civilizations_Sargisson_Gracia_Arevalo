@@ -58,10 +58,29 @@ class PantallaPrincipal extends JFrame implements Variables {
 		panelBotonesContainer = new JPanel();
 		panelTitle = new JPanel();
 
-
-		titulo = new GradientLabel("CIVILIZATION", Color.BLUE, Color.DARK_GRAY, 200);
-		//titulo.setHorizontalAlignment(JLabel.CENTER);
-		titulo.setFont(new Font("Algerian", Font.BOLD, 200));
+		
+		// cargar la fuente desde el archivo
+		try {
+			Font cinzel = Font.createFont(Font.TRUETYPE_FONT, new File("./resources/fonts/EBGaramond-Regular.ttf")).deriveFont(100f);
+			 GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+             ge.registerFont(cinzel);
+             
+             titulo = new JLabel("C I V I L I Z A T I O N",SwingConstants.CENTER);
+             titulo.setFont(cinzel);
+             titulo.setForeground(Color.black);
+             
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+//		titulo = new GradientLabel("CIVILIZATION", Color.BLUE, Color.DARK_GRAY, 200);
+//		titulo.setHorizontalAlignment(JLabel.CENTER);
+//		titulo.setFont(new Font("Algerian", Font.BOLD, 200));
 
 		//titulo.setBorder(new LineBorder(Color.RED, 1));
 		RoundedButton botonPlay = new RoundedButton(" NEW GAME ");
@@ -191,7 +210,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 
 		setUndecorated(true); //poner cabecera por defecto o no
-		getRootPane().setBorder(new LineBorder(Color.BLACK, 10)); // Establece un borde de línea azul con grosor 20 alrededor de la ventana
+		getRootPane().setBorder(new LineBorder(Color.decode("#BC9D7B"), 5)); // Establece un borde de línea azul con grosor 20 alrededor de la ventana
 
 
 		add(panelImagenes, BorderLayout.CENTER);
