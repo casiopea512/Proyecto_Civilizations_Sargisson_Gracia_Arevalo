@@ -233,7 +233,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 
 		public PartidasGuardadas() {
-			etiPG = new JLabel("PARTIDAS GUARDADAS");
+			etiPG = new JLabel("SAVED GAMES");
 			etiPG.setFont(new Font("Times New Roman", Font.BOLD, 35));
 			etiPG.setForeground(Color.BLACK);
 
@@ -257,7 +257,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 			panelCentral = new JPanel();
 			panelBack = new JPanel();
 			// panelCentral.setOpaque(false);
-
+			
 			panelEti.add(etiPG);
 			panelEti.setOpaque(false);
 
@@ -419,13 +419,14 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 
 			try {
-				imagenFondo2 = ImageIO.read(new File("./imagenes/pergamino.jpg"));
+				imagenFondo2 = ImageIO.read(new File("./imagenes/fotoLog.png"));
 			} catch (IOException e) {
 				System.out.println("El archivo no se encuentra");
 			}
 
 			// Crear un ImageIcon a partir de la imagen de fondo
 			ImageIcon foto = new ImageIcon(imagenFondo2);
+			
 			// Crear el panel de fondo con la imagen
 			JPanelConFondo panelImagen2 = new JPanelConFondo(foto.getImage());
 			panelImagen2.setLayout(new BorderLayout());
@@ -437,19 +438,23 @@ class PantallaPrincipal extends JFrame implements Variables {
 			tablaPartidas.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			tablaPartidas.setBorder(null); // Eliminar bordes del JScrollPane
 			tablaPartidas.setViewportBorder(null); // Eliminar bordes del viewport
+			
+			
 			panelImagen2.add(panelEti, BorderLayout.NORTH);
 			panelImagen2.add(tablaPartidas, BorderLayout.CENTER);
 			panelImagen2.add(panelBack, BorderLayout.SOUTH);
+			
 			panelImagen2.setOpaque(false);
 
 			// Agregar el panel de imágenes al JFrame
 			this.add(panelImagen2);
 
 			// Indicaciones estándar para una ventana de crear usuario
-			this.setSize(900, 1000);
-			this.setTitle("PG");
+			this.setSize(1400, 900);
+			this.setTitle("Saved Games");
 			this.setIconImage(imageIcon);
 			this.setResizable(false); // No cambiar tamaño marco
+			this.setUndecorated(true);
 			this.setLocationRelativeTo(null); // Sale en medio
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Se para el programa al cerrar
 			this.setVisible(true); // Para verla
