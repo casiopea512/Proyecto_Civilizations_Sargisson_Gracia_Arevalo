@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -32,12 +33,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import exceptions.ResourceException;
 import interfaces.Variables;
@@ -1994,8 +2000,114 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		
 		// INTEGRACION DE PANEL SUPERIOR CENTRAL
 		
-		JPanel panelPrincipal = new JPanel();
-		panelPrincipal.setBackground(Color.ORANGE);
+		JPanel panelI = new JPanel(new GridBagLayout());
+		
+		// seleccionar batalla
+		JLabel label_numeroBattle = new JLabel("Number of battle");
+		label_numeroBattle.setFont(new Font("Aria",Font.PLAIN,20));
+		
+		int[] id5batallas = main.getIDLastBattles(main.getCurrentCivilizationID());
+		
+		System.out.println("Las últimas 5 batallas de la civilización "+main.getCurrentCivilizationID()+" son "+Arrays.toString(id5batallas));
+		
+		JComboBox cb_numBatalla = new JComboBox();
+		
+		for (int i : id5batallas) {
+			cb_numBatalla.addItem(i);
+		}
+		
+		cb_numBatalla.setFont(new Font("Arial",Font.PLAIN,20));
+		cb_numBatalla.setPreferredSize(new Dimension(20, 20));// Establecer el tamaño
+		
+		// seleccionar reporte
+		JLabel label_tipoReporte = new JLabel("Tipo of report");
+		label_tipoReporte.setFont(new Font("Arial",Font.PLAIN,20));
+		
+		String[] tipoReportes = {"Paso a paso","General"};
+		JComboBox<String> cb_tipoReporte = new JComboBox<String>(tipoReportes);
+		cb_tipoReporte.setFont(new Font("Arial",Font.PLAIN,20));
+		
+		
+		// botón ver reporte
+		JButton boton_view = new JButton("View log");
+		
+		
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.insets = new Insets(10, 50, 10, 10); // padd
+		gbc.anchor = GridBagConstraints.WEST;
+		
+		gbc.gridx = 0;
+		
+		gbc.gridy = 0;
+		panelI.add(Box.createRigidArea(new Dimension(0,10)), gbc);
+		gbc.gridy = 1;
+		panelI.add(label_numeroBattle, gbc);
+		gbc.gridy = 2;
+		panelI.add(cb_numBatalla, gbc);
+		gbc.gridy = 3;
+		panelI.add(Box.createRigidArea(new Dimension(0,5)), gbc);
+		gbc.gridy = 4;
+		panelI.add(label_tipoReporte, gbc);
+		gbc.gridy = 5;
+		panelI.add(cb_tipoReporte, gbc);
+		gbc.gridy = 6;
+		panelI.add(Box.createRigidArea(new Dimension(0,20)), gbc);
+		gbc.gridy = 7;
+		panelI.add(boton_view, gbc);
+		gbc.gridy = 8;
+		panelI.add(Box.createRigidArea(new Dimension(0,20)), gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		panelI.add(Box.createRigidArea(new Dimension(20,0)), gbc);
+		
+		
+		// panel de la derecha
+		
+		JScrollPane panelD = new JScrollPane();
+		
+		
+		boton_view.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				int selectedBattle = (int) cb_numBatalla.getSelectedItem();
+				String selectedReportType = (String) cb_tipoReporte.getSelectedItem();
+				
+				
+				
+				if (selectedReportType.equals("General")) {
+					// Crear JTextArea
+	                JTextArea mensaje = new JTextArea(main.getLogLastBattles(selectedBattle));
+	                mensaje.setFont(new Font("Arial", Font.PLAIN, 25));
+	                mensaje.setWrapStyleWord(true);
+	                mensaje.setLineWrap(true);
+	                mensaje.setEditable(false);
+	
+	                panelD.setViewportView(mensaje);
+				}
+				
+				else if (selectedReportType.equals("Paso a paso")) {
+					// Crear JTextArea
+	                JTextArea mensaje = new JTextArea(main.getLogPaPLastBattles(selectedBattle));
+	                mensaje.setFont(new Font("Arial", Font.PLAIN, 25));
+	                mensaje.setWrapStyleWord(true);
+	                mensaje.setLineWrap(true);
+	                mensaje.setEditable(false);
+	
+	                panelD.setViewportView(mensaje);
+	               
+	                
+				}
+			}
+		});
+		
+		
+		JSplitPane panelPrincipal = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelI, panelD);
 		
 		// 
 		
