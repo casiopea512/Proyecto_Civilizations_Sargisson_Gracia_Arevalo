@@ -90,33 +90,33 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	private ImageIcon iconFood, iconWood, iconIron, iconMana;
 
 	// RECURSOS PANEL EDIFICIOS
-	JPanel panelRecursosEdificios, panelPrincipalEdificios;
-	JLabel foodEdificios, woodEdificios, ironEdificios, manaEdificios;
+	private JPanel panelRecursosEdificios, panelPrincipalEdificios;
+	private JLabel foodEdificios, woodEdificios, ironEdificios, manaEdificios;
 
 	// RECURSOS PANEL UNIDADES
-	JPanel panelRecursosUnits, panelPrincipalUnidades;
-	JLabel foodUnits, woodUnits, ironUnits, manaUnits;
+	private JPanel panelRecursosUnits, panelPrincipalUnidades;
+	private JLabel foodUnits, woodUnits, ironUnits, manaUnits;
 
 	// BARRA INFERIOR 
-	JPanel panelInferior;
+	private JPanel panelInferior;
 
-	JButton viewthreat, pause, save, exit; // REUTILIZABLES
+	private JButton viewthreat, pause, save, exit; // REUTILIZABLES
 
-	JLabel battleCountdownMenuPrincipal;
-	JLabel battleCountdownEdificios;
-	JLabel battleCountdownUnidades;
-	JLabel battleCountdownBattle;
+	private JLabel battleCountdownMenuPrincipal;
+	private JLabel battleCountdownEdificios;
+	private JLabel battleCountdownUnidades;
+	private JLabel battleCountdownBattle;
 
 	// INICIALIZACION LABELS BUILDINGS
-	JLabel attentionLabelBuilding;
-	ArrayList<JLabel> arrayCostDefenseTechnology;
-	ArrayList<JLabel> arrayCostAttackTechnology;
+	private JLabel attentionLabelBuilding;
+	private ArrayList<JLabel> arrayCostDefenseTechnology;
+	private ArrayList<JLabel> arrayCostAttackTechnology;
 
 	// INICIALIZACION LABELS UNIDADES
-	JLabel attentionLabelUnits;
-	ArrayList<JLabel> damageUnitsArrayLabel;
-	ArrayList<JLabel> armorUnitsArrayLabel;
-	ArrayList<JLabel> totalUnitsArrayLabel;
+	private JLabel attentionLabelUnits;
+	private ArrayList<JLabel> damageUnitsArrayLabel;
+	private ArrayList<JLabel> armorUnitsArrayLabel;
+	private ArrayList<JLabel> totalUnitsArrayLabel;
 
 	JTabbedPaneUno(Main main){
 
@@ -1200,10 +1200,15 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		resources.setAlignmentX(Component.LEFT_ALIGNMENT);
 		//civili.setPreferredSize(new Dimension(300, 50));
 		panelEti28.add(resources);
+		
+//		String.valueOf(CIVILIZATION_FOOD_GENERATED + CIVILIZATION_FOOD_GENERATED_PER_FARM * main.getCurrentCivilization().getFarm()));
+//		String.valueOf(CIVILIZATION_WOOD_GENERATED + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY * main.getCurrentCivilization().getCarpentry()));
+//		String.valueOf(CIVILIZATION_IRON_GENERATED + CIVILIZATION_IRON_GENERATED_PER_SMITHY * main.getCurrentCivilization().getSmithy()));
+//		String.valueOf(CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * main.getCurrentCivilization().getMagicTower()));
 
 		foodd = new JLabel("Food: ");
-		//int fffood = main.getCurrentCivilization().getFarm()*1000; 
-		foodd2 = new JLabel(String.valueOf(123));
+		int fffood = CIVILIZATION_FOOD_GENERATED + CIVILIZATION_FOOD_GENERATED_PER_FARM * main.getCurrentCivilization().getFarm();
+		foodd2 = new JLabel(String.valueOf(fffood));
 		foodd.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		foodd.setForeground(Color.BLACK);
 		foodd2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -1213,8 +1218,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 
 		woodd = new JLabel("Wood: ");
-		//int wwood =main.getCurrentCivilization().getWood(); 
-		woodd2 = new JLabel(String.valueOf(456));
+		int wwwood = CIVILIZATION_WOOD_GENERATED + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY * main.getCurrentCivilization().getCarpentry();
+		woodd2 = new JLabel(String.valueOf(wwwood));
 		woodd.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		woodd.setForeground(Color.BLACK);
 		woodd2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -1223,8 +1228,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelEti30.add(woodd2);
 
 		ironn = new JLabel("Iron: ");
-		//int iiron =main.getCurrentCivilization().getIron(); 
-		ironn2 = new JLabel(String.valueOf(789));
+		int iiiron = CIVILIZATION_IRON_GENERATED + CIVILIZATION_IRON_GENERATED_PER_SMITHY * main.getCurrentCivilization().getSmithy();
+		ironn2 = new JLabel(String.valueOf(iiiron));
 		ironn.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		ironn.setForeground(Color.BLACK);
 		ironn2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -1233,8 +1238,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelEti31.add(ironn2);
 
 		manaa = new JLabel("Mana: ");
-		int mmmana =main.getCurrentCivilization().getMana()*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER; 
-		manaa2 = new JLabel(String.valueOf(321));
+		int mmmana = CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * main.getCurrentCivilization().getMagicTower(); 
+		manaa2 = new JLabel(String.valueOf(mmmana));
 		manaa.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		manaa.setForeground(Color.BLACK);
 		manaa2.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -2858,17 +2863,16 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		// LABELS DE LA MAIN MENU
 
 		// RECURSOS
-		food2.setText("999");
-		wood2.setText("999");
-		iron2.setText("999");
-		mana2.setText("999");
-
+		food2.setText(String.valueOf(main.getCurrentCivilization().getFood()));
+		wood2.setText(String.valueOf(main.getCurrentCivilization().getWood()));
+		iron2.setText(String.valueOf(main.getCurrentCivilization().getIron()));
+		mana2.setText(String.valueOf(main.getCurrentCivilization().getMana()));
 
 		// GENERACIÓN ACTUAL
-		foodd2.setText("999");
-		woodd2.setText("999");
-		ironn2.setText("999");
-		manaa2.setText("999");
+		foodd2.setText(String.valueOf(CIVILIZATION_FOOD_GENERATED + CIVILIZATION_FOOD_GENERATED_PER_FARM * main.getCurrentCivilization().getFarm()));
+		woodd2.setText(String.valueOf(CIVILIZATION_WOOD_GENERATED + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY * main.getCurrentCivilization().getCarpentry()));
+		ironn2.setText(String.valueOf(CIVILIZATION_IRON_GENERATED + CIVILIZATION_IRON_GENERATED_PER_SMITHY * main.getCurrentCivilization().getSmithy()));
+		manaa2.setText(String.valueOf(CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * main.getCurrentCivilization().getMagicTower()));
 
 	}
 
@@ -2889,15 +2893,15 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		totalUnitsArrayLabel.get(7).setText(String.valueOf((main.getCurrentCivilization().getArmy())[7].size()));
 		totalUnitsArrayLabel.get(8).setText(String.valueOf((main.getCurrentCivilization().getArmy())[8].size()));
 		
-		sword2.setText("55555");;
-		spearman2.setText("55555");
-		crosbow2.setText("55555");
-		cannon2.setText("55555");
-		tower2.setText("55555");
-		catapult2.setText("55555"); 
-		rocket2.setText("55555"); 
-		magician2.setText("55555"); 
-		priest2.setText("55555"); 
+		sword2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[0].size()));
+		spearman2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[1].size()));
+		crosbow2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[2].size()));
+		cannon2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[3].size()));
+		tower2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[4].size()));
+		catapult2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[5].size()));
+		rocket2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[6].size()));
+		magician2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[7].size()));
+		priest2.setText(String.valueOf((main.getCurrentCivilization().getArmy())[8].size()));
 	}
 
 	public void updateBuildingsLabel (Main main) {
@@ -2980,15 +2984,15 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		*/
 		// MAIN MENU
 		
-		alevel2.setText(String.valueOf((100)));
-		dlevel2.setText(String.valueOf((150)));
+		alevel2.setText(String.valueOf(main.getCurrentCivilization().getTechnologyAttack()));
+		dlevel2.setText(String.valueOf(main.getCurrentCivilization().getTechnologyDefense()));
 	}	
 
 	public void updateBattleCounter(Main main) {
 
 		// MAIN MENU
 		//battle2.setText(String.valueOf((main.getCurrentCivilization().getBattles())));
-		battle2.setText(String.valueOf(1500));
+		battle2.setText(String.valueOf(main.getCurrentCivilization().getBattles()));
 	}
 
 
