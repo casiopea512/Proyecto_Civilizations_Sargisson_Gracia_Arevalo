@@ -860,7 +860,7 @@ public class Battle implements Variables {
 		
 		datos_update += String.format("%-20s %-10s %-10s %-25s %-10s %-10s","Army plannet","Units","Drops","Initial Army Enemy","Units","Drops");
 
-		datos_update += String.format("%-15s %10d %10d %14s %21d %10d", "Swordsman",actualNumberUnitsCivilization[0], civilizationDrops[0], "Swordsman", actualNumberUnitsEnemy[0],enemyDrops[0]);
+		datos_update +="\n"+ String.format("%-15s %10d %10d %14s %21d %10d", "Swordsman",actualNumberUnitsCivilization[0], civilizationDrops[0], "Swordsman", actualNumberUnitsEnemy[0],enemyDrops[0]);
 		
 		datos_update +="\n"+ String.format("%-15s %10d %10d %13s %22d %10d", "Spearman",actualNumberUnitsCivilization[1], civilizationDrops[1], "Spearman", actualNumberUnitsEnemy[1],enemyDrops[1]);
 
