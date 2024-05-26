@@ -2595,10 +2595,37 @@ public class InterfaceGame extends JFrame implements Variables {
 								for (MilitaryUnit unidad : unidades) {
 
 									if (unidad instanceof AttackUnit) {
+										
+										if (!((AttackUnit) unidad).isSanctified()) {
+											
+											// subir armadura
+											((AttackUnit) unidad).setArmor( unidad.getActualArmor() + (unidad.getActualArmor()* PLUS_ARMOR_UNIT_SANCTIFIED) / 100);
+											
+											// subir defensa
+											((AttackUnit) unidad).setBaseDamage( ((AttackUnit) unidad).getBaseDamage() + ( ((AttackUnit) unidad).getBaseDamage()* PLUS_ATTACK_UNIT_SANCTIFIED ) / 100);
+										}
+										
+										
 										((AttackUnit) unidad).setSanctified(true);
+										
+										
 
 									} else if (unidad instanceof DefenseUnit) {
+										
+										if(!((DefenseUnit) unidad).isSanctified()) {
+											
+											// subir armadura
+											((DefenseUnit) unidad).setArmor( unidad.getActualArmor() + (unidad.getActualArmor()* PLUS_ARMOR_UNIT_SANCTIFIED) / 100);
+											
+											// subir defensa
+											((DefenseUnit) unidad).setBaseDamage( ((DefenseUnit) unidad).getBaseDamage() + ( ((DefenseUnit) unidad).getBaseDamage()* PLUS_ATTACK_UNIT_SANCTIFIED ) / 100);
+											
+										}
+										
+										
 										((DefenseUnit) unidad).setSanctified(true);
+										
+										
 									} 
 								} 
 

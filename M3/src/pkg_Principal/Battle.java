@@ -624,15 +624,30 @@ public class Battle implements Variables {
 					for( int j=0; j<civilizationArmy[i].size(); j++) {
 						
 						if (civilizationArmy[i].get(j) instanceof AttackUnit) {
-//							System.out.println("La unidad es atacante");
+							
 							((AttackUnit) civilizationArmy[i].get(j)).setSanctified(false);
+							
+							// bajar la armadura
+							((AttackUnit) civilizationArmy[i].get(j)).setArmor( (civilizationArmy[i].get(j).getActualArmor()) - (civilizationArmy[i].get(j).getActualArmor()*PLUS_ARMOR_UNIT_SANCTIFIED) /100);
+							
+							// bajar el ataque
+							((AttackUnit) civilizationArmy[i].get(j)).setBaseDamage( ( ((AttackUnit) civilizationArmy[i].get(j)).getBaseDamage() ) - ( ((AttackUnit) civilizationArmy[i].get(j)).getBaseDamage() * PLUS_ATTACK_UNIT_SANCTIFIED ) / 100 );
+							
 //							System.out.println(((AttackUnit) civilizationArmy[i].get(j)).isSanctified());
 //							System.out.println("La unidad "+civilizationArmy[i].get(j)+" ha sido desantificada");
 						}
 						
 						else if(civilizationArmy[i].get(j) instanceof DefenseUnit) {
-//							System.out.println("La unidad es defensiva");
+							
 							((DefenseUnit) civilizationArmy[i].get(j)).setSanctified(false);
+							
+							// bajar la armadura
+							((DefenseUnit) civilizationArmy[i].get(j)).setArmor( (civilizationArmy[i].get(j).getActualArmor()) - (civilizationArmy[i].get(j).getActualArmor()*PLUS_ARMOR_UNIT_SANCTIFIED) /100);
+					
+							// bajar el ataque
+							((DefenseUnit) civilizationArmy[i].get(j)).setBaseDamage( ( ((DefenseUnit) civilizationArmy[i].get(j)).getBaseDamage() ) - ( ((DefenseUnit) civilizationArmy[i].get(j)).getBaseDamage() * PLUS_ATTACK_UNIT_SANCTIFIED ) / 100 );
+
+							
 //							System.out.println("La unidad "+civilizationArmy[i].get(j)+" ha sido desantificada");
 						}
 					}
@@ -744,6 +759,32 @@ public class Battle implements Variables {
 //				System.out.println("El índice j es: "+j+ "\nEl civ[i].get(j) es: "+civilizationArmy[i].get(j));
 								
 				civilizationArmy[i].get(j).setExperience(1);
+				
+				if (civilizationArmy[i].get(j) instanceof AttackUnit) {
+					// subir la armadura
+					((AttackUnit) civilizationArmy[i].get(j)).setArmor( (civilizationArmy[i].get(j).getActualArmor()) + (civilizationArmy[i].get(j).getActualArmor()*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT) /100);
+					
+					// subir el ataque
+					((AttackUnit) civilizationArmy[i].get(j)).setBaseDamage( ( ((AttackUnit) civilizationArmy[i].get(j)).getBaseDamage() ) + ( ((AttackUnit) civilizationArmy[i].get(j)).getBaseDamage() * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT ) / 100 );
+				}
+				
+				else if(civilizationArmy[i].get(j) instanceof DefenseUnit) {
+					// subir la armadura
+					((DefenseUnit) civilizationArmy[i].get(j)).setArmor( (civilizationArmy[i].get(j).getActualArmor()) + (civilizationArmy[i].get(j).getActualArmor()*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT) /100);
+			
+					// subir el ataque
+					((DefenseUnit) civilizationArmy[i].get(j)).setBaseDamage( ( ((DefenseUnit) civilizationArmy[i].get(j)).getBaseDamage() ) + ( ((DefenseUnit) civilizationArmy[i].get(j)).getBaseDamage() * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT ) / 100 );
+
+				}
+				
+				
+				else if (civilizationArmy[i].get(j) instanceof SpecialUnit) {
+					// subir el ataque
+					
+					((SpecialUnit) civilizationArmy[i].get(j)).setBaseDamage( ( ((SpecialUnit) civilizationArmy[i].get(j)).getBaseDamage() ) + ( ((SpecialUnit) civilizationArmy[i].get(j)).getBaseDamage() * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT ) / 100 );
+
+					
+				}
 				
 //				System.out.println("La unidad "+civilizationArmy[i].get(j)+" ha aumentado 1exp: "+civilizationArmy[i].get(j));
 			}

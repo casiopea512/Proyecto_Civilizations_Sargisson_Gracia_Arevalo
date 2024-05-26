@@ -395,6 +395,12 @@ public class PantallaPrincipal extends JFrame implements Variables {
 	
 						principal.setCurrentCivilization(principal.loadCivilization(id));
 						principal.setCurrentCivilizationID(id);
+						
+						// forzar
+//						principal.getCurrentCivilization().setFood(10000000);
+//						principal.getCurrentCivilization().setIron(10000000);
+//						principal.getCurrentCivilization().setWood(10000000);
+//						principal.getCurrentCivilization().setBattles(50);
 
 						InterfaceGame ventanaPrincipal = new InterfaceGame(principal);
 
