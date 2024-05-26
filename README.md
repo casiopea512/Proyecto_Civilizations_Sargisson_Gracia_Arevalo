@@ -8,9 +8,9 @@
 Para jugar, será necesario:
 + Disponer del **driver** para conectar el programa con la base de datos de Oracle. 
 + Disponer de **sql developer** y ejecutar los scripts que se encuentran en la carpeta M2 del proyecto:
-
-	+ BBDD-Civilization
-	+ BBDD-FuncionesProcedimiento
+	+ Crear al usuario con el script BBDD-CreateUser y posteriormente, dentro de la conexión con este usuario, ejecutar los scripts:
+		+ BBDD-Civilization
+		+ BBDD-FuncionesProcedimiento
 
 ## Autores
 - Pau García
