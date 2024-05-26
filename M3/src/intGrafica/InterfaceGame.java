@@ -166,15 +166,11 @@ public class InterfaceGame extends JFrame implements Variables {
 						// Decrementar en 1 segundo (1000 milisegundos)
 
 						// COMPROBACIÓN
-						if (main.getEnemyUnits() == null) {
-							System.out.println("No hay ejercito enemigo cargado");
-						}
-
 
 						// guardar el juego: IF !TIEMPO RESTANTE && 179000
 						if (!primeraEjecucion) {
                             if (tiempoRestante == 179000) {
-                            	System.out.println("Partida guardada en el minuto " + tiempoRestante/1000);
+//                            	System.out.println("Partida guardada en el minuto " + tiempoRestante/1000);
                                 main.saveGame(main.getCurrentCivilizationID(), main.getCurrentCivilization());
                             }
                         }
@@ -297,8 +293,8 @@ public class InterfaceGame extends JFrame implements Variables {
 
 						Battle bt = new Battle(main.getCurrentCivilization().getArmy(),main.getEnemyUnits());
 
-						System.out.println("El reporte general es:\n"+bt.getReporte());
-						System.out.println("El reporte PaP es:\n"+bt.getReportePasos());
+//						System.out.println("El reporte general es:\n"+bt.getReporte());
+//						System.out.println("El reporte PaP es:\n"+bt.getReportePasos());
 
 						// insertar en la BBDD la batalla y sus reportes
 						main.updateBattle(main.getCurrentCivilizationID(),bt.getReportePasos(), bt.getReporte());
@@ -326,7 +322,7 @@ public class InterfaceGame extends JFrame implements Variables {
 
 						//
 
-						System.out.println("=/".repeat(100));
+//						System.out.println("=/".repeat(100));
 						main.setEnemyUnits(null);
 						// Reiniciar el tiempo restante
 						if (primeraEjecucion) {
@@ -1952,9 +1948,9 @@ public class InterfaceGame extends JFrame implements Variables {
 						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
-							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[0].size());
+//							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[0].size());
 							main.getCurrentCivilization().newSwordsman(quantityToAdd);
-							System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[0].size());
+//							System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[0].size());
 
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
@@ -2031,9 +2027,9 @@ public class InterfaceGame extends JFrame implements Variables {
 						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
-							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[1].size());
+//							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[1].size());
 							main.getCurrentCivilization().newSpearman(quantityToAdd);
-							System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[1].size());
+//							System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[1].size());
 
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
@@ -2111,9 +2107,9 @@ public class InterfaceGame extends JFrame implements Variables {
 						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
-							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[2].size());
+//							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[2].size());
 							main.getCurrentCivilization().newCrossbow(quantityToAdd);
-							System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[2].size());
+//							System.out.println("Unidades posteriores = " + (main.getCurrentCivilization().getArmy())[2].size());
 
 							updateResourceLabels(main);
 							updateUnitsLabel(main);
@@ -2593,7 +2589,7 @@ public class InterfaceGame extends JFrame implements Variables {
 
 						// Se santifican unidades
 						if ((main.getCurrentCivilization().getArmy())[8].size() > 0) {
-							System.out.println("UNIDADES SANTIFICADA / HAY PRIEST = " + (main.getCurrentCivilization().getArmy())[8].size());
+//							System.out.println("UNIDADES SANTIFICADA / HAY PRIEST = " + (main.getCurrentCivilization().getArmy())[8].size());
 							for (ArrayList<MilitaryUnit> unidades : main.getCurrentCivilization().getArmy()) {
 								//System.out.println(unidades.size());
 								for (MilitaryUnit unidad : unidades) {
@@ -2637,7 +2633,7 @@ public class InterfaceGame extends JFrame implements Variables {
 
 		int[] id5batallas = main.getIDLastBattles(main.getCurrentCivilizationID());
 
-		System.out.println("Las últimas 5 batallas de la civilización "+main.getCurrentCivilizationID()+" son "+Arrays.toString(id5batallas));
+//		System.out.println("Las últimas 5 batallas de la civilización "+main.getCurrentCivilizationID()+" son "+Arrays.toString(id5batallas));
 
 		JComboBox cb_numBatalla = new JComboBox();
 
@@ -2668,7 +2664,7 @@ public class InterfaceGame extends JFrame implements Variables {
 
 				int[] id5batallas = main.getIDLastBattles(main.getCurrentCivilizationID());
 
-				System.out.println("Se ha actualizado el array de las batallas: "+Arrays.toString(id5batallas));
+//				System.out.println("Se ha actualizado el array de las batallas: "+Arrays.toString(id5batallas));
 
 				cb_numBatalla.removeAllItems();
 
@@ -2676,7 +2672,7 @@ public class InterfaceGame extends JFrame implements Variables {
 					cb_numBatalla.addItem(i);
 				}
 
-				System.out.println("Se ha actualizado el cb");
+//				System.out.println("Se ha actualizado el cb");
 			}
 		});
 

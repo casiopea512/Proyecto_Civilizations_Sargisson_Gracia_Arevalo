@@ -100,13 +100,13 @@ public class Main implements Variables {
 		int woodEnemyResource = WOOD_BASE_ENEMY_ARMY + (WOOD_BASE_ENEMY_ARMY * ENEMY_FLEET_INCREASE/100) * civilization.getBattles();
 		int ironEnemyResource = IRON_BASE_ENEMY_ARMY + (IRON_BASE_ENEMY_ARMY * ENEMY_FLEET_INCREASE/100) * civilization.getBattles();
 
-		System.out.println("\nRECURSOS INICIALES");
-		System.out.println("Food = " + foodEnemyResource);
-		System.out.println("Wood = " + woodEnemyResource);
-		System.out.println("Iron = " + ironEnemyResource);
-		System.out.println();
-		System.out.println("COMIENZA LA GENERACIÓN DE TROPAS");
-		System.out.println();
+//		System.out.println("\nRECURSOS INICIALES");
+//		System.out.println("Food = " + foodEnemyResource);
+//		System.out.println("Wood = " + woodEnemyResource);
+//		System.out.println("Iron = " + ironEnemyResource);
+//		System.out.println();
+//		System.out.println("COMIENZA LA GENERACIÓN DE TROPAS");
+//		System.out.println();
 
 		// Mientras cumpla con los requisitos de crear un swordman, se generan unidades
 		while(foodEnemyResource > FOOD_COST_SWORDSMAN && woodEnemyResource > WOOD_COST_SWORDSMAN && ironEnemyResource > IRON_COST_SWORDSMAN) {
@@ -121,7 +121,7 @@ public class Main implements Variables {
 					// System.out.println("Food = " + foodEnemyResource + " Coste = " + FOOD_COST_SWORDSMAN + " = " + (foodEnemyResource - FOOD_COST_SWORDSMAN));
 					// System.out.println("Wood = " + woodEnemyResource + " Coste = " + WOOD_COST_SWORDSMAN + " = " + (woodEnemyResource - WOOD_COST_SWORDSMAN));
 					// System.out.println("Iron = " + ironEnemyResource + " Coste = " + IRON_COST_SWORDSMAN + " = " + (ironEnemyResource - IRON_COST_SWORDSMAN));
-					System.out.println("SWORDSMAN CREADO + " + chance);
+//					System.out.println("SWORDSMAN CREADO + " + chance);
 					enemyUnits[0].add(new Swordsman());
 
 					// Se restan recursos
@@ -136,7 +136,7 @@ public class Main implements Variables {
 					// System.out.println("Food = " + foodEnemyResource + " Coste = " + FOOD_COST_SPEARMAN + " = " + (foodEnemyResource - FOOD_COST_SPEARMAN));
 					// System.out.println("Wood = " + woodEnemyResource + " Coste = " + WOOD_COST_SPEARMAN + " = " + (woodEnemyResource - WOOD_COST_SPEARMAN));
 					// System.out.println("Iron = " + ironEnemyResource + " Coste = " + IRON_COST_SPEARMAN + " = " + (ironEnemyResource - IRON_COST_SPEARMAN));
-					System.out.println("SPEARMAN CREADO + " + chance);
+//					System.out.println("SPEARMAN CREADO + " + chance);
 					enemyUnits[1].add(new Spearman());
 					foodEnemyResource -= FOOD_COST_SPEARMAN;
 					woodEnemyResource -= WOOD_COST_SPEARMAN;
@@ -150,7 +150,7 @@ public class Main implements Variables {
 					// System.out.println("Food = " + foodEnemyResource + " Coste = " + FOOD_COST_CROSSBOW + " = " + (foodEnemyResource - FOOD_COST_CROSSBOW));
 					// System.out.println("Wood = " + woodEnemyResource + " Coste = " + WOOD_COST_CROSSBOW + " = " + (woodEnemyResource - WOOD_COST_CROSSBOW));
 					// System.out.println("Iron = " + ironEnemyResource + " Coste = " + IRON_COST_CROSSBOW + " = " + (ironEnemyResource - IRON_COST_CROSSBOW));
-					System.out.println("CROSSBOW CREADO + " + chance);
+//					System.out.println("CROSSBOW CREADO + " + chance);
 					enemyUnits[2].add(new Crossbow());
 					foodEnemyResource -= FOOD_COST_CROSSBOW;
 					woodEnemyResource -= WOOD_COST_CROSSBOW;
@@ -163,7 +163,7 @@ public class Main implements Variables {
 					// System.out.println("Food = " + foodEnemyResource + " Coste = " + FOOD_COST_CANNON + " = " + (foodEnemyResource - FOOD_COST_CANNON));
 					// System.out.println("Wood = " + woodEnemyResource + " Coste = " + WOOD_COST_CANNON + " = " + (woodEnemyResource - WOOD_COST_CANNON));
 					// System.out.println("Iron = " + ironEnemyResource + " Coste = " + IRON_COST_CANNON + " = " + (ironEnemyResource - IRON_COST_CANNON));
-					System.out.println("CANNON CREADO + " + chance);
+//					System.out.println("CANNON CREADO + " + chance);
 					enemyUnits[3].add(new Cannon());
 					foodEnemyResource -= FOOD_COST_CANNON;
 					woodEnemyResource -= WOOD_COST_CANNON;
@@ -172,16 +172,16 @@ public class Main implements Variables {
 			}
 		}
 
-		System.out.println("\nBUCLE DE CREACION CERRADO / RECURSOS SOBRANTES");
-		System.out.println("Food = " + foodEnemyResource + " COSTE = " + FOOD_COST_SWORDSMAN);
-		System.out.println("Wood = " + woodEnemyResource + " COSTE = " + WOOD_COST_SWORDSMAN);
-		System.out.println("Iron = " + ironEnemyResource + " COSTE = " + IRON_COST_SWORDSMAN);
-
-		System.out.println("EN EL EJERCITO ENEMIGO HAY dentro del método:");
-		System.out.println("Swordsman = " + enemyUnits[0].size());
-		System.out.println("Spearman = " + enemyUnits[1].size());
-		System.out.println("Crossbow = " + enemyUnits[2].size());
-		System.out.println("Cannon = " + enemyUnits[3].size());
+//		System.out.println("\nBUCLE DE CREACION CERRADO / RECURSOS SOBRANTES");
+//		System.out.println("Food = " + foodEnemyResource + " COSTE = " + FOOD_COST_SWORDSMAN);
+//		System.out.println("Wood = " + woodEnemyResource + " COSTE = " + WOOD_COST_SWORDSMAN);
+//		System.out.println("Iron = " + ironEnemyResource + " COSTE = " + IRON_COST_SWORDSMAN);
+//
+//		System.out.println("EN EL EJERCITO ENEMIGO HAY dentro del método:");
+//		System.out.println("Swordsman = " + enemyUnits[0].size());
+//		System.out.println("Spearman = " + enemyUnits[1].size());
+//		System.out.println("Crossbow = " + enemyUnits[2].size());
+//		System.out.println("Cannon = " + enemyUnits[3].size());
 
 		return enemyUnits;
 	}
@@ -211,7 +211,7 @@ public class Main implements Variables {
 			// INSERT EN BBDD
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("CONEXIÓN ESTABLECIDA");
+//			System.out.println("CONEXIÓN ESTABLECIDA");
 			String update = "INSERT INTO civilization_stats (name, username) VALUES (?, ?)";
 			ps = conn.prepareStatement(update, new String[] {"civilization_id"});
 			ps.setString(1, civilizationName);
@@ -235,7 +235,7 @@ public class Main implements Variables {
 			ResultSet generatedKeys = ps.getGeneratedKeys();
 			if (null != generatedKeys && generatedKeys.next()) {
 				pkIDcivilization = generatedKeys.getInt(1);
-				System.out.println("LA PK GENERADA ES " + pkIDcivilization);
+//				System.out.println("LA PK GENERADA ES " + pkIDcivilization);
 				main.setCurrentCivilizationID(pkIDcivilization);
 			}
 
@@ -491,17 +491,17 @@ public class Main implements Variables {
 				civilizationUnits[7] = arrayMagician;
 				civilizationUnits[8] = arrayPriest;
 				
-				System.out.println("UNIDADES CARGADAS:");
-				System.out.println("Sword = " + civilizationUnits[0]);
-				System.out.println("Spear = " + civilizationUnits[1]);
-				System.out.println("Cross = " + civilizationUnits[2]);
-				System.out.println("Cannon = " + civilizationUnits[3]);
-				System.out.println("Arrow = " + civilizationUnits[4]);
-				System.out.println("Catapult = " + civilizationUnits[5]);
-				System.out.println("Tower = " + civilizationUnits[6]);
-				System.out.println("Magician = " + civilizationUnits[7]);
-				System.out.println("Priest = " + civilizationUnits[8]);
-				System.out.println("UNIDADES SANTIFICADAS = " + contadorSantificados);
+//				System.out.println("UNIDADES CARGADAS:");
+//				System.out.println("Sword = " + civilizationUnits[0]);
+//				System.out.println("Spear = " + civilizationUnits[1]);
+//				System.out.println("Cross = " + civilizationUnits[2]);
+//				System.out.println("Cannon = " + civilizationUnits[3]);
+//				System.out.println("Arrow = " + civilizationUnits[4]);
+//				System.out.println("Catapult = " + civilizationUnits[5]);
+//				System.out.println("Tower = " + civilizationUnits[6]);
+//				System.out.println("Magician = " + civilizationUnits[7]);
+//				System.out.println("Priest = " + civilizationUnits[8]);
+//				System.out.println("UNIDADES SANTIFICADAS = " + contadorSantificados);
 
 
 				QUERY = "select * from civilization_stats where civilization_id = " + idChoosenCivilization;
@@ -559,7 +559,7 @@ public class Main implements Variables {
 			// Ejecutar el procedimiento almacenado
 			stmt.execute();
 
-			System.out.println("PROCEDIMIENTO update_resources OK");
+//			System.out.println("PROCEDIMIENTO update_resources OK");
 
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -608,7 +608,7 @@ public class Main implements Variables {
 			// Ejecutar el procedimiento almacenado
 			stmt.execute();
 
-			System.out.println("PROCEDIMIENTO update_buildingsAndTechnologies OK");
+//			System.out.println("PROCEDIMIENTO update_buildingsAndTechnologies OK");
 
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -638,18 +638,18 @@ public class Main implements Variables {
 			// INSERT EN BBDD
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("CONEXIÓN ESTABLECIDA");
+//			System.out.println("CONEXIÓN ESTABLECIDA");
 			String update = "UPDATE civilization_stats SET battles_counter = (?) WHERE civilization_id = " + civilizationID;
 			ps = conn.prepareStatement(update);
 			ps.setInt(1, civilization.getBattles());
 			ps.executeUpdate();
-			System.out.println("Update de las batallas realizado correctamente");
+//			System.out.println("Update de las batallas realizado correctamente");
 
 			update = "UPDATE civilization_stats SET time_left = (?) WHERE civilization_id = " + civilizationID;
 			ps = conn.prepareStatement(update);
 			ps.setInt(1, civilization.getTimeLeft());
 			ps.executeUpdate();
-			System.out.println("Update del timeLeft realizado correctamente");
+//			System.out.println("Update del timeLeft realizado correctamente");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -686,7 +686,7 @@ public class Main implements Variables {
 			stmt.setInt(1, civilizationID);
 			stmt.execute();
 			
-			System.out.println("PROCEDIMIENTO deleteUnits OK");
+//			System.out.println("PROCEDIMIENTO deleteUnits OK");
 			
 			////////////////////////////////////////////////////////
 			int contadorUnidadesAtaque = 0;
@@ -755,15 +755,15 @@ public class Main implements Variables {
 				}
 			} 
 			
-			System.out.println("CONTEO DE UNIDADES INSERTADAS");
-			System.out.println("Ataque = " + contadorUnidadesAtaque);
-			System.out.println("Defensa = " + contadorUnidadesDefensa);
-			System.out.println("Especiales = " + contadorUnidadesMagicas);
-			System.out.println("INSERT de unidades CORRECTAMENTE");
-			System.out.println("Unidades de la civilizacion");
-			System.out.println("Ataque = " + (civilization.getArmy()[0].size() + civilization.getArmy()[1].size() + civilization.getArmy()[2].size() + civilization.getArmy()[3].size()));
-			System.out.println("Defensa = " + (civilization.getArmy()[4].size() + civilization.getArmy()[5].size() + civilization.getArmy()[6].size()));
-			System.out.println("Especiales = " + (civilization.getArmy()[7].size() + civilization.getArmy()[8].size()));
+//			System.out.println("CONTEO DE UNIDADES INSERTADAS");
+//			System.out.println("Ataque = " + contadorUnidadesAtaque);
+//			System.out.println("Defensa = " + contadorUnidadesDefensa);
+//			System.out.println("Especiales = " + contadorUnidadesMagicas);
+//			System.out.println("INSERT de unidades CORRECTAMENTE");
+//			System.out.println("Unidades de la civilizacion");
+//			System.out.println("Ataque = " + (civilization.getArmy()[0].size() + civilization.getArmy()[1].size() + civilization.getArmy()[2].size() + civilization.getArmy()[3].size()));
+//			System.out.println("Defensa = " + (civilization.getArmy()[4].size() + civilization.getArmy()[5].size() + civilization.getArmy()[6].size()));
+//			System.out.println("Especiales = " + (civilization.getArmy()[7].size() + civilization.getArmy()[8].size()));
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -817,7 +817,7 @@ public class Main implements Variables {
 			ps.setInt(1, civilizationID);
 			ps.executeUpdate();
 
-			System.out.println("\nSe ha insertado correctamente en la BBDD la batalla");
+//			System.out.println("\nSe ha insertado correctamente en la BBDD la batalla");
 
 
 			// OBTENER PK generada
@@ -827,7 +827,7 @@ public class Main implements Variables {
 				pKIdBattle = generatedKeys.getInt(1);
 			}
 
-			System.out.println("\nSe ha generado correctamente la PK de la batalla: "+ pKIdBattle);
+//			System.out.println("\nSe ha generado correctamente la PK de la batalla: "+ pKIdBattle);
 
 
 			// UPDATE REPORTE PAOS A PASO
@@ -841,7 +841,7 @@ public class Main implements Variables {
 				ps.executeUpdate();
 			}
 
-			System.out.println("\nSe ha insertado correctamente en la BBDD el reporte paso a paso");
+//			System.out.println("\nSe ha insertado correctamente en la BBDD el reporte paso a paso");
 
 
 			// UPDATE REPORTE GENERAL
@@ -852,7 +852,7 @@ public class Main implements Variables {
 			ps.setString(3, logGeneral);
 			ps.executeUpdate();
 
-			System.out.println("\nSe ha insertado correctamente en la BBDD el reporte general");
+//			System.out.println("\nSe ha insertado correctamente en la BBDD el reporte general");
 			
 			
 
@@ -881,12 +881,12 @@ public class Main implements Variables {
 	// update resources de la civilización
 	public void addResourcesCivilization(int[] wasteWoodIron, Civilization civilization) {
 
-		System.out.println("Se van a añadir las ganancias de la batalla, este es el estado antes de añadir: "+civilization.getWood()+" | "+civilization.getIron());
+//		System.out.println("Se van a añadir las ganancias de la batalla, este es el estado antes de añadir: "+civilization.getWood()+" | "+civilization.getIron());
 
 		civilization.setWood(civilization.getWood() + wasteWoodIron[0]);
 		civilization.setIron(civilization.getIron() + wasteWoodIron[1]);
 
-		System.out.println("Se han añadido las perdidas de la batalla a la civilización: "+civilization.getWood()+" | "+civilization.getIron());
+//		System.out.println("Se han añadido las perdidas de la batalla a la civilización: "+civilization.getWood()+" | "+civilization.getIron());
 	}
 
 

@@ -100,14 +100,14 @@ public class PantallaPrincipal extends JFrame implements Variables {
 					// INSERT EN BBDD
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					conn = DriverManager.getConnection(DB_URL, USER, PASS);
-					System.out.println("CONEXIÓN ESTABLECIDA");
+//					System.out.println("CONEXIÓN ESTABLECIDA");
 					// select count(civilization_id) from civilization_stats;
 					String select = "select count(civilization_id) from civilization_stats";
 					stmt = conn.createStatement();
 					ResultSet rs = stmt.executeQuery(select);
 					rs.next();
 					if (rs.getInt(1) == 0) {
-						System.out.println(rs.getInt(1));
+//						System.out.println(rs.getInt(1));
 						Object[] options = { "OK" };
 						JOptionPane.showOptionDialog(null, "There are no saved games", "Error",
 								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
@@ -288,14 +288,14 @@ public class PantallaPrincipal extends JFrame implements Variables {
 
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				System.out.println("CONEXIÓN ESTABLECIDA");
+//				System.out.println("CONEXIÓN ESTABLECIDA");
 				stmt = conn.createStatement();
 				String QUERY = "select civilization_id, name, username, battles_counter from civilization_stats";
 				ResultSet rs = stmt.executeQuery(QUERY);
 
 				while (rs.next()) {
 
-					System.out.println("RS EJECUTADO");
+//					System.out.println("RS EJECUTADO");
 
 					int civilization_id = rs.getInt(1);
 					totalCivilizacion = rs.getString(2) + "     -     " + rs.getString(3) + "    -    " + rs.getInt(4);
@@ -400,7 +400,7 @@ public class PantallaPrincipal extends JFrame implements Variables {
 
 						dispose();
 
-						System.out.println(id);
+//						System.out.println(id);
 
 					}
 				});
@@ -479,7 +479,7 @@ public class PantallaPrincipal extends JFrame implements Variables {
 				// Ejecutar el procedimiento almacenado
 				stmt.execute();
 
-				System.out.println("PROCEDIMIENTO deleteCivilization OK");
+//				System.out.println("PROCEDIMIENTO deleteCivilization OK");
 
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -616,7 +616,7 @@ public class PantallaPrincipal extends JFrame implements Variables {
 			}
 
 			public MiException() {
-				System.out.println("Error");
+//				System.out.println("Error");
 				etiqueta2.setText("The name and civilization must meet the established parameters");// se cambia el
 																									// texto de la
 																									// etiqueta2 que
@@ -635,7 +635,7 @@ public class PantallaPrincipal extends JFrame implements Variables {
 			}
 
 			public MiException2() {
-				System.out.println("Error");
+//				System.out.println("Error");
 				etiqueta2.setText("Before starting, create your username and civilization");// se cambia el texto de la
 																							// etiqueta2 que esta en
 																							// blanco
@@ -650,7 +650,7 @@ public class PantallaPrincipal extends JFrame implements Variables {
 		class botonComenzar implements ActionListener {// boton guardar pantalla crear usuario
 
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("wwwww");
+//				System.out.println("wwwww");
 				userName = texto1.getText().toLowerCase();
 				civilizationName = texto2.getText().toLowerCase();
 				try {// .toLowerCase()indiferencia mayusculas y minusculas
@@ -667,10 +667,10 @@ public class PantallaPrincipal extends JFrame implements Variables {
 							throw new MiException();// llamar excepcion
 						}
 					}
-					System.out.println(userName);// prueba
+//					System.out.println(userName);// prueba
 
 					if (civilizationName.length() >= 1 && civilizationName.length() <= 10) {
-						System.out.println(civilizationName);// prueba
+//						System.out.println(civilizationName);// prueba
 
 						// llamamos al metodo para empezar una partida nueva
 
