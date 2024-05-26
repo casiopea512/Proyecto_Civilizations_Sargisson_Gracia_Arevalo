@@ -220,13 +220,16 @@ public class Main implements Variables {
 
 			/*
 	        String name, String username, 
-	        float wood, float iron, float food, float mana, 
+	        int wood, int iron, int food, int mana, 
 	        int magicTower, int church, int farm, int smithy, int carpentry, 
 	        int technologyDefense, int technologyAttack, int battles)	
 			 */
 
 			// se genera el objeto civilizacion
-			main.setCurrentCivilization(new Civilization(civilizationName, userName, 3500,1000,6000,0,0,0,0,0,0,0,0,0, 179000)); 
+			main.setCurrentCivilization(new Civilization(civilizationName, userName, CIVILIZATION_WOOD_INITIAL,CIVILIZATION_IRON_INITIAL,CIVILIZATION_FOOD_INITIAL,
+					CIVILIZATION_MANA_INITIAL,CIVILIZATION_MAGICTOWER_INITIAL,CIVILIZATION_CHURCH_INITIAL,CIVILIZATION_FARM_INITIAL,
+					CIVILIZATION_SMITHY_INITIAL,CIVILIZATION_CARPENTRY_INITIAL,CIVILIZATION_TECHNOLOGYDEFENSE_INITIAL,CIVILIZATION_TECHNOLOGYATTACK_INITIAL,CIVILIZATION_BATTLES_INITIAL,
+					CIVILIZATION_TIMELEFT_INITIAL)); 
 
 			// OBTENER PK generada
 			ResultSet generatedKeys = ps.getGeneratedKeys();

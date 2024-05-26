@@ -12,9 +12,25 @@ public interface Variables {
 	public final int ENEMY_FLEET_INCREASE = 8;
 	
 	
+	// initial resources
+	public final int CIVILIZATION_IRON_INITIAL = 7500;
+	public final int CIVILIZATION_WOOD_INITIAL = 17500;
+	public final int CIVILIZATION_FOOD_INITIAL = 25000;
+	public final int CIVILIZATION_MANA_INITIAL = 0;
+	public final int CIVILIZATION_MAGICTOWER_INITIAL = 0;
+	public final int CIVILIZATION_CHURCH_INITIAL = 0;
+	public final int CIVILIZATION_FARM_INITIAL = 0;
+	public final int CIVILIZATION_SMITHY_INITIAL = 0;
+	public final int CIVILIZATION_CARPENTRY_INITIAL = 0;
+	public final int CIVILIZATION_TECHNOLOGYDEFENSE_INITIAL = 0;
+	public final int CIVILIZATION_TECHNOLOGYATTACK_INITIAL = 0;
+	public final int CIVILIZATION_BATTLES_INITIAL = 0;
+	public final int CIVILIZATION_TIMELEFT_INITIAL = 179000;
+	
+	
 	// resources increment every minute
 	public final int CIVILIZATION_IRON_GENERATED = 2000;
-	public final int CIVILIZATION_WOOD_GENERATED = 5000;
+	public final int CIVILIZATION_WOOD_GENERATED = 6000;
 	public final int CIVILIZATION_FOOD_GENERATED = 8000;
 	public final int CIVILIZATION_IRON_GENERATED_PER_SMITHY = (int) (0.07*CIVILIZATION_IRON_GENERATED);
 	public final int CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY = (int) (0.07*CIVILIZATION_WOOD_GENERATED);
