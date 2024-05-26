@@ -345,7 +345,13 @@ public class Main implements Variables {
 				// System.out.println("=".repeat(100));
 				String QUERY = "select type, armor, base_damage, experience, sanctified from attack_units_stats where civilization_id = " + idChoosenCivilization;
 				ResultSet rs = stmt.executeQuery(QUERY);
+				
 				// System.out.println(rs.getInt(1) + " | " + rs.getInt(2) + " | " + rs.getInt(3) + " | " + rs.getInt(4)); 
+				
+				/////////////////////////////////
+				int contadorSantificados = 0;
+				/////////////////////////////////
+				
 				while(rs.next()) {
 					String unitType = rs.getString(1);
 					if (unitType.equals("Swordsman")) {
@@ -353,7 +359,9 @@ public class Main implements Variables {
 						Swordsman unit = new Swordsman(rs.getInt(2), rs.getInt(3));
 						unit.setExperience(rs.getInt(4));
 						if (rs.getInt(5) == 1) {
-							System.out.println("Esta santificado");
+/////////////////////////////////
+							contadorSantificados += 1;
+/////////////////////////////////
 							unit.setSanctified(true);
 						}
 						arraySwordsman.add(unit);
@@ -363,7 +371,9 @@ public class Main implements Variables {
 						Spearman unit = new Spearman(rs.getInt(2), rs.getInt(3));
 						unit.setExperience(rs.getInt(4));
 						if (rs.getInt(5) == 1) {
-							System.out.println("Esta santificado");
+/////////////////////////////////
+							contadorSantificados += 1;
+/////////////////////////////////
 							unit.setSanctified(true);
 						}
 						arraySpearman.add(unit);
@@ -373,7 +383,9 @@ public class Main implements Variables {
 						Crossbow unit = new Crossbow(rs.getInt(2), rs.getInt(3));
 						unit.setExperience(rs.getInt(4));
 						if (rs.getInt(5) == 1) {
-							System.out.println("Esta santificado");
+/////////////////////////////////
+							contadorSantificados += 1;
+/////////////////////////////////
 							unit.setSanctified(true);
 						}
 						arrayCrossbow.add(unit);
@@ -383,7 +395,9 @@ public class Main implements Variables {
 						Cannon unit = new Cannon(rs.getInt(2), rs.getInt(3));
 						unit.setExperience(rs.getInt(4));
 						if (rs.getInt(5) == 1) {
-							System.out.println("Esta santificado");
+/////////////////////////////////
+							contadorSantificados += 1;
+/////////////////////////////////
 							unit.setSanctified(true);
 						}
 						arrayCannon.add(unit);
@@ -405,7 +419,9 @@ public class Main implements Variables {
 						ArrowTower unit = new ArrowTower(rs.getInt(2), rs.getInt(3));
 						unit.setExperience(rs.getInt(4));
 						if (rs.getInt(5) == 1) {
-							System.out.println("Esta santificado");
+/////////////////////////////////
+							contadorSantificados += 1;
+/////////////////////////////////
 							unit.setSanctified(true);
 						}
 						arrayArrowTower.add(unit);
@@ -415,7 +431,9 @@ public class Main implements Variables {
 						Catapult unit = new Catapult(rs.getInt(2), rs.getInt(3));
 						unit.setExperience(rs.getInt(4));
 						if (rs.getInt(5) == 1) {
-							System.out.println("Esta santificado");
+/////////////////////////////////
+							contadorSantificados += 1;
+/////////////////////////////////
 							unit.setSanctified(true);
 						}
 						arrayCatapult.add(unit);
@@ -425,7 +443,9 @@ public class Main implements Variables {
 						RocketLauncherTower unit = new RocketLauncherTower(rs.getInt(2), rs.getInt(3));
 						unit.setExperience(rs.getInt(4));
 						if (rs.getInt(5) == 1) {
-							System.out.println("Esta santificado");
+/////////////////////////////////
+							contadorSantificados += 1;
+/////////////////////////////////
 							unit.setSanctified(true);
 						}
 						arrayRocketLauncherTower.add(unit);
@@ -467,24 +487,19 @@ public class Main implements Variables {
 				civilizationUnits[6] = arrayRocketLauncherTower;
 				civilizationUnits[7] = arrayMagician;
 				civilizationUnits[8] = arrayPriest;
+				
+				System.out.println("UNIDADES CARGADAS:");
+				System.out.println("Sword = " + civilizationUnits[0]);
+				System.out.println("Spear = " + civilizationUnits[1]);
+				System.out.println("Cross = " + civilizationUnits[2]);
+				System.out.println("Cannon = " + civilizationUnits[3]);
+				System.out.println("Arrow = " + civilizationUnits[4]);
+				System.out.println("Catapult = " + civilizationUnits[5]);
+				System.out.println("Tower = " + civilizationUnits[6]);
+				System.out.println("Magician = " + civilizationUnits[7]);
+				System.out.println("Priest = " + civilizationUnits[8]);
+				System.out.println("UNIDADES SANTIFICADAS = " + contadorSantificados);
 
-				/* COMPROBACIÓN
-	    	        for (int i = 0 ; i < civilizationUnits.length ; i++) {
-	    	        	for (MilitaryUnit unidad : civilizationUnits[i]) {
-	    	        		System.out.println(unidad.getClass().toString());
-	    	        		System.out.println("Armor = " + unidad.getActualArmor() + " | Experiencia = " + unidad.getExperience());
-	    	        	}
-	    	        }
-				 */
-
-				/*
-	    	        String name, String username, 
-	    	        float wood, float iron, float food, float mana, 
-	    	        int magicTower, int church, int farm, int smithy, int carpentry, 
-	    	        int technologyDefense, int technologyAttack, int battles, int timeLeft)	
-				 */
-
-				//Civilization loadedCivilizationn = new Civilization();
 
 				QUERY = "select * from civilization_stats where civilization_id = " + idChoosenCivilization;
 				rs = stmt.executeQuery(QUERY);
@@ -667,10 +682,16 @@ public class Main implements Variables {
 			stmt = conn.prepareCall(callProcedure);
 			stmt.setInt(1, civilizationID);
 			stmt.execute();
+			
 			System.out.println("PROCEDIMIENTO deleteUnits OK");
-
+			
+			////////////////////////////////////////////////////////
+			int contadorUnidadesAtaque = 0;
+			int contadorUnidadesDefensa = 0;
+			int contadorUnidadesMagicas = 0;
+			////////////////////////////////////////////////////////
+			
 			for (ArrayList<MilitaryUnit> unidades : civilization.getArmy()) {
-				System.out.println(unidades.size());
 				for (MilitaryUnit unidad : unidades) {
 					if (unidad instanceof AttackUnit) {
 
@@ -684,15 +705,17 @@ public class Main implements Variables {
 						ps.setInt(5, unidad.getExperience());
 
 						if (((AttackUnit) unidad).isSanctified()) {
-							System.out.println("Unidad santificada; SI");
+							// System.out.println("Unidad santificada; SI");
 							ps.setInt(6, 1);
 						} else {
-							System.out.println("Unidad santificada; NO");
+							// System.out.println("Unidad santificada; NO");
 							ps.setInt(6, 0);
 						}
 
 						ps.executeUpdate();
-
+						///////////////////////////////
+						contadorUnidadesAtaque += 1;
+						////////////////////////////////
 					} else if (unidad instanceof DefenseUnit) {
 						//System.out.println("defense UNIT = " + unidad.getClass().getSimpleName());
 						String update = "INSERT INTO defense_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (?, ?, ?, ?, ?, ?)";
@@ -704,13 +727,16 @@ public class Main implements Variables {
 						ps.setInt(5, unidad.getExperience());
 
 						if (((DefenseUnit) unidad).isSanctified()) {
-							System.out.println("Unidad santificada; SI");
+							// System.out.println("Unidad santificada; SI");
 							ps.setInt(6, 1);
 						} else {
-							System.out.println("Unidad santificada; NO");
+							// System.out.println("Unidad santificada; NO");
 							ps.setInt(6, 0);
 						}
 						ps.executeUpdate();
+						
+						contadorUnidadesDefensa += 1;
+						
 					} else {
 						//System.out.println("special UNIT = " + unidad.getClass().getSimpleName());
 						String update = "INSERT INTO special_units_stats (civilization_id, type, armor, base_damage, experience) VALUES (?, ?, ?, ?, ?)";
@@ -721,12 +747,21 @@ public class Main implements Variables {
 						ps.setInt(4,3);
 						ps.setInt(5, unidad.getExperience());
 						ps.executeUpdate();
+						contadorUnidadesMagicas += 1;
 					}
 				}
 			} 
-
+			
+			System.out.println("CONTEO DE UNIDADES INSERTADAS");
+			System.out.println("Ataque = " + contadorUnidadesAtaque);
+			System.out.println("Defensa = " + contadorUnidadesDefensa);
+			System.out.println("Especiales = " + contadorUnidadesMagicas);
 			System.out.println("INSERT de unidades CORRECTAMENTE");
-
+			System.out.println("Unidades de la civilizacion");
+			System.out.println("Ataque = " + (civilization.getArmy()[0].size() + civilization.getArmy()[1].size() + civilization.getArmy()[2].size() + civilization.getArmy()[3].size()));
+			System.out.println("Defensa = " + (civilization.getArmy()[4].size() + civilization.getArmy()[5].size() + civilization.getArmy()[6].size()));
+			System.out.println("Especiales = " + (civilization.getArmy()[7].size() + civilization.getArmy()[8].size()));
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

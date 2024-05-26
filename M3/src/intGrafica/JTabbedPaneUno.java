@@ -148,7 +148,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 			public void run() {
 
-				System.out.println(tiempoRestante);
+				//System.out.println(tiempoRestante);
 
 				//"BATTLE COUNTDOWN: " + "120 seconds" + " "
 				battleCountdownMenuPrincipal.setText("NEXT BATTLE IN " + tiempoRestante/1000 + " SECONDS ");
@@ -157,10 +157,12 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 				battleCountdownBattle.setText("NEXT BATTLE IN " + tiempoRestante/1000 + " SECONDS ");
 
 				if (!pauseGame) {
-					System.out.println("TIEMPO RESTANTE EN MILISEGUNDOS " + tiempoRestante);
+					
+					// System.out.println("TIEMPO RESTANTE EN MILISEGUNDOS " + tiempoRestante);
+					
 					if (tiempoRestante > 0) {
 						// Imprimir el tiempo restante en segundos
-						System.out.println("Tiempo restante: " + tiempoRestante / 1000 + " segundos");
+						// System.out.println("Tiempo restante: " + tiempoRestante / 1000 + " segundos");
 						// Decrementar en 1 segundo (1000 milisegundos)
 
 						// COMPROBACIÓN
@@ -172,6 +174,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 						// guardar el juego: IF !TIEMPO RESTANTE && 179000
 						if (!primeraEjecucion) {
                             if (tiempoRestante == 179000) {
+                            	System.out.println("Partida guardada en el minuto " + tiempoRestante/1000);
                                 main.saveGame(main.getCurrentCivilizationID(), main.getCurrentCivilization());
                             }
                         }
@@ -252,15 +255,6 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 							//                        	System.out.println("Spearman = " + main.getEnemyUnits()[1].size());
 							//                        	System.out.println("Crossbow = " + main.getEnemyUnits()[2].size());
 							//                        	System.out.println("Cannon = " + main.getEnemyUnits()[3].size());
-							// SOLAMENTE ES PARA VER RESULTADOS
-
-							for (ArrayList<MilitaryUnit> unidades : main.getEnemyUnits()) {
-								System.out.println(unidades.size());
-								for (MilitaryUnit unidad : unidades) {
-									System.out.println(unidad.getClass().toString());
-								}
-							}
-
 
 							// Se ejecuta ventana viewThreat
 							main.viewthreat(main.getEnemyUnits());
@@ -298,13 +292,6 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 							//                        	System.out.println("SE HA GENERADO EJERCITO ENEMIGO en carga de partida");
 							//                        	System.out.println("=/".repeat(100));
 						}
-
-						// Ejecutar la tarea del temporizador
-						System.out.println("=/".repeat(100));
-						System.out.println("¡Ejecutando tarea del temporizador!");
-						System.out.println("--".repeat(100));
-						System.out.println("Se ha generado batalla dentro del timer");
-
 
 						// AQUI SE IMPLEMENTA LA BATALLA
 
@@ -374,7 +361,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 	// RECURSOS PANEL 
 
-
+	/*
 	public JLabel getFoodEdificios() {
 		return foodEdificios;
 	}
@@ -406,6 +393,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	public void setManaEdificios(JLabel mana) {
 		this.manaEdificios = mana;
 	}
+	
+	*/
+	
 	// RECURSOS PANEL EDIFICIOS
 
 	public void initResourcesEdificiosPanel(Main main) {
@@ -535,10 +525,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 			public void actionPerformed(ActionEvent e) {
 
 				if (pauseGame) {
-					System.out.println("RESTART");
+					//System.out.println("RESTART");
 					pauseGame = false;
 				} else {
-					System.out.println("PAUSE");
+					//System.out.println("PAUSE");
 					pauseGame = true;
 				}
 
@@ -605,10 +595,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 			public void actionPerformed(ActionEvent e) {
 
 				if (pauseGame) {
-					System.out.println("RESTART");
+					//System.out.println("RESTART");
 					pauseGame = false;
 				} else {
-					System.out.println("PAUSE");
+					//System.out.println("PAUSE");
 					pauseGame = true;
 				}
 
@@ -677,10 +667,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 			public void actionPerformed(ActionEvent e) {
 
 				if (pauseGame) {
-					System.out.println("RESTART");
+					//System.out.println("RESTART");
 					pauseGame = false;
 				} else {
-					System.out.println("PAUSE");
+					//System.out.println("PAUSE");
 					pauseGame = true;
 				}
 
@@ -747,10 +737,10 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 			public void actionPerformed(ActionEvent e) {
 
 				if (pauseGame) {
-					System.out.println("RESTART");
+					//System.out.println("RESTART");
 					pauseGame = false;
 				} else {
-					System.out.println("PAUSE");
+					//System.out.println("PAUSE");
 					pauseGame = true;
 				}
 
@@ -1959,7 +1949,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[0].size());
@@ -2038,7 +2028,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[1].size());
@@ -2118,7 +2108,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 							System.out.println("Unidades anteriores = " + (main.getCurrentCivilization().getArmy())[2].size());
@@ -2198,7 +2188,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 
@@ -2275,7 +2265,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 							main.getCurrentCivilization().newArrowTower(quantityToAdd);
@@ -2352,7 +2342,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 							main.getCurrentCivilization().newCatapult(quantityToAdd);
@@ -2429,7 +2419,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 
@@ -2507,7 +2497,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 							main.getCurrentCivilization().newMagician(quantityToAdd);
@@ -2585,7 +2575,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 					if (respuesta == JOptionPane.YES_OPTION) {
 
-						System.out.println("SE HA SELECCIONADO SI");
+						//System.out.println("SE HA SELECCIONADO SI");
 
 						try {
 
@@ -2605,7 +2595,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 						if ((main.getCurrentCivilization().getArmy())[8].size() > 0) {
 							System.out.println("UNIDADES SANTIFICADA / HAY PRIEST = " + (main.getCurrentCivilization().getArmy())[8].size());
 							for (ArrayList<MilitaryUnit> unidades : main.getCurrentCivilization().getArmy()) {
-								System.out.println(unidades.size());
+								//System.out.println(unidades.size());
 								for (MilitaryUnit unidad : unidades) {
 
 									if (unidad instanceof AttackUnit) {
