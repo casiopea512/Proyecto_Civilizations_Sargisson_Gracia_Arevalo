@@ -4,21 +4,21 @@ public interface Variables {
 	
 	// resources available to create the first enemy fleet
 	public final int IRON_BASE_ENEMY_ARMY = 26000;
-	public final int WOOD_BASE_ENEMY_ARMY = 180000;
-	public final int FOOD_BASE_ENEMY_ARMY = 70000;
+	public final int WOOD_BASE_ENEMY_ARMY = 120000;
+	public final int FOOD_BASE_ENEMY_ARMY = 50000;
 	
 	
 	// percentage increase of resources available to create enemy fleet
-	public final int ENEMY_FLEET_INCREASE = 6;
+	public final int ENEMY_FLEET_INCREASE = 8;
 	
 	
 	// resources increment every minute
-	public final int CIVILIZATION_IRON_GENERATED = 1500;
+	public final int CIVILIZATION_IRON_GENERATED = 2000;
 	public final int CIVILIZATION_WOOD_GENERATED = 5000;
 	public final int CIVILIZATION_FOOD_GENERATED = 8000;
-	public final int CIVILIZATION_IRON_GENERATED_PER_SMITHY = (int) (0.05*CIVILIZATION_IRON_GENERATED);
-	public final int CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY = (int) (0.05*CIVILIZATION_WOOD_GENERATED);
-	public final int CIVILIZATION_FOOD_GENERATED_PER_FARM = (int) (0.05*CIVILIZATION_FOOD_GENERATED);
+	public final int CIVILIZATION_IRON_GENERATED_PER_SMITHY = (int) (0.07*CIVILIZATION_IRON_GENERATED);
+	public final int CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY = (int) (0.07*CIVILIZATION_WOOD_GENERATED);
+	public final int CIVILIZATION_FOOD_GENERATED_PER_FARM = (int) (0.07*CIVILIZATION_FOOD_GENERATED);
 	public final int CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER = 3000;
 	
 	
@@ -85,20 +85,20 @@ public interface Variables {
 	
 	
 	//Cost Buildings
-	public final int FOOD_COST_FARM = 5000;
-	public final int WOOD_COST_FARM = 10000;
-	public final int IRON_COST_FARM = 12000;
-	public final int FOOD_COST_CARPENTRY = 5000;
-	public final int WOOD_COST_CARPENTRY = 10000;
-	public final int IRON_COST_CARPENTRY = 12000;
-	public final int FOOD_COST_SMITHY = 5000;
+	public final int FOOD_COST_FARM = 4000;
+	public final int WOOD_COST_FARM = 12000;
+	public final int IRON_COST_FARM = 5000;
+	public final int FOOD_COST_CARPENTRY = 7500;
+	public final int WOOD_COST_CARPENTRY = 7000;
+	public final int IRON_COST_CARPENTRY = 5500;
+	public final int FOOD_COST_SMITHY = 7000;
 	public final int WOOD_COST_SMITHY = 10000;
-	public final int IRON_COST_SMITHY = 12000;
-	public final int FOOD_COST_CHURCH = 5000;
-	public final int WOOD_COST_CHURCH = 10000;
-	public final int IRON_COST_CHURCH = 12000;
+	public final int IRON_COST_SMITHY = 8000;
+	public final int FOOD_COST_CHURCH = 7500;
+	public final int WOOD_COST_CHURCH = 8500;
+	public final int IRON_COST_CHURCH = 10000;
 	public final int FOOD_COST_MAGICTOWER = 5000;
-	public final int WOOD_COST_MAGICTOWER = 10000;
+	public final int WOOD_COST_MAGICTOWER = 10500;
 	public final int IRON_COST_MAGICTOWER = 12000;
 	
 	
