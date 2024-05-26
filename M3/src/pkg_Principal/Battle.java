@@ -854,56 +854,58 @@ public class Battle implements Variables {
 	
 	public String getReporte() {
 		
-		String datos_update ="";
+String datos_update ="";
 		
-		datos_update += String.format("%-20s %-10s %-10s %-25s %-10s %-10s","Army plannet","Units","Drops","Initial Army Enemy","Units","Drops");
+		datos_update += "\n" + String.format("%-42s %-11s %-10s %-25s %-10s %-10s","Army plannet","Units","Drops","Initial Army Enemy","Units","Drops");
 
-		datos_update +="\n"+ String.format("%-15s %10d %10d %14s %21d %10d", "Swordsman",actualNumberUnitsCivilization[0], civilizationDrops[0], "Swordsman", actualNumberUnitsEnemy[0],enemyDrops[0]);
+		datos_update +="\n\n"+ String.format("%-37s %12d %13d %15s %21d %10d", "Swordsman",actualNumberUnitsCivilization[0], civilizationDrops[0], "Swordsman", actualNumberUnitsEnemy[0],enemyDrops[0]);
 		
-		datos_update +="\n"+ String.format("%-15s %10d %10d %13s %22d %10d", "Spearman",actualNumberUnitsCivilization[1], civilizationDrops[1], "Spearman", actualNumberUnitsEnemy[1],enemyDrops[1]);
+		datos_update +="\n\n"+ String.format("%-40s %10d %14d %13s %24d %10d", "Spearman",actualNumberUnitsCivilization[1], civilizationDrops[1], "Spearman", actualNumberUnitsEnemy[1],enemyDrops[1]);
 
-		datos_update +="\n"+ String.format("%-15s %10d %10d %13s %22d %10d", "Crossbow",actualNumberUnitsCivilization[2], civilizationDrops[2], "Crossbow", actualNumberUnitsEnemy[2],enemyDrops[2]);
+		datos_update +="\n\n"+ String.format("%-41s %10d %14d %12s %24d %11d", "Crossbow",actualNumberUnitsCivilization[2], civilizationDrops[2], "Crossbow", actualNumberUnitsEnemy[2],enemyDrops[2]);
 
-		datos_update +="\n"+ String.format("%-15s %10d %10d %11s %24d %10d", "Cannon",actualNumberUnitsCivilization[3], civilizationDrops[3], "Cannon", actualNumberUnitsEnemy[3],enemyDrops[3]);
+		datos_update +="\n\n"+ String.format("%-42s %11d %13d %11s %28d %11d", "Cannon",actualNumberUnitsCivilization[3], civilizationDrops[3], "Cannon", actualNumberUnitsEnemy[3],enemyDrops[3]);
 
-		datos_update +="\n"+ String.format("%-15s %10d %10d", "Arrow Tower",actualNumberUnitsCivilization[4], civilizationDrops[4]);
+		datos_update +="\n\n"+ String.format("%-40s %10d %13d", "Arrow Tower",actualNumberUnitsCivilization[4], civilizationDrops[4]);
 
-		datos_update +="\n"+ String.format("%-15s %10d %10d", "Catapult",actualNumberUnitsCivilization[5], civilizationDrops[5]);
+		datos_update +="\n\n"+ String.format("%-44s %10d %13d", "Catapult",actualNumberUnitsCivilization[5], civilizationDrops[5]);
 
-		datos_update +="\n"+ String.format("%-15s %4d %10d", "Rocket Launcher Tower",actualNumberUnitsCivilization[6], civilizationDrops[6]);
+		datos_update +="\n\n"+ String.format("%-38s %4d %13d", "Rocket Launcher Tower",actualNumberUnitsCivilization[6], civilizationDrops[6]);
 
-		datos_update +="\n"+ String.format("%-15s %10d %10d", "Magician",actualNumberUnitsCivilization[7], civilizationDrops[7]);
+		datos_update +="\n\n"+ String.format("%-43s %10d %13d", "Magician",actualNumberUnitsCivilization[7], civilizationDrops[7]);
 
-		datos_update +="\n"+ String.format("%-15s %10d %10d", "Priest",actualNumberUnitsCivilization[8], civilizationDrops[8])+"\n\n";
+		datos_update +="\n\n"+ String.format("%-46s %10d %13d", "Priest",actualNumberUnitsCivilization[8], civilizationDrops[8])+"\n\n";
 		
-		for (int i = 0; i < 88; i++) {
+		for (int i = 0; i < 120; i++) {
 			datos_update += "*";
 		}
 		
-		datos_update +="\n"+ String.format("%-15s %35s", "Cost Army Civilization","Cost Army Enemy")+"\n";
+		datos_update +="\n"+ String.format("%-15s %60s", "Cost Army Civilization","Cost Army Enemy")+"\n";
 
-		datos_update +="\n"+ String.format("%-15s %10d %21s %15d", "Food:", initialCostFleet[0][0], "Food:", initialCostFleet[1][0]);
-		datos_update +="\n"+ String.format("%-15s %10d %21s %15d", "Wood:", initialCostFleet[0][1], "Wood:", initialCostFleet[1][1]);
-		datos_update +="\n"+ String.format("%-15s %10d %21s %15d", "Iron:", initialCostFleet[0][2], "Iron:", initialCostFleet[1][2])+"\n\n";
+		datos_update +="\n"+ String.format("%-15s %10d %50s %22d", "Food:", initialCostFleet[0][0], "Food:", initialCostFleet[1][0]);
+		datos_update +="\n"+ String.format("%-15s %9d %49s %20d", "Wood:", initialCostFleet[0][1], "Wood:", initialCostFleet[1][1]);
+		datos_update +="\n"+ String.format("%-15s %14d %50s %24d", "Iron:", initialCostFleet[0][2], "Iron:", initialCostFleet[1][2])+"\n\n";
 
-		for (int i = 0; i < 88; i++) {
+		for (int i = 0; i < 120; i++) {
 			datos_update += "*";
 		}
 		
-		datos_update +="\n"+ String.format("%-15s %35s", "Looses Army Civilization","Looses Army Enemy")+"\n";
+		datos_update +="\n"+ String.format("%-15s %58s", "Looses Army Civilization","Looses Army Enemy")+"\n";
 
-		datos_update +="\n"+ String.format("%-15s %10d %21s %15d", "Food:", resourcesLooses[0][0], "Food:", resourcesLooses[1][0]);
-		datos_update +="\n"+ String.format("%-15s %10d %21s %15d", "Wood:", resourcesLooses[0][1], "Wood:", resourcesLooses[1][1]);
-		datos_update +="\n"+ String.format("%-15s %10d %21s %15d", "Iron:", resourcesLooses[0][2], "Iron:", resourcesLooses[1][2])+"\n\n";
+		datos_update +="\n"+ String.format("%-15s %10d %50s %26d", "Food:", resourcesLooses[0][0], "Food:", resourcesLooses[1][0]);
+		datos_update +="\n"+ String.format("%-15s %9d %49s %25d", "Wood:", resourcesLooses[0][1], "Wood:", resourcesLooses[1][1]);
+		datos_update +="\n"+ String.format("%-15s %14d %50s %29d", "Iron:", resourcesLooses[0][2], "Iron:", resourcesLooses[1][2])+"\n\n";
 
-		for (int i = 0; i < 88; i++) {
+		for (int i = 0; i < 120; i++) {
 			datos_update += "*";
 		}
 		
 		datos_update +="\n"+ "Waste Generated:"+"\n";
 
 		datos_update +="\n"+ String.format("%-15s %10d", "Wood",wasteWoodIron[0]);
-		datos_update +="\n"+ String.format("%-15s %10d", "Iron",wasteWoodIron[1])+"\n";
+		datos_update +="\n"+ String.format("%-15s %15d", "Iron",wasteWoodIron[1])+"\n";
+		
+		datos_update += "\n\n";
 		
 		if(bool_civiWin) {
 			datos_update +="\nBattle Winned by Civilization, we collect rubble\n\n";
@@ -911,6 +913,8 @@ public class Battle implements Variables {
 		else {
 			datos_update +="\nBattle Winned by Enemy";
 		}
+		
+		datos_update += "\n\n";
 		
 		return datos_update;
 		
