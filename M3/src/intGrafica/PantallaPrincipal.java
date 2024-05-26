@@ -27,14 +27,7 @@ import pkg_Principal.Battle;
 import pkg_Principal.Civilization;
 import pkg_Principal.Main;
 
-public class civilizadoss {
-	public static void main(String[] args) {
-		new PantallaPrincipal();
-
-	}
-}
-
-class PantallaPrincipal extends JFrame implements Variables {
+public class PantallaPrincipal extends JFrame implements Variables {
 	private JPanel panelImagenes, panelBotonesContainer, panelTitle;
 	private ArrayList<BufferedImage> imagenes;
 	private BufferedImage imageIcon, iconoPersonalizado;
@@ -403,12 +396,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 						principal.setCurrentCivilization(principal.loadCivilization(id));
 						principal.setCurrentCivilizationID(id);
 
-						principal.getCurrentCivilization().setFood(1000000);
-						principal.getCurrentCivilization().setWood(1000000);
-						principal.getCurrentCivilization().setIron(1000000);
-						principal.getCurrentCivilization().setMana(1000000);
-
-						JTabbedPaneUno ventanaPrincipal = new JTabbedPaneUno(principal);
+						InterfaceGame ventanaPrincipal = new InterfaceGame(principal);
 
 						dispose();
 
@@ -690,7 +678,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 						principal.createCivilization(civilizationName, userName, principal);
 
-						JTabbedPaneUno ventanaPrincipal = new JTabbedPaneUno(principal);
+						InterfaceGame ventanaPrincipal = new InterfaceGame(principal);
 
 						dispose();
 					} else {

@@ -60,7 +60,7 @@ import pkg_Principal.Main;
 
 
 
-public class JTabbedPaneUno extends JFrame implements Variables {
+public class InterfaceGame extends JFrame implements Variables {
 
 	// LÓGICA TIMER
 	private Timer timer;
@@ -118,7 +118,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 	private ArrayList<JLabel> armorUnitsArrayLabel;
 	private ArrayList<JLabel> totalUnitsArrayLabel;
 
-	JTabbedPaneUno(Main main){
+	InterfaceGame(Main main){
 
 		setSize(900, 750);
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
