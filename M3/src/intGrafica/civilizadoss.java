@@ -614,7 +614,7 @@ class PantallaPrincipal extends JFrame implements Variables {
 
 			// se meten las indicaciones estandar para una ventana de crear usuario
 			this.setSize(900, 700);
-			this.setTitle("Crear Usuario");
+			this.setTitle("Create your civilization");
 			this.setIconImage(imageIcon);
 			this.setResizable(false);// no cambiar tamaño marco
 			this.setLocationRelativeTo(null);// sale en medio
