@@ -399,8 +399,11 @@ class PantallaPrincipal extends JFrame implements Variables {
 						if (response == JOptionPane.YES_OPTION) {
 							// Eliminar partida llamando al método
 							deleteCivilization(id);
-							dispose();
-							new PartidasGuardadas().repaint();
+//							dispose();
+//							new PartidasGuardadas().repaint();
+							 panelCentral.remove(panel2);
+			                 panelCentral.revalidate();
+			                 panelCentral.repaint();
 						}
 					}
 				});
