@@ -256,56 +256,56 @@ public class Main implements Variables {
 
 	}
 
-	public int chooseCivilizations() {
-
-		Connection conn = null;
-		Statement stmt = null;
-		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
-		String USER = "Civilization";
-		String PASS = "civilization";
-		int choosenCivilizationID = 0;
-
-		try {
-			ArrayList arrayPartidas = new ArrayList();
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("CONEXIÓN ESTABLECIDA");
-			stmt = conn.createStatement();
-			String QUERY = "select civilization_id, name, username, battles_counter from civilization_stats";
-			ResultSet rs = stmt.executeQuery(QUERY);   	        
-
-			while (rs.next()) {
-
-				System.out.println("RS EJECUTADO");
-
-				int civilization_id = rs.getInt(1);
-				System.out.println(civilization_id + " - " + rs.getString(2) + " - " + rs.getString(3) + " - " + rs.getInt(4));
-				arrayPartidas.add(civilization_id);
-
-			}
-
-			System.out.println(arrayPartidas.toString());
-
-			// ATENCION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			// FORZADO!!!!!
-			// Esto se creará luego para cargarlo
-			choosenCivilizationID = 1;
-
-
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		return choosenCivilizationID;
-
-	}
+//	public int chooseCivilizations() {
+//
+//		Connection conn = null;
+//		Statement stmt = null;
+//		String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+//		String USER = "Civilization";
+//		String PASS = "civilization";
+//		int choosenCivilizationID = 0;
+//
+//		try {
+//			ArrayList arrayPartidas = new ArrayList();
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//			System.out.println("CONEXIÓN ESTABLECIDA");
+//			stmt = conn.createStatement();
+//			String QUERY = "select civilization_id, name, username, battles_counter from civilization_stats";
+//			ResultSet rs = stmt.executeQuery(QUERY);   	        
+//
+//			while (rs.next()) {
+//
+//				System.out.println("RS EJECUTADO");
+//
+//				int civilization_id = rs.getInt(1);
+//				System.out.println(civilization_id + " - " + rs.getString(2) + " - " + rs.getString(3) + " - " + rs.getInt(4));
+//				arrayPartidas.add(civilization_id);
+//
+//			}
+//
+//			System.out.println(arrayPartidas.toString());
+//
+//			// ATENCION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//			// FORZADO!!!!!
+//			// Esto se creará luego para cargarlo
+//			choosenCivilizationID = 1;
+//
+//
+//		} catch (ClassNotFoundException | SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				stmt.close();
+//				conn.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//
+//		}
+//		return choosenCivilizationID;
+//
+//	}
 
 	// Cargar partida (ArrayMilitar + Civilizacion)
 	public Civilization loadCivilization(int idChoosenCivilization) {

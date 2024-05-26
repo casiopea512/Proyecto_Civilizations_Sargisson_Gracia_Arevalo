@@ -888,7 +888,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		//PANEL111
 
 		civili = new JLabel("CIVILIZATION BUILDINGS");
-		civili.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		civili.setFont(new Font("Arial", Font.BOLD, 30));
 		civili.setForeground(Color.BLACK);
 		civili.setAlignmentX(Component.LEFT_ALIGNMENT);
 		//civili.setPreferredSize(new Dimension(300, 50));
@@ -897,9 +897,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		mtower = new JLabel("Magic Towers: ");
 		int cantidadTower = main.getCurrentCivilization().getMagicTower(); 
 		mtower2 = new JLabel(String.valueOf(cantidadTower));
-		mtower.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		mtower.setFont(new Font("Arial", Font.BOLD, 20));
 		mtower.setForeground(Color.BLACK);
-		mtower2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		mtower2.setFont(new Font("Arial", Font.BOLD, 20));
 		mtower2.setForeground(Color.BLACK);
 		panelEti2.add(mtower);
 		panelEti2.add(mtower2);
@@ -908,9 +908,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		church = new JLabel("Church: ");
 		int cantidadChurch = main.getCurrentCivilization().getChurch(); 
 		church2 = new JLabel(String.valueOf(cantidadChurch));
-		church.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		church.setFont(new Font("Arial", Font.BOLD, 20));
 		church.setForeground(Color.BLACK);
-		church2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		church2.setFont(new Font("Arial", Font.BOLD, 20));
 		church2.setForeground(Color.BLACK);
 		panelEti3.add(church);
 		panelEti3.add(church2);
@@ -918,9 +918,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		farm = new JLabel("Farm: ");
 		int cantidadfarm = main.getCurrentCivilization().getFarm(); 
 		farm2 = new JLabel(String.valueOf(cantidadfarm));
-		farm.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		farm.setFont(new Font("Arial", Font.BOLD, 20));
 		farm.setForeground(Color.BLACK);
-		farm2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		farm2.setFont(new Font("Arial", Font.BOLD, 20));
 		farm2.setForeground(Color.BLACK);
 		panelEti4.add(farm);
 		panelEti4.add(farm2);
@@ -928,9 +928,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		smithy = new JLabel("Smithy: ");
 		int cantidadsmithy = main.getCurrentCivilization().getSmithy(); 
 		smithy2 = new JLabel(String.valueOf(cantidadsmithy));
-		smithy.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		smithy.setFont(new Font("Arial", Font.BOLD, 20));
 		smithy.setForeground(Color.BLACK);
-		smithy2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		smithy2.setFont(new Font("Arial", Font.BOLD, 20));
 		smithy2.setForeground(Color.BLACK);
 		panelEti5.add(smithy);
 		panelEti5.add(smithy2);
@@ -938,24 +938,24 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		carprntry = new JLabel("Carperntry: ");
 		int cantidadcarprntry =main.getCurrentCivilization().getCarpentry(); 
 		carpentry2 = new JLabel(String.valueOf(cantidadcarprntry));
-		carprntry.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		carprntry.setFont(new Font("Arial", Font.BOLD, 20));
 		carprntry.setForeground(Color.BLACK);
-		carpentry2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		carpentry2.setFont(new Font("Arial", Font.BOLD, 20));
 		carpentry2.setForeground(Color.BLACK);
 		panelEti6.add(carprntry);
 		panelEti6.add(carpentry2);
 
 		tec = new JLabel("TECHNOLOGY");
-		tec.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		tec.setFont(new Font("Arial", Font.BOLD, 30));
 		tec.setForeground(Color.BLACK);
 		panelEti7.add(tec);
 
 		alevel = new JLabel("Technology Attack: ");
 		int cantidadalevel= main.getCurrentCivilization().getTechnologyAttack(); 
 		alevel2 = new JLabel(String.valueOf(cantidadalevel));
-		alevel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		alevel.setFont(new Font("Arial", Font.BOLD, 20));
 		alevel.setForeground(Color.BLACK);
-		alevel2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		alevel2.setFont(new Font("Arial", Font.BOLD, 20));
 		alevel2.setForeground(Color.BLACK);
 		panelEti8.add(alevel);
 		panelEti8.add(alevel2);
@@ -963,9 +963,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		dlevel = new JLabel("Technology Defense: ");
 		int cantidaddlevel= main.getCurrentCivilization().getTechnologyDefense(); 
 		dlevel2 = new JLabel(""+cantidaddlevel);
-		dlevel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		dlevel.setFont(new Font("Arial", Font.BOLD, 20));
 		dlevel.setForeground(Color.BLACK);
-		dlevel2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		dlevel2.setFont(new Font("Arial", Font.BOLD, 20));
 		dlevel2.setForeground(Color.BLACK);
 		panelEti9.add(dlevel);
 		panelEti9.add(dlevel2);
@@ -973,9 +973,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		battle = new JLabel("BATTLE COUNTER: ");
 		int cantidadbattle = main.getCurrentCivilization().getBattles(); 
 		battle2 = new JLabel(String.valueOf(cantidadbattle));
-		battle.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		battle.setFont(new Font("Arial", Font.BOLD, 30));
 		battle.setForeground(Color.BLACK);
-		battle2.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		battle2.setFont(new Font("Arial", Font.BOLD, 30));
 		battle2.setForeground(Color.BLACK);
 		panelEti10.add(battle);
 		panelEti10.add(battle2);
@@ -1007,7 +1007,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		//PANEL122
 
 		civili = new JLabel("ATTACK UNITS");
-		civili.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		civili.setFont(new Font("Arial", Font.BOLD, 30));
 		civili.setForeground(Color.BLACK);
 		civili.setAlignmentX(Component.LEFT_ALIGNMENT);
 		//civili.setPreferredSize(new Dimension(300, 50));
@@ -1016,9 +1016,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		sword = new JLabel("Swordsman: ");
 		int swordsman = (main.getCurrentCivilization().getArmy())[0].size(); 
 		sword2 = new JLabel(String.valueOf(swordsman));
-		sword.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		sword.setFont(new Font("Arial", Font.BOLD, 20));
 		sword.setForeground(Color.BLACK);
-		sword2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		sword2.setFont(new Font("Arial", Font.BOLD, 20));
 		sword2.setForeground(Color.BLACK);
 		panelEti12.add(sword);
 		panelEti12.add(sword2);
@@ -1027,9 +1027,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		spearman = new JLabel("Spearman: ");
 		int spearmann =(main.getCurrentCivilization().getArmy())[1].size();
 		spearman2 = new JLabel(String.valueOf(spearmann));
-		spearman.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		spearman.setFont(new Font("Arial", Font.BOLD, 20));
 		spearman.setForeground(Color.BLACK);
-		spearman2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		spearman2.setFont(new Font("Arial", Font.BOLD, 20));
 		spearman2.setForeground(Color.BLACK);
 		panelEti13.add(spearman);
 		panelEti13.add(spearman2);
@@ -1037,9 +1037,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		crosbow = new JLabel("Crosbow: ");
 		int crosboww =(main.getCurrentCivilization().getArmy())[2].size();
 		crosbow2 = new JLabel(String.valueOf(crosboww));
-		crosbow.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		crosbow.setFont(new Font("Arial", Font.BOLD, 20));
 		crosbow.setForeground(Color.BLACK);
-		crosbow2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		crosbow2.setFont(new Font("Arial", Font.BOLD, 20));
 		crosbow2.setForeground(Color.BLACK);
 		panelEti14.add(crosbow);
 		panelEti14.add(crosbow2);
@@ -1047,15 +1047,15 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		cannon = new JLabel("Cannon: ");
 		int cannonn =(main.getCurrentCivilization().getArmy())[3].size();
 		cannon2 = new JLabel(String.valueOf(cannonn));
-		cannon.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		cannon.setFont(new Font("Arial", Font.BOLD, 20));
 		cannon.setForeground(Color.BLACK);
-		cannon2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		cannon2.setFont(new Font("Arial", Font.BOLD, 20));
 		cannon2.setForeground(Color.BLACK);
 		panelEti15.add(cannon);
 		panelEti15.add(cannon2);
 
 		deffense = new JLabel("DEFFENSE UNITS");
-		deffense.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		deffense.setFont(new Font("Arial", Font.BOLD, 30));
 		deffense.setForeground(Color.BLACK);
 		deffense.setAlignmentX(Component.LEFT_ALIGNMENT);
 		//civili.setPreferredSize(new Dimension(300, 50));
@@ -1064,9 +1064,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		tower = new JLabel("Arrow Tower: ");
 		int towerr =(main.getCurrentCivilization().getArmy())[4].size(); 
 		tower2 = new JLabel(String.valueOf(towerr));
-		tower.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		tower.setFont(new Font("Arial", Font.BOLD, 20));
 		tower.setForeground(Color.BLACK);
-		tower2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		tower2.setFont(new Font("Arial", Font.BOLD, 20));
 		tower2.setForeground(Color.BLACK);
 		panelEti17.add(tower);
 		panelEti17.add(tower2);
@@ -1074,9 +1074,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		catapult = new JLabel("Catapult: ");
 		int catapultt =(main.getCurrentCivilization().getArmy())[5].size(); 
 		catapult2 = new JLabel(String.valueOf(catapultt));
-		catapult.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		catapult.setFont(new Font("Arial", Font.BOLD, 20));
 		catapult.setForeground(Color.BLACK);
-		catapult2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		catapult2.setFont(new Font("Arial", Font.BOLD, 20));
 		catapult2.setForeground(Color.BLACK);
 		panelEti18.add(catapult);
 		panelEti18.add(catapult2);
@@ -1084,15 +1084,15 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		rocket = new JLabel("Rocket Lancher Tower: ");
 		int rockett =(main.getCurrentCivilization().getArmy())[6].size(); 
 		rocket2 = new JLabel(String.valueOf(rockett));
-		rocket.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		rocket.setFont(new Font("Arial", Font.BOLD, 20));
 		rocket.setForeground(Color.BLACK);
-		rocket2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		rocket2.setFont(new Font("Arial", Font.BOLD, 20));
 		rocket2.setForeground(Color.BLACK);
 		panelEti19.add(rocket);
 		panelEti19.add(rocket2);
 
 		special = new JLabel("SPECIAL UNITS");
-		special.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		special.setFont(new Font("Arial", Font.BOLD, 30));
 		special.setForeground(Color.BLACK);
 		special.setAlignmentX(Component.LEFT_ALIGNMENT);
 		//civili.setPreferredSize(new Dimension(300, 50));
@@ -1101,9 +1101,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		magician = new JLabel("Magician: ");
 		int magiciann =(main.getCurrentCivilization().getArmy())[7].size(); 
 		magician2 = new JLabel(String.valueOf(magiciann));
-		magician.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		magician.setFont(new Font("Arial", Font.BOLD, 20));
 		magician.setForeground(Color.BLACK);
-		magician2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		magician2.setFont(new Font("Arial", Font.BOLD, 20));
 		magician2.setForeground(Color.BLACK);
 		panelEti21.add(magician);
 		panelEti21.add(magician2);
@@ -1111,9 +1111,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		priest = new JLabel("Priest: ");
 		int priestt =(main.getCurrentCivilization().getArmy())[8].size();
 		priest2 = new JLabel(String.valueOf(priestt));
-		priest.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		priest.setFont(new Font("Arial", Font.BOLD, 20));
 		priest.setForeground(Color.BLACK);
-		priest2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		priest2.setFont(new Font("Arial", Font.BOLD, 20));
 		priest2.setForeground(Color.BLACK);
 		panelEti22.add(priest);
 		panelEti22.add(priest2);
@@ -1133,10 +1133,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelTotalEti2.add(panelEti22);
 
 		panelTotalEti2.setLayout(new BoxLayout(panelTotalEti2, BoxLayout.Y_AXIS));
-		//panelTotalEti.add(Box.createVerticalStrut(100));
-
+		
 		// Margen entre los paneles y el borde del panelTotalEti
-		//int margenEntrePaneles2 = 70;
+		
 		panelTotalEti2.setBorder(BorderFactory.createEmptyBorder(margenEntrePaneles, margenEntrePaneles, margenEntrePaneles, margenEntrePaneles));
 
 		panel22.setLayout(new BorderLayout());
@@ -1146,18 +1145,17 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		//panel133
 
 		current = new JLabel("CURRENT RESOURCES");
-		current.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		current.setFont(new Font("Arial", Font.BOLD, 30));
 		current.setForeground(Color.BLACK);
 		current.setAlignmentX(Component.LEFT_ALIGNMENT);
-		//civili.setPreferredSize(new Dimension(300, 50));
 		panelEti23.add(current);
 
 		food = new JLabel("Food: ");
 		int ffood = main.getCurrentCivilization().getFood(); 
 		food2 = new JLabel(String.valueOf(ffood));
-		food.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		food.setFont(new Font("Arial", Font.BOLD, 20));
 		food.setForeground(Color.BLACK);
-		food2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		food2.setFont(new Font("Arial", Font.BOLD, 20));
 		food2.setForeground(Color.BLACK);
 		panelEti24.add(food);
 		panelEti24.add(food2);
@@ -1166,9 +1164,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		wood = new JLabel("Wood: ");
 		int wwood =main.getCurrentCivilization().getWood(); 
 		wood2 = new JLabel(String.valueOf(wwood));
-		wood.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		wood.setFont(new Font("Arial", Font.BOLD, 20));
 		wood.setForeground(Color.BLACK);
-		wood2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		wood2.setFont(new Font("Arial", Font.BOLD, 20));
 		wood2.setForeground(Color.BLACK);
 		panelEti25.add(wood);
 		panelEti25.add(wood2);
@@ -1176,9 +1174,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		iron = new JLabel("Iron: ");
 		int iiron =main.getCurrentCivilization().getIron(); 
 		iron2 = new JLabel(String.valueOf(iiron));
-		iron.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		iron.setFont(new Font("Arial", Font.BOLD, 20));
 		iron.setForeground(Color.BLACK);
-		iron2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		iron2.setFont(new Font("Arial", Font.BOLD, 20));
 		iron2.setForeground(Color.BLACK);
 		panelEti26.add(iron);
 		panelEti26.add(iron2);
@@ -1186,19 +1184,19 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		mana = new JLabel("Mana: ");
 		int mmana =main.getCurrentCivilization().getMana(); 
 		mana2 = new JLabel(String.valueOf(mmana));
-		mana.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		mana.setFont(new Font("Arial", Font.BOLD, 20));
 		mana.setForeground(Color.BLACK);
-		mana2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		mana2.setFont(new Font("Arial", Font.BOLD, 20));
 		mana2.setForeground(Color.BLACK);
 		panelEti27.add(mana);
 		panelEti27.add(mana2);
 
 
 		resources = new JLabel("RESOURCE GENERATION");
-		resources.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		resources.setFont(new Font("Arial", Font.BOLD, 30));
 		resources.setForeground(Color.BLACK);
 		resources.setAlignmentX(Component.LEFT_ALIGNMENT);
-		//civili.setPreferredSize(new Dimension(300, 50));
+		
 		panelEti28.add(resources);
 		
 //		String.valueOf(CIVILIZATION_FOOD_GENERATED + CIVILIZATION_FOOD_GENERATED_PER_FARM * main.getCurrentCivilization().getFarm()));
@@ -1209,9 +1207,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		foodd = new JLabel("Food: ");
 		int fffood = CIVILIZATION_FOOD_GENERATED + CIVILIZATION_FOOD_GENERATED_PER_FARM * main.getCurrentCivilization().getFarm();
 		foodd2 = new JLabel(String.valueOf(fffood));
-		foodd.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		foodd.setFont(new Font("Arial", Font.BOLD, 20));
 		foodd.setForeground(Color.BLACK);
-		foodd2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		foodd2.setFont(new Font("Arial", Font.BOLD, 20));
 		foodd2.setForeground(Color.BLACK);
 		panelEti29.add(foodd);
 		panelEti29.add(foodd2);
@@ -1220,9 +1218,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		woodd = new JLabel("Wood: ");
 		int wwwood = CIVILIZATION_WOOD_GENERATED + CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY * main.getCurrentCivilization().getCarpentry();
 		woodd2 = new JLabel(String.valueOf(wwwood));
-		woodd.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		woodd.setFont(new Font("Arial", Font.BOLD, 20));
 		woodd.setForeground(Color.BLACK);
-		woodd2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		woodd2.setFont(new Font("Arial", Font.BOLD, 20));
 		woodd2.setForeground(Color.BLACK);
 		panelEti30.add(woodd);
 		panelEti30.add(woodd2);
@@ -1230,9 +1228,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		ironn = new JLabel("Iron: ");
 		int iiiron = CIVILIZATION_IRON_GENERATED + CIVILIZATION_IRON_GENERATED_PER_SMITHY * main.getCurrentCivilization().getSmithy();
 		ironn2 = new JLabel(String.valueOf(iiiron));
-		ironn.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		ironn.setFont(new Font("Arial", Font.BOLD, 20));
 		ironn.setForeground(Color.BLACK);
-		ironn2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		ironn2.setFont(new Font("Arial", Font.BOLD, 20));
 		ironn2.setForeground(Color.BLACK);
 		panelEti31.add(ironn);
 		panelEti31.add(ironn2);
@@ -1240,9 +1238,9 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		manaa = new JLabel("Mana: ");
 		int mmmana = CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER * main.getCurrentCivilization().getMagicTower(); 
 		manaa2 = new JLabel(String.valueOf(mmmana));
-		manaa.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		manaa.setFont(new Font("Arial", Font.BOLD, 20));
 		manaa.setForeground(Color.BLACK);
-		manaa2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		manaa2.setFont(new Font("Arial", Font.BOLD, 20));
 		manaa2.setForeground(Color.BLACK);
 		panelEti32.add(manaa);
 		panelEti32.add(manaa2);
@@ -1261,20 +1259,14 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelTotalEti3.add(panelEti32);
 
 		panelTotalEti3.setLayout(new BoxLayout(panelTotalEti3, BoxLayout.Y_AXIS));
-		//panelTotalEti.add(Box.createVerticalStrut(100));
+		
 
 		// Margen entre los paneles y el borde del panelTotalEti
-		//int margenEntrePaneles2 = 70;
+		
 		panelTotalEti3.setBorder(BorderFactory.createEmptyBorder(margenEntrePaneles, margenEntrePaneles, margenEntrePaneles, margenEntrePaneles));
 
 		panel33.setLayout(new BorderLayout());
 		panel33.add(panelTotalEti3, BorderLayout.CENTER);
-
-
-
-
-
-
 
 		ImageIcon imagenMapa;
 		imagenMapa = createScaledImageIcon1("./imagenes/mapa.jpg", 1300, 980);
@@ -1284,29 +1276,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		//panel1.add(etiqueta1);
 		panelPrincipal.setLayout(new BorderLayout());
 
-//		tabbedPane.setForegroundAt(i, Color.WHITE);
-//		tabbedPane.setBackgroundAt(i, Color.BLACK);
-//	} else {
-//		tabbedPane.setForegroundAt(i, Color.BLACK);
-//		tabbedPane.setBackgroundAt(i, Color.WHITE);
-//	}
 
-		//menu pestañas principal
-		
-		// Establecer UIManager para cambiar colores de pestañas
-//        UIManager.put("TabbedPane.selected", Color.BLACK);
-//        UIManager.put("TabbedPane.background", Color.WHITE);
-//        UIManager.put("TabbedPane.foreground", Color.BLACK);
-//        UIManager.put("TabbedPane.unselectedBackground", Color.WHITE);
-//        UIManager.put("TabbedPane.selectedForeground", Color.WHITE);
-
-
-     // Establecer el LookAndFeel de la UI
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 		// Personalizar la fuente y tamaño de los títulos de las pestañas
 		Font tabFont = new Font("Arial", Font.BOLD, 20);
 		 // Establecer color de fondo para todas las pestañas
@@ -1316,16 +1286,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
         panelJPMenu.setForeground(Color.BLACK);
 		panelJPMenu.setFont(tabFont);
 
-		// Inicialmente actualizar los colores
-		//updateTabColors(panelJPMenu);
-		// Listener para actualizar colores al seleccionar una pestaña
-		 //panelJPMenu.addChangeListener(e -> updateTabColors(panelJPMenu));
-
-
-		// Inicialmente actualizar los colores
-		//updateTabColors(panelCentral);
-		//panelCentral.setBorder(null); // Eliminar bordes del JScrollPane
-
+		
 		panel11.setBackground(Color.DARK_GRAY);
 		panel22.setBackground(Color.DARK_GRAY);
 		panel33.setBackground(Color.DARK_GRAY);
@@ -1336,19 +1297,8 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 		panelJPMenu.addTab(" Resources ", panel33);
 
 
-		// Personalizar la fuente y tamaño de los títulos de las pestañas
-		
-		// Inicialmente actualizar los colores
-
-		// Listener para actualizar colores al seleccionar una pestaña
-
-
 		// Establecer tamaño preferido para panelJPMenu
 		panelJPMenu.setPreferredSize(new Dimension(615, 980));
-
-
-
-
 
 		// Agregar el contenedor al panel1
 		//panel1Central.setLayout(new BorderLayout());
@@ -1359,8 +1309,7 @@ public class JTabbedPaneUno extends JFrame implements Variables {
 
 		panel1Central.setBackground(Color.BLACK);
 		panelPrincipal.add(panel1Central, BorderLayout.CENTER);
-		//		panelPrincipal=new JPanel();
-		//		panelPrincipal.setBackground(Color.CYAN);
+		
 		initBarraMenuPrincipal(main);
 
 		panelInternoUno.add(panelPrincipal, BorderLayout.CENTER); // < todo mi p<nel central
