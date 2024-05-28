@@ -2,47 +2,68 @@
 <buildings>
 	<building>
 		<name>FARM</name>
+		<imagen>farm.png</imagen>
+		<description>The farm, a vital cornerstone of our civilization, boosts food generation by 10%, ensuring a steady supply to sustain our population. Lush fields and well-tended crops provide bountiful harvests, supporting growth and prosperity. Positioned strategically, it maximizes resource efficiency, feeding our armies and citizens alike. With each season's yield, the farm strengthens our foundation, fostering stability and success for our society.</description>
+
+		
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+
 		<sprite></sprite>
 	</building>
 	<building>
 		<name>CARPENTRY</name>
+		<imagen>carpentry.png</imagen>
+		<description>The carpentry, essential to our civilization's infrastructure, boosts wood generation by 10%, ensuring a steady supply of this crucial resource. Skilled craftsmen transform raw timber into valuable materials, supporting construction and development. Strategically placed, it maximizes resource efficiency, fueling the growth of our buildings and defenses. With each crafted piece, the carpentry strengthens our foundation, driving progress and stability in our society.</description>
+
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+
 		<sprite></sprite>
 	</building>
 	<building>
 		<name>SMITHY</name>
+		<imagen>smithy.png</imagen>
+		<description>The smithy, a crucial hub of industry, boosts our civilization's iron generation by 10%, ensuring a steady supply of this vital resource. Skilled blacksmiths forge raw iron into essential tools and weapons, enhancing our infrastructure and military strength. Strategically located, it maximizes resource efficiency, driving the growth of our cities and armies. With each forged item, the smithy fortifies our foundation, propelling progress and stability throughout our society.</description>
+
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+
 		<sprite></sprite>
 	</building>
 	<building>
 		<name>CHURCH</name>
+		<imagen>church.png</imagen>
+		<description>The church, a sacred pillar of our civilization, allows us to generate one priest per church. To support our priests, we must establish the same amount of churches. Serving as centers of faith and community, churches provide spiritual guidance and bolster morale. Strategically placed, they enhance our society’s stability and resilience. With each new church, we expand our capacity for priests, strengthening the spiritual foundation of our civilization.</description>
+
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+
 		<sprite></sprite>
 	</building>
 	<building>
-		<name>MAGICTOWE</name>
+		<name>MAGIC TOWER</name>
+		<imagen>magictower.png</imagen>
+		<description>The magic tower, a beacon of arcane power, is essential for generating mana in our civilization. Without magic towers, mana production ceases entirely. Establishing at least one magic tower is necessary to harness and accumulate this vital resource. Strategically placed, these towers amplify our magical capabilities, empowering our mages and enhancing our defenses. With each new tower, we fortify our civilization's mystical strength, ensuring a steady flow of mana to fuel our arcane endeavors.</description>
+
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
+
 		<sprite></sprite>
 	</building>
 </buildings>

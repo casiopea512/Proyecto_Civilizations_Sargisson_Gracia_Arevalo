@@ -2,9 +2,13 @@
 <special_units>
 	<unit>
 		<name>MAGICIAN</name>
+		<imagen>magician.png</imagen>
+		<description>The magician, wielding immense offensive power and high likelihood of repetition, is a force to be reckoned with, yet they possess zero defense. With spells that can reshape reality and manipulate elements, they command the battlefield with awe-inspiring might. However, they are vulnerable to even the slightest counterattack, relying solely on their devastating offensive capabilities to prevail in battle.</description>
+
 		<base_damage>3000</base_damage>
 		<waste_chance>0</waste_chance>
 		<attack_again_chance>75</attack_again_chance>
+
 		<plus_stats>
 			<resurect_chance>2</resurect_chance>
 			<armour_technology></armour_technology>
@@ -14,6 +18,7 @@
 			<armour_sanctified>7</armour_sanctified>
 			<attack_sanctified>7</attack_sanctified>
 		</plus_stats>
+
 		<costs>
 			<food_cost>12000</food_cost>
 			<wood_cost>2000</wood_cost>
@@ -21,12 +26,17 @@
 			<mana_cost>5000</mana_cost>
 		</costs>
 		<sprite></sprite>
+
 	</unit>
 	<unit>
 		<name>PRIEST</name>
+		<imagen>priest.png</imagen>
+		<description>The priest, devoid of both attack and defense capabilities, serves as a beacon of support and sanctification on the battlefield. While a priest remains in our army and there's sufficient mana, our current units (those created afterward won't be sanctified) can be blessed, enhancing their stats. However, should all priests perish, the sanctification on our units will cease, leaving them vulnerable once more. They are the guardians of morale and resilience, ensuring our forces stand steadfast in the face of adversity.</description>
+		
 		<base_damage>0</base_damage>
 		<waste_chance>0</waste_chance>
 		<attack_again_chance>0</attack_again_chance>
+
 		<plus_stats>
 			<armour_technology></armour_technology>
 			<attack_technology></attack_technology>
@@ -35,6 +45,7 @@
 			<armour_sanctified>7</armour_sanctified>
 			<attack_sanctified>7</attack_sanctified>
 		</plus_stats>
+
 		<costs>
 			<food_cost>15000</food_cost>
 			<wood_cost>0</wood_cost>
