@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attack_units>
+	<unit>
+		<name>SWORDSMAN</name>
+		<imagen>swordsman.png</imagen>
+		<description>A master swordsman, adept in the art of bladeplay, moves with precision and grace, each strike a testament to years of disciplined training. Their keen eyes assess every angle, every opponent's movement, as they dance across the battlefield with the fluidity of a flowing river. Clad in armor that feels like a second skin, their sword is an extension of themselves, a lethal instrument wielded with finesse and deadly intent. Whether defending honor or seeking justice, the swordsman embodies courage, skill, and unwavering determination in the face of any challenge.</description>
+
+		<base_damage>80</base_damage>
+		<armour>400</armour>
+		<waste_chance>55</waste_chance>
+		<attack_again_chance>3</attack_again_chance>
+
+		<plus_stats>
+			<armour_technology>5</armour_technology>
+			<attack_technology>5</attack_technology>
+			<armour_experience>4</armour_experience>
+			<attack_experience>4</attack_experience>
+			<armour_sanctified>7</armour_sanctified>
+			<attack_sanctified>7</attack_sanctified>
+		</plus_stats>
+
+		<costs>
+			<food_cost>8000</food_cost>
+			<wood_cost>3000</wood_cost>
+			<iron_cost>50</iron_cost>
+			<mana_cost>0</mana_cost>
+		</costs>
+		<sprite></sprite>
+	</unit>
+	<unit>
+		<name>SPEARMAN</name>
+		<imagen>spearman.png</imagen>
+		<description>A skilled spearman, master of the art of spear combat, advances with determination and agility, each movement a display of years of dedicated training. Their sharp eyes scan the terrain, anticipating their opponents' moves as they move with the grace of a hunting feline. Clad in armor that melds with their figure, their spear is an extension of their will, a versatile weapon they wield with skill and determination. Whether protecting borders or leading charges, the spearman embodies courage, skill, and perseverance in the face of any challenge.</description>
+
+		<base_damage>150</base_damage>
+		<armour>1000</armour>
+		<waste_chance>65</waste_chance>
+		<attack_again_chance>7</attack_again_chance>
+
+		<plus_stats>
+			<armour_technology>5</armour_technology>
+			<attack_technology>5</attack_technology>
+			<armour_experience>4</armour_experience>
+			<attack_experience>4</attack_experience>
+			<armour_sanctified>7</armour_sanctified>
+			<attack_sanctified>7</attack_sanctified>
+		</plus_stats>
+
+		<costs>
+			<food_cost>5000</food_cost>
+			<wood_cost>6500</wood_cost>
+			<iron_cost>50</iron_cost>
+			<mana_cost>0</mana_cost>
+		</costs>
+		<sprite></sprite>
+	</unit>
+	<unit>
+		<name>CROSSBOW</name>
+		<imagen>crossbow.png</imagen>
+		<description>The crossbow, a silent harbinger of death, is a marvel of engineering and precision. Its sleek frame belies its deadly efficiency, capable of launching bolts with devastating accuracy and force. With a simple pull of the trigger, it unleashes its lethal payload with a whisper, striking down targets with swift and silent authority. From the battlements of castles to the depths of dense forests, the crossbow stands as a formidable equalizer, embodying power, stealth, and lethal precision in every shot.</description>
+
+		<base_damage>1000</base_damage>
+		<armour>6000</armour>
+		<waste_chance>80</waste_chance>
+		<attack_again_chance>45</attack_again_chance>
+
+		<plus_stats>
+			<armour_technology>5</armour_technology>
+			<attack_technology>5</attack_technology>
+			<armour_experience>4</armour_experience>
+			<attack_experience>4</attack_experience>
+			<armour_sanctified>7</armour_sanctified>
+			<attack_sanctified>7</attack_sanctified>
+		</plus_stats>
+
+		<costs>
+			<food_cost>0</food_cost>
+			<wood_cost>45000</wood_cost>
+			<iron_cost>7000</iron_cost>
+			<mana_cost>0</mana_cost>
+		</costs>
+		<sprite></sprite>
+	</unit>
+	<unit>
+		<name>CANNON</name>
+		<imagen>cannon.png</imagen>
+		<description>The cannon, a roaring juggernaut of destruction, dominates with its overwhelming power and imposing presence. With each thunderous blast, it reshapes battlefields and decides the fate of nations. From city walls to open plains, it embodies military might and technological prowess, leaving an indelible mark on history.</description>
+
+		<base_damage>700</base_damage>
+		<armour>8000</armour>
+		<waste_chance>90</waste_chance>
+		<attack_again_chance>70</attack_again_chance>
+
+		<plus_stats>
+			<armour_technology>5</armour_technology>
+			<attack_technology>5</attack_technology>
+			<armour_experience>4</armour_experience>
+			<attack_experience>4</attack_experience>
+			<armour_sanctified>7</armour_sanctified>
+			<attack_sanctified>7</attack_sanctified>
+		</plus_stats>
+
+		<costs>
+			<food_cost>0</food_cost>
+			<wood_cost>30000</wood_cost>
+			<iron_cost>15000</iron_cost>
+			<mana_cost>0</mana_cost>
+		</costs>
+		<sprite></sprite>
+	</unit>
+</attack_units>

@@ -1,0 +1,101 @@
+/* Importar fuente*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+
+
+body{
+    background-color: #F0F2F1;
+    font-family: 'Cinzel', serif;
+}
+
+.cabecera{
+    position: relative;
+    background-image: url('./imatges/cabecera.png');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    margin-bottom: 60px;
+}
+
+.titulo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+}
+
+
+.carousel-group{
+    background-color: #DBD8D0;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.carousel-unit{
+    display: inline-block;
+    margin-top: 40px;
+    margin-right: 100px;
+    margin-left: 10px;
+    text-align: center; 
+    vertical-align: top;
+}
+
+.carousel-unit .imgUnit{
+    max-height: 250px;
+    display: block;
+    margin: 0 auto;
+}
+
+.imgUnit{
+    border-radius: 20px;
+}
+
+
+footer{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    background-color: #8D8F7B;
+}
+
+.footer-container{
+    font-family: sans-serif;
+    text-transform: capitalize;
+    max-width: 1200px;
+    margin: 0 auto;
+
+}
+
+.footer-row{
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-links{
+    color: white;
+    list-style: none;
+    width: 25%;
+    padding: 0 50px;
+}
+
+.footer-links h4{
+    font-size: 20px;
+    color: white;
+    margin-bottom: 25px;
+    font-weight: 500;
+    border-bottom: 2px solid #5C5B48;
+    display: inline-block;
+}
+
+.footer-links ul li a:hover{
+    color: white;
+    padding-left: 6px;
+}

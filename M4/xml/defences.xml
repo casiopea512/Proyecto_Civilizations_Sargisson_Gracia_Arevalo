@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defences>
+	<unit>
+		<name>ARROWTOWER</name>
+		<imagen>arrowtower.png</imagen>
+		<description>The arrow tower, an unwavering guardian of our realm, stands tall and vigilant, unleashing a relentless storm of arrows upon any who dare to encroach. Strategically positioned along our borders and within our cities, it serves as a formidable bastion of defense, deterring adversaries with its unyielding barrage. With automated precision and unwavering resolve, it ensures the safety of our lands, repelling invaders with lethal efficiency from the highest ramparts to the deepest reaches of our territory.</description>
+
+		<base_damage>80</base_damage>
+		<armour>200</armour>
+		<waste_chance>55</waste_chance>
+		<attack_again_chance>5</attack_again_chance>
+
+		<plus_stats>
+			<armour_technology>0</armour_technology>
+			<attack_technology>0</attack_technology>
+			<armour_experience>0</armour_experience>
+			<attack_experience>0</attack_experience>
+			<armour_sanctified>0</armour_sanctified>
+			<attack_sanctified>0</attack_sanctified>
+		</plus_stats>
+
+		<costs>
+			<food_cost>0</food_cost>
+			<wood_cost>2000</wood_cost>
+			<iron_cost>0</iron_cost>
+			<mana_cost>0</mana_cost>
+		</costs>
+		<sprite></sprite>
+	</unit>
+	<unit>
+		<name>CATAPULT</name>
+		<imagen>catapult.png</imagen>
+		<description>The catapult, towering and mighty, rains destruction upon enemy fortifications. Its thunderous projectiles reshape the battlefield, turning the tide of war. Positioned strategically, it becomes the linchpin of our siege tactics. With each launch, it asserts our dominance and strikes fear into the hearts of our foes.</description>
+		
+		<base_damage>250</base_damage>
+		<armour>1200</armour>
+		<waste_chance>65</waste_chance>
+		<attack_again_chance>12</attack_again_chance>
+
+		<plus_stats>
+			<armour_technology>5</armour_technology>
+			<attack_technology>5</attack_technology>
+			<armour_experience>4</armour_experience>
+			<attack_experience>4</attack_experience>
+			<armour_sanctified>7</armour_sanctified>
+			<attack_sanctified>7</attack_sanctified>
+		</plus_stats>
+
+		<costs>
+			<food_cost>0</food_cost>
+			<wood_cost>4000</wood_cost>
+			<iron_cost>500</iron_cost>
+			<mana_cost>0</mana_cost>
+		</costs>
+		<sprite></sprite>
+	</unit>
+	<unit>
+		<name>ROCKET LAUNCHER TOWER</name>
+		<imagen>rocketlaunchertower.png</imagen>
+		<description>The rocket launcher tower, a modern marvel of warfare, stands tall and formidable, launching explosive projectiles with unparalleled precision. Its sleek design and advanced technology make it a fearsome sight on the battlefield, capable of decimating enemy forces from a distance. Positioned strategically, it rains down fiery devastation upon targets, turning the tide of battle in our favor. With each explosive blast, it asserts our dominance and ensures victory for our forces.</description>
+		
+		<base_damage>2000</base_damage>
+		<armour>7000</armour>
+		<waste_chance>75</waste_chance>
+		<attack_again_chance>30</attack_again_chance>
+
+		<plus_stats>
+			<armour_technology>5</armour_technology>
+			<attack_technology>5</attack_technology>
+			<armour_experience>4</armour_experience>
+			<attack_experience>4</attack_experience>
+			<armour_sanctified>7</armour_sanctified>
+			<attack_sanctified>7</attack_sanctified>
+		</plus_stats>
+
+		<costs>
+			<food_cost>0</food_cost>
+			<wood_cost>50000</wood_cost>
+			<iron_cost>5000</iron_cost>
+			<mana_cost>0</mana_cost>
+		</costs>
+		<sprite></sprite>
+	</unit>
+</defences>
